@@ -1,0 +1,142 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+	<h:title>Projet - Inmaa Admin</h:title>
+
+
+
+	<!--basic styles-->
+	<h:outputStylesheet name="bootstrap.min.css" library="css" />
+	<h:outputStylesheet name="bootstrap-responsive.min.css" library="css" />
+	<h:outputStylesheet name= "webjars/font-awesome/3.2.1/css/font-awesome.css" />
+	<h:outputStylesheet name= "webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
+
+
+
+
+	<h:link rel="stylesheet"
+		href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+
+
+	<h:outputStylesheet name="ace.min.css" library="css" />
+	<h:outputStylesheet name="ace.min.css" library="css" />
+	<h:outputStylesheet name="ace-skins.min.css" library="css" />
+
+
+
+</h:head>
+
+<h:body>
+	<div class="navbar"></div>
+
+	<div class="main-container container-fluid">
+		<a class="menu-toggler" id="menu-toggler" href="#"> <span
+			class="menu-text"></span> </a>
+
+		<div class="sidebar" id="sidebar">
+			<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+
+
+				<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+					<span class="btn btn-success"></span> <span class="btn btn-info"></span>
+
+					<span class="btn btn-warning"></span> <span class="btn btn-danger"></span>
+				</div>
+			</div>
+			<!--#sidebar-shortcuts-->
+
+			<ul class="nav nav-list">
+				<li class="active"><a href="tables.html"> <i
+						class="icon-list"></i> <span class="menu-text"> Projet </span> </a></li>
+
+			</ul>
+			<!--/.nav-list-->
+
+
+		</div>
+
+		<div class="main-content">
+			<div class="breadcrumbs" id="breadcrumbs">
+				<ul class="breadcrumb">
+					<li><i class="icon-home home-icon"></i> <a href="#">Home</a> <span
+						class="divider"> <i class="icon-angle-right arrow-icon"></i>
+					</span></li>
+					<li class="active">Projets</li>
+				</ul>
+				<!--.breadcrumb-->
+
+
+			</div>
+
+			<div class="page-content">
+				<div class="page-header position-relative">
+					<h1>Projets</h1>
+				</div>
+				<!--/.page-header-->
+				<div class="row-fluid">
+					<div class="span12">
+						<!--PAGE CONTENT BEGINS-->
+
+						<div class="row-fluid">
+							<div class="span12">
+								<h:form>
+									<p:dataTable var="etd" value="#{pro.es}" style="width: 700"
+										paginator="false" rows="10" editable="true"
+										id="sample-table-1"
+										styleClass="table table-striped table-bordered table-hover">
+										
+										<p:column styleClass="center">
+											<f:facet name="header" styleClass="center">
+												<h:outputText />
+												<span class="lbl"></span>
+											</f:facet>
+											<span class="lbl"></span>
+											<h:outputText value=" " />
+										</p:column>
+										<p:column>
+											<f:facet name="header">
+												<h:outputText value="Intitulé" />
+											</f:facet>
+											<h:outputText value="#{etd.projectname}" />
+										</p:column>
+										<p:column>
+											<f:facet name="header">
+												<h:outputText value="Code affaire" />
+											</f:facet>
+											<!--  <h:commandButton value="Supprimer" action="#{etudiantBean.delete}"></h:commandButton>
+					<h:commandButton value="uupdate" action="#{etudiantBean.edit}"></h:commandButton>-->
+											<h:outputText value="" />
+										</p:column>
+										<p:column>
+											<f:facet name="header" styleClass="hidden-480">
+												<h:outputText value="Lieu" />
+											</f:facet>
+											<h:outputText styleClass="hidden-480" value="" />
+										</p:column>
+										<p:column>
+											<f:facet name="header" styleClass="hidden-phone">
+												<i class="icon-time bigger-110 hidden-phone"></i>
+												<h:outputText value="Description" />
+											</f:facet>
+											<h:outputText styleClass="hidden-phone"
+												value="#{etd.projectdesc}" />
+										</p:column>
+
+									</p:dataTable>
+								</h:form>
+							</div>
+						</div>
+						
+						
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>
