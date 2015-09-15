@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+<h:title>Insert title here</h:title>
+</h:head>
+<h:body>
+<p:dataTable var="etd" value="#{pro.es}" style="width: 700" paginator="false" rows="10" editable="true">
+				<p:column sortBy="#{etd.projectname}" filterBy="#{etd.projectname}">
+					<f:facet name="header">
+						<h:outputText value="projectname" />
+					</f:facet>
+					<h:outputText value="#{etd.projectname}" />
+				</p:column>		
+				 
+				<p:column>
+				 	<f:facet name="header">
+						<h:outputText value="Opération" />
+					</f:facet>
+					<h:commandButton value="Supprimer" ></h:commandButton>
+					<h:commandButton value="uupdate" ></h:commandButton>
+				</p:column>
+	
+			</p:dataTable>
+</h:body>
+</html>
