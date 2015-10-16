@@ -1,6 +1,6 @@
 package com.inmaa.admin.persistence;
 
-// Generated 9 juil. 2015 19:09:03 by Hibernate Tools 3.4.0.CR1
+// Generated 16 oct. 2015 15:33:15 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -31,6 +31,9 @@ public class Project implements java.io.Serializable {
 	private String projectDesc;
 	private String projectName;
 	private Date projectStartDate;
+	private String projectLocation;
+	private String projectPhone;
+	private String projectPartner;
 	private Set<Event> events = new HashSet<Event>(0);
 	private Set<News> newses = new HashSet<News>(0);
 	private Set<Member> members = new HashSet<Member>(0);
@@ -39,13 +42,17 @@ public class Project implements java.io.Serializable {
 	}
 
 	public Project(Integer seqNo, String projectLogo, String projectDesc,
-			String projectName, Date projectStartDate, Set<Event> events,
+			String projectName, Date projectStartDate, String projectLocation,
+			String projectPhone, String projectPartner, Set<Event> events,
 			Set<News> newses, Set<Member> members) {
 		this.seqNo = seqNo;
 		this.projectLogo = projectLogo;
 		this.projectDesc = projectDesc;
 		this.projectName = projectName;
 		this.projectStartDate = projectStartDate;
+		this.projectLocation = projectLocation;
+		this.projectPhone = projectPhone;
+		this.projectPartner = projectPartner;
 		this.events = events;
 		this.newses = newses;
 		this.members = members;
@@ -106,6 +113,33 @@ public class Project implements java.io.Serializable {
 
 	public void setProjectStartDate(Date projectStartDate) {
 		this.projectStartDate = projectStartDate;
+	}
+
+	@Column(name = "Project_Location", length = 45)
+	public String getProjectLocation() {
+		return this.projectLocation;
+	}
+
+	public void setProjectLocation(String projectLocation) {
+		this.projectLocation = projectLocation;
+	}
+
+	@Column(name = "Project_Phone", length = 45)
+	public String getProjectPhone() {
+		return this.projectPhone;
+	}
+
+	public void setProjectPhone(String projectPhone) {
+		this.projectPhone = projectPhone;
+	}
+
+	@Column(name = "Project_partner", length = 90)
+	public String getProjectPartner() {
+		return this.projectPartner;
+	}
+
+	public void setProjectPartner(String projectPartner) {
+		this.projectPartner = projectPartner;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "projects")

@@ -39,6 +39,7 @@ public class MemberBean implements Serializable{
 	private List<Member> memberList;
 
 	private transient DataModel<Member> members;
+	private int id;
 
 
 
@@ -112,6 +113,12 @@ public class MemberBean implements Serializable{
 	}
 	public DualListModel<Member> getmemberModel() {
 		return memberModel;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getId() {
+		return id;
 	}
 
 }
