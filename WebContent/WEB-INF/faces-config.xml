@@ -10,4 +10,17 @@
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
 
 	</application>
+	
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>editProjet</from-outcome>
+			<to-view-id>/form-projects.xhtml</to-view-id>
+			<redirect></redirect>
+		</navigation-case>
+				
+	</navigation-rule>
+	
+	
 </faces-config>

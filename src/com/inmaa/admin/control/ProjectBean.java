@@ -45,17 +45,20 @@ public class ProjectBean implements Serializable{
 	List<Member> target = new ArrayList<Member>();
 	List<Member> source = new ArrayList<Member>();
 	private DualListModel<Member> memberModel;
+	private int id;
 
 
 	@PostConstruct
 	public void init() {
+		currentProject = new Project();
+		
 		projectList = projectService.lister();
 		es = new ListDataModel<Project>();
 		es.setWrappedData( projectService.lister());
 		
 		source = getmemberList();
 		memberModel = new DualListModel<Member>(source, target);
-
+		id = 0;
 	}
 	
 	private List<Member> getmemberList() {
@@ -115,6 +118,22 @@ public class ProjectBean implements Serializable{
 		return null;
 	}
 
+	public String delete(Project p){
+		projectService.supprimer(p);
+		currentProject = new Project();
+		es.setWrappedData( projectService.lister());
+		return null;
+	}
+
+	public String edit(Project p){
+		projectService.mettre_a_jour(p);
+		currentProject = p;
+		
+		
+ 		setId(currentProject.getProjectId());
+		return "form-projects.xhtml?faces-redirect=true&includeViewParams=true";
+ 	}
+	
 	public String vider(){
 		currentProject = new Project();
 		return null;
@@ -129,28 +148,14 @@ public class ProjectBean implements Serializable{
 		this.projectList = projects;
 	}
 
-	public String viewProjetDetail(){
-		currentProject = getEs().getRowData();
-		return "detailProjet";
+	public void setmemberModel(DualListModel<Member> memberModel) {
+		this.memberModel = memberModel;
 	}
-
-	//	public void createProjects() {
-	//	if(es == null) 
-	//		getEs();
-	//	else
-	//	{
-	//		List<Project> list = new ArrayList<Project>();
-	//		Iterator<Project> itr = es.iterator();
-	//		while(itr.hasNext()) {
-	//			p =  itr.next();
-	//			Project pr = new Project(p.getProjectid(), p.getProjectlogo(), p.getProjectdesc(), p.getProjectname(), p.getProjectstartdate());
-	//			list.add( pr);
-	//		}
-	//		
-	//		setProjectList(list);
-	//	}
-	//}
-
+	
+	public DualListModel<Member> getmemberModel() {
+		return memberModel;
+	} 
+	
 	public Project getprojectBySeqNo(int Seqno)
 	{
 		Iterator<Project> itr = es.iterator();
@@ -163,12 +168,6 @@ public class ProjectBean implements Serializable{
 		}
 		return null;
 	}
-//	public List<Project> getlistproject()
-//	{
-//		List<Project> projects;
-//		return cars;
-//
-//	}
 
     public void handleFileUpload(FileUploadEvent event) {
 //    	Image = (Part) event.getFile();
@@ -176,8 +175,28 @@ public class ProjectBean implements Serializable{
 //        FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
 //        FacesContext.getCurrentInstance().addMessage(null, message);
     }
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getId() {
+		return id;
+	}
     
     
+	public String limitedDesc(String desc)
+	{
+		if(desc == null || desc == "")
+			 desc = currentProject.getProjectDesc();
+		
+		if(desc.length()>200)
+			desc = desc.substring(0, 200) + " ...";
+		
+		return desc;
+	}
+
+	
 //    private static String getFilename(Part part) {  
 //        for (String cd : part.getHeader("content-disposition").split(";")) {  
 //            if (cd.trim().startsWith("filename")) {  
@@ -196,12 +215,4 @@ public class ProjectBean implements Serializable{
 //		return Image;
 //	}
 
-	public void setmemberModel(DualListModel<Member> memberModel) {
-		this.memberModel = memberModel;
-	}
-
-	public DualListModel<Member> getmemberModel() {
-		return memberModel;
-	} 
-    
 }

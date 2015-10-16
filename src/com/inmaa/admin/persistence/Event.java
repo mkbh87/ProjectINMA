@@ -1,6 +1,6 @@
 package com.inmaa.admin.persistence;
 
-// Generated 9 juil. 2015 19:09:03 by Hibernate Tools 3.4.0.CR1
+// Generated 16 oct. 2015 15:33:15 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -31,18 +31,25 @@ public class Event implements java.io.Serializable {
 	private String eventDesc;
 	private Date eventStartDate;
 	private Date eventEndDate;
+	private String eventLogo;
+	private String eventPlace;
+	private String eventPresenter;
 	private Set<Project> projects = new HashSet<Project>(0);
 
 	public Event() {
 	}
 
 	public Event(Integer seqNo, String eventName, String eventDesc,
-			Date eventStartDate, Date eventEndDate, Set<Project> projects) {
+			Date eventStartDate, Date eventEndDate, String eventLogo,
+			String eventPlace, String eventPresenter, Set<Project> projects) {
 		this.seqNo = seqNo;
 		this.eventName = eventName;
 		this.eventDesc = eventDesc;
 		this.eventStartDate = eventStartDate;
 		this.eventEndDate = eventEndDate;
+		this.eventLogo = eventLogo;
+		this.eventPlace = eventPlace;
+		this.eventPresenter = eventPresenter;
 		this.projects = projects;
 	}
 
@@ -84,8 +91,8 @@ public class Event implements java.io.Serializable {
 		this.eventDesc = eventDesc;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "Event_StartDate", length = 10)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "Event_StartDate", length = 19)
 	public Date getEventStartDate() {
 		return this.eventStartDate;
 	}
@@ -94,14 +101,41 @@ public class Event implements java.io.Serializable {
 		this.eventStartDate = eventStartDate;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "Event_EndDate", length = 10)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "Event_EndDate", length = 19)
 	public Date getEventEndDate() {
 		return this.eventEndDate;
 	}
 
 	public void setEventEndDate(Date eventEndDate) {
 		this.eventEndDate = eventEndDate;
+	}
+
+	@Column(name = "Event_Logo", length = 45)
+	public String getEventLogo() {
+		return this.eventLogo;
+	}
+
+	public void setEventLogo(String eventLogo) {
+		this.eventLogo = eventLogo;
+	}
+
+	@Column(name = "Event_Place", length = 45)
+	public String getEventPlace() {
+		return this.eventPlace;
+	}
+
+	public void setEventPlace(String eventPlace) {
+		this.eventPlace = eventPlace;
+	}
+
+	@Column(name = "Event_Presenter", length = 45)
+	public String getEventPresenter() {
+		return this.eventPresenter;
+	}
+
+	public void setEventPresenter(String eventPresenter) {
+		this.eventPresenter = eventPresenter;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)

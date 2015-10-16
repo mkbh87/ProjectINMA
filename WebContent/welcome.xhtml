@@ -49,7 +49,7 @@
 			<h:panelGroup layout="block" styleClass="container-fluid">
 
 				<h1 class="logo">
-					<h:outputLink value="index.html">
+					<h:outputLink value="welcome.xhtml">
 						<h:graphicImage library="images" name="logo.png" styleClass="logo" />
 					</h:outputLink>
 				</h1>
@@ -57,9 +57,9 @@
 				<ul Class="nav ace-nav pull-right">
 					<li class="light-blue"><h:outputLink data-toggle="dropdown"
 							value="#" class="dropdown-toggle">
-							<h:graphicImage styleClass="nav-user-photo" library="avatars/"
-								name="user.jpg" alt="Jason's Photo" />
-							<span class="user-info"> <small>Welcome,</small> Jason </span>
+							<h:graphicImage styleClass="nav-user-photo" library="images"
+								name="logo.png" alt="Inma Admin's Photo" />
+							<span class="user-info"> <small>Welcome,</small> Inma Admin </span>
 							<i class="icon-caret-down"></i>
 						</h:outputLink>
 
@@ -146,8 +146,11 @@
 						</h:outputLink></li>
 
 						<li><h:outputLink value="form-projects.xhtml">
+								<f:param name="id" value="0" />
+
 								<i class="icon-double-angle-right"></i> Nouveau Projet
-						</h:outputLink></li>
+						</h:outputLink>
+						</li>
 					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
@@ -157,15 +160,72 @@
 					</h:outputLink>
 
 					<ul class="submenu">
-						<li><h:outputLink value="table-events.html">
+						<li><h:outputLink value="table-events.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les evenements
 						</h:outputLink></li>
 
-						<li><h:outputLink value="form-events.html">
+						<li><h:outputLink value="form-events.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel evenement
 						</h:outputLink></li>
 					</ul></li>
 
+
+				<li><h:outputLink value="#" class="dropdown-toggle">
+						<i class="icon-desktop"></i>
+						<span class="menu-text"> Membres </span>
+						<b class="arrow icon-angle-down"></b>
+					</h:outputLink>
+
+					<ul class="submenu">
+						<li><h:outputLink value="table-members.xhtml">
+								<i class="icon-double-angle-right"></i> Tous les membres
+						</h:outputLink>
+						</li>
+
+						<li><h:outputLink value="form-members.xhtml">
+								<i class="icon-double-angle-right"></i> Nouvel membre
+						</h:outputLink>
+						</li>
+					</ul>
+				</li>
+
+				<li><h:outputLink value="#" class="dropdown-toggle">
+						<i class="icon-desktop"></i>
+						<span class="menu-text"> Articles </span>
+						<b class="arrow icon-angle-down"></b>
+					</h:outputLink>
+
+					<ul class="submenu">
+						<li><h:outputLink value="table-articles.xhtml">
+								<i class="icon-double-angle-right"></i> Tous les articles
+						</h:outputLink>
+						</li>
+
+						<li><h:outputLink value="form-articles.xhtml">
+								<i class="icon-double-angle-right"></i> Nouvel article
+						</h:outputLink>
+						</li>
+					</ul>
+				</li>
+
+				<li><h:outputLink value="#" class="dropdown-toggle">
+						<i class="icon-desktop"></i>
+						<span class="menu-text"> partners </span>
+						<b class="arrow icon-angle-down"></b>
+					</h:outputLink>
+
+					<ul class="submenu">
+						<li><h:outputLink value="table-partners.xhtml">
+								<i class="icon-double-angle-right"></i> Tous les partners
+						</h:outputLink>
+						</li>
+
+						<li><h:outputLink value="form-partners.xhtml">
+								<i class="icon-double-angle-right"></i> Nouvel partner
+						</h:outputLink>
+						</li>
+					</ul>
+				</li>
 
 				<li><h:outputLink value="calendar.html">
 						<i class="icon-calendar"></i>
