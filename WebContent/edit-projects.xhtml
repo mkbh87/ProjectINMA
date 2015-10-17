@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
+ 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" xmlns:a4j="http://richfaces.org/a4j"
-	xmlns:rich="http://richfaces.org/rich">
+    xmlns:p="http://primefaces.org/ui" >
 
 <h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
@@ -17,10 +17,7 @@
 
 	<!-- Mobile Specific Metas
     ================================================== -->
-	<meta name="viewport"
-		content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
-	<meta name="format-detection" content="telephone=no" />
-
+	<meta name="viewport" 	content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
 	<!--basic styles-->
 
 	<h:outputStylesheet library="css" name="font-awesome-ie7.min.css" />
@@ -32,13 +29,25 @@
 	<h:outputStylesheet library="css" name="ace.min.css" />
 	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
 	<h:outputStylesheet library="css" name="ace-skins.min.css" />
+	<h:outputStylesheet
+		name="webjars/font-awesome/3.2.1/css/font-awesome.css" />
+	<h:outputStylesheet
+		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
 
-	<h:outputStylesheet library="webjars" name= "font-awesome/3.2.1/css/font-awesome.css" />
-	<h:outputStylesheet library="webjars" name= "font-awesome/3.2.1/css/font-awesome.min.css" />
+	<!--page specific plugin styles-->
+	<h:outputStylesheet library="css" name="select2.css" />
+	<!--ace styles-->
+
+	<h:outputStylesheet library="css" name="ace.min.css" />
+	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
+	<h:outputStylesheet library="css" name="ace-skins.min.css" />
 
 </h:head>
 
 <h:body>
+			<f:metadata>
+				<f:viewParam name="id" value="#{projectBean.id}" />
+			</f:metadata>
 
 	<h:panelGroup layout="block" styleClass="navbar">
 		<h:panelGroup layout="block" styleClass="navbar-inner">
@@ -51,12 +60,11 @@
 				</h1>
 
 				<ul Class="nav ace-nav pull-right">
-					<li class="light-blue">
-					<h:outputLink data-toggle="dropdown"
+					<li class="light-blue"><h:outputLink data-toggle="dropdown"
 							value="#" class="dropdown-toggle">
 							<h:graphicImage styleClass="nav-user-photo"
-								library="images/avatars/" name="user.jpg" alt="Jason's Photo" />
-							<span class="user-info"> <small>Welcome,</small> Jason </span>
+								library="images" name="logo.jpg" alt="Inma Admin's Photo" />
+							<span class="user-info"> <small>Welcome,</small> Inma Admin </span>
 							<i class="icon-caret-down"></i>
 						</h:outputLink>
 
@@ -89,34 +97,38 @@
 	</h:panelGroup>
 
 
-	<h:panelGroup layout="block" styleClass="main-container container-fluid">
+	<h:panelGroup layout="block"
+		styleClass="main-container container-fluid">
+		<h:outputLink class="menu-toggler" id="menu-toggler" value="#">
+			<span class="menu-text"></span>
+		</h:outputLink>
 
 		<h:panelGroup layout="block" styleClass="sidebar" id="sidebar">
-			<h:panelGroup layout="block" styleClass="sidebar-shortcuts" id="sidebar-shortcuts">
+			<h:panelGroup layout="block" styleClass="sidebar-shortcuts"
+				id="sidebar-shortcuts">
 				<h:panelGroup layout="block" styleClass="sidebar-shortcuts-large"
 					id="sidebar-shortcuts-large">
-					<h:button class="btn btn-small btn-success">
-						<i styleClass="icon-signal"></i>
-					</h:button>
+					<button class="btn btn-small btn-success">
+						<i class="icon-signal"></i>
+					</button>
 
-					<h:button class="btn btn-small btn-info">
-						<i styleClass="icon-pencil"></i>
-					</h:button>
+					<button class="btn btn-small btn-info">
+						<i class="icon-pencil"></i>
+					</button>
 
-					<h:button class="btn btn-small btn-warning">
-						<i styleClass="icon-group"></i>
-					</h:button>
+					<button class="btn btn-small btn-warning">
+						<i class="icon-group"></i>
+					</button>
 
-					<h:button class="btn btn-small btn-danger">
-						<i styleClass="icon-cogs"></i>
-					</h:button>
+					<button class="btn btn-small btn-danger">
+						<i class="icon-cogs"></i>
+					</button>
 				</h:panelGroup>
 
 				<h:panelGroup layout="block" styleClass="sidebar-shortcuts-mini"
 					id="sidebar-shortcuts-mini">
 					<span class="btn btn-success"></span>
 					<span class="btn btn-info"></span>
-
 					<span class="btn btn-warning"></span>
 					<span class="btn btn-danger"></span>
 				</h:panelGroup>
@@ -134,7 +146,7 @@
 				<li class="active open"><h:outputLink value="#"
 						class="dropdown-toggle">
 						<i class="icon-desktop"></i>
-						<span class="menu-text"> Projects </span>
+						<span class="menu-text"> Projets </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
 
@@ -158,18 +170,66 @@
 					</h:outputLink>
 
 					<ul class="submenu">
-						<li><h:outputLink value="table-events.html">
+						<li><h:outputLink value="table-events.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les evenements
 						</h:outputLink>
 						</li>
 
-						<li><h:outputLink value="form-events.html">
+						<li><h:outputLink value="form-events.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel evenement
 						</h:outputLink>
 						</li>
 					</ul>
 				</li>
 
+
+				<li><h:outputLink value="#" class="dropdown-toggle">
+						<i class="icon-desktop"></i>
+						<span class="menu-text"> Membres </span>
+						<b class="arrow icon-angle-down"></b>
+					</h:outputLink>
+
+					<ul class="submenu">
+						<li><h:outputLink value="table-members.xhtml">
+								<i class="icon-double-angle-right"></i> Tous les membres
+						</h:outputLink></li>
+
+						<li><h:outputLink value="form-members.xhtml">
+								<i class="icon-double-angle-right"></i> Nouvel membre
+						</h:outputLink></li>
+					</ul></li>
+
+				<li><h:outputLink value="#" class="dropdown-toggle">
+						<i class="icon-desktop"></i>
+						<span class="menu-text"> Articles </span>
+						<b class="arrow icon-angle-down"></b>
+					</h:outputLink>
+
+					<ul class="submenu">
+						<li><h:outputLink value="table-articles.xhtml">
+								<i class="icon-double-angle-right"></i> Tous les articles
+						</h:outputLink></li>
+
+						<li><h:outputLink value="form-articles.xhtml">
+								<i class="icon-double-angle-right"></i> Nouvel article
+						</h:outputLink></li>
+					</ul></li>
+
+				<li><h:outputLink value="#" class="dropdown-toggle">
+						<i class="icon-desktop"></i>
+						<span class="menu-text"> partners </span>
+						<b class="arrow icon-angle-down"></b>
+					</h:outputLink>
+
+					<ul class="submenu">
+						<li><h:outputLink value="table-partners.xhtml">
+								<i class="icon-double-angle-right"></i> Tous les partners
+						</h:outputLink></li>
+
+						<li><h:outputLink value="form-partners.xhtml">
+								<i class="icon-double-angle-right"></i> Nouvel partner
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="calendar.html">
 						<i class="icon-calendar"></i>
@@ -225,14 +285,13 @@
 			</h:panelGroup>
 		</h:panelGroup>
 
-		<h:panelGroup layout="block" class="main-content">
-			<h:panelGroup layout="block" class="breadcrumbs" id="breadcrumbs">
+		<h:panelGroup layout="block" styleClass="main-content">
+			<h:panelGroup layout="block" styleClass="breadcrumbs"
+				id="breadcrumbs">
 				<ul class="breadcrumb">
 					<li><i class="icon-home home-icon"></i> <a href="#">Home</a> <span
 						class="divider"> <i class="icon-angle-right arrow-icon"></i>
-					</span>
-					</li>
-
+					</span></li>
 					<li><a href="#">Projet</a> <span class="divider"> <i
 							class="icon-angle-right arrow-icon"></i> </span>
 					</li>
@@ -240,10 +299,9 @@
 				</ul>
 				<!--.breadcrumb-->
 
-				<h:panelGroup layout="block" class="nav-search" id="nav-search">
-					<h:form class="form-search">
-						<span class="input-icon"> 
-						<input type="text"
+				<h:panelGroup layout="block" styleClass="nav-search" id="nav-search">
+					<h:form class="form-search"  prependId="false" acceptcharset="UTF-8">
+						<span class="input-icon"> <input type="text"
 							placeholder="Search ..." class="input-small nav-search-input"
 							id="nav-search-input" autocomplete="off" /> <i
 							class="icon-search nav-search-icon"></i> </span>
@@ -252,10 +310,10 @@
 				<!--#nav-search-->
 			</h:panelGroup>
 
-			<h:panelGroup layout="block" class="page-content">
+			<h:panelGroup layout="block" styleClass="page-content">
 				<h:panelGroup layout="block" class="page-header position-relative">
 					<h1>
-						Nouveau projet <small> <i class="icon-double-angle-right"></i>
+						Modification du projet <small> <i class="icon-double-angle-right"></i>
 						</small>
 					</h1>
 				</h:panelGroup>
@@ -265,176 +323,176 @@
 					<h:panelGroup layout="block" class="span12">
 						<!--PAGE CONTENT BEGINS-->
 
-						<h4 class="lighter">
-							<i class="icon-hand-right icon-animated-hand-pointer blue"></i> <a
-								href="#modal-wizard" data-toggle="modal" class="pink">
-								Wizard Inside a Modal Box </a>
-						</h4>
-
-						<h:panelGroup layout="block" class="hr hr-18 hr-double dotted"></h:panelGroup>
 						<h:panelGroup layout="block" class="row-fluid">
 							<h:panelGroup layout="block" class="span12">
 								<h:panelGroup layout="block" class="widget-box">
 									<h:panelGroup layout="block"
 										class="widget-header widget-header-blue widget-header-flat">
-										<h4 class="lighter">New Item Wizard</h4>
+										<h4 class="lighter">Modifier le projet</h4>
 
-										<h:panelGroup layout="block" class="widget-toolbar">
-											<label> <small class="green"> <b>Validation</b>
-											</small> <input id="skip-validation" type="checkbox"
-												class="ace-switch ace-switch-4" /> <span class="lbl"></span>
-											</label>
-										</h:panelGroup>
 									</h:panelGroup>
 
-									<h:panelGroup layout="block" class="widget-body">
-										<h:panelGroup layout="block" class="widget-main">
-											<h:panelGroup layout="block" class="row-fluid">
-												<h:panelGroup layout="block" id="fuelux-wizard"
-													class="row-fluid hide" data-target="#step-container">
-													<ul class="wizard-steps">
-														<li data-target="#step1" class="active"><span
-															class="step">1</span> <span class="title">Ajout</span>
-														</li>
-
-														<li data-target="#step2"><span class="step">2</span>
-															<span class="title">Affichage</span>
-														</li>
-
-
-														<li data-target="#step4"><span class="step">3</span>
-															<span class="title">Sauvegarde</span>
-														</li>
-													</ul>
-												</h:panelGroup>
-												<hr />
-												<h:panelGroup layout="block"
-													class="step-content row-fluid position-relative"
-													id="step-container">
-													<h:panelGroup layout="block" class="step-pane active" id="step1">
-														<h3 class="lighter block green">Nouveau Projet</h3>
-
-														<h:form  class="form-horizontal" id="sample-form">
-
-															<h:panelGroup layout="block"
-																styleClass="control-group success">
-																<p:outputLabel styleClass="control-label" for="intitule"
-																	value="Nom de Projet " />
-
-																<h:panelGroup layout="block" styleClass="controls">
-																	<span class="span6 input-icon input-icon-right">
-																		<h:inputText styleClass="span12" id="intitule"
-																			value="#{projectBean.currentProject.projectName}" />
-
-																		<i class="icon-warning-sign"></i> </span>
-																	<span class="help-inline"> Champs obligatoire </span>
-																</h:panelGroup>
-															</h:panelGroup>
-
-															<h:panelGroup layout="block"
-																class="control-group success">
-																<p:outputLabel styleClass="control-label"
-																	for="description" value="Description " />
-
-																<h:panelGroup layout="block" class="controls">
-																	<span class="span6 input-icon input-icon-right">
-																		<h:inputTextarea styleClass="span12 limited"
-																			data-maxlength="500" maxlength="500" id="description"
-																			value="#{projectBean.currentProject.projectDesc}" />
-																	</span>
-																</h:panelGroup>
-															</h:panelGroup>
-
-															<h:panelGroup layout="block"
-																class="control-group success">
-																<p:outputLabel styleClass="control-label" for="intitule"
-																	value="Logo de projet " />
+									<h:panelGroup layout="block" class="widget-body widget-main">
+										<h:panelGroup layout="block" class="row-fluid">
+										
+										<h:form class="form-horizontal" id="form" prependId="false" enctype="multipart/form-data"
+														acceptcharset="UTF-8">
+											<h:panelGroup layout="block" id="fuelux-wizard"
+												class="row-fluid hide" data-target="#step-container">
+												<ul class="wizard-steps">
+													<li data-target="#step1" class="active"><span
+														class="step">1</span> <span class="title">Ajout</span></li>
 
 
 
-																<h:panelGroup layout="block" class="controls">
-																	<span class="span6 input-icon input-icon-right">
-
-
-
-<p:fileUpload value="#{projectBean.Image}" mode="simple"/>
-
-<p:fileUpload mode="advanced"  value="#{projectBean.Image}" 
-        fileUploadListener="#{projectBean.handleFileUpload}"/>
-    <h:outputText value="#{myBean.projectLogo}"/>    
-																			 
-																			 
-																			 </span>
-																</h:panelGroup>
-															</h:panelGroup>
-
-															<h:panelGroup layout="block"
-																class="control-group success">
-																<p:outputLabel styleClass="control-label" for="intitule"
-																	value="Date de debut de projet : " />
-
-																<h:panelGroup layout="block" class="controls">
-																	<span class="span6 input-icon input-icon-right">
-																		<h:panelGroup layout="block" class="control-group">
-																			<h:panelGroup layout="block"
-																				class="row-fluid input-append">
-																				<p:calendar id="effect"
-																					value="#{projectBean.currentProject.projectStartDate}"
-																					styleClass="span10 date-picker" effect="fold" />
-																			</h:panelGroup>
-																		</h:panelGroup> </span>
-																</h:panelGroup>
-															</h:panelGroup>
-														
-								
-														</h:form>
-													
-													</h:panelGroup>
-
-													<h:panelGroup layout="block" class="step-pane" id="step2">
-														<h:panelGroup layout="block" class="row-fluid">
-<h:form>
-
-<p:growl id="msg" showDetail="true" escape="false" />
- 
-    <h3 style="margin-top: 0">Membres</h3>
-    <p:pickList id="pickList" value="#{projectBean.memberModel}" var="mem" 
-    itemLabel="#{mem.memberName}  #{mem.memberName1}" itemValue="#{mem.memberId}" converter="#{PickListConverterPickListConverter}" />
- 
-  													<h:commandButton id="Submit" styleClass="btn btn-success btn-next"
-														value="submit" action="#{projectBean.ajouter}">
-														<i class="icon-arrow-right icon-on-right"></i>
-													</h:commandButton>
-  
-  
-
-</h:form>
-														
-														</h:panelGroup>
-													</h:panelGroup>
-
-													<h:panelGroup layout="block" class="step-pane" id="step4">
-														<h:panelGroup layout="block" class="center">
-															<h3 class="green">Ok</h3>
-															le projet est ajouté avec succes
-														</h:panelGroup>
-													</h:panelGroup>
-												</h:panelGroup>
-
-												<hr />
-												<h:panelGroup layout="block"
-													class="row-fluid wizard-actions">
-													<button class="btn btn-prev">
-														<i class="icon-arrow-left"></i> Prev
-													</button>
-
-													<h:commandButton styleClass="btn btn-success btn-next"
-														value="Ajouter" action="#{projectBean.ajouter}">
-														<i class="icon-arrow-right icon-on-right"></i>
-													</h:commandButton>
-												</h:panelGroup>
+													<li data-target="#step4"><span class="step">2</span> <span
+														class="title">Sauvegarde</span></li>
+												</ul>
 											</h:panelGroup>
+											<hr />
+											<h:panelGroup layout="block"
+												class="step-content row-fluid position-relative"
+												id="step-container">
+													
+													<h:panelGroup layout="block" class="step-pane active"
+													id="step1">
+													<h3 class="lighter block green">Modification du Projet</h3>
+
+
+														<h:panelGroup layout="block"
+															styleClass="control-group success">
+															<p:outputLabel styleClass="control-label" for="intitule"
+																value="Nom de Projet " />
+
+															<h:panelGroup layout="block" styleClass="controls">
+																<span class="span3 input-icon input-icon-right">
+																	<h:inputText styleClass="span12" id="intitule"
+																		value="#{projectBean.currentProject.projectName}" />
+																	<i class="icon-warning-sign"></i> </span>
+																<span class="help-inline"> Champs obligatoire </span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+
+														<h:panelGroup layout="block" class="control-group success">
+															<p:outputLabel styleClass="control-label"
+																for="description" value="Description " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span8 input-icon input-icon-right">
+																	<h:inputTextarea styleClass="span12 limited" rows="8"
+																		data-maxlength="500" maxlength="500" id="description"
+																		value="#{projectBean.currentProject.projectDesc}" />
+																</span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+														<h:panelGroup layout="block" class="control-group success">
+															<p:outputLabel styleClass="control-label" for="intitule"
+																value="Logo de projet " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span6 input-icon input-icon-right">
+																
+	 <p:fileUpload fileUploadListener="#{projectBean.handleFileUpload}" auto="true"  />
+ 																
+ 																</span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+														<h:panelGroup layout="block" class="control-group success">
+															<p:outputLabel styleClass="control-label" for="intitule"
+																value="Date de debut de projet : " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span6 input-icon input-icon-right">
+																	<h:panelGroup layout="block" class="control-group">
+																		<h:panelGroup layout="block"
+																			class="row-fluid input-append">
+ <p:calendar value="#{projectBean.currentProject.projectStartDate}" mode="popup"/>
+ 
+																		</h:panelGroup>
+																	</h:panelGroup> </span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+														<h:panelGroup layout="block"
+															styleClass="control-group success">
+															<p:outputLabel styleClass="control-label" for="Endroit"
+																value="l'emplacement " />
+
+															<h:panelGroup layout="block" styleClass="controls">
+																<span class="span6 input-icon input-icon-right">
+																	<h:inputText styleClass="span12" id="Endroit"
+																		value="#{projectBean.currentProject.projectLocation}" />
+																	 </span><span class="help-inline"> Utiliser le virgule comme separateur </span> 
+															</h:panelGroup>
+														</h:panelGroup>
+
+
+
+														<h:panelGroup layout="block" styleClass="control-group success">
+															<p:outputLabel styleClass="control-label" for="Partenaire" value="Partenaire" />
+
+															<h:panelGroup layout="block" styleClass="controls">
+																<span class="span6 input-icon input-icon-right">
+																	<h:inputText styleClass="span12" id="Partenaire"
+																		value="#{projectBean.currentProject.projectPartner}" />
+																	  </span><span class="help-inline"> Utiliser le virgule comme separateur </span> 
+															</h:panelGroup>
+														</h:panelGroup>
+
+
+
+
+														<h:panelGroup layout="block"
+															styleClass="control-group success">
+															<p:outputLabel styleClass="control-label" for="Telephone"
+																value="Telephone " />
+
+															<h:panelGroup layout="block" styleClass="controls">
+																<span class="span3 input-icon input-icon-right">
+																	<h:inputText styleClass="span12" id="Telephone"
+																		value="#{projectBean.currentProject.projectPhone}" />
+																		
+																	  </span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+
+
+
+
+
+
+
+
+
+
+
+												</h:panelGroup>
+
+ 
+
+											<hr />
+											<h:panelGroup layout="block" class="row-fluid wizard-actions">
+
+														<p:commandButton styleClass="btn btn-success btn-next"
+															action="#{projectBean.edit()}" onclick="PF('dlg2').show();">
+														Enregister	<i class="icon-arrow-right icon-on-right"></i>
+														</p:commandButton>
+<p:dialog header="Modification du projet" widgetVar="dlg2" modal="true" height="100">
+    <h:outputText value="le projet a été modifié avec succes" />
+</p:dialog>   
+
+
+													</h:panelGroup>
+
+											</h:panelGroup>
+										</h:form>
+										
 										</h:panelGroup>
+
 										<!--/widget-main-->
 									</h:panelGroup>
 									<!--/widget-body-->
@@ -450,12 +508,10 @@
 										class="step">1</span> <span class="title"> Ajout </span>
 									</li>
 
-									<li data-target="#modal-step2"><span class="step">2</span>
-										<span class="title">Affichage</span>
-									</li>
+							  
 
 
-									<li data-target="#modal-step4"><span class="step">3</span>
+									<li data-target="#modal-step4"><span class="step">2</span>
 										<span class="title">Sauvegarde</span>
 									</li>
 								</ul>
@@ -494,56 +550,6 @@
 			</h:panelGroup>
 			<!--/.page-content-->
 
-			<h:panelGroup layout="block" class="ace-settings-container"
-				id="ace-settings-container">
-				<h:panelGroup layout="block"
-					class="btn btn-app btn-mini btn-warning ace-settings-btn"
-					id="ace-settings-btn">
-					<i class="icon-cog bigger-150"></i>
-				</h:panelGroup>
-
-				<h:panelGroup layout="block" class="ace-settings-box"
-					id="ace-settings-box">
-					<h:panelGroup layout="block">
-						<h:panelGroup layout="block" class="pull-left">
-							<select id="skin-colorpicker" class="hide">
-								<option data-class="default" value="#438EB9" />#438EB9
-								<option data-class="skin-1" value="#222A2D" />#222A2D
-								<option data-class="skin-2" value="#C6487E" />#C6487E
-								<option data-class="skin-3" value="#D0D0D0" />#D0D0D0
-							</select>
-						</h:panelGroup>
-						<span>&nbsp; Choose Skin</span>
-					</h:panelGroup>
-
-					<h:panelGroup layout="block">
-						<input type="checkbox" class="ace-checkbox-2"
-							id="ace-settings-header" />
-						<label class="lbl" for="ace-settings-header"> Fixed Header</label>
-					</h:panelGroup>
-
-					<h:panelGroup layout="block">
-						<input type="checkbox" class="ace-checkbox-2"
-							id="ace-settings-sidebar" />
-						<label class="lbl" for="ace-settings-sidebar"> Fixed
-							Sidebar</label>
-					</h:panelGroup>
-
-					<h:panelGroup layout="block">
-						<input type="checkbox" class="ace-checkbox-2"
-							id="ace-settings-breadcrumbs" />
-						<label class="lbl" for="ace-settings-breadcrumbs"> Fixed
-							Breadcrumbs</label>
-					</h:panelGroup>
-
-					<h:panelGroup layout="block">
-						<input  type="checkbox" class="ace-checkbox-2"
-							id="ace-settings-rtl" />
-						<label class="lbl" for="ace-settings-rtl"> Right To Left
-							(rtl)</label>
-					</h:panelGroup>
-				</h:panelGroup>
-			</h:panelGroup>
 			<!--/#ace-settings-container-->
 		</h:panelGroup>
 
@@ -556,12 +562,12 @@
 		class="icon-double-angle-up icon-only bigger-110"></i> </a>
 
 	<!--basic scripts-->
+
 	<script type="text/javascript">
 	//<![CDATA[ 
         window.jQuery || document.write("<script src='resources/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
       //]]>
     </script>
-
 	<!--<![endif]-->
 
 	<!--[if IE]>
@@ -569,22 +575,29 @@
  window.jQuery || document.write("<script src='js/jquery-1.10.2.min.js'>"+"<"+"/script>");
 </script>
 <![endif]-->
-
 	<script type="text/javascript">
 	//<![CDATA[ 
         if ("ontouchend" in document) document.write("<script src='js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
-      //]]>
+    //]]>
     </script>
 	<script src="resources/js/bootstrap.min.js"></script>
 
 	<!--page specific plugin scripts-->
-
 	<script src="resources/js/fuelux/fuelux.wizard.min.js"></script>
 	<script src="resources/js/jquery.validate.min.js"></script>
 	<script src="resources/js/additional-methods.min.js"></script>
 	<script src="resources/js/bootbox.min.js"></script>
 	<script src="resources/js/jquery.maskedinput.min.js"></script>
 	<script src="resources/js/select2.min.js"></script>
+
+	<script src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="resources/js/jquery.ui.touch-punch.min.js"></script>
+	<script src="resources/js/jquery.slimscroll.min.js"></script>
+	<script src="resources/js/jquery.easy-pie-chart.min.js"></script>
+	<script src="resources/js/jquery.sparkline.min.js"></script>
+	<script src="resources/js/flot/jquery.flot.min.js"></script>
+	<script src="resources/js/flot/jquery.flot.pie.min.js"></script>
+	<script src="resources/js/flot/jquery.flot.resize.min.js"></script>
 
 	<!--ace scripts-->
 
@@ -772,5 +785,4 @@
         //]]>
     </script>
 </h:body>
-
 </html>
