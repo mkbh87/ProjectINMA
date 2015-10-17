@@ -360,7 +360,9 @@
 											<h:outputText value="" />
 										</f:facet>
 										<h:commandButton value="Supprimer" action="#{projectBean.delete(pro)}"></h:commandButton>
-										<h:commandButton value="Modifier" action="#{projectBean.edit(pro)}"></h:commandButton>
+										<h:commandButton value="Modifier" action="#{projectBean.showEdit(pro)}">
+										      	<f:param name="id" value="#{pro.projectId}" />
+										</h:commandButton>
 										<h:outputText value="" />
 									</p:column>
 
@@ -402,7 +404,7 @@
 									</ul>
 								</h:panelGroup>
 							</h:panelGroup>
-
+<h:form>
 							<h:panelGroup layout="block"
 								styleClass="modal-footer wizard-actions">
 								<button class="btn btn-small btn-prev">
@@ -419,6 +421,7 @@
 									<i class="icon-remove"></i> Cancel
 								</button>
 							</h:panelGroup>
+</h:form>
 						</h:panelGroup>
 						<!--PAGE CONTENT ENDS-->
 					</h:panelGroup>
