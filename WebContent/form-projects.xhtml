@@ -41,11 +41,10 @@
 	<h:outputStylesheet library="css" name="ace.min.css" />
 	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
 	<h:outputStylesheet library="css" name="ace-skins.min.css" />
-
+	<h:outputStylesheet library="css" name="CostumStyle.css" />
 </h:head>
 
 <h:body>
-	<h:outputLink value="#{projectBean.vider()}"/>
 
 	<h:panelGroup layout="block" styleClass="navbar">
 		<h:panelGroup layout="block" styleClass="navbar-inner">
@@ -474,6 +473,9 @@
 <h:panelGroup layout="block" class="step-pane" id="step4"  >
 	<h:panelGroup layout="block" class="center">
 		<h3 class="green">le projet a ajouté :</h3>
+	</h:panelGroup>
+	
+	<h:panelGroup layout="block" class="right">
 	<ul>
 	<li><strong>	إسم  المشروع | </strong>	<h:outputText
 			value="#{projectBean.currentProject.projectName}" /></li>
@@ -514,19 +516,32 @@
 </h:panelGroup>											</h:panelGroup>
 
 											<hr />
-											<h:panelGroup layout="block" class="row-fluid wizard-actions">
-												<button class="btn btn-prev">
+<!-- 											<h:panelGroup layout="block" class="row-fluid wizard-actions">
+												<p:commandLink class="btn btn-prev" >
 													<i class="icon-arrow-left"></i> Retour
-												</button>
+												</p:commandLink>
 
-												<p:commandLink styleClass="btn btn-success btn-next"
-													>
+												<p:commandLink styleClass="btn btn-success btn-next" >
 														Suivant	<i class="icon-arrow-right icon-on-right"></i>
 												</p:commandLink>
 
 
 											</h:panelGroup>
-										</h:form>
+											
+											
+ -->										
+ 	<p:commandLink styleClass="btn btn-success btn-next" action="#{projectBean.ajouter()}" onclick="PF('dlg2').show();">
+	Sauvegarder	<i class="icon-arrow-right icon-on-right"></i>
+	</p:commandLink>
+
+<p:dialog header="Enregistrement du projet" widgetVar="dlg2" modal="true" height="100">
+    <h3 class="blue">le projet a été modifié avec succes</h3>
+    <h:panelGroup >											
+    	<h:button styleClass="btn btn-success"  action="@{projectBean.vider()}" value="Ok" style="float:right">  </h:button>
+    </h:panelGroup>
+</p:dialog>   
+ 
+ </h:form>
 										
 										</h:panelGroup>
 

@@ -11,12 +11,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
@@ -34,7 +33,7 @@ import com.inmaa.admin.persistence.Project;
 import com.inmaa.admin.service.IProjectService;
  
 @Component("projectBean")
-@SessionScoped
+@ViewScoped
 public class ProjectBean implements Serializable{
 	/**
 	 * 
@@ -69,7 +68,7 @@ public class ProjectBean implements Serializable{
 
 		source = getmemberList();
 		memberModel = new DualListModel<Member>(source, target);
- 		vider();
+ 		//vider();
 	}
 
 	private List<Member> getmemberList() {
@@ -282,4 +281,9 @@ public class ProjectBean implements Serializable{
 		}
 		return null;
 	}
+    
+    public void refrech()
+    {
+    	currentProject.toString();
+    }
 }
