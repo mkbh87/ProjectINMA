@@ -1,6 +1,6 @@
 package com.inmaa.admin.persistence;
 
-// Generated 17 oct. 2015 23:22:24 by Hibernate Tools 3.4.0.CR1
+// Generated 18 oct. 2015 11:37:55 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;

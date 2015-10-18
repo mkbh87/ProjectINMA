@@ -1,7 +1,5 @@
 package com.inmaa.admin.control;
 
-
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,6 +20,7 @@ import javax.faces.model.ListDataModel;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DualListModel;
 import org.primefaces.model.UploadedFile;
@@ -31,7 +30,7 @@ import org.springframework.stereotype.Component;
 import com.inmaa.admin.persistence.Member;
 import com.inmaa.admin.persistence.Project;
 import com.inmaa.admin.service.IProjectService;
- 
+
 @Component("projectBean")
 @ViewScoped
 public class ProjectBean implements Serializable{
@@ -54,9 +53,8 @@ public class ProjectBean implements Serializable{
 	List<Member> source = new ArrayList<Member>();
 	private DualListModel<Member> memberModel;
 	private int id;
-    private UploadedFile uploadedFile;
-    private String fileName;
-
+	private UploadedFile uploadedFile;
+	private String fileName;
 
 	@PostConstruct
 	public void init() {
@@ -68,7 +66,7 @@ public class ProjectBean implements Serializable{
 
 		source = getmemberList();
 		memberModel = new DualListModel<Member>(source, target);
- 		//vider();
+		//vider();
 	}
 
 	private List<Member> getmemberList() {
@@ -109,60 +107,92 @@ public class ProjectBean implements Serializable{
 	}
 
 	public String ajouter(){
-		//currentProject.setProjectLogo(getFilename(Image));
-
-		//		List<Member> items = memberModel.getTarget() ;
-		//		Set<Member> items2 = new HashSet<Member>();  
-		//
-		//		Integer id;
-		//		Member member;
-		//		for(int i = 0; i<items.size(); i++) {
-		//			 id = items.get(i).getMemberId();
-		//			 member = projectService.getMember(id);
-		//			items2.add(member);
-		//		}
-		//		currentProject.setMembers(items2);
+		String bodymsg = "le projet a été modifié avec succes";
 		submitLogoFile();
-		projectService.enregistrer(currentProject);
-		vider();
+		try {
+			
+			int seqno = projectService.maxSeqno();
+			currentProject.setSeqNo(seqno + 10);
+			projectService.enregistrer(currentProject);
 
-		return null;
+		} catch(Exception e) {
+			//Error during hibernate query
+ 			bodymsg= e.getMessage().replace("'", "") + "      ";
+ 			if(e.getCause() != null)
+ 				bodymsg  += e.getCause().getMessage().replace("'", "");
+
+			System.out.print("Error: "+e);
+		}
+
+
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement du projet",bodymsg );
+		RequestContext.getCurrentInstance().showMessageInDialog(message);
+
+		vider();
+		return bodymsg;
 	}
 
 	public String delete(Project p){
-		projectService.supprimer(p);
+		String bodymsg="Projet suprimé avec succès";
+		try {
+
+			projectService.supprimer(p);
+
+		} catch(Exception e) {
+			//Error during hibernate query
+			bodymsg= e.getMessage();
+			System.out.print("Error: "+e);
+		}
 		currentProject = new Project();
 		es.setWrappedData( projectService.lister());
-		return null;
+
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Suppression du projet",bodymsg );
+		RequestContext.getCurrentInstance().showMessageInDialog(message);
+
+		return bodymsg;
 	}
 
 	public String edit(){
 		setId(currentProject.getProjectId());
-		projectService.mettre_a_jour(currentProject);
+		String bodymsg="Projet modifié avec succès";
+		try {
+
+			projectService.mettre_a_jour(currentProject);
+
+		} catch(Exception e) {
+			//Error during hibernate query
+			bodymsg= e.getMessage();
+			System.out.print("Error: "+e);
+		}
+
 		vider();
-		return "success";
+
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification du projet",bodymsg );
+		RequestContext.getCurrentInstance().showMessageInDialog(message);
+		vider();
+
+		return bodymsg;
 	}
 
-	
+
 	public String showEdit(Project p){
 		currentProject = p;
 		setId(currentProject.getProjectId());
 		return "edit-projects.xhtml?faces-redirect=true&amp;includeViewParams=true";
 	}
-	
+
 	public String vider(){
-		
+
 		currentProject = new Project();
 		id = 0;
 		uploadedFile = null;
 		memberModel = null;
-	    fileName= null;
+		fileName= null;
 		return "OK";
-		
+
 	}
 
 	public List<Project> getProjectList() {
-
 		return projectList;
 	}
 
@@ -186,88 +216,87 @@ public class ProjectBean implements Serializable{
 		return id;
 	}
 
-
 	@SuppressWarnings("null")
 	public String limitedDesc(String desc)
 	{
 		if(desc == null || desc == "")
 			desc = currentProject.getProjectDesc();
 
-		if(desc != null && desc.length()>200)
-			desc = desc.substring(0, 200) + " ...";
+		if(desc != null && desc.length()>100)
+			desc = desc.substring(0, 100) + " ...";
 
 		return desc;
 	}
 
 
-    public void submitLogoFile() {
+	public void submitLogoFile() {
 
-    	if (uploadedFile != null){
-    		// Just to demonstrate what information you can get from the uploaded file.
-    		System.out.println("File type: " + uploadedFile.getContentType());
-    		System.out.println("File name: " + uploadedFile.getFileName());
-    		System.out.println("File size: " + uploadedFile.getSize() + " bytes");
-    		
-    		// Prepare filename prefix and suffix for an unique filename in upload folder.
-    		String prefix = FilenameUtils.getBaseName(uploadedFile.getFileName());
-    		String suffix = FilenameUtils.getExtension(uploadedFile.getFileName());
-    		
-    		// Prepare file and outputstream.
-    		File file = null;
-    		OutputStream output = null;
-    		
-    		try {
-    			// Create file with unique name in upload folder and write to it.
-    			file = File.createTempFile(prefix + "_", "." + suffix, new File("/var/www/resources/images/"));
-    			output = new FileOutputStream(file);
-    			IOUtils.copy(uploadedFile.getInputstream(), output);
-    			fileName = file.getName();
-    			
-    			// Show succes message.
-    			FacesContext.getCurrentInstance().addMessage("uploadForm", new FacesMessage(
-    					FacesMessage.SEVERITY_INFO, "File upload succeed!", null));
-    		} catch (IOException e) {
-    			// Cleanup.
-    			if (file != null) file.delete();
-    			
-    			// Show error message.
-    			FacesContext.getCurrentInstance().addMessage("uploadForm", new FacesMessage(
-    					FacesMessage.SEVERITY_ERROR, "File upload failed with I/O error.", null));
-    			
-    			// Always log stacktraces (with a real logger).
-    			e.printStackTrace();
-    		} finally {
-    			IOUtils.closeQuietly(output);
-    			currentProject.setProjectLogo(fileName);
-    			setUploadedFile(null);
-    		}
-    		
-    	}
-    }
-    
-    public UploadedFile getUploadedFile() {
-        return uploadedFile;
-    }
+		if (uploadedFile != null){
+			// Just to demonstrate what information you can get from the uploaded file.
+			System.out.println("File type: " + uploadedFile.getContentType());
+			System.out.println("File name: " + uploadedFile.getFileName());
+			System.out.println("File size: " + uploadedFile.getSize() + " bytes");
 
-    public String getFileName() {
-        return fileName;
-    }
+			// Prepare filename prefix and suffix for an unique filename in upload folder.
+			String prefix = FilenameUtils.getBaseName(uploadedFile.getFileName());
+			String suffix = FilenameUtils.getExtension(uploadedFile.getFileName());
 
-    public void setUploadedFile(UploadedFile uploadedFile) {
-        this.uploadedFile = uploadedFile;
-    }
-    
-    public void handleFileUpload(FileUploadEvent event) {
-    	 
-    	uploadedFile = event.getFile();
+			// Prepare file and outputstream.
+			File file = null;
+			OutputStream output = null;
+
+			try {
+				// Create file with unique name in upload folder and write to it.
+				file = File.createTempFile(prefix + "_", "." + suffix, new File("/tmp/"));
+				output = new FileOutputStream(file);
+				IOUtils.copy(uploadedFile.getInputstream(), output);
+				fileName = file.getName();
+
+				// Show succes message.
+				FacesContext.getCurrentInstance().addMessage("uploadForm", new FacesMessage(
+						FacesMessage.SEVERITY_INFO, "File upload succeed!", null));
+			} catch (IOException e) {
+				// Cleanup.
+				if (file != null) file.delete();
+
+				// Show error message.
+				FacesContext.getCurrentInstance().addMessage("uploadForm", new FacesMessage(
+						FacesMessage.SEVERITY_ERROR, "File upload failed with I/O error.", null));
+
+				// Always log stacktraces (with a real logger).
+				e.printStackTrace();
+			} finally {
+				IOUtils.closeQuietly(output);
+				currentProject.setProjectLogo(fileName);
+
+			}
+
+		}
+	}
+
+	public UploadedFile getUploadedFile() {
+		return uploadedFile;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setUploadedFile(UploadedFile uploadedFile) {
+		this.uploadedFile = uploadedFile;
+	}
+
+	public void handleFileUpload(FileUploadEvent event) {
+
+		uploadedFile = event.getFile();
 		currentProject.setProjectLogo(event.getFile().getFileName() );
 
 		System.out.println("File type: " + uploadedFile.getContentType());
 		System.out.println("File name: " + uploadedFile.getFileName());
-    	}
-    
-    
-    public String getDateFormated(Date d)
+	}
+
+
+	public String getDateFormated(Date d)
 	{
 		if(d != null)
 		{
@@ -281,9 +310,9 @@ public class ProjectBean implements Serializable{
 		}
 		return null;
 	}
-    
-    public void refrech()
-    {
-    	currentProject.toString();
-    }
+
+	public void refrech()
+	{
+		currentProject.toString();
+	}
 }

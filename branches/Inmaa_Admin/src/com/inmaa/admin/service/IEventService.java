@@ -14,4 +14,6 @@ public interface IEventService {
 		public void mettre_a_jour(Event entity);
 		
 		public List<Event> lister();
+
+		public int maxSeqno();
 }

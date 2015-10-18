@@ -12,4 +12,6 @@ public interface INewsService {
 		public void mettre_a_jour(News entity);
 		
 		public List<News> lister();
+
+		public int maxSeqno();
 }

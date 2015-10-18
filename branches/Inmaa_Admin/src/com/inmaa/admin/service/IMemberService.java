@@ -12,4 +12,6 @@ public interface IMemberService {
 		public void mettre_a_jour(Member entity);
 		
 		public List<Member> lister();
+
+		public int maxSeqno();
 }

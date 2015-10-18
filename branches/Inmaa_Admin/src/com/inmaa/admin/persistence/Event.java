@@ -1,6 +1,6 @@
 package com.inmaa.admin.persistence;
 
-// Generated 17 oct. 2015 23:22:24 by Hibernate Tools 3.4.0.CR1
+// Generated 18 oct. 2015 11:37:55 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -33,7 +33,7 @@ public class Event implements java.io.Serializable {
 	private Date eventStartDate;
 	private Date eventEndDate;
 	private String eventLogo;
-	private String eventPlace;
+	private String eventLocation;
 	private String eventPresenter;
 	private Set<Project> projects = new HashSet<Project>(0);
 
@@ -41,24 +41,25 @@ public class Event implements java.io.Serializable {
 	}
 
 	public Event(String eventName, String eventDesc, Date eventStartDate,
-			Date eventEndDate, String eventLogo) {
+			Date eventEndDate, String eventLogo, String eventLocation) {
 		this.eventName = eventName;
 		this.eventDesc = eventDesc;
 		this.eventStartDate = eventStartDate;
 		this.eventEndDate = eventEndDate;
 		this.eventLogo = eventLogo;
+		this.eventLocation = eventLocation;
 	}
 
 	public Event(Integer seqNo, String eventName, String eventDesc,
 			Date eventStartDate, Date eventEndDate, String eventLogo,
-			String eventPlace, String eventPresenter, Set<Project> projects) {
+			String eventLocation, String eventPresenter, Set<Project> projects) {
 		this.seqNo = seqNo;
 		this.eventName = eventName;
 		this.eventDesc = eventDesc;
 		this.eventStartDate = eventStartDate;
 		this.eventEndDate = eventEndDate;
 		this.eventLogo = eventLogo;
-		this.eventPlace = eventPlace;
+		this.eventLocation = eventLocation;
 		this.eventPresenter = eventPresenter;
 		this.projects = projects;
 	}
@@ -121,7 +122,7 @@ public class Event implements java.io.Serializable {
 		this.eventEndDate = eventEndDate;
 	}
 
-	@Column(name = "Event_Logo", nullable = false, length = 45)
+	@Column(name = "Event_Logo", nullable = false)
 	public String getEventLogo() {
 		return this.eventLogo;
 	}
@@ -130,13 +131,13 @@ public class Event implements java.io.Serializable {
 		this.eventLogo = eventLogo;
 	}
 
-	@Column(name = "Event_Place", length = 45)
-	public String getEventPlace() {
-		return this.eventPlace;
+	@Column(name = "Event_Location", nullable = false, length = 45)
+	public String getEventLocation() {
+		return this.eventLocation;
 	}
 
-	public void setEventPlace(String eventPlace) {
-		this.eventPlace = eventPlace;
+	public void setEventLocation(String eventLocation) {
+		this.eventLocation = eventLocation;
 	}
 
 	@Column(name = "Event_Presenter", length = 45)
