@@ -238,7 +238,7 @@ public class EventBean  implements Serializable {
 
 			try {
 				// Create file with unique name in upload folder and write to it.
-				file = File.createTempFile(prefix + "_", "." + suffix, new File("/tmp/"));
+				file = File.createTempFile(prefix + "_", "." + suffix, new File("/var/www/resources/images/"));
 				output = new FileOutputStream(file);
 				IOUtils.copy(uploadedFile.getInputstream(), output);
 				fileName = file.getName();
