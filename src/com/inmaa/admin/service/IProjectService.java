@@ -6,16 +6,18 @@ import com.inmaa.admin.persistence.Member;
 import com.inmaa.admin.persistence.Project;
 
 public interface IProjectService {
-	       public void supprimer(Project entity);
-		
-			public void enregistrer(Project entity);
-			
-			public void mettre_a_jour(Project entity);
-			
-			public List<Project> lister();
+	public void supprimer(Project entity);
 
-			public List<Member> listerMember();
+	public void enregistrer(Project entity);
 
-			public Member getMember(Integer memberId);
+	public void mettre_a_jour(Project entity);
+
+	public List<Project> lister();
+
+	public List<Member> listerMember();
+
+	public Member getMember(Integer memberId);
+
+	public int maxSeqno();
 
 }

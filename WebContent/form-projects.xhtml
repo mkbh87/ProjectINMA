@@ -502,12 +502,12 @@
 		<h:outputText
 			value="#{projectBean.currentProject.projectDesc}" />
 </li>
-	<p:commandLink styleClass="btn btn-success btn-next" action="#{projectBean.ajouter()}" onclick="PF('dlg2').show();">
+	<p:commandLink styleClass="btn btn-success btn-next" action="#{projectBean.ajouter()}">
 	Ajouter	<i class="icon-arrow-right icon-on-right"></i>
 	</p:commandLink>
 
 <p:dialog header="Modification du projet" widgetVar="dlg2" modal="true" height="100">
-    <h:outputText value="le projet a été modifié avec succes" />
+    <h:outputText value="ERROR" />
 </p:dialog>   
 
 
@@ -530,12 +530,12 @@
 											
 											
  -->										
- 	<p:commandLink styleClass="btn btn-success btn-next" action="#{projectBean.ajouter()}" onclick="PF('dlg2').show();">
+ 	<p:commandLink styleClass="btn btn-success btn-next" action="#{projectBean.ajouter()}" >
 	Sauvegarder	<i class="icon-arrow-right icon-on-right"></i>
 	</p:commandLink>
 
 <p:dialog header="Enregistrement du projet" widgetVar="dlg2" modal="true" height="100">
-    <h3 class="blue">le projet a été modifié avec succes</h3>
+    <h3 class="blue">error</h3>
     <h:panelGroup >											
     	<h:button styleClass="btn btn-success"  action="@{projectBean.vider()}" value="Ok" style="float:right">  </h:button>
     </h:panelGroup>

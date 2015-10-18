@@ -8,7 +8,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
@@ -43,7 +43,7 @@
 	<h:outputStylesheet library="css" name="ace.min.css" />
 	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
 	<h:outputStylesheet library="css" name="ace-skins.min.css" />
-
+	<h:outputStylesheet library="css" name="CostumStyle.css" />
 </h:head>
 
 <h:body>
@@ -66,7 +66,7 @@
 					<li class="light-blue"><h:outputLink data-toggle="dropdown"
 							value="#" class="dropdown-toggle">
 							<h:graphicImage styleClass="nav-user-photo"
-								library="images/images" name="logo.png" alt="Inma Admin's Photo" />
+								library="images" name="logo.jpg" alt="Inma Admin's Photo" />
 							<span class="user-info"> <small>Welcome,</small> Inma Admin </span>
 							<i class="icon-caret-down"></i>
 						</h:outputLink>
@@ -75,18 +75,22 @@
 							class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
 							<li><h:outputLink value="#">
 									<i class="icon-cog"></i> Settings
-							</h:outputLink></li>
+							</h:outputLink>
+							</li>
 
 							<li><h:outputLink value="#">
 									<i class="icon-user"></i> Profile
-							</h:outputLink></li>
+							</h:outputLink>
+							</li>
 
 							<li class="h:panelGroupider"></li>
 
 							<li><h:outputLink value="#">
 									<i class="icon-off"></i> Logout
-							</h:outputLink></li>
-						</ul></li>
+							</h:outputLink>
+							</li>
+						</ul>
+					</li>
 				</ul>
 				<!--/.ace-nav-->
 			</h:panelGroup>
@@ -138,7 +142,8 @@
 				<li><h:outputLink value="welcome.xhtml">
 						<i class="icon-dashboard"></i>
 						<span class="menu-text"> Dashboard </span>
-					</h:outputLink></li>
+					</h:outputLink>
+				</li>
 
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
@@ -264,12 +269,15 @@
 
 						<li><h:outputLink value="invoice.html">
 								<i class="icon-double-angle-right"></i> Invoice
-						</h:outputLink></li>
+						</h:outputLink>
+						</li>
 
 						<li><h:outputLink value="login.html">
 								<i class="icon-double-angle-right"></i> Login &amp; Register
-						</h:outputLink></li>
-					</ul></li>
+						</h:outputLink>
+						</li>
+					</ul>
+				</li>
 
 			</ul>
 
@@ -294,7 +302,7 @@
 				<!--.breadcrumb-->
 
 				<h:panelGroup layout="block" styleClass="nav-search" id="nav-search">
-					<h:form class="form-search">
+					<h:form class="form-search"  prependId="false" acceptcharset="UTF-8">
 						<span class="input-icon"> <input type="text"
 							placeholder="Search ..." class="input-small nav-search-input"
 							id="nav-search-input" autocomplete="off" /> <i
@@ -321,42 +329,37 @@
 								<h:panelGroup layout="block" class="widget-box">
 									<h:panelGroup layout="block"
 										class="widget-header widget-header-blue widget-header-flat">
-										<h4 class="lighter">New Item Wizard</h4>
+										<h4 class="lighter">Ajouter un nouveau évenement</h4>
 
-										<h:panelGroup layout="block" class="widget-toolbar">
-											<label> <small class="green"> <b>Validation</b>
-											</small> <input id="skip-validation" type="checkbox"
-												class="ace-switch ace-switch-4" /> <span class="lbl"></span>
-											</label>
-										</h:panelGroup>
+
 									</h:panelGroup>
 
-									<h:panelGroup layout="block" class="widget-body">
-										<h:panelGroup layout="block" class="widget-main">
-											<h:panelGroup layout="block" class="row-fluid">
-												<h:panelGroup layout="block" id="fuelux-wizard"
-													class="row-fluid hide" data-target="#step-container">
-													<ul class="wizard-steps">
-														<li data-target="#step1" class="active"><span
-															class="step">1</span> <span class="title">Ajout</span></li>
+									<h:panelGroup layout="block" class="widget-body widget-main">
+										<h:panelGroup layout="block" class="row-fluid">
+										
+										<h:form class="form-horizontal" id="form" prependId="false" enctype="multipart/form-data"
+														acceptcharset="UTF-8">
+											<h:panelGroup layout="block" id="fuelux-wizard"
+												class="row-fluid hide" data-target="#step-container">
+												<ul class="wizard-steps">
+													<li data-target="#step1" class="active"><span
+														class="step">1</span> <span class="title">Ajout</span></li>
 
-														<li data-target="#step2"><span class="step">2</span>
-															<span class="title">Affichage</span></li>
 
 
-														<li data-target="#step4"><span class="step">3</span>
-															<span class="title">Sauvegarde</span></li>
-													</ul>
-												</h:panelGroup>
-												<hr />
-												<h:panelGroup layout="block"
-													class="step-content row-fluid position-relative"
-													id="step-container">
+													<li data-target="#step4"><span class="step">2</span> <span
+														class="title">Sauvegarde</span></li>
+												</ul>
+											</h:panelGroup>
+											<hr />
+											<h:panelGroup layout="block"
+												class="step-content row-fluid position-relative"
+												id="step-container">
+													
 													<h:panelGroup layout="block" class="step-pane active"
 														id="step1">
 														<h3 class="lighter block green">Nouveau évenement</h3>
 
-														<h:form class="form-horizontal" id="sample-form">
 
 															<h:panelGroup layout="block"
 																styleClass="control-group success">
@@ -364,22 +367,21 @@
 																	value="Nom de évenement " />
 
 																<h:panelGroup layout="block" styleClass="controls">
-																	<span class="span6 input-icon input-icon-right">
+																	<span class="span3 input-icon input-icon-right">
 																		<h:inputText styleClass="span12" id="intitule"
 																			value="#{eventBean.currentEvent.eventName}" /> <i
 																		class="icon-warning-sign"></i> </span>
 																	<span class="help-inline"> Champs obligatoire </span>
-																</h:panelGroup>
 															</h:panelGroup>
+														</h:panelGroup>
 
-															<h:panelGroup layout="block"
-																class="control-group success">
-																<p:outputLabel styleClass="control-label"
-																	for="description" value="Description " />
+														<h:panelGroup layout="block" class="control-group success">
+															<p:outputLabel styleClass="control-label"
+																for="description" value="Description " />
 
 																<h:panelGroup layout="block" class="controls">
-																	<span class="span6 input-icon input-icon-right">
-																		<h:inputTextarea styleClass="span12 limited"
+																	<span class="span8 input-icon input-icon-right">
+																		<h:inputTextarea styleClass="span12 limited" rows="8"
 																			data-maxlength="500" maxlength="500" id="description"
 																			value="#{eventBean.currentEvent.eventDesc}" /> </span>
 																</h:panelGroup>
@@ -388,12 +390,12 @@
 															<h:panelGroup layout="block"
 																class="control-group success">
 																<p:outputLabel styleClass="control-label"
-																	for="eventPlace" value="endroit " />
+																	for="eventLocation" value="endroit " />
 
 																<h:panelGroup layout="block" class="controls">
 																	<span class="span6 input-icon input-icon-right">
-																		<h:inputText styleClass="span12 limited" id="eventPlace"
-																			value="#{eventBean.currentEvent.eventPlace}" /> </span>
+																		<h:inputText styleClass="span12 limited" id="eventLocation"
+																			value="#{eventBean.currentEvent.eventLocation}" /> </span>
 																</h:panelGroup>
 															</h:panelGroup>
 															
@@ -452,63 +454,92 @@
 
 																<h:panelGroup layout="block" class="controls">
 																	<span class="span6 input-icon input-icon-right">
-																		<p:fileUpload value="#{eventBean.Image}" mode="simple" />
-																		<h:outputText value="#{myBean.eventLogo}" /> </span>
+																		 <p:fileUpload fileUploadListener="#{eventBean.handleFileUpload}" auto="true" />
+																		 </span>
 																</h:panelGroup>
 															</h:panelGroup>
 
-														</h:form>
+
 
 													</h:panelGroup>
 
-													<h:panelGroup layout="block" class="step-pane" id="step2">
-														<h:panelGroup layout="block" class="row-fluid">
-															<h:form>
-
-																<p:growl id="msg" showDetail="true" escape="false" />
-
-																<h3 style="margin-top: 0">Membres</h3>
-<!-- 																<p:pickList id="pickList"
-																	value="#{eventBean.memberModel}" var="mem"
-																	itemLabel="#{mem.memberName}  #{mem.memberName1}"
-																	itemValue="#{mem.memberId}"
-																	converter="#{PickListConverterPickListConverter}" />
- -->
-																<h:commandButton id="Submit"
-																	styleClass="btn btn-success btn-next" value="submit"
-																	action="#{eventBean.ajouter}">
-																	<i class="icon-arrow-right icon-on-right"></i>
-																</h:commandButton>
 
 
+<h:panelGroup layout="block" class="step-pane" id="step4"  >
+	<h:panelGroup layout="block" class="center">
+		<h3 class="green">le projet a ajouté :</h3>
+	</h:panelGroup>
+	
+	<h:panelGroup layout="block" class="right">
+	<ul>
+	<li><strong>	إسم  المشروع | </strong>	<h:outputText
+			value="#{eventBean.currentEvent.eventName}" /></li>
+		
+	<li><strong>	شعار  المشروع | </strong>	<h:outputText 	value="#{eventBean.currentEvent.eventLogo}"/>
+</li>
+		<li><i class="fa fa-calendar"> <strong>	إنطلاق المشروع | </strong> </i> <h:outputText
+				value="#{eventBean.getDateFormated(eventBean.currentEvent.eventStartDate)}" />
+		</li>
+		<li><i class="fa fa-phone"> <strong>
+					للإتصال | </strong> </i> <span dir="ltr" class="desc-info">
+				<h:outputText
+					value="#{eventBean.getDateFormated(eventBean.currentEvent.eventEndDate)}" />
+		</span></li>
+		<li><i class="fa fa-map-marker"> <strong>مجال
+					المشروع | </strong> </i> <h:outputText styleClass="desc-info"
+				value="#{eventBean.currentEvent.eventLocation}" />
+		</li>
+		<li><i class="fa fa-child"> <strong>الأطرف
+					المشاركة | </strong> </i> <h:outputText styleClass="desc-info"
+				value="#{eventBean.currentEvent.eventPresenter}" />
+		</li>
+<li><strong>	تفاصيل المشروع | </strong>
+		<h:outputText
+			value="#{eventBean.currentEvent.eventDesc}" />
+</li>
+	<p:commandLink styleClass="btn btn-success btn-next" action="#{eventBean.ajouter()}">
+	Ajouter	<i class="icon-arrow-right icon-on-right"></i>
+	</p:commandLink>
 
-															</h:form>
+<p:dialog header="Modification du projet" widgetVar="dlg2" modal="true" height="100">
+    <h:outputText value="ERROR" />
+</p:dialog>   
 
-														</h:panelGroup>
-													</h:panelGroup>
 
-													<h:panelGroup layout="block" class="step-pane" id="step4">
-														<h:panelGroup layout="block" class="center">
-															<h3 class="green">Ok</h3>
-															l'évenement est ajouté avec succes
-														</h:panelGroup>
-													</h:panelGroup>
-												</h:panelGroup>
+</ul>
+	</h:panelGroup>
+</h:panelGroup>											</h:panelGroup>
 
-												<hr />
-												<h:panelGroup layout="block"
-													class="row-fluid wizard-actions">
-													<button class="btn btn-prev">
-														<i class="icon-arrow-left"></i> Prev
-													</button>
+											<hr />
+<!-- 											<h:panelGroup layout="block" class="row-fluid wizard-actions">
+												<p:commandLink class="btn btn-prev" >
+													<i class="icon-arrow-left"></i> Retour
+												</p:commandLink>
 
-													<h:commandButton styleClass="btn btn-success btn-next"
-														value="Ajouter" action="#{eventBean.ajouter}">
-														<i class="icon-arrow-right icon-on-right"></i>
-													</h:commandButton>
-												</h:panelGroup>
+												<p:commandLink styleClass="btn btn-success btn-next" >
+														Suivant	<i class="icon-arrow-right icon-on-right"></i>
+												</p:commandLink>
+
+
 											</h:panelGroup>
+											
+											
+ -->										
+ 	<p:commandLink styleClass="btn btn-success btn-next" action="#{eventBean.ajouter()}" onerror="PF('dlg2').show();">
+	Sauvegarder	<i class="icon-arrow-right icon-on-right"></i>
+	</p:commandLink>
+
+<p:dialog header="Enregistrement de l'évenement" widgetVar="dlg2" modal="true" height="100">
+    <h3 class="blue">error</h3>
+    <h:panelGroup >											
+    	<h:button styleClass="btn btn-success"  action="@{eventBean.vider()}" value="Ok" style="float:right">  </h:button>
+    </h:panelGroup>
+</p:dialog>   
+ 
+ </h:form>
+										
 										</h:panelGroup>
+
 										<!--/widget-main-->
 									</h:panelGroup>
 									<!--/widget-body-->
@@ -524,12 +555,10 @@
 										class="step">1</span> <span class="title"> Ajout </span>
 									</li>
 
-									<li data-target="#modal-step2"><span class="step">2</span>
-										<span class="title">Affichage</span>
-									</li>
+							  
 
 
-									<li data-target="#modal-step4"><span class="step">3</span>
+									<li data-target="#modal-step4"><span class="step">2</span>
 										<span class="title">Sauvegarde</span>
 									</li>
 								</ul>
@@ -568,59 +597,9 @@
 			</h:panelGroup>
 			<!--/.page-content-->
 
-			<h:panelGroup layout="block" styleClass="ace-settings-container"
-				id="ace-settings-container">
-				<h:panelGroup layout="block"
-					class="btn btn-app btn-mini btn-warning ace-settings-btn"
-					id="ace-settings-btn">
-					<i class="icon-cog bigger-150"></i>
-				</h:panelGroup>
-				
-				<h:panelGroup layout="block" styleClass="ace-settings-box"
-					id="ace-settings-box">
-					<h:panelGroup layout="block">
-						<h:panelGroup layout="block" styleClass="pull-left">
-							<select id="skin-colorpicker" class="hide">
-								<option data-class="default" value="#438EB9" />#438EB9
-								<option data-class="skin-1" value="#222A2D" />#222A2D
-								<option data-class="skin-2" value="#C6487E" />#C6487E
-								<option data-class="skin-3" value="#D0D0D0" />#D0D0D0
-							</select>
-						</h:panelGroup>
-						<span>&nbsp; Choose Skin</span>
-					</h:panelGroup>
-
-					<h:panelGroup layout="block">
-						<input type="checkbox" class="ace-checkbox-2"
-							id="ace-settings-header" />
-						<label class="lbl" for="ace-settings-header"> Fixed Header</label>
-					</h:panelGroup>
-
-					<h:panelGroup layout="block">
-						<input type="checkbox" class="ace-checkbox-2"
-							id="ace-settings-sidebar" />
-						<label class="lbl" for="ace-settings-sidebar"> Fixed
-							Sidebar</label>
-					</h:panelGroup>
-
-					<h:panelGroup layout="block">
-						<input type="checkbox" class="ace-checkbox-2"
-							id="ace-settings-breadcrumbs" />
-						<label class="lbl" for="ace-settings-breadcrumbs"> Fixed
-							Breadcrumbs</label>
-					</h:panelGroup>
-
-					<h:panelGroup layout="block">
-						<input type="checkbox" class="ace-checkbox-2"
-							id="ace-settings-rtl" />
-						<label class="lbl" for="ace-settings-rtl"> Right To Left
-							(rtl)</label>
-					</h:panelGroup>
-				</h:panelGroup>
-			</h:panelGroup>
 			<!--/#ace-settings-container-->
 		</h:panelGroup>
-		
+
 		<!--/.main-content-->
 	</h:panelGroup>
 	<!--/.main-container-->
@@ -630,8 +609,6 @@
 		class="icon-double-angle-up icon-only bigger-110"></i> </a>
 
 	<!--basic scripts-->
-	<script
-		src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 	<script type="text/javascript">
 	//<![CDATA[ 
