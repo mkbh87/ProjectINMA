@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -106,8 +107,7 @@ public class EventBean  implements Serializable {
  			if(e.getCause() != null)
  				bodymsg  += e.getCause().getMessage().replace("'", "");
 
-			System.out.print("Error: "+e);
-
+ 
 		}
 
 		vider();
@@ -126,8 +126,9 @@ public class EventBean  implements Serializable {
 
 		} catch(Exception e) {
 			//Error during hibernate query
-			bodymsg= e.getMessage();
-			System.out.print("Error: "+e);
+ 			bodymsg= e.getMessage().replace("'", "") + "      ";
+ 			if(e.getCause() != null)
+ 				bodymsg  += e.getCause().getMessage().replace("'", "");
 		}
 		currentEvent = new Event();
 		events.setWrappedData( eventService.lister());
@@ -147,8 +148,9 @@ public class EventBean  implements Serializable {
 
 		} catch(Exception e) {
 			//Error during hibernate query
-			bodymsg= e.getMessage();
-			System.out.print("Error: "+e);
+ 			bodymsg= e.getMessage().replace("'", "") + "      ";
+ 			if(e.getCause() != null)
+ 				bodymsg  += e.getCause().getMessage().replace("'", "");
 		}
 
 
@@ -184,6 +186,7 @@ public class EventBean  implements Serializable {
 	}
 
 	public List<Event> getEventList() {
+		eventList = eventService.lister();
 		return eventList;
 	}
 
@@ -201,6 +204,20 @@ public class EventBean  implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+		currentEvent = geteventtById(id);
+
+	}
+
+	private Event geteventtById(int id2) {
+		Iterator<Event> itr =eventList.iterator();
+		while(itr.hasNext()) {
+			currentEvent = itr.next();
+			if(currentEvent.getEventId() == id)
+			{
+				return currentEvent;
+			}
+		}
+		return null;
 	}
 
 	public int getId() {
@@ -302,8 +319,4 @@ public class EventBean  implements Serializable {
 		return null;
 	}
 
-	public void refrech()
-	{
-		currentEvent.toString();
-	}
 }
