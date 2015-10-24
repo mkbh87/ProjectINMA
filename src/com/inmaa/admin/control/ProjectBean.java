@@ -129,6 +129,8 @@ public class ProjectBean implements Serializable{
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
 
 		vider();
+		es.setWrappedData( projectService.lister());
+
 		return bodymsg;
 	}
 
@@ -149,6 +151,8 @@ public class ProjectBean implements Serializable{
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Suppression du projet",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
 
+		projectList = projectService.lister();
+
 		return bodymsg;
 	}
 
@@ -165,13 +169,14 @@ public class ProjectBean implements Serializable{
 			System.out.print("Error: "+e);
 		}
 
-		vider();
 
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification du projet",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
-		vider();
 
-		return bodymsg;
+		vider();
+		es.setWrappedData( projectService.lister());
+
+		return "";
 	}
 
 
@@ -247,7 +252,7 @@ public class ProjectBean implements Serializable{
 
 			try {
 				// Create file with unique name in upload folder and write to it.
-				file = File.createTempFile(prefix + "_", "." + suffix, new File("/var/www/resources/images/"));
+				file = File.createTempFile(prefix + "_", "." + suffix, new File("/usr/share/apache-tomcat-7.0.23/webapps/ROOT/resources/images/"));
 				output = new FileOutputStream(file);
 				IOUtils.copy(uploadedFile.getInputstream(), output);
 				fileName = file.getName();
