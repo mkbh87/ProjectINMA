@@ -124,8 +124,7 @@ public class ProjectBean implements Serializable{
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
 
 		vider();
-		es.setWrappedData( projectService.lister());
-
+ 
 		return bodymsg;
 	}
 
@@ -147,8 +146,7 @@ public class ProjectBean implements Serializable{
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Suppression du projet",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
 
-		es.setWrappedData( projectService.lister());
-		return bodymsg;
+ 		return bodymsg;
 	}
 
 	public String edit(){	
@@ -171,8 +169,7 @@ public class ProjectBean implements Serializable{
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
 
 		vider();
-		es.setWrappedData( projectService.lister());
-
+ 
 		return "";
 	}
 
