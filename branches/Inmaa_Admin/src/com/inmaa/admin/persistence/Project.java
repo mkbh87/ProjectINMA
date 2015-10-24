@@ -1,6 +1,6 @@
 package com.inmaa.admin.persistence;
 
-// Generated 18 oct. 2015 11:37:55 by Hibernate Tools 3.4.0.CR1
+// Generated 24 oct. 2015 18:30:42 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -35,6 +35,7 @@ public class Project implements java.io.Serializable {
 	private String projectLocation;
 	private String projectPhone;
 	private String projectPartner;
+	private String projectDef;
 	private Set<Event> events = new HashSet<Event>(0);
 	private Set<News> newses = new HashSet<News>(0);
 	private Set<Member> members = new HashSet<Member>(0);
@@ -52,8 +53,8 @@ public class Project implements java.io.Serializable {
 
 	public Project(Integer seqNo, String projectLogo, String projectDesc,
 			String projectName, Date projectStartDate, String projectLocation,
-			String projectPhone, String projectPartner, Set<Event> events,
-			Set<News> newses, Set<Member> members) {
+			String projectPhone, String projectPartner, String projectDef,
+			Set<Event> events, Set<News> newses, Set<Member> members) {
 		this.seqNo = seqNo;
 		this.projectLogo = projectLogo;
 		this.projectDesc = projectDesc;
@@ -62,6 +63,7 @@ public class Project implements java.io.Serializable {
 		this.projectLocation = projectLocation;
 		this.projectPhone = projectPhone;
 		this.projectPartner = projectPartner;
+		this.projectDef = projectDef;
 		this.events = events;
 		this.newses = newses;
 		this.members = members;
@@ -149,6 +151,15 @@ public class Project implements java.io.Serializable {
 
 	public void setProjectPartner(String projectPartner) {
 		this.projectPartner = projectPartner;
+	}
+
+	@Column(name = "Project_Def", length = 45)
+	public String getProjectDef() {
+		return this.projectDef;
+	}
+
+	public void setProjectDef(String projectDef) {
+		this.projectDef = projectDef;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "projects")

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -41,31 +42,24 @@ public class ProjectBean implements Serializable{
 
 	@Autowired
 	IProjectService projectService;
-
 	private Project currentProject ;
-	//    private Part Image;  
-
-	private List<Project> projectList;
-
 	private transient DataModel<Project> es;
-
+	private int id;
+	private List<Project> projectList;
 	List<Member> target = new ArrayList<Member>();
 	List<Member> source = new ArrayList<Member>();
 	private DualListModel<Member> memberModel;
-	private int id;
 	private UploadedFile uploadedFile;
 	private String fileName;
 
 	@PostConstruct
 	public void init() {
-		currentProject = new Project();
-
 		projectList = projectService.lister();
 		es = new ListDataModel<Project>();
 		es.setWrappedData( projectService.lister());
 
-		source = getmemberList();
-		memberModel = new DualListModel<Member>(source, target);
+//		source = getmemberList();
+//		memberModel = new DualListModel<Member>(source, target);
 		//vider();
 	}
 
@@ -99,6 +93,7 @@ public class ProjectBean implements Serializable{
 	}
 
 	public DataModel<Project> getEs() {
+		es.setWrappedData( projectService.lister());
 		return es;
 	}
 
@@ -142,22 +137,21 @@ public class ProjectBean implements Serializable{
 
 		} catch(Exception e) {
 			//Error during hibernate query
-			bodymsg= e.getMessage();
+ 			bodymsg= e.getMessage().replace("'", "") + "      ";
+ 			if(e.getCause() != null)
+ 				bodymsg  += e.getCause().getMessage().replace("'", "");
+
 			System.out.print("Error: "+e);
 		}
-		currentProject = new Project();
-		es.setWrappedData( projectService.lister());
 
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Suppression du projet",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
 
-		projectList = projectService.lister();
-
+		es.setWrappedData( projectService.lister());
 		return bodymsg;
 	}
 
-	public String edit(){
-		setId(currentProject.getProjectId());
+	public String edit(){	
 		String bodymsg="Projet modifié avec succès";
 		try {
 
@@ -165,7 +159,10 @@ public class ProjectBean implements Serializable{
 
 		} catch(Exception e) {
 			//Error during hibernate query
-			bodymsg= e.getMessage();
+ 			bodymsg= e.getMessage().replace("'", "") + "      ";
+ 			if(e.getCause() != null)
+ 				bodymsg  += e.getCause().getMessage().replace("'", "");
+
 			System.out.print("Error: "+e);
 		}
 
@@ -189,12 +186,24 @@ public class ProjectBean implements Serializable{
 	public String vider(){
 
 		currentProject = new Project();
-		id = 0;
-		uploadedFile = null;
+ 		uploadedFile = null;
 		memberModel = null;
 		fileName= null;
 		return "OK";
 
+	}
+	
+	public Project getprojectById(int id)
+	{
+		Iterator<Project> itr = es.iterator();
+		while(itr.hasNext()) {
+			currentProject = itr.next();
+			if(currentProject.getProjectId() == id)
+			{
+				return currentProject;
+			}
+		}
+		return null;
 	}
 
 	public List<Project> getProjectList() {
@@ -215,6 +224,7 @@ public class ProjectBean implements Serializable{
 
 	public void setId(int id) {
 		this.id = id;
+		currentProject = getprojectById(id);
 	}
 
 	public int getId() {
@@ -314,10 +324,5 @@ public class ProjectBean implements Serializable{
 			return date;
 		}
 		return null;
-	}
-
-	public void refrech()
-	{
-		currentProject.toString();
 	}
 }

@@ -374,6 +374,19 @@
 															</h:panelGroup>
 														</h:panelGroup>
 
+														<h:panelGroup layout="block" class="control-group success">
+															<p:outputLabel styleClass="control-label"
+																for="def" value="Court Description " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span8 input-icon input-icon-right">
+																	<h:inputTextarea styleClass="span12 limited" rows="2"
+																		 id="def"
+																		value="#{projectBean.currentProject.projectDef}" />
+																</span>
+															</h:panelGroup>
+														</h:panelGroup>
+
 
 														<h:panelGroup layout="block" class="control-group success">
 															<p:outputLabel styleClass="control-label"
@@ -478,14 +491,14 @@
 											<hr />
 											<h:panelGroup layout="block" class="row-fluid wizard-actions">
 
-														<p:commandButton value="Modifier" styleClass="btn btn-success btn-next"
-															action="#{projectBean.edit()}" >
-														</p:commandButton>
+<p:commandButton value="Modifier" styleClass="btn btn-success btn-next" action="#{projectBean.edit()}" >
+</p:commandButton>
 <p:dialog header="Modification du projet" widgetVar="dlg2" modal="true" height="100">
     <h:outputText value="le projet a été modifié avec succes" />
 </p:dialog>   
 
 
+ 
 													</h:panelGroup>
 
 											</h:panelGroup>
