@@ -143,6 +143,9 @@ public class EventBean  implements Serializable {
 		setId(currentEvent.getEventId());
 		String bodymsg="Evenement modifié avec succès";
 		try {
+			
+			if(uploadedFile != null)
+				submitLogoFile();
 
 			eventService.mettre_a_jour(currentEvent);
 
@@ -255,7 +258,7 @@ public class EventBean  implements Serializable {
 
 			try {
 				// Create file with unique name in upload folder and write to it.
-				file = File.createTempFile(prefix + "_", "." + suffix, new File("/usr/share/apache-tomcat-7.0.23-2/webapps/ROOT/resources/images/"));
+				file = File.createTempFile("img", "." + suffix, new File("/usr/share/apache-tomcat-7.0.23-2/webapps/ROOT/resources/images/"));
 				output = new FileOutputStream(file);
 				IOUtils.copy(uploadedFile.getInputstream(), output);
 				fileName = file.getName();
@@ -297,10 +300,6 @@ public class EventBean  implements Serializable {
 	public void handleFileUpload(FileUploadEvent event) {
 
 		uploadedFile = event.getFile();
-		currentEvent.setEventLogo(event.getFile().getFileName() );
-
-		System.out.println("File type: " + uploadedFile.getContentType());
-		System.out.println("File name: " + uploadedFile.getFileName());
 	}
 
 
