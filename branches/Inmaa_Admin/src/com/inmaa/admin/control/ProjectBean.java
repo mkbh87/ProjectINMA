@@ -153,6 +153,8 @@ public class ProjectBean implements Serializable{
 		String bodymsg="Projet modifié avec succès";
 		try {
 
+			if(uploadedFile != null)
+				submitLogoFile();
 			projectService.mettre_a_jour(currentProject);
 
 		} catch(Exception e) {
@@ -259,7 +261,7 @@ public class ProjectBean implements Serializable{
 
 			try {
 				// Create file with unique name in upload folder and write to it.
-				file = File.createTempFile(prefix + "_", "." + suffix, new File("/usr/share/apache-tomcat-7.0.23-2/webapps/ROOT/resources/images/"));
+				file = File.createTempFile("img", "." + suffix, new File("/usr/share/apache-tomcat-7.0.23-2/webapps/ROOT/resources/images/"));
 				output = new FileOutputStream(file);
 				IOUtils.copy(uploadedFile.getInputstream(), output);
 				fileName = file.getName();
@@ -301,10 +303,6 @@ public class ProjectBean implements Serializable{
 	public void handleFileUpload(FileUploadEvent event) {
 
 		uploadedFile = event.getFile();
-		currentProject.setProjectLogo(event.getFile().getFileName() );
-
-		System.out.println("File type: " + uploadedFile.getContentType());
-		System.out.println("File name: " + uploadedFile.getFileName());
 	}
 
 
