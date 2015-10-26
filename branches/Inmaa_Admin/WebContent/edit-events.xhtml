@@ -5,7 +5,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"	
+	xmlns:pe="http://primefaces.org/ui/extensions" >
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -174,7 +175,7 @@
 								<i class="icon-double-angle-right"></i> Tous les evenements
 						</h:outputLink></li>
 
-						<li class="active"><h:outputLink value="form-events.xhtml">
+						<li ><h:outputLink value="form-events.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel evenement
 						</h:outputLink></li>
 					</ul></li>
@@ -381,7 +382,7 @@
 
 																<h:panelGroup layout="block" class="controls">
 																	<span class="span8 input-icon input-icon-right">
-																			<p:editor  value="#{eventBean.currentEvent.eventDesc}" width="800" />
+																			<pe:ckEditor id="editor" value="#{eventBean.currentEvent.eventDesc}" language="ar" width="800" checkDirtyInterval="0" /> 
 																	 </span>
 																</h:panelGroup>
 															</h:panelGroup>
