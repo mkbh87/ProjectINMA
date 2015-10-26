@@ -6,8 +6,9 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui" >
-
+    xmlns:p="http://primefaces.org/ui" 
+	xmlns:pe="http://primefaces.org/ui/extensions" >
+	
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<meta name="description" content="" />
@@ -157,7 +158,7 @@
 						</h:outputLink>
 						</li>
 
-						<li class="active"><h:outputLink value="form-projects.xhtml">
+						<li ><h:outputLink value="form-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau Projet
 						</h:outputLink>
 						</li>
@@ -394,7 +395,14 @@
 
 															<h:panelGroup layout="block" class="controls">
 																<span class="span8 input-icon input-icon-right">
-	<p:editor  value="#{projectBean.currentProject.projectDesc}" width="800" />
+																
+																<p:growl id="growl" showDetail="true" />  
+  
+										<pe:ckEditor id="editor" value="#{projectBean.currentProject.projectDesc}" language="ar" width="800" checkDirtyInterval="0" />  
+  
+              
+																
+																
 																</span>
 															</h:panelGroup>
 														</h:panelGroup>
@@ -795,5 +803,14 @@
         })
         //]]>
     </script>
+ 	
+ 	<script type="text/javascript">
+	//<![CDATA[ 
+    jQuery(document).ready(function($) {
+    $("j_idt33:inputtextlist").contents().find('html').attr('dir', 'rtl');                          
+}); 
+//]]>
+</script> 
+    
 </h:body>
 </html>

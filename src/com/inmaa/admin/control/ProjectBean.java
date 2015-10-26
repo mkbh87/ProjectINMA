@@ -169,9 +169,7 @@ public class ProjectBean implements Serializable{
 
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification du projet",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
-
-		vider();
- 
+		
 		return "";
 	}
 

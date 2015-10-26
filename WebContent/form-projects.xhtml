@@ -6,7 +6,9 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui" >
+    xmlns:p="http://primefaces.org/ui" 
+	xmlns:pe="http://primefaces.org/ui/extensions" >
+
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -350,7 +352,7 @@
 											<h:panelGroup layout="block"
 												class="step-content row-fluid position-relative"
 												id="step-container">
-													
+													<h:outputLink value="#{projectBean.vider()}"/>
 													<h:panelGroup layout="block" class="step-pane active"
 													id="step1">
 													<h3 class="lighter block green">Nouveau Projet</h3>
@@ -389,8 +391,7 @@
 
 															<h:panelGroup layout="block" class="controls">
 																<span class="span8 input-icon input-icon-right">
-	<p:editor  value="#{projectBean.currentProject.projectDesc}" width="800" />
- 
+																	<pe:ckEditor id="editor" value="#{projectBean.currentProject.projectDesc}" language="ar" width="800" checkDirtyInterval="0" />   
 																</span>
 															</h:panelGroup>
 														</h:panelGroup>
