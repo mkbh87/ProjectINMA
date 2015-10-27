@@ -1,7 +1,8 @@
 package com.inmaa.admin.persistence;
 
-// Generated 24 oct. 2015 18:30:42 by Hibernate Tools 3.4.0.CR1
+// Generated 27 oct. 2015 18:27:59 by Hibernate Tools 3.4.0.CR1
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -14,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 /**
@@ -29,23 +32,34 @@ public class News implements java.io.Serializable {
 	private String newsTitle;
 	private String newsSource;
 	private Integer seqNo;
+	private String newsAuthor;
+	private Date newsDate;
+	private String newsPicture;
 	private Set<Project> projects = new HashSet<Project>(0);
 
 	public News() {
 	}
 
-	public News(String newsDesc, String newsTitle) {
+	public News(String newsDesc, String newsTitle, String newsAuthor,
+			Date newsDate, String newsPicture) {
 		this.newsDesc = newsDesc;
 		this.newsTitle = newsTitle;
+		this.newsAuthor = newsAuthor;
+		this.newsDate = newsDate;
+		this.newsPicture = newsPicture;
 	}
 
 	public News(String newsDesc, String newsDesc1, String newsTitle,
-			String newsSource, Integer seqNo, Set<Project> projects) {
+			String newsSource, Integer seqNo, String newsAuthor, Date newsDate,
+			String newsPicture, Set<Project> projects) {
 		this.newsDesc = newsDesc;
 		this.newsDesc1 = newsDesc1;
 		this.newsTitle = newsTitle;
 		this.newsSource = newsSource;
 		this.seqNo = seqNo;
+		this.newsAuthor = newsAuthor;
+		this.newsDate = newsDate;
+		this.newsPicture = newsPicture;
 		this.projects = projects;
 	}
 
@@ -103,6 +117,34 @@ public class News implements java.io.Serializable {
 
 	public void setSeqNo(Integer seqNo) {
 		this.seqNo = seqNo;
+	}
+
+	@Column(name = "News_Author", nullable = false, length = 45)
+	public String getNewsAuthor() {
+		return this.newsAuthor;
+	}
+
+	public void setNewsAuthor(String newsAuthor) {
+		this.newsAuthor = newsAuthor;
+	}
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "News_Date", nullable = false, length = 10)
+	public Date getNewsDate() {
+		return this.newsDate;
+	}
+
+	public void setNewsDate(Date newsDate) {
+		this.newsDate = newsDate;
+	}
+
+	@Column(name = "News_Picture", nullable = false)
+	public String getNewsPicture() {
+		return this.newsPicture;
+	}
+
+	public void setNewsPicture(String newsPicture) {
+		this.newsPicture = newsPicture;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)

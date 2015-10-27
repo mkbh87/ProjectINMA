@@ -1,6 +1,6 @@
 package com.inmaa.admin.persistence;
 
-// Generated 24 oct. 2015 18:30:42 by Hibernate Tools 3.4.0.CR1
+// Generated 27 oct. 2015 18:27:59 by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
