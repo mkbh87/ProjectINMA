@@ -1,6 +1,6 @@
 package com.inmaa.admin.persistence;
 
-// Generated 24 oct. 2015 18:30:42 by Hibernate Tools 3.4.0.CR1
+// Generated 27 oct. 2015 18:27:59 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -153,7 +153,7 @@ public class Project implements java.io.Serializable {
 		this.projectPartner = projectPartner;
 	}
 
-	@Column(name = "Project_Def", length = 45)
+	@Column(name = "Project_Def", length = 16777215)
 	public String getProjectDef() {
 		return this.projectDef;
 	}
