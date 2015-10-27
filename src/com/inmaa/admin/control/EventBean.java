@@ -207,7 +207,8 @@ public class EventBean  implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
-		currentEvent = geteventtById(id);
+		if (id>0)
+			currentEvent = geteventtById(id);
 
 	}
 

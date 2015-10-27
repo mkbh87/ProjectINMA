@@ -147,7 +147,7 @@
 				</li>
 
 
-				<li><h:outputLink value="#" class="dropdown-toggle">
+				<li><h:outputLink value="#" styleClass="dropdown-toggle">
 						<i class="icon-desktop"></i>
 						<span class="menu-text"> Projets </span>
 						<b class="arrow icon-angle-down"></b>
@@ -156,15 +156,17 @@
 					<ul class="submenu">
 						<li><h:outputLink value="table-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les projets
-						</h:outputLink></li>
+						</h:outputLink>
+						</li>
 
 						<li><h:outputLink value="form-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau Projet
-						</h:outputLink></li>
-					</ul></li>
+						</h:outputLink>
+						</li>
+					</ul>
+				</li>
 
-				<li class="active open"><h:outputLink value="#"
-						class="dropdown-toggle">
+				<li class="active open"><h:outputLink value="#" styleClass="dropdown-toggle">
 						<i class="icon-desktop"></i>
 						<span class="menu-text"> Evenements </span>
 						<b class="arrow icon-angle-down"></b>
@@ -236,7 +238,6 @@
 						</li>
 					</ul>
 				</li>
-
 
 				<li><h:outputLink value="calendar.html">
 						<i class="icon-calendar"></i>
@@ -413,7 +414,7 @@
 															
 															<h:panelGroup layout="block"
 																class="control-group success">
-																<p:outputLabel styleClass="control-label" for="effect"
+																<p:outputLabel styleClass="control-label" for="startEvent"
 																	value="Date de debut de évenement : " />
 
 																<h:panelGroup layout="block" class="controls">
@@ -421,7 +422,7 @@
 																		<h:panelGroup layout="block" class="control-group">
 																			<h:panelGroup layout="block"
 																				class="row-fluid input-append">
-																				<p:calendar id="effect"
+																				<p:calendar id="startEvent"
 																					value="#{eventBean.currentEvent.eventStartDate}"
 																					styleClass="span10 date-picker" effect="fold" />
 																			</h:panelGroup>
@@ -429,8 +430,7 @@
 																</h:panelGroup>
 															</h:panelGroup>
 															
-															<h:panelGroup layout="block"
-																class="control-group success">
+															<h:panelGroup layout="block" class="control-group success">
 																<p:outputLabel styleClass="control-label" for="EndDate"
 																	value="Date de debut de évenement : " />
 
@@ -532,7 +532,7 @@
 <p:dialog header="Enregistrement de l'évenement" widgetVar="dlg2" modal="true" height="100">
     <h3 class="blue">error</h3>
     <h:panelGroup >											
-    	<h:button styleClass="btn btn-success"  action="@{eventBean.vider()}" value="Ok" style="float:right">  </h:button>
+    	<h:button styleClass="btn btn-success"  action="#{eventBean.vider()}" value="Ok" style="float:right">  </h:button>
     </h:panelGroup>
 </p:dialog>   
  
@@ -596,10 +596,7 @@
 				<!--/.row-fluid-->
 			</h:panelGroup>
 			<!--/.page-content-->
-
-			<!--/#ace-settings-container-->
 		</h:panelGroup>
-
 		<!--/.main-content-->
 	</h:panelGroup>
 	<!--/.main-container-->

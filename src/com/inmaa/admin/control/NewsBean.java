@@ -34,7 +34,7 @@ import com.inmaa.admin.service.INewsService;
 
 @Component("newsBean")
 @ViewScoped
-public class NewsBean  implements Serializable {
+public class NewsBean implements Serializable{
 	/**
 	 * 
 	 */
@@ -42,33 +42,21 @@ public class NewsBean  implements Serializable {
 
 	@Autowired
 	INewsService newsService;
-
 	private News currentNews ;
-	private transient DataModel<News> newsList;
-
-	public DataModel<News> getNewsList() {
-		return newsList;
-	}
-
-	public void setNewsList(DataModel<News> newsList) {
-		this.newsList = newsList;
-	}
-
-
+	private transient DataModel<News> es;
+	private int id;
 	List<Member> target = new ArrayList<Member>();
 	List<Member> source = new ArrayList<Member>();
 	private DualListModel<Member> memberModel;
-	private int id;
 	private UploadedFile uploadedFile;
 	private String fileName;
 
 	@PostConstruct
 	public void init() {
-		currentNews = new News();
-
-		newsList = new ListDataModel<News>();
-		newsList.setWrappedData( newsService.lister());
+ 		es = new ListDataModel<News>();
+		es.setWrappedData( newsService.lister());
 	}
+
 
 	public News getcurrentNews() {
 		return currentNews;
@@ -91,11 +79,20 @@ public class NewsBean  implements Serializable {
 		this.newsService = newsService;
 	}
 
+	public DataModel<News> getEs() {
+		es.setWrappedData( newsService.lister());
+		return es;
+	}
+
+	public void setEs(DataModel<News> es) {
+		this.es = es;
+	}
+
 	public String ajouter(){
-		String bodymsg = "Evenement a été modifié avec succes";
+		String bodymsg = "L'article a été modifié avec succes";
 		submitLogoFile();
 		try {
-
+			
 			int seqno = newsService.maxSeqno();
 			currentNews.setSeqNo(seqno + 10);
 			newsService.enregistrer(currentNews);
@@ -106,19 +103,20 @@ public class NewsBean  implements Serializable {
  			if(e.getCause() != null)
  				bodymsg  += e.getCause().getMessage().replace("'", "");
 
- 
+			System.out.print("Error: "+e);
 		}
 
-		vider();
 
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement évenement",bodymsg );
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement du projet",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
 
+		vider();
+ 
 		return bodymsg;
 	}
 
 	public String delete(News p){
-		String bodymsg="Evenement suprimé avec succès";
+		String bodymsg="Projet suprimé avec succès";
 		try {
 
 			newsService.supprimer(p);
@@ -128,24 +126,22 @@ public class NewsBean  implements Serializable {
  			bodymsg= e.getMessage().replace("'", "") + "      ";
  			if(e.getCause() != null)
  				bodymsg  += e.getCause().getMessage().replace("'", "");
-		}
-		currentNews = new News();
-		newsList.setWrappedData( newsService.lister());
 
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Suppression évenement",bodymsg );
+			System.out.print("Error: "+e);
+		}
+
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Suppression du projet",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
 
-		return bodymsg;
+ 		return bodymsg;
 	}
 
-	public String edit(){
-		setId(currentNews.getNewsId());
-		String bodymsg="Evenement modifié avec succès";
+	public String edit(){	
+		String bodymsg="Projet modifié avec succès";
 		try {
-			
+
 			if(uploadedFile != null)
 				submitLogoFile();
-
 			newsService.mettre_a_jour(currentNews);
 
 		} catch(Exception e) {
@@ -153,15 +149,17 @@ public class NewsBean  implements Serializable {
  			bodymsg= e.getMessage().replace("'", "") + "      ";
  			if(e.getCause() != null)
  				bodymsg  += e.getCause().getMessage().replace("'", "");
+
+			System.out.print("Error: "+e);
 		}
 
 
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification évenement",bodymsg );
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification du projet",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
-		vider();
-
+		
 		return "";
 	}
+
 
 	public String showEdit(News p){
 		currentNews = p;
@@ -169,40 +167,19 @@ public class NewsBean  implements Serializable {
 		return "edit-newss.xhtml?faces-redirect=true&amp;includeViewParams=true";
 	}
 
-	public String viewNewsDetail(){
-		currentNews = getNewsList().getRowData();
-		setId(currentNews.getNewsId());
-		return "form-newss.xhtml?faces-redirect=true&includeViewParams=true";
-
-	}
-	
 	public String vider(){
 
 		currentNews = new News();
-		id = 0;
-		uploadedFile = null;
+ 		uploadedFile = null;
 		memberModel = null;
 		fileName= null;
 		return "OK";
 
 	}
-
-	public void setMemberModel(DualListModel<Member> memberModel) {
-		this.memberModel = memberModel;
-	}
-
-	public DualListModel<Member> getMemberModel() {
-		return memberModel;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-		currentNews = getnewstById(id);
-
-	}
-
-	private News getnewstById(int id2) {
-		Iterator<News> itr =newsList.iterator();
+	
+	public News getnewsById(int id)
+	{
+		Iterator<News> itr = es.iterator();
 		while(itr.hasNext()) {
 			currentNews = itr.next();
 			if(currentNews.getNewsId() == id)
@@ -211,6 +188,20 @@ public class NewsBean  implements Serializable {
 			}
 		}
 		return null;
+	}
+
+	public void setmemberModel(DualListModel<Member> memberModel) {
+		this.memberModel = memberModel;
+	}
+
+	public DualListModel<Member> getmemberModel() {
+		return memberModel;
+	} 
+
+	public void setId(int id) {
+		this.id = id;
+		if (id>0)
+			currentNews = getnewsById(id);
 	}
 
 	public int getId() {
@@ -223,8 +214,8 @@ public class NewsBean  implements Serializable {
 		if(desc == null || desc == "")
 			desc = currentNews.getNewsDesc();
 
-		if(desc != null && desc.length()>200)
-			desc = desc.substring(0, 200) + " ...";
+		if(desc != null && desc.length()>100)
+			desc = desc.substring(0, 100) + " ...";
 
 		return desc;
 	}
@@ -233,13 +224,8 @@ public class NewsBean  implements Serializable {
 	public void submitLogoFile() {
 
 		if (uploadedFile != null){
-			// Just to demonstrate what information you can get from the uploaded file.
-			System.out.println("File type: " + uploadedFile.getContentType());
-			System.out.println("File name: " + uploadedFile.getFileName());
-			System.out.println("File size: " + uploadedFile.getSize() + " bytes");
-
 			// Prepare filename prefix and suffix for an unique filename in upload folder.
-			String prefix = FilenameUtils.getBaseName(uploadedFile.getFileName());
+			//String prefix = FilenameUtils.getBaseName(uploadedFile.getFileName());
 			String suffix = FilenameUtils.getExtension(uploadedFile.getFileName());
 
 			// Prepare file and outputstream.
@@ -268,7 +254,7 @@ public class NewsBean  implements Serializable {
 				e.printStackTrace();
 			} finally {
 				IOUtils.closeQuietly(output);
-				//currentNews.setNewsLogo(fileName);
+				currentNews.setNewsPicture(fileName);
 
 			}
 
@@ -287,9 +273,9 @@ public class NewsBean  implements Serializable {
 		this.uploadedFile = uploadedFile;
 	}
 
-	public void handleFileUpload(FileUploadEvent news) {
+	public void handleFileUpload(FileUploadEvent event) {
 
-		uploadedFile = news.getFile();
+		uploadedFile = event.getFile();
 	}
 
 
@@ -307,5 +293,4 @@ public class NewsBean  implements Serializable {
 		}
 		return null;
 	}
-
 }
