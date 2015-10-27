@@ -45,7 +45,6 @@ public class ProjectBean implements Serializable{
 	private Project currentProject ;
 	private transient DataModel<Project> es;
 	private int id;
-	private List<Project> projectList;
 	List<Member> target = new ArrayList<Member>();
 	List<Member> source = new ArrayList<Member>();
 	private DualListModel<Member> memberModel;
@@ -54,8 +53,7 @@ public class ProjectBean implements Serializable{
 
 	@PostConstruct
 	public void init() {
-		projectList = projectService.lister();
-		es = new ListDataModel<Project>();
+ 		es = new ListDataModel<Project>();
 		es.setWrappedData( projectService.lister());
 
 //		source = getmemberList();
@@ -203,14 +201,6 @@ public class ProjectBean implements Serializable{
 		return null;
 	}
 
-	public List<Project> getProjectList() {
-		return projectList;
-	}
-
-	public void setProjectList(List<Project> projects) {
-		this.projectList = projects;
-	}
-
 	public void setmemberModel(DualListModel<Member> memberModel) {
 		this.memberModel = memberModel;
 	}
@@ -221,7 +211,8 @@ public class ProjectBean implements Serializable{
 
 	public void setId(int id) {
 		this.id = id;
-		currentProject = getprojectById(id);
+		if (id>0)
+			currentProject = getprojectById(id);
 	}
 
 	public int getId() {
