@@ -28,7 +28,7 @@ public class INewsServiceImpl implements INewsService{
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
+
 	@Override
 	public void supprimer(News entity) {
 		// TODO Auto-generated method stub
@@ -39,7 +39,7 @@ public class INewsServiceImpl implements INewsService{
 	public void enregistrer(News entity) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().saveOrUpdate(entity);
-		
+
 	}
 
 	@Override
@@ -56,16 +56,18 @@ public class INewsServiceImpl implements INewsService{
 
 	@Override
 	public int maxSeqno() {
- 	    try {
- 	        
- 	       Session session=sessionFactory.getCurrentSession();
- 	       SQLQuery sqlQuery=session.createSQLQuery("SELECT max(seqno) FROM  News");
- 	       int seqno= (Integer) sqlQuery.uniqueResult();
- 	       return seqno;
+		try {
 
-	    } catch (HibernateException e) {
-	        e.printStackTrace();
-	    }
-	    return 0;
+			int seqno = 0;
+			Session session=sessionFactory.getCurrentSession();
+			SQLQuery sqlQuery=session.createSQLQuery("SELECT max(seqno) FROM  News");
+			if (sqlQuery.uniqueResult() != null)
+				seqno = (Integer) sqlQuery.uniqueResult();
+			return seqno;
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 }

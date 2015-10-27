@@ -29,7 +29,7 @@ public class IEventServiceImpl implements IEventService {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
+
 	@Override
 	public void supprimer(Event entity) {
 		// TODO Auto-generated method stub
@@ -40,7 +40,7 @@ public class IEventServiceImpl implements IEventService {
 	public void enregistrer(Event entity) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().saveOrUpdate(entity);
-		
+
 	}
 
 	@Override
@@ -58,19 +58,21 @@ public class IEventServiceImpl implements IEventService {
 
 
 	@Override
-		public int maxSeqno() {
-	 	    try {
-		        
-	 	       Session session=sessionFactory.getCurrentSession();
-	 	       SQLQuery sqlQuery=session.createSQLQuery("SELECT max(seqno) FROM  Event");
-	 	       int seqno= (Integer) sqlQuery.uniqueResult();
-	 	       return seqno;
-	
-		    } catch (HibernateException e) {
-		        e.printStackTrace();
-		    }
-		    return 0;
-		}
+	public int maxSeqno() {
+		try {
 
-	
+			int seqno = 0;
+			Session session=sessionFactory.getCurrentSession();
+			SQLQuery sqlQuery=session.createSQLQuery("SELECT max(seqno) FROM  Event");
+			if (sqlQuery.uniqueResult() != null)
+				seqno= (Integer) sqlQuery.uniqueResult();
+			return seqno;
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+
 }
