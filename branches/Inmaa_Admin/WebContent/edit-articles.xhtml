@@ -5,21 +5,16 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"	
+    xmlns:p="http://primefaces.org/ui" 
 	xmlns:pe="http://primefaces.org/ui/extensions" >
-
-
+	
 <h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
 	<title>Projets - inma Admin</title>
 
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
-	<meta name="author" content="" />
 	<!-- Mobile Specific Metas
     ================================================== -->
 	<meta name="viewport"
@@ -28,13 +23,19 @@
 
 	<!--basic styles-->
 
+	<h:outputStylesheet library="css" name="font-awesome-ie7.min.css" />
 	<h:outputStylesheet name="bootstrap.min.css" library="css" />
 	<h:outputStylesheet name="bootstrap-responsive.min.css" library="css" />
+	<!--page specific plugin styles-->
+	<h:outputStylesheet library="css" name="select2.css" />
+	<!--ace styles-->
+	<h:outputStylesheet library="css" name="ace.min.css" />
+	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
+	<h:outputStylesheet library="css" name="ace-skins.min.css" />
 	<h:outputStylesheet
 		name="webjars/font-awesome/3.2.1/css/font-awesome.css" />
 	<h:outputStylesheet
 		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
-
 
 	<!--page specific plugin styles-->
 	<h:outputStylesheet library="css" name="select2.css" />
@@ -43,15 +44,16 @@
 	<h:outputStylesheet library="css" name="ace.min.css" />
 	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
 	<h:outputStylesheet library="css" name="ace-skins.min.css" />
+	<h:outputStylesheet library="css" name="CostumStyle.css" />
 
 </h:head>
 
 <h:body>
 
-		<f:metadata>
-       		<f:viewParam name="id" value="#{articleBean.id}" />
-   		</f:metadata>
-   		
+	<f:metadata>
+		<f:viewParam name="id" value="#{newsBean.id}" />
+	</f:metadata>
+
 	<h:panelGroup layout="block" styleClass="navbar">
 		<h:panelGroup layout="block" styleClass="navbar-inner">
 			<h:panelGroup layout="block" styleClass="container-fluid">
@@ -66,8 +68,9 @@
 					<li class="light-blue"><h:outputLink data-toggle="dropdown"
 							value="#" class="dropdown-toggle">
 							<h:graphicImage styleClass="nav-user-photo" library="images"
-								name="logo.png" alt="Inma Admin's Photo" />
-							<span class="user-info"> <small>Welcome,</small> Inma Admin </span>
+								name="logo.jpg" alt="Inma Admin's Photo" />
+							<span class="user-info"> <small>Welcome,</small> Inma
+								Admin </span>
 							<i class="icon-caret-down"></i>
 						</h:outputLink>
 
@@ -75,22 +78,18 @@
 							class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
 							<li><h:outputLink value="#">
 									<i class="icon-cog"></i> Settings
-							</h:outputLink>
-							</li>
+							</h:outputLink></li>
 
 							<li><h:outputLink value="#">
 									<i class="icon-user"></i> Profile
-							</h:outputLink>
-							</li>
+							</h:outputLink></li>
 
 							<li class="h:panelGroupider"></li>
 
 							<li><h:outputLink value="#">
 									<i class="icon-off"></i> Logout
-							</h:outputLink>
-							</li>
-						</ul>
-					</li>
+							</h:outputLink></li>
+						</ul></li>
 				</ul>
 				<!--/.ace-nav-->
 			</h:panelGroup>
@@ -128,14 +127,11 @@
 					</button>
 				</h:panelGroup>
 
-				<h:panelGroup layout="block" class="sidebar-shortcuts-mini"
+				<h:panelGroup layout="block" styleClass="sidebar-shortcuts-mini"
 					id="sidebar-shortcuts-mini">
 					<span class="btn btn-success"></span>
-
 					<span class="btn btn-info"></span>
-
 					<span class="btn btn-warning"></span>
-
 					<span class="btn btn-danger"></span>
 				</h:panelGroup>
 			</h:panelGroup>
@@ -145,31 +141,26 @@
 				<li><h:outputLink value="welcome.xhtml">
 						<i class="icon-dashboard"></i>
 						<span class="menu-text"> Dashboard </span>
-					</h:outputLink>
-				</li>
+					</h:outputLink></li>
 
 
-				<li><h:outputLink value="#"
-						class="dropdown-toggle">
+				<li><h:outputLink value="#" styleClass="dropdown-toggle">
 						<i class="icon-desktop"></i>
-						<span class="menu-text"> Projects </span>
+						<span class="menu-text"> Projets </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
 
 					<ul class="submenu">
 						<li><h:outputLink value="table-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les projets
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="form-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau Projet
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
-				<li><h:outputLink value="#" class="dropdown-toggle">
+				<li><h:outputLink value="#" styleClass="dropdown-toggle">
 						<i class="icon-desktop"></i>
 						<span class="menu-text"> Evenements </span>
 						<b class="arrow icon-angle-down"></b>
@@ -178,15 +169,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="table-events.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les evenements
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="form-events.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel evenement
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-desktop"></i>
@@ -197,17 +185,15 @@
 					<ul class="submenu">
 						<li><h:outputLink value="table-members.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les membres
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="form-members.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel membre
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
-				<li class="active open"><h:outputLink value="#" class="dropdown-toggle">
+				<li class="active open"><h:outputLink value="#"
+						class="dropdown-toggle">
 						<i class="icon-desktop"></i>
 						<span class="menu-text"> Articles </span>
 						<b class="arrow icon-angle-down"></b>
@@ -216,15 +202,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="table-articles.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les articles
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li class="active"><h:outputLink value="form-articles.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel article
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-desktop"></i>
@@ -235,15 +218,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="table-partners.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les partners
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="form-partners.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel partner
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="calendar.html">
 						<i class="icon-calendar"></i>
@@ -252,14 +232,12 @@
 							class="badge badge-transparent tooltip-error"
 							title="2&nbsp;Important&nbsp;Events"> <i
 								class="icon-warning-sign red bigger-130"></i> </span> </span>
-					</h:outputLink>
-				</li>
+					</h:outputLink></li>
 
 				<li><h:outputLink value="gallery.html">
 						<i class="icon-picture"></i>
 						<span class="menu-text"> Galerie </span>
-					</h:outputLink>
-				</li>
+					</h:outputLink></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-tag"></i>
@@ -271,25 +249,20 @@
 					<ul class="submenu">
 						<li><h:outputLink value="profile.html">
 								<i class="icon-double-angle-right"></i> User Profile
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="pricing.html">
 								<i class="icon-double-angle-right"></i> Pricing Tables
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="invoice.html">
 								<i class="icon-double-angle-right"></i> Invoice
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="login.html">
 								<i class="icon-double-angle-right"></i> Login &amp; Register
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 			</ul>
 
@@ -305,16 +278,16 @@
 				<ul class="breadcrumb">
 					<li><i class="icon-home home-icon"></i> <a href="#">Home</a> <span
 						class="divider"> <i class="icon-angle-right arrow-icon"></i>
-					</span>
-					</li>
+					</span></li>
 					<li><a href="#">Articles</a> <span class="divider"> <i
-							class="icon-angle-right arrow-icon"></i> </span></li>
+							class="icon-angle-right arrow-icon"></i> </span>
+					</li>
 					<li class="active">Ajouter un artice</li>
 				</ul>
 				<!--.breadcrumb-->
 
 				<h:panelGroup layout="block" styleClass="nav-search" id="nav-search">
-					<h:form class="form-search"  prependId="false" acceptcharset="UTF-8">
+					<h:form class="form-search" prependId="false" acceptcharset="UTF-8">
 						<span class="input-icon"> <input type="text"
 							placeholder="Search ..." class="input-small nav-search-input"
 							id="nav-search-input" autocomplete="off" /> <i
@@ -323,12 +296,12 @@
 				</h:panelGroup>
 				<!--#nav-search-->
 			</h:panelGroup>
-		
-			
+
 			<h:panelGroup layout="block" styleClass="page-content">
 				<h:panelGroup layout="block" class="page-header position-relative">
 					<h1>
-						Nouveau article <small> <i class="icon-double-angle-right"></i> </small>
+						Modification d'article <small> <i class="icon-double-angle-right"></i>
+						</small>
 					</h1>
 				</h:panelGroup>
 				<!--/.page-header-->
@@ -342,125 +315,129 @@
 								<h:panelGroup layout="block" class="widget-box">
 									<h:panelGroup layout="block"
 										class="widget-header widget-header-blue widget-header-flat">
-										<h4 class="lighter">Ajouter un nouveau article</h4>
+										<h4 class="lighter">Modifier l'article</h4>
 
 
 									</h:panelGroup>
 
 									<h:panelGroup layout="block" class="widget-body widget-main">
 										<h:panelGroup layout="block" class="row-fluid">
-										
-										<h:form class="form-horizontal" id="form" prependId="false" enctype="multipart/form-data"
-														acceptcharset="UTF-8">
-											<h:panelGroup layout="block" id="fuelux-wizard"
-												class="row-fluid hide" data-target="#step-container">
-												<ul class="wizard-steps">
-													<li data-target="#step1" class="active"><span
-														class="step">1</span> <span class="title">Ajout</span></li>
+
+											<h:form class="form-horizontal" id="form" prependId="false"
+												enctype="multipart/form-data" acceptcharset="UTF-8">
+												<h:panelGroup layout="block" id="fuelux-wizard"
+													class="row-fluid hide" data-target="#step-container">
+													<ul class="wizard-steps">
+														<li data-target="#step1" class="active"><span
+															class="step">1</span> <span class="title">Ajout</span></li>
 
 
 
-													<li data-target="#step4"><span class="step">2</span> <span
-														class="title">Sauvegarde</span></li>
-												</ul>
-											</h:panelGroup>
-											<hr />
-											<h:panelGroup layout="block"
-												class="step-content row-fluid position-relative"
-												id="step-container">
-													<h:outputLink value="#{newsBean.vider()}"/>
+														<li data-target="#step4"><span class="step">2</span>
+															<span class="title">Sauvegarde</span></li>
+													</ul>
+												</h:panelGroup>
+												<hr />
+												<h:panelGroup layout="block"
+													class="step-content row-fluid position-relative"
+													id="step-container">
 													<h:panelGroup layout="block" class="step-pane active"
 														id="step1">
-														<h3 class="lighter block green">Nouveau article</h3>
+														<h3 class="lighter block green">Modifier l'article</h3>
 
 
-															<h:panelGroup layout="block"
-																styleClass="control-group success">
-																<p:outputLabel styleClass="control-label" for="intitule"
-																	value="Titre de l'article " />
+														<h:panelGroup layout="block"
+															styleClass="control-group success">
+															<p:outputLabel styleClass="control-label" for="intitule"
+																value="Titre de l'article " />
 
-																<h:panelGroup layout="block" styleClass="controls">
-																	<span class="span3 input-icon input-icon-right">
-																		<h:inputText styleClass="span12" id="intitule"
-																			value="#{newsBean.currentNews.newsTitle}" /> <i
-																		class="icon-warning-sign"></i> </span>
-																	<span class="help-inline"> Champs obligatoire </span>
+															<h:panelGroup layout="block" styleClass="controls">
+																<span class="span3 input-icon input-icon-right">
+																	<h:inputText styleClass="span12" id="intitule"
+																		value="#{newsBean.currentNews.newsTitle}" /> <i
+																	class="icon-warning-sign"></i>
+																</span>
+																<span class="help-inline"> Champs obligatoire </span>
 															</h:panelGroup>
 														</h:panelGroup>
 
-														    <h:panelGroup layout="block" class="control-group success">
+														<h:panelGroup layout="block" class="control-group success">
 															<p:outputLabel styleClass="control-label"
-																 value="contenu " />
+																for="eventAuthor" value="Auteur " />
 
-																<h:panelGroup layout="block" class="controls">
-																	<span class="span8 input-icon input-icon-right">
-																		<pe:ckEditor id="editor" value="#{newsBean.currentNews.newsDesc}" language="ar" width="800" checkDirtyInterval="0" />  																	
-																	  </span>
-																</h:panelGroup>
+															<h:panelGroup layout="block" class="controls">
+																<span class="span6 input-icon input-icon-right">
+																	<h:inputText styleClass="span12 limited"
+																		id="eventAuthor"
+																		value="#{newsBean.currentNews.newsAuthor}" />
+																</span>
 															</h:panelGroup>
-																														
-															<h:panelGroup layout="block"
-																class="control-group success">
-																<p:outputLabel styleClass="control-label"
-																	for="eventPresenter" value="Auteur " />
+														</h:panelGroup>
 
-																<h:panelGroup layout="block" class="controls">
-																	<span class="span6 input-icon input-icon-right">
-																		<h:inputText styleClass="span12 limited"  id="eventAuthor"
-																			value="#{newsBean.currentNews.eventAuthor}" /> </span>
-																</h:panelGroup>
-															</h:panelGroup>
-															
-															<h:panelGroup layout="block"
-																class="control-group success">
-																<p:outputLabel styleClass="control-label" for="effect"
-																	value="Date de l'article : " />
+														<h:panelGroup layout="block" class="control-group success">
+															<p:outputLabel styleClass="control-label" for="newsDate"
+																value="Date de l'article : " />
 
-																<h:panelGroup layout="block" class="controls">
-																	<span class="span6 input-icon input-icon-right">
-																		<h:panelGroup layout="block" class="control-group">
-																			<h:panelGroup layout="block"
-																				class="row-fluid input-append">
-																				<p:calendar id="effect"
-																					value="#{newsBean.currentNews.eventDate}"
-																					styleClass="span10 date-picker" effect="fold" />
-																			</h:panelGroup>
-																		</h:panelGroup> </span>
-																</h:panelGroup>
+															<h:panelGroup layout="block" class="controls">
+																<span class="span6 input-icon input-icon-right">
+																	<h:panelGroup layout="block" class="control-group">
+																		<h:panelGroup layout="block"
+																			class="row-fluid input-append">
+																			<p:calendar id="newsDate"
+																				value="#{newsBean.currentNews.newsDate}"
+																				styleClass="span10 date-picker" effect="fold" />
+																		</h:panelGroup>
+																	</h:panelGroup>
+																</span>
 															</h:panelGroup>
-															
-															
-															<h:panelGroup layout="block"
-																class="control-group success">
-																<p:outputLabel styleClass="control-label" 
-																	value="Logo de évenement " />
+														</h:panelGroup>
 
-																<h:panelGroup layout="block" class="controls">
-																	<span class="span6 input-icon input-icon-right">
-																		 <p:fileUpload fileUploadListener="#{newsBean.handleFileUpload}" auto="true" />
-																		 </span>
-																</h:panelGroup>
+
+														<h:panelGroup layout="block" class="control-group success">
+															<p:outputLabel styleClass="control-label"
+																value="contenu " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span8 input-icon input-icon-right">
+																	<pe:ckEditor id="editor"
+																		value="#{newsBean.currentNews.newsDesc}" language="ar"
+																		width="800" checkDirtyInterval="0" />
+																</span>
 															</h:panelGroup>
+														</h:panelGroup>
+
+														<h:panelGroup layout="block" class="control-group success">
+															<p:outputLabel styleClass="control-label"
+																value="Image de l'article " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span6 input-icon input-icon-right">
+																	<p:fileUpload
+																		fileUploadListener="#{newsBean.handleFileUpload}"
+																		auto="true" />
+																</span>
+															</h:panelGroup>
+														</h:panelGroup>
 
 
 
 													</h:panelGroup>
 
-											<hr />
+													<hr />
+												</h:panelGroup>
+												<h:panelGroup layout="block"
+													class="row-fluid wizard-actions">
+													<p:commandButton value="Modifier"
+														styleClass="btn btn-success btn-next"
+														action="#{newsBean.edit()}">
+													</p:commandButton>
+													<p:dialog header="Modification du projet" widgetVar="dlg2"
+														modal="true" height="100">
+														<h:outputText value="le projet a été modifié avec succes" />
+													</p:dialog>
 
- 	<p:commandLink styleClass="btn btn-success btn-next" action="#{newsBean.ajouter()}" onerror="PF('dlg2').show();">
-	Sauvegarder	<i class="icon-arrow-right icon-on-right"></i>
-	</p:commandLink>
-
-<p:dialog header="Enregistrement de l'évenement" widgetVar="dlg2" modal="true" height="100">
-    <h3 class="blue">error</h3>
-    <h:panelGroup >											
-    	<h:button styleClass="btn btn-success"  action="@{newsBean.vider()}" value="Ok" style="float:right">  </h:button>
-    </h:panelGroup>
-</p:dialog>   
- 
- </h:form>
-										
+												</h:panelGroup>
+											</h:form>
 										</h:panelGroup>
 
 										<!--/widget-main-->
@@ -475,15 +452,13 @@
 								data-target="#modal-step-contents">
 								<ul class="wizard-steps clearfix">
 									<li data-target="#modal-step1" class="active"><span
-										class="step">1</span> <span class="title"> Ajout </span>
-									</li>
+										class="step">1</span> <span class="title"> Ajout </span></li>
 
-							  
+
 
 
 									<li data-target="#modal-step4"><span class="step">2</span>
-										<span class="title">Sauvegarde</span>
-									</li>
+										<span class="title">Sauvegarde</span></li>
 								</ul>
 							</h:panelGroup>
 
@@ -519,7 +494,6 @@
 				<!--/.row-fluid-->
 			</h:panelGroup>
 			<!--/.page-content-->
-			
 		</h:panelGroup>
 		<!--/.main-content-->
 	</h:panelGroup>
@@ -531,24 +505,32 @@
 
 	<!--basic scripts-->
 
-	<script
-		src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
 	<script type="text/javascript">
 	//<![CDATA[ 
-			window.jQuery || document.write("<script src='resources/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
-		//]]>
-		</script>
+        window.jQuery || document.write("<script src='resources/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
+      //]]>
+    </script>
+	<!--<![endif]-->
 
+	<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
 	<script type="text/javascript">
 	//<![CDATA[ 
-			if("ontouchend" in document) document.write("<script src='resources/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-		//]]>
-		</script>
-
+        if ("ontouchend" in document) document.write("<script src='js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+	//]]>
+	</script>
 	<script src="resources/js/bootstrap.min.js"></script>
 
 	<!--page specific plugin scripts-->
+	<script src="resources/js/fuelux/fuelux.wizard.min.js"></script>
+	<script src="resources/js/jquery.validate.min.js"></script>
+	<script src="resources/js/additional-methods.min.js"></script>
+	<script src="resources/js/bootbox.min.js"></script>
+	<script src="resources/js/jquery.maskedinput.min.js"></script>
+	<script src="resources/js/select2.min.js"></script>
 
 	<script src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
 	<script src="resources/js/jquery.ui.touch-punch.min.js"></script>
@@ -745,5 +727,4 @@
         //]]>
     </script>
 </h:body>
-
 </html>

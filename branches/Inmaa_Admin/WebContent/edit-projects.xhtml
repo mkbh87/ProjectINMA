@@ -495,19 +495,23 @@
  
 
 											<hr />
-											<h:panelGroup layout="block" class="row-fluid wizard-actions">
+													<h:panelGroup layout="block"
+														class="row-fluid wizard-actions">
 
-<p:commandButton value="Modifier" styleClass="btn btn-success btn-next" action="#{projectBean.edit()}" >
-</p:commandButton>
-<p:dialog header="Modification du projet" widgetVar="dlg2" modal="true" height="100">
-    <h:outputText value="le projet a été modifié avec succes" />
-</p:dialog>   
+														<p:commandButton value="Modifier"
+															styleClass="btn btn-success btn-next"
+															action="#{projectBean.edit()}">
+														</p:commandButton>
+														<p:dialog header="Modification du projet" widgetVar="dlg2"
+															modal="true" height="100">
+															<h:outputText value="le projet a été modifié avec succes" />
+														</p:dialog>
 
 
- 
+
 													</h:panelGroup>
 
-											</h:panelGroup>
+												</h:panelGroup>
 										</h:form>
 										
 										</h:panelGroup>

@@ -55,6 +55,8 @@ public class NewsBean implements Serializable{
 	public void init() {
  		es = new ListDataModel<News>();
 		es.setWrappedData( newsService.lister());
+		this.currentNews = new News();	
+
 	}
 
 
@@ -116,7 +118,7 @@ public class NewsBean implements Serializable{
 	}
 
 	public String delete(News p){
-		String bodymsg="Projet suprimé avec succès";
+		String bodymsg="Article suprimé avec succès";
 		try {
 
 			newsService.supprimer(p);
@@ -137,7 +139,7 @@ public class NewsBean implements Serializable{
 	}
 
 	public String edit(){	
-		String bodymsg="Projet modifié avec succès";
+		String bodymsg="Article modifié avec succès";
 		try {
 
 			if(uploadedFile != null)
@@ -164,7 +166,7 @@ public class NewsBean implements Serializable{
 	public String showEdit(News p){
 		currentNews = p;
 		setId(currentNews.getNewsId());
-		return "edit-newss.xhtml?faces-redirect=true&amp;includeViewParams=true";
+		return "edit-articles.xhtml?faces-redirect=true&amp;includeViewParams=true";
 	}
 
 	public String vider(){
