@@ -330,21 +330,21 @@
 							<h:form>
 								<p:dataTable
 									styleClass="table table-striped table-bordered table-hover"
-									var="new" value="#{newsBean.es}" paginator="false" rows="10"
+									var="news" value="#{newsBean.es}" paginator="false" rows="10"
 									editable="true" id="sample-table-2">
 
 									<p:column>
 										<f:facet name="header">
 											<h:outputText value="Titre" />
 										</f:facet>
-										<h:outputText value="#{new.newsTitle}" />
+										<h:outputText value="#{news.newsTitle}" />
 									</p:column>
 									
 									<p:column styleClass="center">
 										<f:facet name="header">
-											<h:outputText value="Presenter par" />
+											<h:outputText value="Auteur" />
 										</f:facet>
-										<h:outputText value="#{new.newsAuthor}" />
+										<h:outputText value="#{news.newsAuthor}" />
 									</p:column>
 
 
@@ -352,20 +352,20 @@
 									<p:column styleClass="center">
 										<f:facet name="header" styleClass="hidden-phone">
 											<i class="icon-time bigger-110 hidden-phone"></i>
-											<h:outputText value="Date de Debut" />
+											<h:outputText value="Date de publication" />
 											<span class="lbl"></span>
 										</f:facet>
 										<span class="lbl"></span>
-										<h:outputText value="#{new.newsDate}" />
+										<h:outputText value="#{news.newsDate}" />
 									</p:column>
 									
 									<p:column styleClass="center">
 										<f:facet name="header" styleClass="hidden-phone">
-											<h:outputText value="Nom d'image" />
+											<h:outputText value="Nom de l'image" />
 											<span class="lbl"></span>
 										</f:facet>
 										<span class="lbl"></span>
-										<h:outputText value="#{new.newsPicture}" />
+										<h:outputText value="#{news.newsPicture}" />
 									</p:column>
 									
 
@@ -377,7 +377,6 @@
 										<h:commandButton value="Modifier" action="#{newsBean.showEdit(news)}">
 										      	<f:param name="id" value="#{pro.projectId}" />
 										</h:commandButton>
-										<h:outputText value="" />
 									</p:column>
 
 
