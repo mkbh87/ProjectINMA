@@ -49,6 +49,7 @@ public class ProjectBean implements Serializable{
 	List<Member> source = new ArrayList<Member>();
 	private DualListModel<Member> memberModel;
 	private UploadedFile uploadedFile;
+	List<Member> members ;
 	private String fileName;
 
 	@PostConstruct
@@ -61,12 +62,14 @@ public class ProjectBean implements Serializable{
 		//vider();
 	}
 
-	private List<Member> getmemberList() {
-		List<Member> members = null;
-
+ 	public List<Member> getMembers() {
 		members =  projectService.listerMember();
 
 		return members;
+	}
+
+	public void setMembers(List<Member> members) {
+		this.members = members;
 	}
 
 	public Project getcurrentProject() {

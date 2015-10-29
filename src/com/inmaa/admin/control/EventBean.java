@@ -30,6 +30,7 @@ import org.springframework.stereotype.Component;
 
 import com.inmaa.admin.persistence.Event;
 import com.inmaa.admin.persistence.Member;
+import com.inmaa.admin.persistence.Project;
 import com.inmaa.admin.service.IEventService;
 
 @Component("eventBean")
@@ -46,6 +47,7 @@ public class EventBean  implements Serializable {
 	private Event currentEvent ;
 	private List<Event> eventList;
 	private transient DataModel<Event> events;
+	private List<Project> projectList;
 
 	List<Member> target = new ArrayList<Member>();
 	List<Member> source = new ArrayList<Member>();
@@ -317,6 +319,15 @@ public class EventBean  implements Serializable {
 			return date;
 		}
 		return null;
+	}
+
+	public void setProjectList(List<Project> projectList) {
+		this.projectList = projectList;
+	}
+
+	public List<Project> getProjectList() {
+		projectList = eventService.listerProject();
+		return projectList;
 	}
 
 }
