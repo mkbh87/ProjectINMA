@@ -365,6 +365,13 @@
 														id="step1">
 														<h3 class="lighter block green">Nouveau évenement</h3>
 
+<p:selectManyMenu value="#{projectbean.es}"  var="pr">
+	<f:selectItems value="#{projectbean.members}" var="player"
+	itemLabel="#{player.memberName}" itemValue="#{player}" />
+ 	<p:column>
+		<h:outputText value ="#{pr.ProjectName}"/>
+	</p:column>
+</p:selectManyMenu>
 
 															<h:panelGroup layout="block"
 																styleClass="control-group success">
