@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.inmaa.admin.persistence.Event;
+import com.inmaa.admin.persistence.Project;
 
 
 @Service("EventService")
@@ -55,7 +56,11 @@ public class IEventServiceImpl implements IEventService {
 		return sessionFactory.getCurrentSession().createQuery("from Event").list();
 	}
 
-
+	@Override
+	public List<Project> listerProject() {
+		// TODO Auto-generated method stub
+		return sessionFactory.getCurrentSession().createQuery("from Project").list();
+	}
 
 	@Override
 	public int maxSeqno() {
