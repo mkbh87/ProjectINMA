@@ -378,6 +378,25 @@
 										<f:facet name="header">
 											<h:outputText value="" />
 										</f:facet>
+										
+												<h:panelGroup layout="block"  styleClass="hidden-phone visible-desktop btn-group">
+													<button class="btn btn-mini btn-success">
+														<i class="icon-ok bigger-120"></i>
+													</button>
+
+													<h:commandButton class="btn btn-mini btn-info" action="#{eventBean.delete(event)}"> 
+														<i class="icon-edit bigger-120"></i>
+													</h:commandButton>
+
+													<button class="btn btn-mini btn-danger">
+														<i class="icon-trash bigger-120"></i>
+													</button>
+
+													<button class="btn btn-mini btn-warning">
+														<i class="icon-flag bigger-120"></i>
+													</button>
+												</h:panelGroup>
+										
 										<h:commandButton value="Supprimer" action="#{eventBean.delete(event)}"></h:commandButton>
 										<h:commandButton value="Modifier" action="#{eventBean.showEdit(event)}">
 										      	<f:param name="id" value="#{pro.projectId}" />

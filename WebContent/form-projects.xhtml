@@ -361,6 +361,15 @@
 													<h3 class="lighter block green">Nouveau Projet</h3>
 
 
+<p:selectManyMenu value="#{projectbean.members}"  var="pr">
+	<f:selectItems value="#{projectbean.members}" var="player"
+	itemLabel="#{player.memberName}" itemValue="#{player}" />
+ 	<p:column>
+		<h:outputText value ="#{pr.ProjectName}"/>
+	</p:column>
+</p:selectManyMenu>
+
+
 														<h:panelGroup layout="block"
 															styleClass="control-group success">
 															<p:outputLabel styleClass="control-label" for="intitule"
