@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -45,28 +46,55 @@ public class ProjectBean implements Serializable{
 	private Project currentProject ;
 	private transient DataModel<Project> es;
 	private int id;
-	List<Member> target = new ArrayList<Member>();
+
+	Member memb ;
+
+	public Member getMemb() {
+		return memb;
+	}
+
+	public void setMemb(Member memb) {
+		this.memb = memb;
+	}
+
+	List<Member> members ;
+	List<Member> members2 ;
+
+	List<Project> target = new ArrayList<Project>();
 	List<Member> source = new ArrayList<Member>();
 	private DualListModel<Member> memberModel;
 	private UploadedFile uploadedFile;
 	List<Member> members ;
 	private String fileName;
-
+	private String ImgFilePath;
+	
 	@PostConstruct
 	public void init() {
  		es = new ListDataModel<Project>();
 		es.setWrappedData( projectService.lister());
-
+		memb = new Member();
+		members2 = new ArrayList<Member>();
 //		source = getmemberList();
 //		memberModel = new DualListModel<Member>(source, target);
 		//vider();
 	}
 
+<<<<<<< .mine
+	public List<Member> getMembers2() {
+		return members2;
+=======
  	public List<Member> getMembers() {
 		members =  projectService.listerMember();
 
 		return members;
+ 	}
+	
+	
+	
+	public void setMembers2(List<Member> members2) {
+		this.members2 = members2;
 	}
+	
 
 	public void setMembers(List<Member> members) {
 		this.members = members;
@@ -103,10 +131,11 @@ public class ProjectBean implements Serializable{
 	}
 
 	public String ajouter(){
-		String bodymsg = "le projet a été modifié avec succes";
+		String bodymsg = "le projet a été ajouté avec succes";
 		submitLogoFile();
 		try {
 			
+//			currentProject.setMembers((Set<Member>) members2);
 			int seqno = projectService.maxSeqno();
 			currentProject.setSeqNo(seqno + 10);
 			projectService.enregistrer(currentProject);
@@ -126,7 +155,7 @@ public class ProjectBean implements Serializable{
 
 		vider();
  
-		return bodymsg;
+		return "table-projects.xhtml?faces-redirect=true&amp;includeViewParams=true";
 	}
 
 	public String delete(Project p){
@@ -204,9 +233,19 @@ public class ProjectBean implements Serializable{
 		return null;
 	}
 
-	public void setmemberModel(DualListModel<Member> memberModel) {
-		this.memberModel = memberModel;
+
+	public List<Member> getMembers() {
+		members =  projectService.listerMember();
+		return members;
 	}
+
+
+
+	public void setMembers(List<Member> members) {
+		this.members = members;
+	}
+
+
 
 	public DualListModel<Member> getmemberModel() {
 		return memberModel;
@@ -253,7 +292,8 @@ public class ProjectBean implements Serializable{
 
 			try {
 				// Create file with unique name in upload folder and write to it.
-				file = File.createTempFile("img", "." + suffix, new File("/usr/share/apache-tomcat-7.0.23-2/webapps/ROOT/resources/images/"));
+				//file = File.createTempFile("img", "." + suffix, new File("/usr/share/apache-tomcat-7.0.23-2/webapps/ROOT/resources/images/"));
+				file = File.createTempFile("img", "." + suffix, new File(getImgFilePath()));
 				output = new FileOutputStream(file);
 				IOUtils.copy(uploadedFile.getInputstream(), output);
 				fileName = file.getName();
@@ -293,7 +333,7 @@ public class ProjectBean implements Serializable{
 	}
 
 	public void handleFileUpload(FileUploadEvent event) {
-
+		getMemb();
 		uploadedFile = event.getFile();
 	}
 
@@ -311,5 +351,13 @@ public class ProjectBean implements Serializable{
 			return date;
 		}
 		return null;
+	}
+
+	public String getImgFilePath() {
+		return ConfigBean.getImgFilePath();
+	}
+
+	public void setImgFilePath(String imgFilePath) {
+		ImgFilePath = imgFilePath;
 	}
 }
