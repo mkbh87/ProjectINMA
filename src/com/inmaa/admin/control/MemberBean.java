@@ -4,10 +4,11 @@ package com.inmaa.admin.control;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
@@ -20,7 +21,7 @@ import com.inmaa.admin.service.IMemberService;
 
 
 @Component("memberBean")
-@SessionScoped
+@ViewScoped
 public class MemberBean implements Serializable{
 	/**
 	 * 
@@ -121,4 +122,17 @@ public class MemberBean implements Serializable{
 		return id;
 	}
 
+	public Member getmemberById(int id)
+	{
+		Iterator<Member> itr = members.iterator();
+		while(itr.hasNext()) {
+			currentMember = itr.next();
+			if(currentMember.getMemberId() == id)
+			{
+				return currentMember;
+			}
+		}
+		return null;
+	}
+	
 }
