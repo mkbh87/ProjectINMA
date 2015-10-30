@@ -11,7 +11,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -49,13 +48,6 @@ public class ProjectBean implements Serializable{
 
 	Member memb ;
 
-	public Member getMemb() {
-		return memb;
-	}
-
-	public void setMemb(Member memb) {
-		this.memb = memb;
-	}
 
 	List<Member> members ;
 	List<Member> members2 ;
@@ -64,40 +56,25 @@ public class ProjectBean implements Serializable{
 	List<Member> source = new ArrayList<Member>();
 	private DualListModel<Member> memberModel;
 	private UploadedFile uploadedFile;
-	List<Member> members ;
 	private String fileName;
-	private String ImgFilePath;
-	
 	@PostConstruct
 	public void init() {
- 		es = new ListDataModel<Project>();
+		es = new ListDataModel<Project>();
 		es.setWrappedData( projectService.lister());
 		memb = new Member();
 		members2 = new ArrayList<Member>();
-//		source = getmemberList();
-//		memberModel = new DualListModel<Member>(source, target);
-		//vider();
 	}
 
-<<<<<<< .mine
-	public List<Member> getMembers2() {
-		return members2;
-=======
- 	public List<Member> getMembers() {
-		members =  projectService.listerMember();
+	public Member getMemb() {
+		return memb;
+	}
 
-		return members;
- 	}
-	
-	
-	
+	public void setMemb(Member memb) {
+		this.memb = memb;
+	}
+
 	public void setMembers2(List<Member> members2) {
 		this.members2 = members2;
-	}
-	
-
-	public void setMembers(List<Member> members) {
-		this.members = members;
 	}
 
 	public Project getcurrentProject() {
@@ -134,17 +111,17 @@ public class ProjectBean implements Serializable{
 		String bodymsg = "le projet a été ajouté avec succes";
 		submitLogoFile();
 		try {
-			
-//			currentProject.setMembers((Set<Member>) members2);
+
+			//			currentProject.setMembers((Set<Member>) members2);
 			int seqno = projectService.maxSeqno();
 			currentProject.setSeqNo(seqno + 10);
 			projectService.enregistrer(currentProject);
 
 		} catch(Exception e) {
 			//Error during hibernate query
- 			bodymsg= e.getMessage().replace("'", "") + "      ";
- 			if(e.getCause() != null)
- 				bodymsg  += e.getCause().getMessage().replace("'", "");
+			bodymsg= e.getMessage().replace("'", "") + "      ";
+			if(e.getCause() != null)
+				bodymsg  += e.getCause().getMessage().replace("'", "");
 
 			System.out.print("Error: "+e);
 		}
@@ -154,7 +131,7 @@ public class ProjectBean implements Serializable{
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
 
 		vider();
- 
+
 		return "table-projects.xhtml?faces-redirect=true&amp;includeViewParams=true";
 	}
 
@@ -166,9 +143,9 @@ public class ProjectBean implements Serializable{
 
 		} catch(Exception e) {
 			//Error during hibernate query
- 			bodymsg= e.getMessage().replace("'", "") + "      ";
- 			if(e.getCause() != null)
- 				bodymsg  += e.getCause().getMessage().replace("'", "");
+			bodymsg= e.getMessage().replace("'", "") + "      ";
+			if(e.getCause() != null)
+				bodymsg  += e.getCause().getMessage().replace("'", "");
 
 			System.out.print("Error: "+e);
 		}
@@ -176,7 +153,7 @@ public class ProjectBean implements Serializable{
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Suppression du projet",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
 
- 		return bodymsg;
+		return bodymsg;
 	}
 
 	public String edit(){	
@@ -189,9 +166,9 @@ public class ProjectBean implements Serializable{
 
 		} catch(Exception e) {
 			//Error during hibernate query
- 			bodymsg= e.getMessage().replace("'", "") + "      ";
- 			if(e.getCause() != null)
- 				bodymsg  += e.getCause().getMessage().replace("'", "");
+			bodymsg= e.getMessage().replace("'", "") + "      ";
+			if(e.getCause() != null)
+				bodymsg  += e.getCause().getMessage().replace("'", "");
 
 			System.out.print("Error: "+e);
 		}
@@ -199,7 +176,7 @@ public class ProjectBean implements Serializable{
 
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification du projet",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
-		
+
 		return "";
 	}
 
@@ -213,13 +190,13 @@ public class ProjectBean implements Serializable{
 	public String vider(){
 
 		currentProject = new Project();
- 		uploadedFile = null;
+		uploadedFile = null;
 		memberModel = null;
 		fileName= null;
 		return "OK";
 
 	}
-	
+
 	public Project getprojectById(int id)
 	{
 		Iterator<Project> itr = es.iterator();
@@ -232,20 +209,6 @@ public class ProjectBean implements Serializable{
 		}
 		return null;
 	}
-
-
-	public List<Member> getMembers() {
-		members =  projectService.listerMember();
-		return members;
-	}
-
-
-
-	public void setMembers(List<Member> members) {
-		this.members = members;
-	}
-
-
 
 	public DualListModel<Member> getmemberModel() {
 		return memberModel;
@@ -282,8 +245,7 @@ public class ProjectBean implements Serializable{
 			System.out.println("File name: " + uploadedFile.getFileName());
 			System.out.println("File size: " + uploadedFile.getSize() + " bytes");
 
-			// Prepare filename prefix and suffix for an unique filename in upload folder.
-			String prefix = FilenameUtils.getBaseName(uploadedFile.getFileName());
+			FilenameUtils.getBaseName(uploadedFile.getFileName());
 			String suffix = FilenameUtils.getExtension(uploadedFile.getFileName());
 
 			// Prepare file and outputstream.
@@ -337,6 +299,10 @@ public class ProjectBean implements Serializable{
 		uploadedFile = event.getFile();
 	}
 
+	public List<Member> getMembers() {
+		members =  projectService.listerMember();
+		return members;
+	}
 
 	public String getDateFormated(Date d)
 	{
@@ -358,6 +324,5 @@ public class ProjectBean implements Serializable{
 	}
 
 	public void setImgFilePath(String imgFilePath) {
-		ImgFilePath = imgFilePath;
 	}
 }
