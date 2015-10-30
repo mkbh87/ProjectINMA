@@ -364,6 +364,23 @@
 													<h:panelGroup layout="block" class="step-pane active"
 														id="step1">
 														<h3 class="lighter block green">Nouveau évenement</h3>
+  
+   <p:selectManyMenu id="advanced" value="#{projectBean.members2}" converter="memberConverter"
+                          var="t" filter="true" filterMatchMode="contains" showCheckbox="true">
+            <f:selectItems value="#{projectBean.members}" var="mem" itemLabel="#{mem.memberName}" itemValue="#{mem}" />
+ 
+            <p:column>
+                <h:outputText styleClass="ui-theme ui-theme-#{t.memberName}" />
+            </p:column>
+ 
+            <p:column>
+                <h:outputText value="#{t.memberName}" />
+            </p:column>
+        </p:selectManyMenu>
+  
+  
+  
+  
 
 <p:selectManyMenu value="#{projectbean.es}"  var="pr">
 	<f:selectItems value="#{projectbean.members}" var="player"
@@ -468,9 +485,21 @@
 																		 </span>
 																</h:panelGroup>
 															</h:panelGroup>
+															
+  													
+<!-- 
 
-
-
+												<p:dataGrid var="mem" value="#{projectBean.es}"
+													columns="1" rows="12">
+													<p:column>
+													 <f:selectItem itemLabel="Xbox One" itemValue="Xbox One" >
+																<h:outputText value="#{mem.projectName}" /></f:selectItem>
+ 													</p:column>
+												</p:dataGrid>
+ <p:selectOneRadio value="#{projectBean.es}" layout="custom">
+            <f:selectItem itemLabel="Red" itemValue="Red" />
+  </p:selectOneRadio>
+ --> 
 													</h:panelGroup>
 
 
