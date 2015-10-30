@@ -415,7 +415,7 @@
 															<h:panelGroup layout="block" class="controls">
 																<span class="span6 input-icon input-icon-right">
 																
-	 <p:fileUpload fileUploadListener="#{projectBean.handleFileUpload}" auto="true"  />
+	 <p:fileUpload fileUploadListener="#{projectBean.handleFileUpload}" auto="true"   sizeLimit="1000000" fileLimit="1" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
  																
  																</span>
 															</h:panelGroup>
@@ -423,7 +423,7 @@
 
 														<h:panelGroup layout="block" class="control-group success">
 															<p:outputLabel styleClass="control-label" for="intitule"
-																value="Date de debut de projet : " />
+																value="Date de debut de projet " />
 
 															<h:panelGroup layout="block" class="controls">
 																<span class="span6 input-icon input-icon-right">
@@ -481,14 +481,50 @@
 														</h:panelGroup>
 
 
+<!-- <p:selectOneMenu value="#{projectBean.memb}" converter="memberConverter" var="p">
+	<f:selectItem itemLabel="Select One" itemValue="" />
+		<f:selectItems value="#{projectBean.members}" var="mem" itemLabel="#{mem.memberName}" itemValue="#{mem}"/>
+	<p:column>
+		<p:graphicImage value="#{mem.memberImage}" width="40" height="50"/>
+	</p:column>
+	<p:column>
+               #{p.memberName} 
+	</p:column>
+</p:selectOneMenu>
+ -->
+
+<!-- 
+<h:selectOneMenu id="saisons" value="#{projectBean.fileName}" style="margin-right:10px">
+    <f:selectItems var="member" value="#{projectBean.members}" itemValue="#{member.memberName}" itemLabel="#{member.memberName}" />
+</h:selectOneMenu>
+
+  -->
+     <p:selectManyMenu id="advanced" value="#{projectBean.members}" converter="memberConverter"
+                          var="t" filter="true" filterMatchMode="contains" showCheckbox="true">
+            <f:selectItems value="#{projectBean.members}" var="member" itemLabel="#{member.memberName}" itemValue="#{member}" />
+ 
+            <p:column>
+                <h:outputText value="#{t.memberId}" />
+            </p:column>
+ 
+            <p:column>
+                <h:outputText value="#{t.memberName}" />
+            </p:column>
+        </p:selectManyMenu>
+   
+    <p:commandButton value="Submit" update="display" oncomplete="PF('dlg').show()" icon="ui-icon-check" />
+ 
+    <p:dialog header="Selected Values" modal="true" showEffect="fade" widgetVar="dlg" resizable="false">
+        <p:panelGrid columns="2" id="display" columnClasses="label,output">
+            <h:outputText value="Advanced:" />
+            <p:dataList value="#{projectBean.members2}" var="t">
+                <h:outputText value="#{t}" />
+            </p:dataList>
+        </p:panelGrid>
+    </p:dialog>
 
 
-
-
-
-
-
-
+ 
 
 
 												</h:panelGroup>
