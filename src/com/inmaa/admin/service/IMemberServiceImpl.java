@@ -1,5 +1,6 @@
 package com.inmaa.admin.service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -38,7 +39,7 @@ public class IMemberServiceImpl implements IMemberService{
 	public void enregistrer(Member entity) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().saveOrUpdate(entity);
-		
+
 	}
 
 	@Override
@@ -55,16 +56,16 @@ public class IMemberServiceImpl implements IMemberService{
 
 	@Override
 	public int maxSeqno() {
- 	    try {
-	        
- 	       Session session=sessionFactory.getCurrentSession();
- 	       SQLQuery sqlQuery=session.createSQLQuery("SELECT max(seqno) FROM  Member");
- 	       int seqno= (Integer) sqlQuery.uniqueResult();
- 	       return seqno;
+		try {
 
-	    } catch (HibernateException e) {
-	        e.printStackTrace();
-	    }
-	    return 0;
+			Session session=sessionFactory.getCurrentSession();
+			SQLQuery sqlQuery=session.createSQLQuery("SELECT max(seqno) FROM  Member");
+			int seqno=  ((BigInteger) sqlQuery.uniqueResult()).intValue();
+			return seqno;
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 }

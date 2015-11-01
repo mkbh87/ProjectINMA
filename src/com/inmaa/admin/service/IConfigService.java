@@ -16,5 +16,4 @@ public interface IConfigService {
 		
 		public List<Config> lister();
 
-		public int maxSeqno();
 }

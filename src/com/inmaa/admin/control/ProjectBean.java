@@ -2,7 +2,6 @@ package com.inmaa.admin.control;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
@@ -45,36 +43,28 @@ public class ProjectBean implements Serializable{
 	private Project currentProject ;
 	private transient DataModel<Project> es;
 	private int id;
-
-	Member memb ;
-
-
-	List<Member> members ;
-	List<Member> members2 ;
-
-	List<Project> target = new ArrayList<Project>();
-	List<Member> source = new ArrayList<Member>();
+	private List<Project> projectList;
+	List<Member> members = new ArrayList<Member>();
 	private DualListModel<Member> memberModel;
 	private UploadedFile uploadedFile;
 	private String fileName;
+
 	@PostConstruct
 	public void init() {
+		projectList = projectService.lister();
 		es = new ListDataModel<Project>();
 		es.setWrappedData( projectService.lister());
-		memb = new Member();
-		members2 = new ArrayList<Member>();
+//		source = getmemberList();
+//		memberModel = new DualListModel<Member>(source, target);
+		//vider();
 	}
 
-	public Member getMemb() {
-		return memb;
-	}
+	private List<Member> getmemberList() {
+		List<Member> members = null;
 
-	public void setMemb(Member memb) {
-		this.memb = memb;
-	}
+		members =  projectService.listerMember();
 
-	public void setMembers2(List<Member> members2) {
-		this.members2 = members2;
+		return members;
 	}
 
 	public Project getcurrentProject() {
@@ -99,7 +89,6 @@ public class ProjectBean implements Serializable{
 	}
 
 	public DataModel<Project> getEs() {
-		es.setWrappedData( projectService.lister());
 		return es;
 	}
 
@@ -108,77 +97,61 @@ public class ProjectBean implements Serializable{
 	}
 
 	public String ajouter(){
-		String bodymsg = "le projet a été ajouté avec succes";
-		submitLogoFile();
+		String bodymsg = "";
 		try {
-
-			//			currentProject.setMembers((Set<Member>) members2);
+			bodymsg = submitLogoFile();
 			int seqno = projectService.maxSeqno();
 			currentProject.setSeqNo(seqno + 10);
 			projectService.enregistrer(currentProject);
-
+			es.setWrappedData( projectService.lister());
 		} catch(Exception e) {
 			//Error during hibernate query
-			bodymsg= e.getMessage().replace("'", "") + "      ";
 			if(e.getCause() != null)
-				bodymsg  += e.getCause().getMessage().replace("'", "");
+				bodymsg += e.getCause() + "  |  ";
+			else
+				bodymsg += e.getMessage() + "  |  ";
 
+			bodymsg = bodymsg.replace("'", " ");
+			e.printStackTrace();
 			System.out.print("Error: "+e);
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement du projet",bodymsg );
+			RequestContext.getCurrentInstance().showMessageInDialog(message);
+			return "";
 		}
-
-
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement du projet",bodymsg );
-		RequestContext.getCurrentInstance().showMessageInDialog(message);
-
 		vider();
-
-		return "table-projects.xhtml?faces-redirect=true&amp;includeViewParams=true";
+		return "table-projects.xhtml?faces-redirect=true";
 	}
 
-	public String delete(Project p){
-		String bodymsg="Projet suprimé avec succès";
+	public void delete(){
 		try {
-
-			projectService.supprimer(p);
-
+			projectService.supprimer(currentProject);
+			es.setWrappedData( projectService.lister());
 		} catch(Exception e) {
 			//Error during hibernate query
-			bodymsg= e.getMessage().replace("'", "") + "      ";
-			if(e.getCause() != null)
-				bodymsg  += e.getCause().getMessage().replace("'", "");
 
-			System.out.print("Error: "+e);
+			System.out.print("Error: "+e.getMessage());
 		}
-
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Suppression du projet",bodymsg );
-		RequestContext.getCurrentInstance().showMessageInDialog(message);
-
-		return bodymsg;
 	}
 
-	public String edit(){	
+	public void edit(){	
 		String bodymsg="Projet modifié avec succès";
 		try {
 
 			if(uploadedFile != null)
 				submitLogoFile();
-			projectService.mettre_a_jour(currentProject);
-
+				projectService.mettre_a_jour(currentProject);
+				es.setWrappedData( projectService.lister());
 		} catch(Exception e) {
 			//Error during hibernate query
-			bodymsg= e.getMessage().replace("'", "") + "      ";
-			if(e.getCause() != null)
-				bodymsg  += e.getCause().getMessage().replace("'", "");
+ 			bodymsg= e.getMessage().replace("'", "") + "      ";
+ 			if(e.getCause() != null)
+ 				bodymsg  += e.getCause().getMessage().replace("'", "");
 
-			System.out.print("Error: "+e);
+			System.out.print("Error: "+e.getMessage());
 		}
-
-
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification du projet",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
-
-		return "";
-	}
+ 	}
 
 
 	public String showEdit(Project p){
@@ -186,23 +159,25 @@ public class ProjectBean implements Serializable{
 		setId(currentProject.getProjectId());
 		return "edit-projects.xhtml?faces-redirect=true&amp;includeViewParams=true";
 	}
-
-	public String vider(){
-
+	
+	public void readyforDelete(Project p){
+		currentProject = p;
+		setId(currentProject.getProjectId());
+	}
+	
+	public void vider(){
 		currentProject = new Project();
-		uploadedFile = null;
+ 		uploadedFile = null;
 		memberModel = null;
 		fileName= null;
-		return "OK";
-
 	}
-
-	public Project getprojectById(int id)
+	
+	public Project getprojectById(int p_id)
 	{
 		Iterator<Project> itr = es.iterator();
 		while(itr.hasNext()) {
 			currentProject = itr.next();
-			if(currentProject.getProjectId() == id)
+			if(currentProject.getProjectId() == p_id)
 			{
 				return currentProject;
 			}
@@ -210,19 +185,30 @@ public class ProjectBean implements Serializable{
 		return null;
 	}
 
-	public DualListModel<Member> getmemberModel() {
-		return memberModel;
-	} 
-
 	public void setId(int id) {
 		this.id = id;
-		if (id>0)
-			currentProject = getprojectById(id);
+		currentProject = getprojectById(id);
 	}
 
 	public int getId() {
 		return id;
 	}
+	
+	public List<Project> getProjectList() {
+		return projectList;
+	}
+
+	public void setProjectList(List<Project> projects) {
+		this.projectList = projects;
+	}
+
+	public void setmemberModel(DualListModel<Member> memberModel) {
+		this.memberModel = memberModel;
+	}
+
+	public DualListModel<Member> getmemberModel() {
+		return memberModel;
+	} 
 
 	@SuppressWarnings("null")
 	public String limitedDesc(String desc)
@@ -236,52 +222,40 @@ public class ProjectBean implements Serializable{
 		return desc;
 	}
 
+	public String submitLogoFile() {
 
-	public void submitLogoFile() {
-
+		String msg = "";
 		if (uploadedFile != null){
-			// Just to demonstrate what information you can get from the uploaded file.
-			System.out.println("File type: " + uploadedFile.getContentType());
-			System.out.println("File name: " + uploadedFile.getFileName());
-			System.out.println("File size: " + uploadedFile.getSize() + " bytes");
-
-			FilenameUtils.getBaseName(uploadedFile.getFileName());
+			// Prepare filename prefix and suffix for an unique filename in upload folder.
 			String suffix = FilenameUtils.getExtension(uploadedFile.getFileName());
-
 			// Prepare file and outputstream.
 			File file = null;
 			OutputStream output = null;
 
 			try {
 				// Create file with unique name in upload folder and write to it.
-				//file = File.createTempFile("img", "." + suffix, new File("/usr/share/apache-tomcat-7.0.23-2/webapps/ROOT/resources/images/"));
-				file = File.createTempFile("img", "." + suffix, new File(getImgFilePath()));
+				file = File.createTempFile("img", "." + suffix, new File(ConfigBean.getImgFilePath()));
 				output = new FileOutputStream(file);
 				IOUtils.copy(uploadedFile.getInputstream(), output);
-				fileName = file.getName();
+				currentProject.setProjectLogo(file.getName());
+				msg="Image Envoyé, ";
 
-				// Show succes message.
-				FacesContext.getCurrentInstance().addMessage("uploadForm", new FacesMessage(
-						FacesMessage.SEVERITY_INFO, "File upload succeed!", null));
-			} catch (IOException e) {
+			} catch (Exception e) {
 				// Cleanup.
 				if (file != null) file.delete();
-
-				// Show error message.
-				FacesContext.getCurrentInstance().addMessage("uploadForm", new FacesMessage(
-						FacesMessage.SEVERITY_ERROR, "File upload failed with I/O error.", null));
-
+				msg="Erreur lors de l'envoie d'image, ";
 				// Always log stacktraces (with a real logger).
 				e.printStackTrace();
 			} finally {
 				IOUtils.closeQuietly(output);
-				currentProject.setProjectLogo(fileName);
-
 			}
-
 		}
+		else
+			msg="il y a pas d image, ";
+		
+		return msg;
 	}
-
+	
 	public UploadedFile getUploadedFile() {
 		return uploadedFile;
 	}
@@ -295,14 +269,10 @@ public class ProjectBean implements Serializable{
 	}
 
 	public void handleFileUpload(FileUploadEvent event) {
-		getMemb();
+
 		uploadedFile = event.getFile();
 	}
 
-	public List<Member> getMembers() {
-		members =  projectService.listerMember();
-		return members;
-	}
 
 	public String getDateFormated(Date d)
 	{
@@ -318,11 +288,11 @@ public class ProjectBean implements Serializable{
 		}
 		return null;
 	}
-
-	public String getImgFilePath() {
-		return ConfigBean.getImgFilePath();
+	public List<Member> getMembers() {
+		return members;
 	}
-
-	public void setImgFilePath(String imgFilePath) {
+	
+	public void setMembers(List<Member> members) {
+		this.members = members;
 	}
 }

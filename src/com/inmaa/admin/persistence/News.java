@@ -1,6 +1,6 @@
 package com.inmaa.admin.persistence;
 
-// Generated 29 oct. 2015 21:42:46 by Hibernate Tools 3.4.0.CR1
+// Generated 1 nov. 2015 20:22:35 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -32,34 +32,34 @@ public class News implements java.io.Serializable {
 	private String newsTitle;
 	private String newsSource;
 	private Integer seqNo;
+	private String newsPicture;
 	private String newsAuthor;
 	private Date newsDate;
-	private String newsPicture;
 	private Set<Project> projects = new HashSet<Project>(0);
 
 	public News() {
 	}
 
-	public News(String newsDesc, String newsTitle, String newsAuthor,
-			Date newsDate, String newsPicture) {
+	public News(String newsDesc, String newsTitle, String newsPicture,
+			String newsAuthor, Date newsDate) {
 		this.newsDesc = newsDesc;
 		this.newsTitle = newsTitle;
+		this.newsPicture = newsPicture;
 		this.newsAuthor = newsAuthor;
 		this.newsDate = newsDate;
-		this.newsPicture = newsPicture;
 	}
 
 	public News(String newsDesc, String newsDesc1, String newsTitle,
-			String newsSource, Integer seqNo, String newsAuthor, Date newsDate,
-			String newsPicture, Set<Project> projects) {
+			String newsSource, Integer seqNo, String newsPicture,
+			String newsAuthor, Date newsDate, Set<Project> projects) {
 		this.newsDesc = newsDesc;
 		this.newsDesc1 = newsDesc1;
 		this.newsTitle = newsTitle;
 		this.newsSource = newsSource;
 		this.seqNo = seqNo;
+		this.newsPicture = newsPicture;
 		this.newsAuthor = newsAuthor;
 		this.newsDate = newsDate;
-		this.newsPicture = newsPicture;
 		this.projects = projects;
 	}
 
@@ -119,6 +119,15 @@ public class News implements java.io.Serializable {
 		this.seqNo = seqNo;
 	}
 
+	@Column(name = "News_Picture", nullable = false, length = 85)
+	public String getNewsPicture() {
+		return this.newsPicture;
+	}
+
+	public void setNewsPicture(String newsPicture) {
+		this.newsPicture = newsPicture;
+	}
+
 	@Column(name = "News_Author", nullable = false, length = 45)
 	public String getNewsAuthor() {
 		return this.newsAuthor;
@@ -136,15 +145,6 @@ public class News implements java.io.Serializable {
 
 	public void setNewsDate(Date newsDate) {
 		this.newsDate = newsDate;
-	}
-
-	@Column(name = "News_Picture", nullable = false)
-	public String getNewsPicture() {
-		return this.newsPicture;
-	}
-
-	public void setNewsPicture(String newsPicture) {
-		this.newsPicture = newsPicture;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)

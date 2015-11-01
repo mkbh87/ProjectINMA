@@ -1,5 +1,6 @@
 package com.inmaa.admin.service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -58,11 +59,9 @@ public class INewsServiceImpl implements INewsService{
 	public int maxSeqno() {
 		try {
 
-			int seqno = 0;
 			Session session=sessionFactory.getCurrentSession();
 			SQLQuery sqlQuery=session.createSQLQuery("SELECT max(seqno) FROM  News");
-			if (sqlQuery.uniqueResult() != null)
-				seqno = (Integer) sqlQuery.uniqueResult();
+			int seqno=  ((BigInteger) sqlQuery.uniqueResult()).intValue();
 			return seqno;
 
 		} catch (HibernateException e) {

@@ -2,7 +2,6 @@ package com.inmaa.admin.control;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
@@ -30,7 +28,6 @@ import org.springframework.stereotype.Component;
 
 import com.inmaa.admin.persistence.Event;
 import com.inmaa.admin.persistence.Member;
-import com.inmaa.admin.persistence.Project;
 import com.inmaa.admin.service.IEventService;
 
 @Component("eventBean")
@@ -47,7 +44,6 @@ public class EventBean  implements Serializable {
 	private Event currentEvent ;
 	private List<Event> eventList;
 	private transient DataModel<Event> events;
-	private List<Project> projectList;
 
 	List<Member> target = new ArrayList<Member>();
 	List<Member> source = new ArrayList<Member>();
@@ -58,8 +54,6 @@ public class EventBean  implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		currentEvent = new Event();
-
 		eventList = eventService.lister();
 		events = new ListDataModel<Event>();
 		events.setWrappedData( eventService.lister());
@@ -95,100 +89,107 @@ public class EventBean  implements Serializable {
 	}
 
 	public String ajouter(){
-		String bodymsg = "Evenement a été modifié avec succes";
-		submitLogoFile();
+		String bodymsg = "";
 		try {
-
+			bodymsg = submitLogoFile();
 			int seqno = eventService.maxSeqno();
 			currentEvent.setSeqNo(seqno + 10);
 			eventService.enregistrer(currentEvent);
-
+			events.setWrappedData( eventService.lister());
 		} catch(Exception e) {
 			//Error during hibernate query
- 			bodymsg= e.getMessage().replace("'", "") + "      ";
- 			if(e.getCause() != null)
- 				bodymsg  += e.getCause().getMessage().replace("'", "");
+			if(e.getCause() != null)
+				bodymsg += e.getCause() + "  |  ";
+			else
+				bodymsg += e.getMessage() + "  |  ";
 
- 
+			bodymsg = bodymsg.replace("'", " ");
+			e.printStackTrace();
+			System.out.print("Error: "+e);
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement du projet",bodymsg );
+			RequestContext.getCurrentInstance().showMessageInDialog(message);
+			return "";
 		}
-
 		vider();
-
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement évenement",bodymsg );
-		RequestContext.getCurrentInstance().showMessageInDialog(message);
-
-		return bodymsg;
+		return "table-events.xhtml?faces-redirect=true";
 	}
 
-	public String delete(Event p){
-		String bodymsg="Evenement suprimé avec succès";
+	public void delete(){
 		try {
 
-			eventService.supprimer(p);
+			eventService.supprimer(currentEvent);
+			events.setWrappedData( eventService.lister());
 
 		} catch(Exception e) {
 			//Error during hibernate query
- 			bodymsg= e.getMessage().replace("'", "") + "      ";
- 			if(e.getCause() != null)
- 				bodymsg  += e.getCause().getMessage().replace("'", "");
+			System.out.print("Error: "+e.getMessage());
+ 			
 		}
-		currentEvent = new Event();
-		events.setWrappedData( eventService.lister());
-
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Suppression évenement",bodymsg );
-		RequestContext.getCurrentInstance().showMessageInDialog(message);
-
-		return bodymsg;
 	}
 
-	public String edit(){
-		setId(currentEvent.getEventId());
-		String bodymsg="Evenement modifié avec succès";
+	public void edit(){
+		String bodymsg="Événement modifié avec succès";
 		try {
 			
 			if(uploadedFile != null)
 				submitLogoFile();
-
-			eventService.mettre_a_jour(currentEvent);
-
+				eventService.mettre_a_jour(currentEvent);
+				events.setWrappedData( eventService.lister());
 		} catch(Exception e) {
 			//Error during hibernate query
  			bodymsg= e.getMessage().replace("'", "") + "      ";
  			if(e.getCause() != null)
  				bodymsg  += e.getCause().getMessage().replace("'", "");
 		}
-
-
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification évenement",bodymsg );
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification de l'événement",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
-		vider();
-
-		return "";
-	}
+  	}
 
 	public String showEdit(Event p){
 		currentEvent = p;
 		setId(currentEvent.getEventId());
 		return "edit-events.xhtml?faces-redirect=true&amp;includeViewParams=true";
 	}
-
-	public String viewEventDetail(){
-		currentEvent = getEvents().getRowData();
+	
+	public void readyforDelete(Event p){
+		currentEvent = p;
 		setId(currentEvent.getEventId());
-		return "form-events.xhtml?faces-redirect=true&includeViewParams=true";
-
 	}
 	
-	public String vider(){
-
+	public void vider(){
 		currentEvent = new Event();
-		id = 0;
 		uploadedFile = null;
 		memberModel = null;
 		fileName= null;
-		return "OK";
-
 	}
+	
+	private Event geteventtById(int e_id) {
+		Iterator<Event> itr =eventList.iterator();
+		while(itr.hasNext()) {
+			currentEvent = itr.next();
+			if(currentEvent.getEventId() == e_id)
+			{
+				return currentEvent;
+			}
+		}
+		return null;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+//	public String viewEventDetail(){
+//		currentEvent = getEvents().getRowData();
+//		setId(currentEvent.getEventId());
+//		return "form-events.xhtml?faces-redirect=true&includeViewParams=true";
+//
+//	}
+	
 
 	public List<Event> getEventList() {
 		eventList = eventService.lister();
@@ -207,28 +208,6 @@ public class EventBean  implements Serializable {
 		return memberModel;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-		if (id>0)
-			currentEvent = geteventtById(id);
-
-	}
-
-	private Event geteventtById(int id2) {
-		Iterator<Event> itr =eventList.iterator();
-		while(itr.hasNext()) {
-			currentEvent = itr.next();
-			if(currentEvent.getEventId() == id)
-			{
-				return currentEvent;
-			}
-		}
-		return null;
-	}
-
-	public int getId() {
-		return id;
-	}
 
 	@SuppressWarnings("null")
 	public String limitedDesc(String desc)
@@ -242,51 +221,40 @@ public class EventBean  implements Serializable {
 		return desc;
 	}
 
+	public String submitLogoFile() {
 
-	public void submitLogoFile() {
-
+		String msg = "";
 		if (uploadedFile != null){
-			// Just to demonstrate what information you can get from the uploaded file.
-			System.out.println("File type: " + uploadedFile.getContentType());
-			System.out.println("File name: " + uploadedFile.getFileName());
-			System.out.println("File size: " + uploadedFile.getSize() + " bytes");
-
 			// Prepare filename prefix and suffix for an unique filename in upload folder.
-			String prefix = FilenameUtils.getBaseName(uploadedFile.getFileName());
 			String suffix = FilenameUtils.getExtension(uploadedFile.getFileName());
-
 			// Prepare file and outputstream.
 			File file = null;
 			OutputStream output = null;
 
 			try {
 				// Create file with unique name in upload folder and write to it.
-				file = File.createTempFile("img", "." + suffix, new File("/usr/share/apache-tomcat-7.0.23-2/webapps/ROOT/resources/images/"));
+				file = File.createTempFile("img", "." + suffix, new File(ConfigBean.getImgFilePath()));
 				output = new FileOutputStream(file);
 				IOUtils.copy(uploadedFile.getInputstream(), output);
 				fileName = file.getName();
+				currentEvent.setEventLogo(fileName);
+				msg="Image Envoyé, ";
 
-				// Show succes message.
-				FacesContext.getCurrentInstance().addMessage("uploadForm", new FacesMessage(
-						FacesMessage.SEVERITY_INFO, "File upload succeed!", null));
-			} catch (IOException e) {
+			} catch (Exception e) {
 				// Cleanup.
 				if (file != null) file.delete();
-
-				// Show error message.
-				FacesContext.getCurrentInstance().addMessage("uploadForm", new FacesMessage(
-						FacesMessage.SEVERITY_ERROR, "File upload failed with I/O error.", null));
-
+				msg="Erreur lors de l'envoie d'image, ";
 				// Always log stacktraces (with a real logger).
 				e.printStackTrace();
 			} finally {
 				IOUtils.closeQuietly(output);
-				currentEvent.setEventLogo(fileName);
-
 			}
-
 		}
-	}
+		else
+			msg="il y a pas d image, ";
+		
+		return msg;
+	}	
 
 	public UploadedFile getUploadedFile() {
 		return uploadedFile;
@@ -319,15 +287,6 @@ public class EventBean  implements Serializable {
 			return date;
 		}
 		return null;
-	}
-
-	public void setProjectList(List<Project> projectList) {
-		this.projectList = projectList;
-	}
-
-	public List<Project> getProjectList() {
-		projectList = eventService.listerProject();
-		return projectList;
 	}
 
 }

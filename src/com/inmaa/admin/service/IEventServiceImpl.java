@@ -1,5 +1,6 @@
 package com.inmaa.admin.service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.inmaa.admin.persistence.Event;
-import com.inmaa.admin.persistence.Project;
 
 
 @Service("EventService")
@@ -56,21 +56,15 @@ public class IEventServiceImpl implements IEventService {
 		return sessionFactory.getCurrentSession().createQuery("from Event").list();
 	}
 
-	@Override
-	public List<Project> listerProject() {
-		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createQuery("from Project").list();
-	}
+
 
 	@Override
 	public int maxSeqno() {
 		try {
 
-			int seqno = 0;
 			Session session=sessionFactory.getCurrentSession();
 			SQLQuery sqlQuery=session.createSQLQuery("SELECT max(seqno) FROM  Event");
-			if (sqlQuery.uniqueResult() != null)
-				seqno= (Integer) sqlQuery.uniqueResult();
+			int seqno=  ((BigInteger) sqlQuery.uniqueResult()).intValue();
 			return seqno;
 
 		} catch (HibernateException e) {
