@@ -63,7 +63,7 @@ public class IEventServiceImpl implements IEventService {
 		try {
 
 			Session session=sessionFactory.getCurrentSession();
-			SQLQuery sqlQuery=session.createSQLQuery("SELECT max(seqno) FROM  Event");
+			SQLQuery sqlQuery=session.createSQLQuery("SELECT COALESCE(max(seqno),0) FROM Event");
 			int seqno=  ((BigInteger) sqlQuery.uniqueResult()).intValue();
 			return seqno;
 

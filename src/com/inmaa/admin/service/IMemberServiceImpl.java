@@ -59,7 +59,7 @@ public class IMemberServiceImpl implements IMemberService{
 		try {
 
 			Session session=sessionFactory.getCurrentSession();
-			SQLQuery sqlQuery=session.createSQLQuery("SELECT max(seqno) FROM  Member");
+			SQLQuery sqlQuery=session.createSQLQuery("SELECT COALESCE(max(seqno),0) FROM Member");
 			int seqno=  ((BigInteger) sqlQuery.uniqueResult()).intValue();
 			return seqno;
 

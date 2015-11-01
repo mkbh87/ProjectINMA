@@ -60,7 +60,7 @@ public class INewsServiceImpl implements INewsService{
 		try {
 
 			Session session=sessionFactory.getCurrentSession();
-			SQLQuery sqlQuery=session.createSQLQuery("SELECT max(seqno) FROM  News");
+			SQLQuery sqlQuery=session.createSQLQuery("SELECT COALESCE(max(seqno),0) FROM News");
 			int seqno=  ((BigInteger) sqlQuery.uniqueResult()).intValue();
 			return seqno;
 
