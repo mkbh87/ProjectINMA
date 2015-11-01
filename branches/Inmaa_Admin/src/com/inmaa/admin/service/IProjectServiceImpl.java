@@ -70,12 +70,12 @@ public class IProjectServiceImpl implements IProjectService{
 	@Override
 	public int maxSeqno() {
 		try {
-			//	        String sqlQuery = "SELECT max(seqno) FROM  Project  ";
+			//	        String sqlQuery = "SELECT COALESCE(max(seqno),0) FROM Project  ";
 			// 	        Query query = sessionFactory.getCurrentSession().createQuery(sqlQuery);
 
 
 			Session session=sessionFactory.getCurrentSession();
-			SQLQuery sqlQuery=session.createSQLQuery("SELECT max(seqno) FROM  Project");
+			SQLQuery sqlQuery=session.createSQLQuery("SELECT COALESCE(max(seqno),0) FROM Project");
 			int seqno=  ((BigInteger) sqlQuery.uniqueResult()).intValue();
 			return seqno;
 
