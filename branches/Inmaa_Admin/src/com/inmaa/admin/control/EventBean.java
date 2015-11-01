@@ -177,6 +177,7 @@ public class EventBean  implements Serializable {
 	
 	public void setId(int id) {
 		this.id = id;
+		currentEvent = geteventtById(id);
 	}
 	
 	public int getId() {
