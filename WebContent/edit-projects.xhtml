@@ -197,7 +197,7 @@
 						</h:outputLink></li>
 
 						<li><h:outputLink value="form-members.xhtml">
-								<i class="icon-double-angle-right"></i> Nouvel membre
+								<i class="icon-double-angle-right"></i> Nouveau membre
 						</h:outputLink></li>
 					</ul></li>
 
@@ -219,17 +219,17 @@
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-desktop"></i>
-						<span class="menu-text"> partners </span>
+						<span class="menu-text"> Partenaires </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
 
 					<ul class="submenu">
 						<li><h:outputLink value="table-partners.xhtml">
-								<i class="icon-double-angle-right"></i> Tous les partners
+								<i class="icon-double-angle-right"></i> Tous les Partenaires 
 						</h:outputLink></li>
 
 						<li><h:outputLink value="form-partners.xhtml">
-								<i class="icon-double-angle-right"></i> Nouvel partner
+								<i class="icon-double-angle-right"></i> Nouveau Partenaire 
 						</h:outputLink></li>
 					</ul></li>
 
@@ -417,7 +417,8 @@
 															<h:panelGroup layout="block" class="controls">
 																<span class="span6 input-icon input-icon-right">
 																
-	 <p:fileUpload fileUploadListener="#{projectBean.handleFileUpload}" auto="true"  />
+	 <p:fileUpload label="Choisir image"fileUploadListener="#{projectBean.handleFileUpload}" 
+	 auto="true"   sizeLimit="1000000" fileLimit="1" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
  																
  																</span>
 															</h:panelGroup>

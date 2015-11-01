@@ -5,19 +5,16 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
-	<title>Projets - inma Admin</title>
+	<title>Partenaires - inma Admin</title>
 
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
-	<meta name="author" content="" />
 	<!-- Mobile Specific Metas
     ================================================== -->
 	<meta name="viewport"
@@ -26,13 +23,19 @@
 
 	<!--basic styles-->
 
+	<h:outputStylesheet library="css" name="font-awesome-ie7.min.css" />
 	<h:outputStylesheet name="bootstrap.min.css" library="css" />
 	<h:outputStylesheet name="bootstrap-responsive.min.css" library="css" />
+	<!--page specific plugin styles-->
+	<h:outputStylesheet library="css" name="select2.css" />
+	<!--ace styles-->
+	<h:outputStylesheet library="css" name="ace.min.css" />
+	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
+	<h:outputStylesheet library="css" name="ace-skins.min.css" />
 	<h:outputStylesheet
 		name="webjars/font-awesome/3.2.1/css/font-awesome.css" />
 	<h:outputStylesheet
 		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
-
 
 	<!--page specific plugin styles-->
 	<h:outputStylesheet library="css" name="select2.css" />
@@ -41,13 +44,10 @@
 	<h:outputStylesheet library="css" name="ace.min.css" />
 	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
 	<h:outputStylesheet library="css" name="ace-skins.min.css" />
-
+	<h:outputStylesheet library="css" name="CostumStyle.css" />
 </h:head>
 
 <h:body>
-		<f:metadata>
-       		<f:viewParam name="id" value="#{partnerBean.id}" />
-   		</f:metadata>
 	<h:panelGroup layout="block" styleClass="navbar">
 		<h:panelGroup layout="block" styleClass="navbar-inner">
 			<h:panelGroup layout="block" styleClass="container-fluid">
@@ -62,8 +62,9 @@
 					<li class="light-blue"><h:outputLink data-toggle="dropdown"
 							value="#" class="dropdown-toggle">
 							<h:graphicImage styleClass="nav-user-photo" library="images"
-								name="logo.png" alt="Inma Admin's Photo" />
-							<span class="user-info"> <small>Welcome,</small> Inma Admin </span>
+								name="logo.jpg" alt="Inma Admin's Photo" />
+							<span class="user-info"> <small>Welcome,</small> Inma
+								Admin </span>
 							<i class="icon-caret-down"></i>
 						</h:outputLink>
 
@@ -71,22 +72,18 @@
 							class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
 							<li><h:outputLink value="#">
 									<i class="icon-cog"></i> Settings
-							</h:outputLink>
-							</li>
+							</h:outputLink></li>
 
 							<li><h:outputLink value="#">
 									<i class="icon-user"></i> Profile
-							</h:outputLink>
-							</li>
+							</h:outputLink></li>
 
 							<li class="h:panelGroupider"></li>
 
 							<li><h:outputLink value="#">
 									<i class="icon-off"></i> Logout
-							</h:outputLink>
-							</li>
-						</ul>
-					</li>
+							</h:outputLink></li>
+						</ul></li>
 				</ul>
 				<!--/.ace-nav-->
 			</h:panelGroup>
@@ -124,14 +121,11 @@
 					</button>
 				</h:panelGroup>
 
-				<h:panelGroup layout="block" class="sidebar-shortcuts-mini"
+				<h:panelGroup layout="block" styleClass="sidebar-shortcuts-mini"
 					id="sidebar-shortcuts-mini">
 					<span class="btn btn-success"></span>
-
 					<span class="btn btn-info"></span>
-
 					<span class="btn btn-warning"></span>
-
 					<span class="btn btn-danger"></span>
 				</h:panelGroup>
 			</h:panelGroup>
@@ -141,29 +135,25 @@
 				<li><h:outputLink value="welcome.xhtml">
 						<i class="icon-dashboard"></i>
 						<span class="menu-text"> Dashboard </span>
-					</h:outputLink>
-				</li>
+					</h:outputLink></li>
 
 
 				<li class="active open"><h:outputLink value="#"
 						class="dropdown-toggle">
 						<i class="icon-desktop"></i>
-						<span class="menu-text"> Projects </span>
+						<span class="menu-text"> Projets </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
 
 					<ul class="submenu">
 						<li><h:outputLink value="table-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les projets
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li class="active"><h:outputLink value="form-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau Projet
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-desktop"></i>
@@ -174,8 +164,7 @@
 					<ul class="submenu">
 						<li><h:outputLink value="table-events.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les evenements
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="form-events.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel evenement
@@ -197,7 +186,7 @@
 						</li>
 
 						<li><h:outputLink value="form-members.xhtml">
-								<i class="icon-double-angle-right"></i> Nouvel membre
+								<i class="icon-double-angle-right"></i> Nouveau membre
 						</h:outputLink>
 						</li>
 					</ul>
@@ -224,18 +213,18 @@
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-desktop"></i>
-						<span class="menu-text"> partners </span>
+						<span class="menu-text"> Partenaires </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
 
 					<ul class="submenu">
 						<li><h:outputLink value="table-partners.xhtml">
-								<i class="icon-double-angle-right"></i> Tous les partners
+								<i class="icon-double-angle-right"></i> Tous les Partenaires 
 						</h:outputLink>
 						</li>
 
 						<li><h:outputLink value="form-partners.xhtml">
-								<i class="icon-double-angle-right"></i> Nouvel partner
+								<i class="icon-double-angle-right"></i> Nouveau Partenaire 
 						</h:outputLink>
 						</li>
 					</ul>
@@ -277,19 +266,17 @@
 
 						<li><h:outputLink value="invoice.html">
 								<i class="icon-double-angle-right"></i> Invoice
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="login.html">
 								<i class="icon-double-angle-right"></i> Login &amp; Register
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
-<li><h:outputLink value="config.xhtml">
+						</h:outputLink></li>
+					</ul></li>
+				<li><h:outputLink value="config.xhtml">
 						<i class="icon-cogs"></i>
 						<span class="menu-text"> Parametrage </span>
-					</h:outputLink></li>
+					</h:outputLink>
+				</li>
 			</ul>
 
 			<h:panelGroup layout="block" styleClass="sidebar-collapse"
@@ -302,83 +289,238 @@
 			<h:panelGroup layout="block" styleClass="breadcrumbs"
 				id="breadcrumbs">
 				<ul class="breadcrumb">
-					<li><i class="icon-home home-icon"></i> <h:outputLink
-							value="#">Home</h:outputLink> <span class="divider"> <i
-							class="icon-angle-right arrow-icon"></i> </span></li>
-					<li class="active">Ajouter un projet</li>
+					<li><i class="icon-home home-icon"></i> <a href="#">Home</a> <span
+						class="divider"> <i class="icon-angle-right arrow-icon"></i>
+					</span>
+					</li>
+					<li><a href="#">Partenaires</a> <span class="divider">
+							<i class="icon-angle-right arrow-icon"></i> </span></li>
+					<li class="active">Ajouter un partenaire</li>
 				</ul>
 				<!--.breadcrumb-->
 
 				<h:panelGroup layout="block" styleClass="nav-search" id="nav-search">
-					<!-- 					<form class="form-search" />
-					<span class="input-icon"> <input type="text"
-						placeholder="Search ..." class="input-small nav-search-input"
-						id="nav-search-input" autocomplete="off" /> <i
-						class="icon-search nav-search-icon"></i> </span>
-					</h:form>
- -->
 				</h:panelGroup>
 				<!--#nav-search-->
 			</h:panelGroup>
 
 			<h:panelGroup layout="block" styleClass="page-content">
-			
-			
-			Page en cours de construction	
+				<h:panelGroup layout="block" class="page-header position-relative">
+					<h1>
+						Nouveau partenaire <small> <i
+							class="icon-double-angle-right"></i> </small>
+					</h1>
+				</h:panelGroup>
 				<!--/.page-header-->
 
+				<h:panelGroup layout="block" class="row-fluid">
+					<h:panelGroup layout="block" class="span12">
+						<!--PAGE CONTENT BEGINS-->
+
+						<h:panelGroup layout="block" class="row-fluid">
+							<h:panelGroup layout="block" class="span12">
+								<h:panelGroup layout="block" class="widget-box">
+									<h:panelGroup layout="block"
+										class="widget-header widget-header-blue widget-header-flat">
+										<h4 class="lighter">Ajouter un nouveau partenaire</h4>
+
+									</h:panelGroup>
+
+									<h:panelGroup layout="block" class="widget-body widget-main">
+										<h:panelGroup layout="block" class="row-fluid">
+
+											<h:form class="form-horizontal" id="form" prependId="false"
+												enctype="multipart/form-data" acceptcharset="UTF-8">
+												<h:panelGroup layout="block" id="fuelux-wizard"
+													class="row-fluid hide" data-target="#step-container">
+													<ul class="wizard-steps">
+														<li data-target="#step1" class="active"><span
+															class="step">1</span> <span class="title">Ajout</span>
+														</li>
 
 
 
+														<li data-target="#step4"><span class="step">2</span>
+															<span class="title">Sauvegarde</span>
+														</li>
+													</ul>
+												</h:panelGroup>
+												<hr />
+												<h:panelGroup layout="block"
+													class="step-content row-fluid position-relative"
+													id="step-container">
+													<h:outputLink value="#{partnerBean.vider()}" />
+													<h:panelGroup layout="block" class="step-pane active"
+														id="step1">
+														<h3 class="lighter block green">Nouveau Partenaire</h3>
+
+														<h:panelGroup layout="block"
+															styleClass="control-group success">
+															<p:outputLabel styleClass="control-label" for="intitule"
+																value="Nom de partenaire " />
+
+															<h:panelGroup layout="block" styleClass="controls">
+																<span class="span8 input-icon input-icon-right">
+																	<h:inputText styleClass="span12" id="intitule"
+																		value="#{partnerBean.currentPartner.partnerName}" />
+																	<i class="icon-warning-sign"></i> </span>
+																<span class="help-inline"> Champs obligatoire </span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+														<h:panelGroup layout="block" class="control-group success">
+															<p:outputLabel styleClass="control-label" for="def"
+																value="Emplacement " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span8 input-icon input-icon-right">
+																	<h:inputText styleClass="span6" id="def"
+																		value="#{partnerBean.currentPartner.partnerPlace}" />
+																</span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+														<h:panelGroup layout="block" class="control-group success">
+															<p:outputLabel styleClass="control-label" for="intitule"
+																value="Date de établissement de partenaire " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span6 input-icon input-icon-right">
+																	<h:panelGroup layout="block" class="control-group">
+																		<h:panelGroup layout="block"
+																			class="row-fluid input-append">
+																			<p:calendar
+																				value="#{partnerBean.currentPartner.partnerStartDate}"
+																				mode="popup" />
+
+																		</h:panelGroup>
+																	</h:panelGroup> </span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+														<h:panelGroup layout="block" class="control-group success">
+															<p:outputLabel styleClass="control-label"
+																value="Description " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span12 input-icon input-icon-right">
+																	<h:inputTextarea id="editor" styleClass="span8"
+																		value="#{partnerBean.currentPartner.partnerDesc}"
+																		language="ar" checkDirtyInterval="0" /> </span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+														<h:panelGroup layout="block" class="control-group success">
+															<p:outputLabel styleClass="control-label" for="intitule"
+																value="Logo de partenaire " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span6 input-icon input-icon-right">
+
+																	<p:fileUpload label="Choisir image"
+																		cancelLabel="Annuler" uploadLabel="Envoyer"
+																		fileUploadListener="#{partnerBean.handleFileUpload}"
+																		mode="advanced" sizeLimit="1000000" fileLimit="1"
+																		allowTypes="/(\.|\/)(gif|jpe?g|png)$/" /> </span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+
+
+
+
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<hr />
+												<!-- 											<h:panelGroup layout="block" class="row-fluid wizard-actions">
+												<p:commandLink class="btn btn-prev" >
+													<i class="icon-arrow-left"></i> Retour
+												</p:commandLink>
+
+												<p:commandLink styleClass="btn btn-success btn-next" >
+														Suivant	<i class="icon-arrow-right icon-on-right"></i>
+												</p:commandLink>
+
+
+											</h:panelGroup>
+											
+											
+ -->
+												<p:commandLink styleClass="btn btn-success btn-next"
+													action="#{partnerBean.ajouter()}">
+	Sauvegarder	<i class="icon-arrow-right icon-on-right"></i>
+												</p:commandLink>
+
+												<p:dialog header="Enregistrement du partenaire"
+													widgetVar="dlg2" modal="true" height="100">
+													<h3 class="blue">error</h3>
+													<h:panelGroup>
+														<h:button styleClass="btn btn-success"
+															action="@{partnerBean.vider()}" value="Ok"
+															style="float:right">
+														</h:button>
+													</h:panelGroup>
+												</p:dialog>
+
+											</h:form>
+
+										</h:panelGroup>
+
+										<!--/widget-main-->
+									</h:panelGroup>
+									<!--/widget-body-->
+								</h:panelGroup>
+							</h:panelGroup>
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" id="modal-wizard" class="modal hide">
+							<h:panelGroup layout="block" class="modal-header"
+								data-target="#modal-step-contents">
+								<ul class="wizard-steps clearfix">
+									<li data-target="#modal-step1" class="active"><span
+										class="step">1</span> <span class="title"> Ajout </span></li>
+
+
+
+
+									<li data-target="#modal-step4"><span class="step">2</span>
+										<span class="title">Sauvegarde</span></li>
+								</ul>
+							</h:panelGroup>
+
+							<h:panelGroup layout="block" class="modal-body step-content"
+								id="modal-step-contents">
+								<h:panelGroup layout="block" class="step-pane active"
+									id="modal-step1">
+									<h:panelGroup layout="block" class="center">
+										<h4 class="blue">Step 1</h4>
+									</h:panelGroup>
+								</h:panelGroup>
+
+								<h:panelGroup layout="block" class="step-pane" id="modal-step2">
+									<h:panelGroup layout="block" class="center">
+										<h4 class="blue">Step 2</h4>
+									</h:panelGroup>
+								</h:panelGroup>
+
+
+
+								<h:panelGroup layout="block" class="step-pane" id="modal-step4">
+									<h:panelGroup layout="block" class="center">
+										<h4 class="blue">Step 3</h4>
+									</h:panelGroup>
+								</h:panelGroup>
+							</h:panelGroup>
+
+						</h:panelGroup>
+						<!--PAGE CONTENT ENDS-->
+					</h:panelGroup>
+					<!--/.span-->
+				</h:panelGroup>
+				<!--/.row-fluid-->
 			</h:panelGroup>
 			<!--/.page-content-->
-
-			<h:panelGroup layout="block" styleClass="ace-settings-container"
-				id="ace-settings-container">
-
-				<h:panelGroup layout="block" styleClass="ace-settings-box"
-					id="ace-settings-box">
-					<h:panelGroup>
-						<h:panelGroup layout="block" styleClass="pull-left">
-							<select id="skin-colorpicker" class="hide">
-								<option data-class="default" value="#438EB9" />#438EB9
-								<option data-class="skin-1" value="#222A2D" />#222A2D
-								<option data-class="skin-2" value="#C6487E" />#C6487E
-								<option data-class="skin-3" value="#D0D0D0" />#D0D0D0
-							</select>
-						</h:panelGroup>
-						<span>&nbsp; Choose Skin</span>
-					</h:panelGroup>
-
-					<h:panelGroup>
-						<input type="checkbox" class="ace-checkbox-2"
-							id="ace-settings-header" />
-						<label class="lbl" for="ace-settings-header"> Fixed Header</label>
-					</h:panelGroup>
-
-					<h:panelGroup>
-						<input type="checkbox" class="ace-checkbox-2"
-							id="ace-settings-sidebar" />
-						<label class="lbl" for="ace-settings-sidebar"> Fixed
-							Sidebar</label>
-					</h:panelGroup>
-
-					<h:panelGroup>
-						<input type="checkbox" class="ace-checkbox-2"
-							id="ace-settings-breadcrumbs" />
-						<label class="lbl" for="ace-settings-breadcrumbs"> Fixed
-							Breadcrumbs</label>
-					</h:panelGroup>
-
-					<h:panelGroup>
-						<input type="checkbox" class="ace-checkbox-2"
-							id="ace-settings-rtl" />
-						<label class="lbl" for="ace-settings-rtl"> Right To Left
-							(rtl)</label>
-					</h:panelGroup>
-				</h:panelGroup>
-			</h:panelGroup>
-			<!--/#ace-settings-container-->
 		</h:panelGroup>
 		<!--/.main-content-->
 	</h:panelGroup>
@@ -389,9 +531,6 @@
 		class="icon-double-angle-up icon-only bigger-110"></i> </a>
 
 	<!--basic scripts-->
-
-	<script
-		src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 	<script type="text/javascript">
 	//<![CDATA[ 
@@ -404,10 +543,15 @@
 			if("ontouchend" in document) document.write("<script src='resources/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		//]]>
 		</script>
-
 	<script src="resources/js/bootstrap.min.js"></script>
 
 	<!--page specific plugin scripts-->
+	<script src="resources/js/fuelux/fuelux.wizard.min.js"></script>
+	<script src="resources/js/jquery.validate.min.js"></script>
+	<script src="resources/js/additional-methods.min.js"></script>
+	<script src="resources/js/bootbox.min.js"></script>
+	<script src="resources/js/jquery.maskedinput.min.js"></script>
+	<script src="resources/js/select2.min.js"></script>
 
 	<script src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
 	<script src="resources/js/jquery.ui.touch-punch.min.js"></script>
