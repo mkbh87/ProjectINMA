@@ -154,7 +154,7 @@
 		</init-param>
 		<init-param>
 			<param-name>uploadDirectory</param-name>
-			<param-value>/home/khalil</param-value>
+			<param-value>/tmp</param-value>
 		</init-param>
 
 	</filter>
