@@ -42,7 +42,7 @@
 
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
-		<param-value>black-tie</param-value>
+		<param-value>hot-sneaks</param-value>
 	</context-param>
 
 	<context-param>
