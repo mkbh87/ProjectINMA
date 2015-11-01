@@ -1,4 +1,21 @@
-.right{
-	 text-align: right;
-	 list-style-type: none;
-	}
+.right {
+	text-align: right;
+	list-style-type: none;
+}
+
+.ui-confirm-dialog {
+	text-align: center !important;
+	position: absolute !important;
+	left: 25% !important;
+	top: 30% !important;
+	z-index: 50 !important;
+	width: inherit !important;
+}
+
+.table-striped tbody > tr:nth-child(2n+1) > td, .table-striped tbody > tr:nth-child(2n+1) > th {
+    background-color: #E0E0D1 !important;
+}
+
+.control-group.success [class*="icon-"] {
+    color: #000000 !important;
+}
