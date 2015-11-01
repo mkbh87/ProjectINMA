@@ -122,6 +122,7 @@ public class MemberBean implements Serializable{
 	}
 	public void setId(int id) {
 		this.id = id;
+		currentMember = getmemberById(id);
 	}
 	public int getId() {
 		return id;
