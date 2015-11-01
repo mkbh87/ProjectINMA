@@ -63,7 +63,7 @@ public class IConfigServiceImpl implements IConfigService {
 
 			int seqno = 0;
 			Session session=sessionFactory.getCurrentSession();
-			SQLQuery sqlQuery=session.createSQLQuery("SELECT max(seqno) FROM  Config");
+			SQLQuery sqlQuery=session.createSQLQuery("SELECT COALESCE(max(seqno),0) FROM  Config");
 			if (sqlQuery.uniqueResult() != null)
 				seqno= (Integer) sqlQuery.uniqueResult();
 			return seqno;
