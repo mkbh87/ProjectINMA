@@ -316,7 +316,8 @@
 								<p:dataTable
 									styleClass="table table-striped table-bordered table-hover"
 									var="et" value="#{eventBean.events}" paginator="true" rows="20"
-									editable="true" id="sample-table-2" paginatorPosition="bottom">
+									editable="true" id="sample-table-2" paginatorPosition="bottom"
+									resizableColumns="true">
 
 									<p:column styleClass="center" sortBy="#{et.eventName}">
 										<f:facet name="header">
