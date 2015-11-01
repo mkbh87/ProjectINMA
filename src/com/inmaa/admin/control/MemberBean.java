@@ -225,7 +225,7 @@ public class MemberBean implements Serializable{
 	public String showEdit(Member p){
 		currentMember = p;
 		setId(currentMember.getMemberId());
-		return "edit-member.xhtml?faces-redirect=true&amp;includeViewParams=true";
+		return "edit-members.xhtml?faces-redirect=true&amp;includeViewParams=true";
 	}
 	
 	public String edit(){
