@@ -29,12 +29,12 @@ public class IPartnerServiceImpl implements IPartnerService{
 	public Member getMember(Integer memberId){
 		// TODO Auto-generated method stub
 		return (Member) sessionFactory.getCurrentSession().get(Member.class, memberId);
-		}
+	}
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
+
 	@Override
 	public void supprimer(Partner entity) {
 		// TODO Auto-generated method stub
@@ -45,7 +45,7 @@ public class IPartnerServiceImpl implements IPartnerService{
 	public void enregistrer(Partner entity) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().saveOrUpdate(entity);
-		
+
 	}
 
 	@Override
@@ -65,23 +65,23 @@ public class IPartnerServiceImpl implements IPartnerService{
 		// TODO Auto-generated method stub
 		return sessionFactory.getCurrentSession().createQuery("from Member").list();
 	}
-	
+
 	@Override
 	public int maxSeqno() {
- 	    try {
-//	        String sqlQuery = "SELECT COALESCE(max(seqno),0) FROM  Partner  ";
-// 	        Query query = sessionFactory.getCurrentSession().createQuery(sqlQuery);
+		try {
+			//	        String sqlQuery = "SELECT COALESCE(max(seqno),0) FROM  Partner  ";
+			// 	        Query query = sessionFactory.getCurrentSession().createQuery(sqlQuery);
 
- 	        
- 	       Session session=sessionFactory.getCurrentSession();
- 	       SQLQuery sqlQuery=session.createSQLQuery("SELECT COALESCE(max(seqno),0) FROM  Partner");
- 	       int seqno=  ((BigInteger) sqlQuery.uniqueResult()).intValue();
- 	       return seqno;
 
-	    } catch (HibernateException e) {
-	        e.printStackTrace();
-	    }
-	    return 0;
+			Session session=sessionFactory.getCurrentSession();
+			SQLQuery sqlQuery=session.createSQLQuery("SELECT COALESCE(max(seqno),0) FROM  Partner");
+			int seqno=  ((BigInteger) sqlQuery.uniqueResult()).intValue();
+			return seqno;
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 }

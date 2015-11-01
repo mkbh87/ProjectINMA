@@ -54,25 +54,4 @@ public class IConfigServiceImpl implements IConfigService {
 		// TODO Auto-generated method stub
 		return sessionFactory.getCurrentSession().createQuery("from Config").list();
 	}
-
-
-
-	@Override
-	public int maxSeqno() {
-		try {
-
-			int seqno = 0;
-			Session session=sessionFactory.getCurrentSession();
-			SQLQuery sqlQuery=session.createSQLQuery("SELECT COALESCE(max(seqno),0) FROM  Config");
-			if (sqlQuery.uniqueResult() != null)
-				seqno= (Integer) sqlQuery.uniqueResult();
-			return seqno;
-
-		} catch (HibernateException e) {
-			e.printStackTrace();
-		}
-		return 0;
-	}
-
-
 }

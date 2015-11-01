@@ -1,9 +1,11 @@
 package com.inmaa.admin.persistence;
 
-// Generated 29 oct. 2015 21:42:46 by Hibernate Tools 3.4.0.CR1
+// Generated 1 nov. 2015 20:22:35 by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -15,7 +17,7 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "Partner", catalog = "inmaa", uniqueConstraints = @UniqueConstraint(columnNames = "Partner_Name"))
 public class Partner implements java.io.Serializable {
 
-	private int partnerId;
+	private Integer partnerId;
 	private Integer seqNo;
 	private String partnerName;
 	private String partnerPlace;
@@ -26,18 +28,14 @@ public class Partner implements java.io.Serializable {
 	public Partner() {
 	}
 
-	public Partner(int partnerId, String partnerName, String partnerPlace,
-			String partnerLogo) {
-		this.partnerId = partnerId;
+	public Partner(String partnerName, String partnerPlace, String partnerLogo) {
 		this.partnerName = partnerName;
 		this.partnerPlace = partnerPlace;
 		this.partnerLogo = partnerLogo;
 	}
 
-	public Partner(int partnerId, Integer seqNo, String partnerName,
-			String partnerPlace, String partnerStartDate, String partnerDesc,
-			String partnerLogo) {
-		this.partnerId = partnerId;
+	public Partner(Integer seqNo, String partnerName, String partnerPlace,
+			String partnerStartDate, String partnerDesc, String partnerLogo) {
 		this.seqNo = seqNo;
 		this.partnerName = partnerName;
 		this.partnerPlace = partnerPlace;
@@ -47,12 +45,13 @@ public class Partner implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "Partner_ID", unique = true, nullable = false)
-	public int getPartnerId() {
+	public Integer getPartnerId() {
 		return this.partnerId;
 	}
 
-	public void setPartnerId(int partnerId) {
+	public void setPartnerId(Integer partnerId) {
 		this.partnerId = partnerId;
 	}
 
