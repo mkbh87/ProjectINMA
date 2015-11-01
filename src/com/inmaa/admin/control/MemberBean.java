@@ -1,22 +1,33 @@
 package com.inmaa.admin.control;
 
 
-
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
+import org.primefaces.context.RequestContext;
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DualListModel;
+import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.inmaa.admin.persistence.Member;
+import com.inmaa.admin.persistence.Project;
 import com.inmaa.admin.service.IMemberService;
 
 
@@ -41,6 +52,8 @@ public class MemberBean implements Serializable{
 
 	private transient DataModel<Member> members;
 	private int id;
+	private UploadedFile uploadedFile;
+	private String fileName;
 
 
 
@@ -85,12 +98,6 @@ public class MemberBean implements Serializable{
 		this.members = members;
 	}
 
-	public String ajouter(){
-		memberService.enregistrer(currentMember);
-		currentMember = new Member();
-		return null;
-	}
-
 	public String vider(){
 		currentMember = new Member();
 		return null;
@@ -109,6 +116,7 @@ public class MemberBean implements Serializable{
 		currentMember = getMembers().getRowData();
 		return "detailMember";
 	}
+	
 	public void setmemberModel(DualListModel<Member> memberModel) {
 		this.memberModel = memberModel;
 	}
@@ -134,5 +142,125 @@ public class MemberBean implements Serializable{
 		}
 		return null;
 	}
+
+	public String submitLogoFile() {
+
+		String msg = "";
+		if (uploadedFile != null){
+			// Prepare filename prefix and suffix for an unique filename in upload folder.
+			String suffix = FilenameUtils.getExtension(uploadedFile.getFileName());
+			// Prepare file and outputstream.
+			File file = null;
+			OutputStream output = null;
+
+			try {
+				// Create file with unique name in upload folder and write to it.
+				file = File.createTempFile("img", "." + suffix, new File(ConfigBean.getImgFilePath()));
+				output = new FileOutputStream(file);
+				IOUtils.copy(uploadedFile.getInputstream(), output);
+				fileName = file.getName();
+				currentMember.setMemberImage(fileName);
+				msg="Image Envoyé, ";
+
+			} catch (Exception e) {
+				// Cleanup.
+				if (file != null) file.delete();
+				msg="Erreur lors de l'envoie d'image, ";
+				// Always log stacktraces (with a real logger).
+				e.printStackTrace();
+			} finally {
+				IOUtils.closeQuietly(output);
+			}
+		}
+		else
+			msg="il y a pas d image, ";
+		
+		return msg;
+	}	
 	
+	public void handleFileUpload(FileUploadEvent event) {
+
+		uploadedFile = event.getFile();
+	}
+
+	
+	public String ajouter(){
+		String bodymsg = "";
+		try {
+			bodymsg = submitLogoFile();
+			int seqno = memberService.maxSeqno();
+			currentMember.setSeqNo(seqno + 10);
+			memberService.enregistrer(currentMember);
+			members.setWrappedData( memberService.lister());
+		} catch(Exception e) {
+			//Error during hibernate query
+			if(e.getCause() != null)
+				bodymsg += e.getCause() + "  |  ";
+			else
+				bodymsg += e.getMessage() + "  |  ";
+
+			bodymsg = bodymsg.replace("'", " ");
+			e.printStackTrace();
+			System.out.print("Error: "+e);
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement du projet",bodymsg );
+			RequestContext.getCurrentInstance().showMessageInDialog(message);
+			return "";
+		}
+		vider();
+		return "table-members.xhtml?faces-redirect=true";
+	}
+
+	public void delete(){
+		try {
+
+			memberService.supprimer(currentMember);
+
+		} catch(Exception e) {
+			//Error during hibernate query
+			System.out.print("Error: "+e.getMessage());
+ 			
+		}
+		currentMember = new Member();
+		members.setWrappedData( memberService.lister());
+
+	}
+
+	public String showEdit(Member p){
+		currentMember = p;
+		setId(currentMember.getMemberId());
+		return "edit-member.xhtml?faces-redirect=true&amp;includeViewParams=true";
+	}
+	
+	public String edit(){
+		setId(currentMember.getMemberId());
+		String bodymsg="Evenement modifié avec succès";
+		try {
+			
+			if(uploadedFile != null)
+				submitLogoFile();
+
+			memberService.mettre_a_jour(currentMember);
+
+		} catch(Exception e) {
+			//Error during hibernate query
+ 			bodymsg= e.getMessage().replace("'", "") + "      ";
+ 			if(e.getCause() != null)
+ 				bodymsg  += e.getCause().getMessage().replace("'", "");
+		}
+
+
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification évenement",bodymsg );
+		RequestContext.getCurrentInstance().showMessageInDialog(message);
+		vider();
+
+		return "";
+	}
+	
+	
+	public void readyforDelete(Member p){
+		currentMember = p;
+		setId(currentMember.getMemberId());
+		
+	}
+
 }

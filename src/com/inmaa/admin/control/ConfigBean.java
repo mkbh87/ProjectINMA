@@ -35,8 +35,10 @@ public class ConfigBean  implements Serializable {
 
 		configList = configService.lister();
 		if (configList.size()>0)
+		{
 			currentConfig = configList.get(0);
-
+			ImgFilePath = configList.get(0).getConfigImgpath();			
+		}
 	}
 
 	public Config getcurrentConfig() {
@@ -81,9 +83,9 @@ public class ConfigBean  implements Serializable {
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
 		
 		ImgFilePath = currentConfig.getConfigImgpath();
-
 		
-		return "config.xhtml?faces-redirect=true";
+		return "configs.xhtml?faces-redirect=true&amp;includeViewParams=true";
+
 	}
 
 	public String showEdit(Config p){

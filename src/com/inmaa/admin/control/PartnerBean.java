@@ -2,6 +2,7 @@ package com.inmaa.admin.control;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
@@ -26,62 +28,73 @@ import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
- import com.inmaa.admin.persistence.News;
-import com.inmaa.admin.service.INewsService;
+import com.inmaa.admin.persistence.Member;
+import com.inmaa.admin.persistence.Partner;
+import com.inmaa.admin.service.IPartnerService;
 
-@Component("newsBean")
+@Component("partnerBean")
 @ViewScoped
-public class NewsBean implements Serializable{
+public class PartnerBean implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
-	INewsService newsService;
-	private News currentNews ;
-	private transient DataModel<News> es;
+	IPartnerService partnerService;
+	private Partner currentPartner ;
+	private transient DataModel<Partner> es;
 	private int id;
-	private List<News> newsList;
- 	private UploadedFile uploadedFile;
+	private List<Partner> partnerList;
+	List<Member> members = new ArrayList<Member>();
+	private DualListModel<Member> memberModel;
+	private UploadedFile uploadedFile;
 	private String fileName;
 
 	@PostConstruct
 	public void init() {
-		newsList = newsService.lister();
-		es = new ListDataModel<News>();
-		es.setWrappedData( newsService.lister());
-//		source = getmemberList();
-//		memberModel = new DualListModel<Member>(source, target);
+		partnerList = partnerService.lister();
+		es = new ListDataModel<Partner>();
+		es.setWrappedData( partnerService.lister());
+		//		source = getmemberList();
+		//		memberModel = new DualListModel<Member>(source, target);
 		//vider();
 	}
 
-	public News getcurrentNews() {
-		return currentNews;
+	private List<Member> getmemberList() {
+		List<Member> members = null;
+
+		members =  partnerService.listerMember();
+
+		return members;
 	}
 
-	public void setcurrentNews(News p) {
-		this.currentNews = p;
+	public Partner getcurrentPartner() {
+		return currentPartner;
 	}
 
-	public NewsBean(){
-		this.currentNews = new News();	
+	public void setcurrentPartner(Partner p) {
+		this.currentPartner = p;
+	}
+
+	public PartnerBean(){
+		this.currentPartner = new Partner();	
 
 	}
 
-	public INewsService getNewsService() {
-		return newsService;
+	public IPartnerService getPartnerService() {
+		return partnerService;
 	}
 
-	public void setNewsService(INewsService newsService) {
-		this.newsService = newsService;
+	public void setPartnerService(IPartnerService partnerService) {
+		this.partnerService = partnerService;
 	}
 
-	public DataModel<News> getEs() {
+	public DataModel<Partner> getEs() {
 		return es;
 	}
 
-	public void setEs(DataModel<News> es) {
+	public void setEs(DataModel<Partner> es) {
 		this.es = es;
 	}
 
@@ -89,10 +102,10 @@ public class NewsBean implements Serializable{
 		String bodymsg = "";
 		try {
 			bodymsg = submitLogoFile();
-			int seqno = newsService.maxSeqno();
-			currentNews.setSeqNo(seqno + 10);
-			newsService.enregistrer(currentNews);
-			es.setWrappedData( newsService.lister());
+			int seqno = partnerService.maxSeqno();
+			currentPartner.setSeqNo(seqno + 10);
+			partnerService.enregistrer(currentPartner);
+			es.setWrappedData( partnerService.lister());
 		} catch(Exception e) {
 			//Error during hibernate query
 			if(e.getCause() != null)
@@ -108,16 +121,16 @@ public class NewsBean implements Serializable{
 			return "";
 		}
 		vider();
-		return "table-articles.xhtml?faces-redirect=true";
+		return "table-partners.xhtml?faces-redirect=true";
 	}
 
 	public void delete(){
 		try {
-			newsService.supprimer(currentNews);
-			es.setWrappedData( newsService.lister());
+			partnerService.supprimer(currentPartner);
+			es.setWrappedData( partnerService.lister());
 		} catch(Exception e) {
 			//Error during hibernate query
-
+			e.printStackTrace();
 			System.out.print("Error: "+e.getMessage());
 		}
 	}
@@ -128,46 +141,47 @@ public class NewsBean implements Serializable{
 
 			if(uploadedFile != null)
 				submitLogoFile();
-				newsService.mettre_a_jour(currentNews);
-				es.setWrappedData( newsService.lister());
+			partnerService.mettre_a_jour(currentPartner);
+			es.setWrappedData( partnerService.lister());
 		} catch(Exception e) {
 			//Error during hibernate query
- 			bodymsg= e.getMessage().replace("'", "") + "      ";
- 			if(e.getCause() != null)
- 				bodymsg  += e.getCause().getMessage().replace("'", "");
-
+			bodymsg= e.getMessage().replace("'", "") + "      ";
+			if(e.getCause() != null)
+				bodymsg  += e.getCause().getMessage().replace("'", "");
+			e.printStackTrace();
 			System.out.print("Error: "+e.getMessage());
 		}
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification du projet",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
- 	}
+	}
 
 
-	public String showEdit(News p){
-		currentNews = p;
-		setId(currentNews.getNewsId());
-		return "edit-articles.xhtml?faces-redirect=true&amp;includeViewParams=true";
+	public String showEdit(Partner p){
+		currentPartner = p;
+		setId(currentPartner.getPartnerId());
+		return "edit-partners.xhtml?faces-redirect=true&amp;includeViewParams=true";
 	}
-	
-	public void readyforDelete(News p){
-		currentNews = p;
-		setId(currentNews.getNewsId());
+
+	public void readyforDelete(Partner p){
+		currentPartner = p;
+		setId(currentPartner.getPartnerId());
 	}
-	
+
 	public void vider(){
-		currentNews = new News();
- 		uploadedFile = null;
+		currentPartner = new Partner();
+		uploadedFile = null;
+		memberModel = null;
 		fileName= null;
 	}
-	
-	public News getnewsById(int p_id)
+
+	public Partner getpartnerById(int p_id)
 	{
-		Iterator<News> itr = es.iterator();
+		Iterator<Partner> itr = es.iterator();
 		while(itr.hasNext()) {
-			currentNews = itr.next();
-			if(currentNews.getNewsId() == p_id)
+			currentPartner = itr.next();
+			if(currentPartner.getPartnerId() == p_id)
 			{
-				return currentNews;
+				return currentPartner;
 			}
 		}
 		return null;
@@ -175,27 +189,34 @@ public class NewsBean implements Serializable{
 
 	public void setId(int id) {
 		this.id = id;
-		currentNews = getnewsById(id);
+		currentPartner = getpartnerById(id);
 	}
 
 	public int getId() {
 		return id;
 	}
-	
-	public List<News> getNewsList() {
-		return newsList;
+
+	public List<Partner> getPartnerList() {
+		return partnerList;
 	}
 
-	public void setNewsList(List<News> newss) {
-		this.newsList = newss;
+	public void setPartnerList(List<Partner> partners) {
+		this.partnerList = partners;
 	}
 
+	public void setmemberModel(DualListModel<Member> memberModel) {
+		this.memberModel = memberModel;
+	}
+
+	public DualListModel<Member> getmemberModel() {
+		return memberModel;
+	} 
 
 	@SuppressWarnings("null")
 	public String limitedDesc(String desc)
 	{
 		if(desc == null || desc == "")
-			desc = currentNews.getNewsDesc();
+			desc = currentPartner.getPartnerDesc();
 
 		if(desc != null && desc.length()>100)
 			desc = desc.substring(0, 100) + " ...";
@@ -218,7 +239,7 @@ public class NewsBean implements Serializable{
 				file = File.createTempFile("img", "." + suffix, new File(ConfigBean.getImgFilePath()));
 				output = new FileOutputStream(file);
 				IOUtils.copy(uploadedFile.getInputstream(), output);
-				currentNews.setNewsPicture(file.getName());
+				currentPartner.setPartnerLogo(file.getName());
 				msg="Image Envoyé, ";
 
 			} catch (Exception e) {
@@ -236,7 +257,7 @@ public class NewsBean implements Serializable{
 		
 		return msg;
 	}
-	
+
 	public UploadedFile getUploadedFile() {
 		return uploadedFile;
 	}
@@ -269,5 +290,11 @@ public class NewsBean implements Serializable{
 		}
 		return null;
 	}
+	public List<Member> getMembers() {
+		return members;
+	}
 
+	public void setMembers(List<Member> members) {
+		this.members = members;
+	}
 }
