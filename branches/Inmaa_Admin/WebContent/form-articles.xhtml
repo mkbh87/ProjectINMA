@@ -33,8 +33,6 @@
 	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
 	<h:outputStylesheet library="css" name="ace-skins.min.css" />
 	<h:outputStylesheet
-		name="webjars/font-awesome/3.2.1/css/font-awesome.css" />
-	<h:outputStylesheet
 		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
 
 	<!--page specific plugin styles-->
@@ -419,14 +417,9 @@
 
 
 														<h:panelGroup layout="block" class="control-group success">
-															<p:outputLabel styleClass="control-label" for="editer"
-																value="contenu " />
+															<p:outputLabel styleClass="control-label"
+																 value="Description " />
 
-															<h:panelGroup layout="block" class="controls">
-																<span class="span8 input-icon input-icon-right">
-																	<pe:ckEditor id="editer" value="#{newsBean.currentNews.newsDesc}"
-																		language="ar" width="800"  /> </span>
-															</h:panelGroup>
 														</h:panelGroup>
 
 														<h:panelGroup layout="block" class="control-group success">
