@@ -37,8 +37,6 @@
 	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
 	<h:outputStylesheet library="css" name="ace-skins.min.css" />
 	<h:outputStylesheet
-		name="webjars/font-awesome/3.2.1/css/font-awesome.css" />
-	<h:outputStylesheet
 		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
 
 
@@ -371,7 +369,6 @@
 											<h:panelGroup layout="block"
 												class="step-content row-fluid position-relative"
 												id="step-container">
-													<h:outputLink value="#{memberBean.vider()}"/>
 													<h:panelGroup layout="block" class="step-pane active"
 													id="step1">
 													<h3 class="lighter block green">Nouveau Membre</h3>
@@ -519,13 +516,6 @@
  	<p:commandLink styleClass="btn btn-success btn-next" action="#{memberBean.ajouter()}" >
 	Sauvegarder	<i class="icon-arrow-right icon-on-right"></i>
 	</p:commandLink>
-
-<p:dialog header="Enregistrement du membre" widgetVar="dlg2" modal="true" height="100">
-    <h3 class="blue">error</h3>
-    <h:panelGroup >											
-    	<h:button styleClass="btn btn-success"  action="@{memberBean.vider()}" value="Ok" style="float:right">  </h:button>
-    </h:panelGroup>
-</p:dialog>   
  
  </h:form>
 										

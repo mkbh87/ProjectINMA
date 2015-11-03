@@ -28,7 +28,6 @@
 
 	<h:outputStylesheet name="bootstrap.min.css" library="css" />
 	<h:outputStylesheet name="bootstrap-responsive.min.css" library="css" />
-	<h:outputStylesheet name= "webjars/font-awesome/3.2.1/css/font-awesome.css" />
 	<h:outputStylesheet name= "webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
 	
 	
@@ -378,7 +377,7 @@
 											widgetVar="CDialogWidget">
 											<p:commandButton value="Oui" update=":form1:sample-table-2"
 												action="#{projectBean.delete()}"
-												oncomplete="PF('CDialogWidget').hide()" />
+												oncomplete="table-projects.xhtml" />
 											<p:commandButton value="Non"
 												onclick="PF('CDialogWidget').hide();" type="button" />
 										</p:confirmDialog>
