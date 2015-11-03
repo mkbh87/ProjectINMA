@@ -1,13 +1,16 @@
 package com.inmaa.admin.persistence;
 
-// Generated 1 nov. 2015 20:22:35 by Hibernate Tools 3.4.0.CR1
+// Generated 3 nov. 2015 22:47:50 by Hibernate Tools 3.4.0.CR1
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 /**
@@ -21,7 +24,7 @@ public class Partner implements java.io.Serializable {
 	private Integer seqNo;
 	private String partnerName;
 	private String partnerPlace;
-	private String partnerStartDate;
+	private Date partnerStartDate;
 	private String partnerDesc;
 	private String partnerLogo;
 
@@ -35,7 +38,7 @@ public class Partner implements java.io.Serializable {
 	}
 
 	public Partner(Integer seqNo, String partnerName, String partnerPlace,
-			String partnerStartDate, String partnerDesc, String partnerLogo) {
+			Date partnerStartDate, String partnerDesc, String partnerLogo) {
 		this.seqNo = seqNo;
 		this.partnerName = partnerName;
 		this.partnerPlace = partnerPlace;
@@ -82,12 +85,13 @@ public class Partner implements java.io.Serializable {
 		this.partnerPlace = partnerPlace;
 	}
 
-	@Column(name = "Partner_StartDate", length = 45)
-	public String getPartnerStartDate() {
+	@Temporal(TemporalType.DATE)
+	@Column(name = "Partner_StartDate", length = 10)
+	public Date getPartnerStartDate() {
 		return this.partnerStartDate;
 	}
 
-	public void setPartnerStartDate(String partnerStartDate) {
+	public void setPartnerStartDate(Date partnerStartDate) {
 		this.partnerStartDate = partnerStartDate;
 	}
 

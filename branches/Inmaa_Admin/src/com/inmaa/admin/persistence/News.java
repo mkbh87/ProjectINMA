@@ -1,6 +1,6 @@
 package com.inmaa.admin.persistence;
 
-// Generated 1 nov. 2015 20:22:35 by Hibernate Tools 3.4.0.CR1
+// Generated 3 nov. 2015 22:47:50 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -40,9 +40,8 @@ public class News implements java.io.Serializable {
 	public News() {
 	}
 
-	public News(String newsDesc, String newsTitle, String newsPicture,
-			String newsAuthor, Date newsDate) {
-		this.newsDesc = newsDesc;
+	public News(String newsTitle, String newsPicture, String newsAuthor,
+			Date newsDate) {
 		this.newsTitle = newsTitle;
 		this.newsPicture = newsPicture;
 		this.newsAuthor = newsAuthor;
@@ -74,7 +73,7 @@ public class News implements java.io.Serializable {
 		this.newsId = newsId;
 	}
 
-	@Column(name = "News_Desc", nullable = false)
+	@Column(name = "News_Desc", length = 65535)
 	public String getNewsDesc() {
 		return this.newsDesc;
 	}
@@ -128,7 +127,7 @@ public class News implements java.io.Serializable {
 		this.newsPicture = newsPicture;
 	}
 
-	@Column(name = "News_Author", nullable = false, length = 45)
+	@Column(name = "News_Author", nullable = false, length = 85)
 	public String getNewsAuthor() {
 		return this.newsAuthor;
 	}
