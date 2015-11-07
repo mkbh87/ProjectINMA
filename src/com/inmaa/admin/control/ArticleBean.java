@@ -24,62 +24,63 @@ import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.inmaa.admin.persistence.News;
-import com.inmaa.admin.service.INewsService;
+import com.inmaa.admin.persistence.Article;
+import com.inmaa.admin.service.IArticleService;
+import com.inmaa.admin.service.IArticleServiceImpl;
 
-@Component("newsBean")
+@Component("articleBean")
 @ViewScoped
-public class NewsBean implements Serializable{
+public class ArticleBean implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
-	INewsService newsService;
-	private News currentNews ;
-	private transient DataModel<News> es;
+	IArticleService articleService;
+	private Article currentArticle ;
+	private transient DataModel<Article> es;
 	private int id;
-	private List<News> newsList;
+	private List<Article> articleList;
  	private UploadedFile uploadedFile;
 	private String fileName;
 
 	@PostConstruct
 	public void init() {
-		newsList = newsService.lister();
-		es = new ListDataModel<News>();
-		es.setWrappedData( newsService.lister());
+		articleList = articleService.lister();
+		es = new ListDataModel<Article>();
+		es.setWrappedData( articleService.lister());
 //		source = getmemberList();
 //		memberModel = new DualListModel<Member>(source, target);
 		//vider();
 	}
 
-	public News getcurrentNews() {
-		return currentNews;
+	public Article getcurrentArticle() {
+		return currentArticle;
 	}
 
-	public void setcurrentNews(News p) {
-		this.currentNews = p;
+	public void setcurrentArticle(Article p) {
+		this.currentArticle = p;
 	}
 
-	public NewsBean(){
-		this.currentNews = new News();	
+	public ArticleBean(){
+		this.currentArticle = new Article();	
 
 	}
 
-	public INewsService getNewsService() {
-		return newsService;
+	public IArticleService getArticleService() {
+		return articleService;
 	}
 
-	public void setNewsService(INewsService newsService) {
-		this.newsService = newsService;
+	public void setArticleService(IArticleServiceImpl articleService) {
+		this.articleService = articleService;
 	}
 
-	public DataModel<News> getEs() {
+	public DataModel<Article> getEs() {
 		return es;
 	}
 
-	public void setEs(DataModel<News> es) {
+	public void setEs(DataModel<Article> es) {
 		this.es = es;
 	}
 
@@ -87,10 +88,10 @@ public class NewsBean implements Serializable{
 		String bodymsg = "";
 		try {
 			bodymsg = submitLogoFile();
-			int seqno = newsService.maxSeqno();
-			currentNews.setSeqNo(seqno + 10);
-			newsService.enregistrer(currentNews);
-			es.setWrappedData( newsService.lister());
+			int seqno = articleService.maxSeqno();
+			currentArticle.setSeqNo(seqno + 10);
+			articleService.enregistrer(currentArticle);
+			es.setWrappedData( articleService.lister());
 		} catch(Exception e) {
 			//Error during hibernate query
 			if(e.getCause() != null)
@@ -111,8 +112,8 @@ public class NewsBean implements Serializable{
 
 	public void delete(){
 		try {
-			newsService.supprimer(currentNews);
-			es.setWrappedData( newsService.lister());
+			articleService.supprimer(currentArticle);
+			es.setWrappedData( articleService.lister());
 		} catch(Exception e) {
 			//Error during hibernate query
 
@@ -126,8 +127,8 @@ public class NewsBean implements Serializable{
 
 			if(uploadedFile != null)
 				submitLogoFile();
-				newsService.mettre_a_jour(currentNews);
-				es.setWrappedData( newsService.lister());
+				articleService.mettre_a_jour(currentArticle);
+				es.setWrappedData( articleService.lister());
 		} catch(Exception e) {
 			//Error during hibernate query
  			bodymsg= e.getMessage().replace("'", "") + "      ";
@@ -141,31 +142,31 @@ public class NewsBean implements Serializable{
  	}
 
 
-	public String showEdit(News p){
-		currentNews = p;
-		setId(currentNews.getNewsId());
+	public String showEdit(Article p){
+		currentArticle = p;
+		setId(currentArticle.getArticleId());
 		return "edit-articles.xhtml?faces-redirect=true&amp;includeViewParams=true";
 	}
 	
-	public void readyforDelete(News p){
-		currentNews = p;
-		setId(currentNews.getNewsId());
+	public void readyforDelete(Article p){
+		currentArticle = p;
+		setId(currentArticle.getArticleId());
 	}
 	
 	public void vider(){
-		currentNews = new News();
+		currentArticle = new Article();
  		uploadedFile = null;
 		fileName= null;
 	}
 	
-	public News getnewsById(int p_id)
+	public Article getarticleById(int p_id)
 	{
-		Iterator<News> itr = es.iterator();
+		Iterator<Article> itr = es.iterator();
 		while(itr.hasNext()) {
-			currentNews = itr.next();
-			if(currentNews.getNewsId() == p_id)
+			currentArticle = itr.next();
+			if(currentArticle.getArticleId() == p_id)
 			{
-				return currentNews;
+				return currentArticle;
 			}
 		}
 		return null;
@@ -173,19 +174,19 @@ public class NewsBean implements Serializable{
 
 	public void setId(int id) {
 		this.id = id;
-		currentNews = getnewsById(id);
+		currentArticle = getarticleById(id);
 	}
 
 	public int getId() {
 		return id;
 	}
 	
-	public List<News> getNewsList() {
-		return newsList;
+	public List<Article> getArticleList() {
+		return articleList;
 	}
 
-	public void setNewsList(List<News> newss) {
-		this.newsList = newss;
+	public void setArticleList(List<Article> articles) {
+		this.articleList = articles;
 	}
 
 
@@ -193,7 +194,7 @@ public class NewsBean implements Serializable{
 	public String limitedDesc(String desc)
 	{
 		if(desc == null || desc == "")
-			desc = currentNews.getNewsDesc();
+			desc = currentArticle.getArticleDesc();
 
 		if(desc != null && desc.length()>100)
 			desc = desc.substring(0, 100) + " ...";
@@ -216,7 +217,7 @@ public class NewsBean implements Serializable{
 				file = File.createTempFile("img", "." + suffix, new File(ConfigBean.getImgFilePath()));
 				output = new FileOutputStream(file);
 				IOUtils.copy(uploadedFile.getInputstream(), output);
-				currentNews.setNewsPicture(file.getName());
+				currentArticle.setArticlePicture(file.getName());
 				msg="Image Envoyé, ";
 
 			} catch (Exception e) {
