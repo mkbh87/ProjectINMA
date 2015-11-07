@@ -1,6 +1,6 @@
 package com.inmaa.admin.persistence;
 
-// Generated 1 nov. 2015 20:22:35 by Hibernate Tools 3.4.0.CR1
+// Generated 7 nov. 2015 10:51:41 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -37,7 +37,7 @@ public class Project implements java.io.Serializable {
 	private String projectPartner;
 	private String projectDef;
 	private Set<Event> events = new HashSet<Event>(0);
-	private Set<News> newses = new HashSet<News>(0);
+	private Set<Article> articles = new HashSet<Article>(0);
 	private Set<Member> members = new HashSet<Member>(0);
 
 	public Project() {
@@ -54,7 +54,7 @@ public class Project implements java.io.Serializable {
 	public Project(Integer seqNo, String projectLogo, String projectDesc,
 			String projectName, Date projectStartDate, String projectLocation,
 			String projectPhone, String projectPartner, String projectDef,
-			Set<Event> events, Set<News> newses, Set<Member> members) {
+			Set<Event> events, Set<Article> articles, Set<Member> members) {
 		this.seqNo = seqNo;
 		this.projectLogo = projectLogo;
 		this.projectDesc = projectDesc;
@@ -65,7 +65,7 @@ public class Project implements java.io.Serializable {
 		this.projectPartner = projectPartner;
 		this.projectDef = projectDef;
 		this.events = events;
-		this.newses = newses;
+		this.articles = articles;
 		this.members = members;
 	}
 
@@ -172,12 +172,12 @@ public class Project implements java.io.Serializable {
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "projects")
-	public Set<News> getNewses() {
-		return this.newses;
+	public Set<Article> getArticles() {
+		return this.articles;
 	}
 
-	public void setNewses(Set<News> newses) {
-		this.newses = newses;
+	public void setArticles(Set<Article> articles) {
+		this.articles = articles;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)

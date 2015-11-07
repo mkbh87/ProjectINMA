@@ -49,7 +49,7 @@
 <h:body>
 
 	<f:metadata>
-		<f:viewParam name="id" value="#{newsBean.id}" />
+		<f:viewParam name="id" value="#{articleBean.id}" />
 	</f:metadata>
 
 	<h:panelGroup layout="block" styleClass="navbar">
@@ -355,7 +355,7 @@
 															<h:panelGroup layout="block" styleClass="controls">
 																<span class="span3 input-icon input-icon-right">
 																	<h:inputText styleClass="span12" id="intitule"
-																		value="#{newsBean.currentNews.newsTitle}" /> <i
+																		value="#{articleBean.currentArticle.articleTitle}" /> <i
 																	class="icon-warning-sign"></i>
 																</span>
 																<span class="help-inline"> Champs obligatoire </span>
@@ -370,13 +370,13 @@
 																<span class="span6 input-icon input-icon-right">
 																	<h:inputText styleClass="span12 limited"
 																		id="eventAuthor"
-																		value="#{newsBean.currentNews.newsAuthor}" />
+																		value="#{articleBean.currentArticle.articleAuthor}" />
 																</span>
 															</h:panelGroup>
 														</h:panelGroup>
 
 														<h:panelGroup layout="block" class="control-group success">
-															<p:outputLabel styleClass="control-label" for="newsDate"
+															<p:outputLabel styleClass="control-label" for="articleDate"
 																value="Date de l'article : " />
 
 															<h:panelGroup layout="block" class="controls">
@@ -384,8 +384,8 @@
 																	<h:panelGroup layout="block" class="control-group">
 																		<h:panelGroup layout="block"
 																			class="row-fluid input-append">
-																			<p:calendar id="newsDate"
-																				value="#{newsBean.currentNews.newsDate}"
+																			<p:calendar id="articleDate"
+																				value="#{articleBean.currentArticle.articleDate}"
 																				styleClass="span10 date-picker" effect="fold" />
 																		</h:panelGroup>
 																	</h:panelGroup>
@@ -401,7 +401,7 @@
 															<h:panelGroup layout="block" class="controls">
 																<span class="span8 input-icon input-icon-right">
 																	<pe:ckEditor id="editor"
-																		value="#{newsBean.currentNews.newsDesc}" language="ar"
+																		value="#{articleBean.currentArticle.articleDesc}" language="ar"
 																		width="800" checkDirtyInterval="0" />
 																</span>
 															</h:panelGroup>
@@ -414,7 +414,7 @@
 															<h:panelGroup layout="block" class="controls">
 																<span class="span6 input-icon input-icon-right">
 																	<p:fileUpload
-																		fileUploadListener="#{newsBean.handleFileUpload}"
+																		fileUploadListener="#{articleBean.handleFileUpload}"
 																		auto="true" />
 																</span>
 															</h:panelGroup>
@@ -430,7 +430,7 @@
 													class="row-fluid wizard-actions">
 													<p:commandButton value="Modifier"
 														styleClass="btn btn-success btn-next"
-														action="#{newsBean.edit()}">
+														action="#{articleBean.edit()}">
 													</p:commandButton>
 													<p:dialog header="Modification du projet" widgetVar="dlg2"
 														modal="true" height="100">
