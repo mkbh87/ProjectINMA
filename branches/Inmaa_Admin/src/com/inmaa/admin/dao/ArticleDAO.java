@@ -10,18 +10,18 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.inmaa.admin.service.INewsService;
-import com.inmaa.admin.persistence.News;
+import com.inmaa.admin.service.IArticleService;
+import com.inmaa.admin.persistence.Article;
 
-public class NewsDAO {
+public class ArticleDAO {
 	private static ClassPathXmlApplicationContext context;
-    private  static INewsService newsserviceint;
+    private  static IArticleService articleserviceint;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		context = new ClassPathXmlApplicationContext("/application-context.xml");
 	
-		newsserviceint = (INewsService) context.getBean("NewsService");
+		articleserviceint = (IArticleService) context.getBean("ArticleService");
 	}
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
@@ -31,7 +31,7 @@ public class NewsDAO {
 //@Test
 	public void testFindAll() {
 	
-	List<News> maliste= newsserviceint.lister();
+	List<Article> maliste= articleserviceint.lister();
 	assertNotNull(maliste);
 	assertTrue(maliste.size() > 0);
 	}
@@ -39,8 +39,8 @@ public class NewsDAO {
 //@Test
 //public void testInsertEnseign() {
 //
-//	News News = new News();
-//	News.setNewstitle("Touristes soutiennent la tunisie");
-//	newsserviceint.enregistrer(News);
+//	Article Article = new Article();
+//	Article.setArticletitle("Touristes soutiennent la tunisie");
+//	articleserviceint.enregistrer(Article);
 //}
 }

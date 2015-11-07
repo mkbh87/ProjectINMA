@@ -48,7 +48,7 @@
 			<list>
 				<value>com.inmaa.admin.persistence.Event</value>
 				<value>com.inmaa.admin.persistence.Member</value>
-				<value>com.inmaa.admin.persistence.News</value>
+				<value>com.inmaa.admin.persistence.Article</value>
 				<value>com.inmaa.admin.persistence.Project</value>
 				<value>com.inmaa.admin.persistence.Config</value>
 				<value>com.inmaa.admin.persistence.Media</value>
