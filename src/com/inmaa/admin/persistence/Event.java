@@ -1,15 +1,17 @@
 package com.inmaa.admin.persistence;
 
-// Generated 1 nov. 2015 20:22:35 by Hibernate Tools 3.4.0.CR1
+// Generated 7 nov. 2015 10:51:41 by Hibernate Tools 3.4.0.CR1
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;

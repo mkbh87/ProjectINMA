@@ -333,32 +333,32 @@
 							<h:form id="form1">
 								<p:dataTable
 									styleClass="table table-striped table-bordered table-hover"
-									var="news" value="#{newsBean.es}" paginator="true" rows="20"
+									var="article" value="#{articleBean.es}" paginator="true" rows="20"
 									editable="true" id="sample-table-2" paginatorPosition="bottom"
 									resizableColumns="true">
 
-									<p:column sortBy="#{news.newsTitle}">
-										<f:facet name="header" sortBy="#{news.newsTitle}">
+									<p:column sortBy="#{article.articleTitle}">
+										<f:facet name="header" sortBy="#{article.articleTitle}">
 											<h:outputText value="Titre" />
 										</f:facet>
-										<h:outputText value="#{news.newsTitle}" />
+										<h:outputText value="#{article.articleTitle}" />
 									</p:column>
 									
-									<p:column styleClass="center" sortBy="#{news.newsAuthor}">
+									<p:column styleClass="center" sortBy="#{article.articleAuthor}">
 										<f:facet name="header">
 											<h:outputText value="Auteur" />
 										</f:facet>
-										<h:outputText value="#{news.newsAuthor}" />
+										<h:outputText value="#{article.articleAuthor}" />
 									</p:column>
 
-									<p:column styleClass="center" sortBy="#{news.newsDate}">
+									<p:column styleClass="center" sortBy="#{article.articleDate}">
 										<f:facet name="header" styleClass="hidden-phone">
 											<i class="icon-time bigger-110 hidden-phone"></i>
 											<h:outputText value="Date de publication" />
 											<span class="lbl"></span>
 										</f:facet>
 										<span class="lbl"></span>
-										<h:outputText value="#{news.newsDate}" />
+										<h:outputText value="#{article.articleDate}" />
 									</p:column>
 									
 									<p:column styleClass="center">
@@ -367,7 +367,7 @@
 											<span class="lbl"></span>
 										</f:facet>
 										<span class="lbl"></span>
-										<h:outputText value="#{news.newsPicture}" />
+										<h:outputText value="#{article.articlePicture}" />
 									</p:column>
 									
 									<p:column>
@@ -375,13 +375,13 @@
 											<h:outputText value="" />
 										</f:facet>
 										<p:commandLink styleClass="btn btn-mini btn-info"
-											action="#{newsBean.showEdit(news)}">
-											<f:param name="id" value="#{news.newsId}" /> Modifier 
+											action="#{articleBean.showEdit(article)}">
+											<f:param name="id" value="#{article.articleId}" /> Modifier 
 											<i class="icon-edit bigger-120"></i>
 										</p:commandLink>
 										&nbsp;
 										<p:commandLink styleClass="btn btn-mini btn-danger"
-											action="#{newsBean.readyforDelete(news)}" ajax="true"
+											action="#{articleBean.readyforDelete(article)}" ajax="true"
 											update=":form1:sample-table-2:ll"
 											oncomplete="PF('CDialogWidget').show();" > Supprimer 
 											<i class="icon-trash bigger-120"></i>
@@ -389,11 +389,11 @@
 										</p:commandLink>
 
 										<p:confirmDialog
-											message="Êtes-vous sûr de vouloir supprimer  #{news.newsTitle} "
+											message="Êtes-vous sûr de vouloir supprimer  #{article.articleTitle} "
 											header="Confirmation de suppression" severity="alert" id="ll"
 											widgetVar="CDialogWidget">
 											<p:commandButton value="Oui" update=":form1:sample-table-2"
-												action="#{newsBean.delete()}"
+												action="#{articleBean.delete()}"
 												oncomplete="PF('CDialogWidget').hide()" />
 											<p:commandButton value="Non"
 												onclick="PF('CDialogWidget').hide();" type="button" />
