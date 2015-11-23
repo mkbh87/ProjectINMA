@@ -26,6 +26,7 @@ import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.inmaa.admin.persistence.Event;
 import com.inmaa.admin.persistence.Member;
 import com.inmaa.admin.persistence.Project;
 import com.inmaa.admin.service.IProjectService;
@@ -48,15 +49,14 @@ public class ProjectBean implements Serializable{
 	private DualListModel<Member> memberModel;
 	private UploadedFile uploadedFile;
 	private String fileName;
-
+	
+    
+    
 	@PostConstruct
 	public void init() {
 		projectList = projectService.lister();
 		es = new ListDataModel<Project>();
 		es.setWrappedData( projectService.lister());
-//		source = getmemberList();
-//		memberModel = new DualListModel<Member>(source, target);
-		//vider();
 	}
 
 	private List<Member> getmemberList() {
@@ -118,6 +118,7 @@ public class ProjectBean implements Serializable{
 			RequestContext.getCurrentInstance().showMessageInDialog(message);
 			return "";
 		}
+		
 		vider();
 		return "table-projects.xhtml?faces-redirect=true";
 	}

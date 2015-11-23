@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -28,7 +30,9 @@ import org.springframework.stereotype.Component;
 
 import com.inmaa.admin.persistence.Event;
 import com.inmaa.admin.persistence.Member;
+import com.inmaa.admin.persistence.Project;
 import com.inmaa.admin.service.IEventService;
+import com.inmaa.admin.service.IProjectService;
 
 @Component("eventBean")
 @ViewScoped
@@ -41,6 +45,9 @@ public class EventBean  implements Serializable {
 	@Autowired
 	IEventService eventService;
 
+	@Autowired
+	IProjectService projectService;
+
 	private Event currentEvent ;
 	private List<Event> eventList;
 	private transient DataModel<Event> events;
@@ -51,6 +58,11 @@ public class EventBean  implements Serializable {
 	private int id;
 	private UploadedFile uploadedFile;
 	private String fileName;
+
+	private DualListModel<Project> listePro;
+	List<Project> prosSource = new ArrayList<Project>();
+	List<Project> prosTarget = new ArrayList<Project>();
+
 
 	@PostConstruct
 	public void init() {
@@ -91,6 +103,9 @@ public class EventBean  implements Serializable {
 	public String ajouter(){
 		String bodymsg = "";
 		try {
+			Set<Project> temp = new HashSet<Project>(listePro.getTarget());
+			currentEvent.setProjects(temp);
+
 			bodymsg = submitLogoFile();
 			int seqno = eventService.maxSeqno();
 			currentEvent.setSeqNo(seqno + 10);
@@ -123,46 +138,54 @@ public class EventBean  implements Serializable {
 		} catch(Exception e) {
 			//Error during hibernate query
 			System.out.print("Error: "+e.getMessage());
- 			
+
 		}
 	}
 
 	public void edit(){
 		String bodymsg="Événement modifié avec succès";
 		try {
-			
+
 			if(uploadedFile != null)
 				submitLogoFile();
-				eventService.mettre_a_jour(currentEvent);
-				events.setWrappedData( eventService.lister());
+
+			Set<Project> temp = new HashSet<Project>(listePro.getTarget());
+			currentEvent.setProjects(temp);
+
+			eventService.mettre_a_jour(currentEvent);
+			events.setWrappedData( eventService.lister());
 		} catch(Exception e) {
 			//Error during hibernate query
- 			bodymsg= e.getMessage().replace("'", "") + "      ";
- 			if(e.getCause() != null)
- 				bodymsg  += e.getCause().getMessage().replace("'", "");
+			bodymsg= e.getMessage().replace("'", "") + "      ";
+			if(e.getCause() != null)
+				bodymsg  += e.getCause().getMessage().replace("'", "");
 		}
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification de l'événement",bodymsg );
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification de l événement",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
-  	}
+	}
 
 	public String showEdit(Event p){
 		currentEvent = p;
 		setId(currentEvent.getEventId());
 		return "edit-events.xhtml?faces-redirect=true&amp;includeViewParams=true";
 	}
-	
+
 	public void readyforDelete(Event p){
 		currentEvent = p;
 		setId(currentEvent.getEventId());
 	}
-	
+
 	public void vider(){
 		currentEvent = new Event();
 		uploadedFile = null;
 		memberModel = null;
 		fileName= null;
+		prosTarget = new ArrayList<Project>();
+		prosSource = projectService.lister();
+		listePro  = new DualListModel<Project>(prosSource, prosTarget);
+
 	}
-	
+
 	private Event geteventtById(int e_id) {
 		Iterator<Event> itr =eventList.iterator();
 		while(itr.hasNext()) {
@@ -174,23 +197,23 @@ public class EventBean  implements Serializable {
 		}
 		return null;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 		currentEvent = geteventtById(id);
 	}
-	
+
 	public int getId() {
 		return id;
 	}
-	
-//	public String viewEventDetail(){
-//		currentEvent = getEvents().getRowData();
-//		setId(currentEvent.getEventId());
-//		return "form-events.xhtml?faces-redirect=true&includeViewParams=true";
-//
-//	}
-	
+
+	//	public String viewEventDetail(){
+	//		currentEvent = getEvents().getRowData();
+	//		setId(currentEvent.getEventId());
+	//		return "form-events.xhtml?faces-redirect=true&includeViewParams=true";
+	//
+	//	}
+
 
 	public List<Event> getEventList() {
 		eventList = eventService.lister();
@@ -253,7 +276,7 @@ public class EventBean  implements Serializable {
 		}
 		else
 			msg="il y a pas d image, ";
-		
+
 		return msg;
 	}	
 
@@ -290,4 +313,46 @@ public class EventBean  implements Serializable {
 		return null;
 	}
 
+	public void initializeLazyJoins()
+	{
+		eventService.initializeLazyJoins(currentEvent);
+
+		prosTarget = new ArrayList<Project>();
+		prosTarget = new ArrayList<Project>(currentEvent.getProjects());	
+		prosSource = setprosSource(prosTarget);
+		listePro  = new DualListModel<Project>(prosSource, prosTarget);
+	}
+
+	public DualListModel<Project> getListePro() {
+		return listePro;
+	}
+
+	public List<Project> setprosSource(List<Project> target) {
+		List<Project> listSource = projectService.lister();
+		listSource.removeAll(target);
+		listSource = subtract(listSource, target );
+		return listSource;
+	}
+
+
+	public void setListePro(DualListModel<Project> listePro) {
+		this.listePro = listePro;
+	}
+	
+	public List<Project> subtract(List<Project> list1, List<Project> list2) {
+		boolean found = false;
+        List<Project> result = new ArrayList<Project>();
+        for (Project t1 : list1) {
+        	for (Project t2 : list2) {
+        		if( t1.getProjectId().equals(t2.getProjectId()))  {
+        			found = true;
+        			break;
+        		}
+        	}
+        	if(!found)
+        		result.add(t1);
+        	found = false;
+        }
+        return result;
+    }
 }

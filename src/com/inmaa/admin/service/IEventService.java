@@ -16,4 +16,7 @@ public interface IEventService {
 		public List<Event> lister();
 
 		public int maxSeqno();
+		
+		public void initializeLazyJoins(Event entity);
+
 }

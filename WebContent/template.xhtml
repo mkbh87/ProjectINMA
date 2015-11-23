@@ -32,8 +32,8 @@
 		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
 
 
-	<!--page specific plugin styles-->
-	<h:outputStylesheet library="css" name="select2.css" />
+	               
+	
 	<!--ace styles-->
 
 	<h:outputStylesheet library="css" name="ace.min.css" />
@@ -427,12 +427,7 @@
 
             $('[data-rel=tooltip]').tooltip();
 
-            $(".select2").css('width', '150px').select2({
-                    allowClear: true
-                })
-                .on('change', function() {
-                    $(this).closest('form').validate().element($(this));
-                });
+            
 
 
             var $validation = false;
