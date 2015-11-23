@@ -1,6 +1,5 @@
 package com.inmaa.admin.persistence;
-
-// Generated 7 nov. 2015 10:51:41 by Hibernate Tools 3.4.0.CR1
+// Generated 22 nov. 2015 14:53:17 by Hibernate Tools 4.3.1.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +17,7 @@ public class Config implements java.io.Serializable {
 
 	private Integer configId;
 	private String configImgpath;
+	private String configEmailList;
 
 	public Config() {
 	}
@@ -26,8 +26,14 @@ public class Config implements java.io.Serializable {
 		this.configImgpath = configImgpath;
 	}
 
+	public Config(String configImgpath, String configEmailList) {
+		this.configImgpath = configImgpath;
+		this.configEmailList = configEmailList;
+	}
+
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
+
 	@Column(name = "Config_Id", unique = true, nullable = false)
 	public Integer getConfigId() {
 		return this.configId;
@@ -44,6 +50,15 @@ public class Config implements java.io.Serializable {
 
 	public void setConfigImgpath(String configImgpath) {
 		this.configImgpath = configImgpath;
+	}
+
+	@Column(name = "config_EmailList", length = 65535)
+	public String getConfigEmailList() {
+		return this.configEmailList;
+	}
+
+	public void setConfigEmailList(String configEmailList) {
+		this.configEmailList = configEmailList;
 	}
 
 }

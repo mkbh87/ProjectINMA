@@ -1,6 +1,5 @@
 package com.inmaa.admin.persistence;
-
-// Generated 7 nov. 2015 10:51:41 by Hibernate Tools 3.4.0.CR1
+// Generated 22 nov. 2015 14:53:17 by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -38,6 +37,7 @@ public class Authorities implements java.io.Serializable {
 	}
 
 	@Id
+
 	@Column(name = "id", unique = true, nullable = false)
 	public String getId() {
 		return this.id;
@@ -57,7 +57,9 @@ public class Authorities implements java.io.Serializable {
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "Users_Authorities", catalog = "inmaa", joinColumns = { @JoinColumn(name = "authorities_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "user_id", nullable = false, updatable = false) })
+	@JoinTable(name = "Users_Authorities", catalog = "inmaa", joinColumns = {
+			@JoinColumn(name = "authorities_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "user_id", nullable = false, updatable = false) })
 	public Set<Users> getUserses() {
 		return this.userses;
 	}

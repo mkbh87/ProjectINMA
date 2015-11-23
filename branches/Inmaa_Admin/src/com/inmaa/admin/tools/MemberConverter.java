@@ -24,7 +24,7 @@ public class MemberConverter implements Converter {
 			///MemberBean bean = (MemberBean) fc.getCurrentInstance().getApplication().getClass();
 			IMemberService service =(IMemberService) context.getBean("MemberService");
 			Member entity = service.lister().get(5);
-			MemberBean bean = fc.getApplication().evaluateExpressionGet(fc, "#{memberBean}", MemberBean.class);
+			//MemberBean bean = fc.getApplication().evaluateExpressionGet(fc, "#{memberBean}", MemberBean.class);
 			//bean.getmemberById(Integer.parseInt(value));
 			return entity;
 			} catch(NumberFormatException e) {

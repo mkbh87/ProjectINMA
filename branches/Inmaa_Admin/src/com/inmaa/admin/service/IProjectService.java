@@ -19,5 +19,7 @@ public interface IProjectService {
 	public Member getMember(Integer memberId);
 
 	public int maxSeqno();
+	
+	public void initializeLazyJoins(Project entity);
 
 }

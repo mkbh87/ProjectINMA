@@ -3,6 +3,7 @@ package com.inmaa.admin.service;
 import java.math.BigInteger;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -73,5 +74,18 @@ public class IEventServiceImpl implements IEventService {
 		return 0;
 	}
 
+	public void initializeLazyJoins(Event entity)
+	{
+		SessionFactory sessionfactory = getSessionFactory();
+		
+		Session session = sessionfactory.openSession();
+		
+		session.refresh(entity);
+		Hibernate.initialize(entity.getProjects());
+		Hibernate.initialize(entity.getArticles());
+
+		session.close();
+
+	}
 
 }

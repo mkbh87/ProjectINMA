@@ -14,4 +14,7 @@ public interface IArticleService {
 		public List<Article> lister();
 
 		public int maxSeqno();
+		
+		public void initializeLazyJoins(Article entity);
+
 }

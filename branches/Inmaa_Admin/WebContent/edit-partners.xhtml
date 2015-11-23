@@ -26,8 +26,8 @@
 	<h:outputStylesheet library="css" name="font-awesome-ie7.min.css" />
 	<h:outputStylesheet name="bootstrap.min.css" library="css" />
 	<h:outputStylesheet name="bootstrap-responsive.min.css" library="css" />
-	<!--page specific plugin styles-->
-	<h:outputStylesheet library="css" name="select2.css" />
+	               
+	
 	<!--ace styles-->
 	<h:outputStylesheet library="css" name="ace.min.css" />
 	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
@@ -35,8 +35,8 @@
 	<h:outputStylesheet
 		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
 
-	<!--page specific plugin styles-->
-	<h:outputStylesheet library="css" name="select2.css" />
+	               
+	
 	<!--ace styles-->
 
 	<h:outputStylesheet library="css" name="ace.min.css" />
@@ -539,7 +539,7 @@
 	<script src="resources/js/additional-methods.min.js"></script>
 	<script src="resources/js/bootbox.min.js"></script>
 	<script src="resources/js/jquery.maskedinput.min.js"></script>
-	<script src="resources/js/select2.min.js"></script>
+	
 
 	<script src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
 	<script src="resources/js/jquery.ui.touch-punch.min.js"></script>
@@ -563,12 +563,7 @@
 
             $('[data-rel=tooltip]').tooltip();
 
-            $(".select2").css('width', '150px').select2({
-                    allowClear: true
-                })
-                .on('change', function() {
-                    $(this).closest('form').validate().element($(this));
-                });
+            
 
 
             var $validation = false;

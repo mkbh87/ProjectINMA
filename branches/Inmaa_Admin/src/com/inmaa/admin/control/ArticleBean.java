@@ -4,11 +4,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -20,13 +23,18 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.DualListModel;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.inmaa.admin.persistence.Article;
+import com.inmaa.admin.persistence.Event;
+import com.inmaa.admin.persistence.Project;
 import com.inmaa.admin.service.IArticleService;
 import com.inmaa.admin.service.IArticleServiceImpl;
+import com.inmaa.admin.service.IEventService;
+import com.inmaa.admin.service.IProjectService;
 
 @Component("articleBean")
 @ViewScoped
@@ -38,21 +46,35 @@ public class ArticleBean implements Serializable{
 
 	@Autowired
 	IArticleService articleService;
+
+
+	@Autowired
+	IEventService eventService;	
+
+	@Autowired
+	IProjectService projectService;
+
 	private Article currentArticle ;
 	private transient DataModel<Article> es;
 	private int id;
 	private List<Article> articleList;
- 	private UploadedFile uploadedFile;
+	private UploadedFile uploadedFile;
 	private String fileName;
+
+	private DualListModel<Project> listePro;
+	List<Project> prosSource = new ArrayList<Project>();
+	List<Project> prosTarget = new ArrayList<Project>();
+
+	private DualListModel<Event> listeEv;
+	List<Event> evesSource = new ArrayList<Event>();
+	List<Event> evesTarget = new ArrayList<Event>();
+
 
 	@PostConstruct
 	public void init() {
 		articleList = articleService.lister();
 		es = new ListDataModel<Article>();
 		es.setWrappedData( articleService.lister());
-//		source = getmemberList();
-//		memberModel = new DualListModel<Member>(source, target);
-		//vider();
 	}
 
 	public Article getcurrentArticle() {
@@ -90,7 +112,14 @@ public class ArticleBean implements Serializable{
 			bodymsg = submitLogoFile();
 			int seqno = articleService.maxSeqno();
 			currentArticle.setSeqNo(seqno + 10);
+
+			Set<Project> tempP = new HashSet<Project>(listePro.getTarget());
+			currentArticle.setProjects(tempP);
+
+			Set<Event> tempE = new HashSet<Event>(listeEv.getTarget());
+			currentArticle.setEvents(tempE);
 			articleService.enregistrer(currentArticle);
+
 			es.setWrappedData( articleService.lister());
 		} catch(Exception e) {
 			//Error during hibernate query
@@ -127,19 +156,26 @@ public class ArticleBean implements Serializable{
 
 			if(uploadedFile != null)
 				submitLogoFile();
-				articleService.mettre_a_jour(currentArticle);
-				es.setWrappedData( articleService.lister());
+
+			Set<Project> temp = new HashSet<Project>(listePro.getTarget());
+			currentArticle.setProjects(temp);
+			
+			Set<Event> tempE = new HashSet<Event>(listeEv.getTarget());
+			currentArticle.setEvents(tempE);
+
+			articleService.mettre_a_jour(currentArticle);
+			es.setWrappedData( articleService.lister());
 		} catch(Exception e) {
 			//Error during hibernate query
- 			bodymsg= e.getMessage().replace("'", "") + "      ";
- 			if(e.getCause() != null)
- 				bodymsg  += e.getCause().getMessage().replace("'", "");
+			bodymsg= e.getMessage().replace("'", "") + "      ";
+			if(e.getCause() != null)
+				bodymsg  += e.getCause().getMessage().replace("'", "");
 
 			System.out.print("Error: "+e.getMessage());
 		}
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification du projet",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
- 	}
+	}
 
 
 	public String showEdit(Article p){
@@ -147,18 +183,28 @@ public class ArticleBean implements Serializable{
 		setId(currentArticle.getArticleId());
 		return "edit-articles.xhtml?faces-redirect=true&amp;includeViewParams=true";
 	}
-	
+
 	public void readyforDelete(Article p){
 		currentArticle = p;
 		setId(currentArticle.getArticleId());
 	}
-	
+
 	public void vider(){
 		currentArticle = new Article();
- 		uploadedFile = null;
+		uploadedFile = null;
 		fileName= null;
+		
+		prosTarget = new ArrayList<Project>();
+		prosSource = projectService.lister();
+		listePro  = new DualListModel<Project>(prosSource, prosTarget);
+		
+		evesTarget = new ArrayList<Event>();
+		evesSource = eventService.lister();
+		listeEv  = new DualListModel<Event>(evesSource, evesTarget);
+
+
 	}
-	
+
 	public Article getarticleById(int p_id)
 	{
 		Iterator<Article> itr = es.iterator();
@@ -180,7 +226,7 @@ public class ArticleBean implements Serializable{
 	public int getId() {
 		return id;
 	}
-	
+
 	public List<Article> getArticleList() {
 		return articleList;
 	}
@@ -232,10 +278,10 @@ public class ArticleBean implements Serializable{
 		}
 		else
 			msg="il y a pas d image, ";
-		
+
 		return msg;
 	}
-	
+
 	public UploadedFile getUploadedFile() {
 		return uploadedFile;
 	}
@@ -269,4 +315,73 @@ public class ArticleBean implements Serializable{
 		return null;
 	}
 
+	public void initializeLazyJoins()
+	{
+		articleService.initializeLazyJoins(currentArticle);
+		
+		prosTarget = new ArrayList<Project>();
+		prosTarget = new ArrayList<Project>(currentArticle.getProjects());	
+		prosSource = setprosSource(prosTarget);
+		listePro  = new DualListModel<Project>(prosSource, prosTarget);
+
+		evesTarget = new ArrayList<Event>();
+		evesTarget = new ArrayList<Event>(currentArticle.getEvents());	
+		evesSource = setevesSource(evesTarget);
+		listeEv  = new DualListModel<Event>(evesSource, evesTarget);
+
+	}
+
+	public DualListModel<Project> getListePro() {
+		return listePro;
+	}
+
+	public List<Project> setprosSource(List<Project> target) {
+		List<Project> listSource = projectService.lister();
+		listSource = subtract(listSource, target );
+		return listSource;
+	}
+	
+	public void setListePro(DualListModel<Project> listePro) {
+		this.listePro = listePro;
+	}
+	
+	public DualListModel<Event> getListeEv() {
+		return listeEv;
+	}
+	
+	public List<Event> setevesSource(List<Event> target) {
+		List<Event> listSource = eventService.lister();
+		listSource = subtract(listSource, target );
+		return listSource;
+	}
+
+
+	public void setListeEv(DualListModel<Event> listeEv) {
+		this.listeEv = listeEv;
+	}
+
+	public<T> List<T> subtract(List<T> list1, List<T> list2) {
+		boolean found = false;
+		List<T> result = new ArrayList<T>();
+
+		for (T t1 : list1) {
+			for (T t2 : list2) {
+				if (t1 instanceof Project) {
+					if( ((Project) t1).getProjectId().equals(((Project) t2).getProjectId()))  {
+						found = true;
+						break;
+					}
+				}else if (t1 instanceof Event) {
+					if( ((Event) t1).getEventId().equals(((Event) t2).getEventId()))  {
+						found = true;
+						break;
+					}
+				}
+			}
+			if(!found)
+				result.add(t1);
+			found = false;
+		}
+		return result;
+	}
 }
