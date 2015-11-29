@@ -407,6 +407,17 @@
 																		language="ar" checkDirtyInterval="0" /> </span>
 															</h:panelGroup>
 														</h:panelGroup>
+														
+														<h:panelGroup layout="block" class="control-group success">
+															<p:outputLabel styleClass="control-label"
+																 value="Est une association ?  " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span12 input-icon input-icon-right">
+																   <p:selectBooleanCheckbox value="#{partnerBean.currentPartner.partnerType}" />  
+ 																</span><span class="help-inline"> Oui si association, Non si c'est une organisation publique </span>
+															</h:panelGroup>
+														</h:panelGroup>
 
 														<h:panelGroup layout="block" class="control-group success">
 															<p:outputLabel styleClass="control-label" for="intitule"
