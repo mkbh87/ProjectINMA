@@ -49,8 +49,7 @@ public class EventBean  implements Serializable {
 	IProjectService projectService;
 
 	private Event currentEvent ;
-	private List<Event> eventList;
-	private transient DataModel<Event> events;
+ 	private transient DataModel<Event> events;
 
 	List<Member> target = new ArrayList<Member>();
 	List<Member> source = new ArrayList<Member>();
@@ -66,8 +65,7 @@ public class EventBean  implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		eventList = eventService.lister();
-		events = new ListDataModel<Event>();
+ 		events = new ListDataModel<Event>();
 		events.setWrappedData( eventService.lister());
 	}
 
@@ -187,7 +185,7 @@ public class EventBean  implements Serializable {
 	}
 
 	private Event geteventtById(int e_id) {
-		Iterator<Event> itr =eventList.iterator();
+		Iterator<Event> itr =events.iterator();
 		while(itr.hasNext()) {
 			currentEvent = itr.next();
 			if(currentEvent.getEventId() == e_id)
@@ -213,16 +211,6 @@ public class EventBean  implements Serializable {
 	//		return "form-events.xhtml?faces-redirect=true&includeViewParams=true";
 	//
 	//	}
-
-
-	public List<Event> getEventList() {
-		eventList = eventService.lister();
-		return eventList;
-	}
-
-	public void setEventList(List<Event> events) {
-		this.eventList = events;
-	}
 
 	public void setMemberModel(DualListModel<Member> memberModel) {
 		this.memberModel = memberModel;
