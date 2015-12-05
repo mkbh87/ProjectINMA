@@ -40,7 +40,6 @@
 	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
 	<h:outputStylesheet library="css" name="ace-skins.min.css" />
 	<h:outputStylesheet library="css" name="CostumStyle.css" />
-
 </h:head>
 
 <h:body>
@@ -294,7 +293,7 @@
 					<li><i class="icon-home home-icon"></i> <a href="#">Home</a> <span
 						class="divider"> <i class="icon-angle-right arrow-icon"></i>
 					</span></li>
-					<li><a href="#">Projet</a> <span class="divider"> <i
+					<li><a href="#">Projets</a> <span class="divider"> <i
 							class="icon-angle-right arrow-icon"></i> </span>
 					</li>
 					<li class="active">Ajouter un projet</li>
@@ -302,12 +301,6 @@
 				<!--.breadcrumb-->
 
 				<h:panelGroup layout="block" styleClass="nav-search" id="nav-search">
-					<h:form class="form-search"  prependId="false" acceptcharset="UTF-8">
-						<span class="input-icon"> <input type="text"
-							placeholder="Search ..." class="input-small nav-search-input"
-							id="nav-search-input" autocomplete="off" /> <i
-							class="icon-search nav-search-icon"></i> </span>
-					</h:form>
 				</h:panelGroup>
 				<!--#nav-search-->
 			</h:panelGroup>
@@ -367,7 +360,7 @@
 																value="Nom de Projet " />
 
 															<h:panelGroup layout="block" styleClass="controls">
-																<span class="span3 input-icon input-icon-right">
+																<span class="span8 input-icon input-icon-right">
 																	<h:inputText styleClass="span12" id="intitule"
 																		value="#{projectBean.currentProject.projectName}" />
 																	<i class="icon-warning-sign"></i> </span>
@@ -388,22 +381,15 @@
 															</h:panelGroup>
 														</h:panelGroup>
 
-
 														<h:panelGroup layout="block" class="control-group success">
 															<p:outputLabel styleClass="control-label"
 																value="Description " />
 
 															<h:panelGroup layout="block" class="controls">
 																<span class="span8 input-icon input-icon-right">
-																
 																<p:growl id="growl" showDetail="true" />  
-  
 																<pe:ckEditor id="editor" value="#{projectBean.currentProject.projectDesc}" 
-																language="ar" width="800" checkDirtyInterval="0"  />  
-  
-              
-																
-																
+																language="ar" width="800" checkDirtyInterval="0"  />
 																</span>
 															</h:panelGroup>
 														</h:panelGroup>
@@ -424,7 +410,7 @@
 
 														<h:panelGroup layout="block" class="control-group success">
 															<p:outputLabel styleClass="control-label" for="intitule"
-																value="Date de debut de projet : " />
+																value="Date de debut de projet " />
 
 															<h:panelGroup layout="block" class="controls">
 																<span class="span6 input-icon input-icon-right">
@@ -471,7 +457,7 @@
 
 															<h:panelGroup layout="block" styleClass="controls">
 																<span class="span3 input-icon input-icon-right">
-																	<h:inputText styleClass="span12" id="Telephone"
+																	<h:inputText styleClass="span3" id="Telephone"
 																		value="#{projectBean.currentProject.projectPhone}" />
 																		
 																	  </span>

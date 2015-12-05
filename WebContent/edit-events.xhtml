@@ -485,13 +485,18 @@
 														</h:panelGroup>
 
 														<hr />
-													<h:panelGroup layout="block"
-														class=" v-center">
-														<p:commandLink styleClass="v-center-btn btn  btn-info "
+		   											   <h:panelGroup layout="block"
+														class="row-fluid wizard-actions">
+
+														<p:commandButton value="Modifier"
+															styleClass="btn btn-success btn-next"
 															action="#{eventBean.edit()}">
-															<i class="icon-save"> Modifier</i>
-														</p:commandLink>
-													</h:panelGroup>	
+														</p:commandButton>
+														<p:dialog header="Modification du evenement" widgetVar="dlg2"
+															modal="true" height="100">
+															<h:outputText value="l evenement a été modifié avec succes" />
+														</p:dialog>
+													</h:panelGroup>
 												</h:panelGroup>
 												</h:form>
 
