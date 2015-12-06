@@ -54,6 +54,8 @@
 				<value>com.inmaa.admin.persistence.Media</value>
 				<value>com.inmaa.admin.persistence.Publication</value>
 				<value>com.inmaa.admin.persistence.Partner</value>
+				<value>com.inmaa.admin.persistence.SubEvent</value>
+				
 			</list>
 		</property>
 		<property name="hibernateProperties">

@@ -1,5 +1,5 @@
 package com.inmaa.admin.persistence;
-// Generated 28 nov. 2015 18:12:17 by Hibernate Tools 4.3.1.Final
+// Generated 6 déc. 2015 18:31:26 by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -35,6 +35,7 @@ public class Event implements java.io.Serializable {
 	private String eventLocation;
 	private String eventPresenter;
 	private Set<Project> projects = new HashSet<Project>(0);
+	private Set<SubEvent> subEvents = new HashSet<SubEvent>(0);
 	private Set<Article> articles = new HashSet<Article>(0);
 
 	public Event() {
@@ -52,7 +53,7 @@ public class Event implements java.io.Serializable {
 
 	public Event(Integer seqNo, String eventName, String eventDesc, Date eventStartDate, Date eventEndDate,
 			String eventLogo, String eventLocation, String eventPresenter, Set<Project> projects,
-			Set<Article> articles) {
+			Set<SubEvent> subEvents, Set<Article> articles) {
 		this.seqNo = seqNo;
 		this.eventName = eventName;
 		this.eventDesc = eventDesc;
@@ -62,6 +63,7 @@ public class Event implements java.io.Serializable {
 		this.eventLocation = eventLocation;
 		this.eventPresenter = eventPresenter;
 		this.projects = projects;
+		this.subEvents = subEvents;
 		this.articles = articles;
 	}
 
@@ -161,6 +163,15 @@ public class Event implements java.io.Serializable {
 
 	public void setProjects(Set<Project> projects) {
 		this.projects = projects;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "events")
+	public Set<SubEvent> getSubEvents() {
+		return this.subEvents;
+	}
+
+	public void setSubEvents(Set<SubEvent> subEvents) {
+		this.subEvents = subEvents;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "events")

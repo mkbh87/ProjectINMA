@@ -5,14 +5,14 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui" >
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
-	<title>Projets - inma Admin</title>
+	<title>évenements - inma Admin</title>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="" />
@@ -28,14 +28,13 @@
 
 	<h:outputStylesheet name="bootstrap.min.css" library="css" />
 	<h:outputStylesheet name="bootstrap-responsive.min.css" library="css" />
-	<h:outputStylesheet
-		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
-
-
+	<h:outputStylesheet name= "webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
+	
+	
 	               
 	
 	<!--ace styles-->
-
+	
 	<h:outputStylesheet library="css" name="ace.min.css" />
 	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
 	<h:outputStylesheet library="css" name="ace-skins.min.css" />
@@ -68,22 +67,18 @@
 							class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
 							<li><h:outputLink value="#">
 									<i class="icon-cog"></i> Settings
-							</h:outputLink>
-							</li>
+							</h:outputLink></li>
 
 							<li><h:outputLink value="#">
 									<i class="icon-user"></i> Profile
-							</h:outputLink>
-							</li>
+							</h:outputLink></li>
 
 							<li class="h:panelGroupider"></li>
 
 							<li><h:outputLink value="#">
 									<i class="icon-off"></i> Logout
-							</h:outputLink>
-							</li>
-						</ul>
-					</li>
+							</h:outputLink></li>
+						</ul></li>
 				</ul>
 				<!--/.ace-nav-->
 			</h:panelGroup>
@@ -93,53 +88,48 @@
 	</h:panelGroup>
 
 
-	<h:panelGroup layout="block"
-		styleClass="main-container container-fluid">
+	<h:panelGroup layout="block" 	styleClass="main-container container-fluid">
 		<h:outputLink class="menu-toggler" id="menu-toggler" value="#">
 			<span class="menu-text"></span>
 		</h:outputLink>
 
 		<h:panelGroup layout="block" styleClass="sidebar" id="sidebar">
-			<h:panelGroup layout="block" styleClass="sidebar-shortcuts"
-				id="sidebar-shortcuts">
-				<h:panelGroup layout="block" styleClass="sidebar-shortcuts-large"
-					id="sidebar-shortcuts-large">
-					<button class="btn btn-small btn-success">
-						<i class="icon-signal"></i>
-					</button>
+				<h:panelGroup layout="block" styleClass="sidebar-shortcuts" id="sidebar-shortcuts">
+					<h:panelGroup layout="block" styleClass="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+						<button class="btn btn-small btn-success">
+							<i class="icon-signal"></i>
+						</button>
 
-					<button class="btn btn-small btn-info">
-						<i class="icon-pencil"></i>
-					</button>
+						<button class="btn btn-small btn-info">
+							<i class="icon-pencil"></i>
+						</button>
 
-					<button class="btn btn-small btn-warning">
-						<i class="icon-group"></i>
-					</button>
+						<button class="btn btn-small btn-warning">
+							<i class="icon-group"></i>
+						</button>
 
-					<button class="btn btn-small btn-danger">
-						<i class="icon-cogs"></i>
-					</button>
+						<button class="btn btn-small btn-danger">
+							<i class="icon-cogs"></i>
+						</button>
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+						<span class="btn btn-success"></span>
+
+						<span class="btn btn-info"></span>
+
+						<span class="btn btn-warning"></span>
+
+						<span class="btn btn-danger"></span>
+					</h:panelGroup>
 				</h:panelGroup>
-
-				<h:panelGroup layout="block" class="sidebar-shortcuts-mini"
-					id="sidebar-shortcuts-mini">
-					<span class="btn btn-success"></span>
-
-					<span class="btn btn-info"></span>
-
-					<span class="btn btn-warning"></span>
-
-					<span class="btn btn-danger"></span>
-				</h:panelGroup>
-			</h:panelGroup>
 
 			<!--#sidebar-shortcuts-->
 			<ul class="nav nav-list">
 				<li><h:outputLink value="welcome.xhtml">
 						<i class="icon-dashboard"></i>
 						<span class="menu-text"> Dashboard </span>
-					</h:outputLink>
-				</li>
+					</h:outputLink></li>
 
 
 				<li><h:outputLink value="#"
@@ -152,43 +142,39 @@
 					<ul class="submenu">
 						<li><h:outputLink value="table-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les projets
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="form-projects.xhtml">
-								<i class="icon-double-angle-right"></i> Nouveau Projet
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+								<i class="icon-double-angle-right"></i> Nouveau projet
+						</h:outputLink></li>
+					</ul></li>
 
-				<li><h:outputLink value="#" class="dropdown-toggle">
+				<li class="active open"><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-desktop"></i>
-						<span class="menu-text"> Evenements </span>
+						<span class="menu-text"> Évenements </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
 
 					<ul class="submenu">
 						<li><h:outputLink value="table-events.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les evenements
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="form-events.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel evenement
 						</h:outputLink></li>
 						
-						<li><h:outputLink value="table-subevents.xhtml">
+						<li class="active"><h:outputLink value="table-subevents.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les sous evenements
 						</h:outputLink></li>
 
 						<li><h:outputLink value="form-subevents.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel sous evenement
 						</h:outputLink></li>
-					</ul>
-				</li>
+					</ul></li>
 
-				<li class="active open"><h:outputLink value="#" class="dropdown-toggle">
+
+				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-desktop"></i>
 						<span class="menu-text"> Membres </span>
 						<b class="arrow icon-angle-down"></b>
@@ -200,7 +186,7 @@
 						</h:outputLink>
 						</li>
 
-						<li class="active"><h:outputLink value="form-members.xhtml">
+						<li><h:outputLink value="form-members.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau membre
 						</h:outputLink>
 						</li>
@@ -252,14 +238,12 @@
 							class="badge badge-transparent tooltip-error"
 							title="2&nbsp;Important&nbsp;Events"> <i
 								class="icon-warning-sign red bigger-130"></i> </span> </span>
-					</h:outputLink>
-				</li>
+					</h:outputLink></li>
 
 				<li><h:outputLink value="gallery.xhtml">
 						<i class="icon-picture"></i>
 						<span class="menu-text"> Galerie </span>
-					</h:outputLink>
-				</li>
+					</h:outputLink></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-tag"></i>
@@ -271,29 +255,25 @@
 					<ul class="submenu">
 						<li><h:outputLink value="profile.xhtml">
 								<i class="icon-double-angle-right"></i> User Profile
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="pricing.html">
 								<i class="icon-double-angle-right"></i> Pricing Tables
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="invoice.html">
 								<i class="icon-double-angle-right"></i> Invoice
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="login.html">
 								<i class="icon-double-angle-right"></i> Login &amp; Register
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
-<li><h:outputLink value="config.xhtml">
+						</h:outputLink></li>
+					</ul></li>
+					<li><h:outputLink value="config.xhtml">
 						<i class="icon-cogs"></i>
 						<span class="menu-text"> Parametrage </span>
 					</h:outputLink></li>
+
 			</ul>
 
 			<h:panelGroup layout="block" styleClass="sidebar-collapse"
@@ -309,34 +289,27 @@
 					<li><i class="icon-home home-icon"></i> <a href="#">Home</a> <span
 						class="divider"> <i class="icon-angle-right arrow-icon"></i>
 					</span></li>
-					<li><a href="#">Membres</a> <span class="divider"> <i
+					<li><a href="#">sous événements</a> <span class="divider"> <i
 							class="icon-angle-right arrow-icon"></i> </span>
 					</li>
-					<li class="active">Tables des membres</li>
+					<li class="active">Tables des sous événements</li>
 				</ul>
 				<!--.breadcrumb-->
 
 				<h:panelGroup layout="block" styleClass="nav-search" id="nav-search">
-					<!-- 					<form class="form-search" />
-					<span class="input-icon"> <input type="text"
-						placeholder="Search ..." class="input-small nav-search-input"
-						id="nav-search-input" autocomplete="off" /> <i
-						class="icon-search nav-search-icon"></i> </span>
-					</h:form>
- -->
 				</h:panelGroup>
 				<!--#nav-search-->
 			</h:panelGroup>
 
 			<h:panelGroup layout="block" styleClass="page-content">
-			<h:panelGroup layout="block"
+				<h:panelGroup layout="block"
 					styleClass="page-header position-relative">
 					<h1>
-						Tous les membres <small> <i
-							class="icon-double-angle-right"></i> Membres </small>
+						Tous les sous événements <small> <i
+							class="icon-double-angle-right"></i> Sous événements </small>
 					</h1>
 				</h:panelGroup>
-			
+				<!--/.page-header-->
 			
 
 				<h:panelGroup layout="block" styleClass="row-fluid">
@@ -344,88 +317,78 @@
 						<!--PAGE CONTENT BEGINS-->
 
 						<h:panelGroup layout="block" styleClass="row-fluid">
-							<h:panelGroup layout="block" styleClass="table-header">table des membres</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="table-header">table des sous évenements</h:panelGroup>
 
 							<h:form id="form1">
 								<p:dataTable
 									styleClass="table table-striped table-bordered table-hover"
-									var="member" value="#{memberBean.members}" paginator="true" rows="20"
+									var="et" value="#{subEventBean.subEvents}" paginator="true" rows="20"
 									editable="true" id="sample-table-2" paginatorPosition="bottom"
 									resizableColumns="true">
 
-									<p:column styleClass="center" sortBy="#{member.memberName}">
+									<p:column styleClass="center" sortBy="#{et.subEventName}">
 										<f:facet name="header">
-											<h:outputText value="Prénom" />
+											<h:outputText value="Intitulé" />
 										</f:facet>
-										<h:outputText value="#{member.memberName}" />
+										<h:outputText value="#{et.subEventName}" />
 									</p:column>
-									
-									<p:column styleClass="center" sortBy="#{member.memberName1}">
-										<f:facet name="header">
-											<h:outputText value="Nom" />
-										</f:facet>
-										<h:outputText value="#{member.memberName1}" />
-									</p:column>
-									
-									<p:column styleClass="center" sortBy="#{member.memberIsOrg}">
-										<f:facet name="header" styleClass="hidden-phone">
-											<h:outputText value="Comité de direction " />
-											<span class="lbl"></span>
-										</f:facet>
-										<span class="lbl"></span>
-										   <h:outputText value="Oui " rendered="#{member.memberIsOrg}"/>
-   											<h:outputText value="Non "  rendered="#{not member.memberIsOrg}"/>
-										
- 									</p:column>
 
-									<p:column styleClass="center">
+									<p:column styleClass="center" sortBy="#{et.subEventStartDate}">
 										<f:facet name="header" styleClass="hidden-phone">
 											<i class="icon-time bigger-110 hidden-phone"></i>
-											<h:outputText value="travail" />
+											<h:outputText value="Date de Debut" />
 											<span class="lbl"></span>
 										</f:facet>
 										<span class="lbl"></span>
-										<h:outputText value="#{member.memberTravail}" />
+										<h:outputText value="#{et.subEventStartDate}" />
 									</p:column>
 
 
- 									
+									<p:column styleClass="center" sortBy="#{et.subEventEndDate}">
+										<f:facet name="header" styleClass="hidden-phone">
+											<i class="icon-time bigger-110 hidden-phone"></i>
+											<h:outputText value="Date de Fin" />
+											<span class="lbl"></span>
+										</f:facet>
+										<span class="lbl"></span>
+										<h:outputText value="#{et.subEventEndDate}" />
+									</p:column>
+									
 									<p:column styleClass="center">
 										<f:facet name="header">
-											<h:outputText value="fonction a inma" />
+											<h:outputText value="Endroit" />
 										</f:facet>
-										<h:outputText value="#{member.memberStatus}" />
+										<h:outputText value="#{et.subEventLocation}" />
 									</p:column>
-
+																	
 									<p:column styleClass="center">
 										<f:facet name="header">
 											<h:outputText value="" />
 										</f:facet>
 										<p:commandLink styleClass="btn btn-mini btn-info"
-											action="#{memberBean.showEdit(member)}">
-											<f:param name="id" value="#{member.memberId}" /> Modifier 
+											action="#{subEventBean.showEdit(et)}">
+											<f:param name="id" value="#{et.subEventId}" /> Modifier 
 											<i class="icon-edit bigger-120"></i>
 										</p:commandLink>
 										&nbsp;
 										<p:commandLink styleClass="btn btn-mini btn-danger"
-											action="#{memberBean.readyforDelete(member)}" ajax="true"
+											action="#{subEventBean.readyforDelete(et)}" ajax="true"
 											update=":form1:sample-table-2:ll"
 											oncomplete="PF('CDialogWidget').show();" > Supprimer 
-											<i class="icon-trash bigger-120"></i>
-
+												<i class="icon-trash bigger-120"></i>
 										</p:commandLink>
 
 										<p:confirmDialog
-											message="Êtes-vous sûr de vouloir supprimer  #{member.memberName} "
+											message="Êtes-vous sûr de vouloir supprimer  #{et.subEventName} ?"
 											header="Confirmation de suppression" severity="alert" id="ll"
 											widgetVar="CDialogWidget">
 											<p:commandButton value="Oui" update=":form1:sample-table-2"
-												action="#{memberBean.delete()}"
-												oncomplete="PF('CDialogWidget').hide()" onerror="PF('CDialogWidget').hide()"/>
+												action="#{subEventBean.delete()}"
+												oncomplete="PF('CDialogWidget').hide()" />
 											<p:commandButton value="Non"
 												onclick="PF('CDialogWidget').hide();" type="button" />
 										</p:confirmDialog>
-										
+																		
 									</p:column>
 								</p:dataTable>
 							</h:form>
@@ -436,14 +399,10 @@
 				</h:panelGroup>
 			
 				<!--/.page-header-->
-
-
-
-
+			
 			</h:panelGroup>
 			<!--/.page-content-->
-
-		</h:panelGroup>
+ 		</h:panelGroup> 			
 		<!--/.main-content-->
 	</h:panelGroup>
 	<!--/.main-container-->
@@ -468,7 +427,7 @@
 			if("ontouchend" in document) document.write("<script src='resources/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		//]]>
 		</script>
-
+	
 	<script src="resources/js/bootstrap.min.js"></script>
 
 	<!--page specific plugin scripts-->
@@ -487,6 +446,7 @@
 	<script src="resources/js/ace-elements.min.js"></script>
 	<script src="resources/js/ace.min.js"></script>
 
+	<!--inline scripts related to this page-->
 </h:body>
 
 </html>
