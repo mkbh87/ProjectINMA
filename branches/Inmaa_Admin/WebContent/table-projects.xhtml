@@ -136,7 +136,7 @@
 				<li class="active open"><h:outputLink value="#"
 						class="dropdown-toggle">
 						<i class="icon-desktop"></i>
-						<span class="menu-text"> Projects </span>
+						<span class="menu-text"> Projets </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
 
@@ -328,24 +328,16 @@
 									
 									<p:column styleClass="center" sortBy="#{pro.projectName}">
 										<f:facet name="header">
-											<h:outputText value="Intitulé" />
+											<h:outputText value="Nom" />
 										</f:facet>
 										<h:outputText value="#{pro.projectName}" />
 									</p:column>
 
-									<p:column styleClass="center">
-										<f:facet name="header" styleClass="hidden-phone">
-											<i class="icon-time bigger-110 hidden-phone"></i>
-											<h:outputText value="Logo Project" />
-											<span class="lbl"></span>
-										</f:facet>
-										<span class="lbl"></span>
-										<h:outputText value="#{pro.projectLogo}" />
-									</p:column>
+									
 
 									<p:column styleClass="center" sortBy="#{pro.projectStartDate}">
 										<f:facet name="header" styleClass="hidden-phone">
-											<i class="icon-time bigger-110 hidden-phone"></i>
+											
 											<h:outputText value="Date de Debut" />
 											<span class="lbl"></span>
 										</f:facet>
@@ -355,12 +347,22 @@
 
 									<p:column styleClass="center" >
 										<f:facet name="header" styleClass="hidden-phone">
-											<i class="icon-time bigger-110 hidden-phone"></i>
+											
 											<h:outputText value="Courte description" />
 										</f:facet>
 										<h:outputText styleClass="hidden-phone" value="#{pro.projectDef}" />
 									</p:column>
-
+									
+									<p:column styleClass="center">
+										<f:facet name="header" styleClass="hidden-phone">
+											
+											<h:outputText value="l'emplacement" />
+											<span class="lbl"></span>
+										</f:facet>
+										<span class="lbl"></span>
+										<h:outputText value="#{pro.projectLocation}" />
+									</p:column>
+									
 									<p:column styleClass="center">
 										<f:facet name="header">
 											<h:outputText value="" />
