@@ -5,7 +5,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions" >
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -32,8 +33,8 @@
 		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
 
 
-	               
-	
+
+
 	<!--ace styles-->
 
 	<h:outputStylesheet library="css" name="ace.min.css" />
@@ -139,8 +140,7 @@
 					</h:outputLink></li>
 
 
-				<li><h:outputLink value="#"
-						class="dropdown-toggle">
+				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-desktop"></i>
 						<span class="menu-text"> Projets </span>
 						<b class="arrow icon-angle-down"></b>
@@ -170,7 +170,7 @@
 						<li><h:outputLink value="form-events.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel evenement
 						</h:outputLink></li>
-						
+
 						<li><h:outputLink value="table-subevents.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les sous evenements
 						</h:outputLink></li>
@@ -318,13 +318,77 @@
 				<h:panelGroup layout="block" class="row-fluid">
 					<h:panelGroup layout="block" class="span12">
 						<!--PAGE CONTENT BEGINS-->
-
 						<h:panelGroup layout="block" class="row-fluid">
 							<h:panelGroup layout="block" class="span12">
 								<h:panelGroup layout="block" class="widget-box">
 									<h:panelGroup layout="block"
 										class="widget-header widget-header-blue widget-header-flat">
-										<h4 class="lighter">les parametres</h4>
+										<h4 class="lighter">Les definitions</h4>
+
+
+									</h:panelGroup>
+									<h:panelGroup layout="block" class="widget-body widget-main">
+										<h:panelGroup layout="block" class="row-fluid">
+
+											<h:form class="form-horizontal" id="form" prependId="false" enctype="multipart/form-data"
+														acceptcharset="UTF-8">
+												<h:panelGroup layout="block" class="control-group success">
+													<p:outputLabel styleClass="control-label" for="def"
+														value="Presenration inma" />
+
+													<h:panelGroup layout="block" class="controls">
+														<span class="span8 input-icon input-icon-right"> 
+														<pe:ckEditor id="def" value="#{configBean.currentConfig.configIntroInma}" language="ar" width="800" checkDirtyInterval="0" />   
+																
+														</span>
+													</h:panelGroup>
+												</h:panelGroup>
+												
+												<h:panelGroup layout="block" class="control-group success">
+													<p:outputLabel styleClass="control-label" for="defmam"
+														value="Presenration Maamoura  " />
+
+													<h:panelGroup layout="block" class="controls">
+														<span class="span8 input-icon input-icon-right">  
+														<pe:ckEditor id="defmam" value="#{configBean.currentConfig.configIntroMaamoura}" language="ar" width="800" checkDirtyInterval="0" />   
+														
+														</span>
+													</h:panelGroup>
+												</h:panelGroup>
+												
+												<h:panelGroup layout="block" class="control-group success">
+													<p:outputLabel styleClass="control-label" for="goal"
+														value="objectif de inma  " />
+
+													<h:panelGroup layout="block" class="controls">
+														<span class="span8 input-icon input-icon-right">  
+														<pe:ckEditor id="goal" value="#{configBean.currentConfig.configInmaGoal}" language="ar" width="800" checkDirtyInterval="0" />   
+														</span>
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block"
+													class="row-fluid wizard-actions">
+													<p:commandButton value="Modifier"
+														styleClass="btn btn-success btn-next"
+														action="#{configBean.edit()}">
+													</p:commandButton>
+
+
+												</h:panelGroup>
+											</h:form>
+										</h:panelGroup>
+									</h:panelGroup>
+								</h:panelGroup>
+							</h:panelGroup>
+						</h:panelGroup>
+										<h:panelGroup layout="block" styleClass="spacer-40"></h:panelGroup>
+						<h:panelGroup layout="block" class="row-fluid">
+							<h:panelGroup layout="block" class="span12">
+								<h:panelGroup layout="block" class="widget-box">
+									<h:panelGroup layout="block"
+										class="widget-header widget-header-blue widget-header-flat">
+										<h4 class="lighter">les parametres (Don't Change !)</h4>
 
 
 									</h:panelGroup>
@@ -353,7 +417,7 @@
 														styleClass="btn btn-success btn-next"
 														action="#{configBean.edit()}">
 													</p:commandButton>
-													 
+
 
 												</h:panelGroup>
 											</h:form>
@@ -413,7 +477,7 @@
 	<script src="resources/js/additional-methods.min.js"></script>
 	<script src="resources/js/bootbox.min.js"></script>
 	<script src="resources/js/jquery.maskedinput.min.js"></script>
-	
+
 
 	<script src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
 	<script src="resources/js/jquery.ui.touch-punch.min.js"></script>
