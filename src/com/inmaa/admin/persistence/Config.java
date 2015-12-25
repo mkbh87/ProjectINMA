@@ -1,5 +1,5 @@
 package com.inmaa.admin.persistence;
-// Generated 6 déc. 2015 18:31:26 by Hibernate Tools 4.3.1.Final
+// Generated 25 déc. 2015 16:35:57 by Hibernate Tools 4.3.1.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +18,9 @@ public class Config implements java.io.Serializable {
 	private Integer configId;
 	private String configImgpath;
 	private String configEmailList;
+	private String configIntroInma;
+	private String configIntroMaamoura;
+	private String configInmaGoal;
 
 	public Config() {
 	}
@@ -26,9 +29,13 @@ public class Config implements java.io.Serializable {
 		this.configImgpath = configImgpath;
 	}
 
-	public Config(String configImgpath, String configEmailList) {
+	public Config(String configImgpath, String configEmailList, String configIntroInma, String configIntroMaamoura,
+			String configInmaGoal) {
 		this.configImgpath = configImgpath;
 		this.configEmailList = configEmailList;
+		this.configIntroInma = configIntroInma;
+		this.configIntroMaamoura = configIntroMaamoura;
+		this.configInmaGoal = configInmaGoal;
 	}
 
 	@Id
@@ -59,6 +66,33 @@ public class Config implements java.io.Serializable {
 
 	public void setConfigEmailList(String configEmailList) {
 		this.configEmailList = configEmailList;
+	}
+
+	@Column(name = "config_IntroInma", length = 65535)
+	public String getConfigIntroInma() {
+		return this.configIntroInma;
+	}
+
+	public void setConfigIntroInma(String configIntroInma) {
+		this.configIntroInma = configIntroInma;
+	}
+
+	@Column(name = "config_IntroMaamoura", length = 65535)
+	public String getConfigIntroMaamoura() {
+		return this.configIntroMaamoura;
+	}
+
+	public void setConfigIntroMaamoura(String configIntroMaamoura) {
+		this.configIntroMaamoura = configIntroMaamoura;
+	}
+
+	@Column(name = "config_Inma_Goal", length = 65535)
+	public String getConfigInmaGoal() {
+		return this.configInmaGoal;
+	}
+
+	public void setConfigInmaGoal(String configInmaGoal) {
+		this.configInmaGoal = configInmaGoal;
 	}
 
 }
