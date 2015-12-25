@@ -2,8 +2,13 @@ package com.inmaa.admin.control;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.nio.file.DirectoryNotEmptyException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -49,9 +54,9 @@ public class ProjectBean implements Serializable{
 	private DualListModel<Member> memberModel;
 	private UploadedFile uploadedFile;
 	private String fileName;
-	
-    
-    
+
+
+
 	@PostConstruct
 	public void init() {
 		projectList = projectService.lister();
@@ -118,7 +123,7 @@ public class ProjectBean implements Serializable{
 			RequestContext.getCurrentInstance().showMessageInDialog(message);
 			return "";
 		}
-		
+
 		vider();
 		return "table-projects.xhtml?faces-redirect=true";
 	}
@@ -139,20 +144,26 @@ public class ProjectBean implements Serializable{
 		try {
 
 			if(uploadedFile != null)
+			{
+				if(currentProject.getProjectLogo() != null)
+					deletePicture(currentProject.getProjectLogo());
 				submitLogoFile();
-				projectService.mettre_a_jour(currentProject);
-				es.setWrappedData( projectService.lister());
+			}
+			
+			
+			projectService.mettre_a_jour(currentProject);
+			es.setWrappedData( projectService.lister());
 		} catch(Exception e) {
 			//Error during hibernate query
- 			bodymsg= e.getMessage().replace("'", "") + "      ";
- 			if(e.getCause() != null)
- 				bodymsg  += e.getCause().getMessage().replace("'", "");
+			bodymsg= e.getMessage().replace("'", "") + "      ";
+			if(e.getCause() != null)
+				bodymsg  += e.getCause().getMessage().replace("'", "");
 
 			System.out.print("Error: "+e.getMessage());
 		}
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification du projet",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
- 	}
+	}
 
 
 	public String showEdit(Project p){
@@ -160,19 +171,19 @@ public class ProjectBean implements Serializable{
 		setId(currentProject.getProjectId());
 		return "edit-projects.xhtml?faces-redirect=true&amp;includeViewParams=true";
 	}
-	
+
 	public void readyforDelete(Project p){
 		currentProject = p;
 		setId(currentProject.getProjectId());
 	}
-	
+
 	public void vider(){
 		currentProject = new Project();
- 		uploadedFile = null;
+		uploadedFile = null;
 		memberModel = null;
 		fileName= null;
 	}
-	
+
 	public Project getprojectById(int p_id)
 	{
 		Iterator<Project> itr = es.iterator();
@@ -194,7 +205,7 @@ public class ProjectBean implements Serializable{
 	public int getId() {
 		return id;
 	}
-	
+
 	public List<Project> getProjectList() {
 		return projectList;
 	}
@@ -253,10 +264,10 @@ public class ProjectBean implements Serializable{
 		}
 		else
 			msg="il y a pas d image, ";
-		
+
 		return msg;
 	}
-	
+
 	public UploadedFile getUploadedFile() {
 		return uploadedFile;
 	}
@@ -292,8 +303,23 @@ public class ProjectBean implements Serializable{
 	public List<Member> getMembers() {
 		return members;
 	}
-	
+
 	public void setMembers(List<Member> members) {
 		this.members = members;
+	}
+
+	private void deletePicture(String pictureName) {
+		File file = new File(ConfigBean.getImgFilePath() +"/"+ pictureName);
+		Path path = file.toPath();
+		try {
+			Files.delete(path);
+		} catch (NoSuchFileException x) {
+			System.err.format("%s: no such" + " file or directory%n", path);
+		} catch (DirectoryNotEmptyException x) {
+			System.err.format("%s not empty%n", path);
+		} catch (IOException x) {
+			// File permission problems are caught here.
+			System.err.println(x);
+		}
 	}
 }
