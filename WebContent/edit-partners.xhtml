@@ -238,6 +238,25 @@
 					</ul>
 				</li>
 
+				<li ><h:outputLink value="#" class="dropdown-toggle">
+						<i class="icon-desktop"></i>
+						<span class="menu-text"> Publications </span>
+						<b class="arrow icon-angle-down"></b>
+					</h:outputLink>
+
+					<ul class="submenu">
+						<li><h:outputLink value="table-publications.xhtml">
+								<i class="icon-double-angle-right"></i> Tous les Publications 
+						</h:outputLink>
+						</li>
+
+						<li  ><h:outputLink value="form-publications.xhtml">
+								<i class="icon-double-angle-right"></i> Nouvelle Publication 
+						</h:outputLink>
+						</li>
+					</ul>
+				</li>
+				
 				<li><h:outputLink value="calendar.xhtml">
 						<i class="icon-calendar"></i>
 
@@ -343,14 +362,12 @@
 													class="row-fluid hide" data-target="#step-container">
 													<ul class="wizard-steps">
 														<li data-target="#step1" class="active"><span
-															class="step">1</span> <span class="title">Ajout</span>
-														</li>
+															class="step">1</span> <span class="title">Ajout</span></li>
 
 
 
 														<li data-target="#step4"><span class="step">2</span>
-															<span class="title">Sauvegarde</span>
-														</li>
+															<span class="title">Sauvegarde</span></li>
 													</ul>
 												</h:panelGroup>
 												<hr />
@@ -370,7 +387,8 @@
 																<span class="span8 input-icon input-icon-right">
 																	<h:inputText styleClass="span12" id="intitule"
 																		value="#{partnerBean.currentPartner.partnerName}" />
-																	<i class="icon-warning-sign"></i> </span>
+																	<i class="icon-warning-sign"></i>
+																</span>
 																<span class="help-inline"> Champs obligatoire </span>
 															</h:panelGroup>
 														</h:panelGroup>
@@ -401,7 +419,8 @@
 																				mode="popup" />
 
 																		</h:panelGroup>
-																	</h:panelGroup> </span>
+																	</h:panelGroup>
+																</span>
 															</h:panelGroup>
 														</h:panelGroup>
 
@@ -413,18 +432,28 @@
 																<span class="span12 input-icon input-icon-right">
 																	<h:inputTextarea id="editor" styleClass="span8"
 																		value="#{partnerBean.currentPartner.partnerDesc}"
-																		language="ar" checkDirtyInterval="0" /> </span>
+																		language="ar" checkDirtyInterval="0" />
+																</span>
 															</h:panelGroup>
 														</h:panelGroup>
 
 														<h:panelGroup layout="block" class="control-group success">
 															<p:outputLabel styleClass="control-label"
-																 value="Est une association ?  " />
+																value="Type de partenaire" />
 
 															<h:panelGroup layout="block" class="controls">
 																<span class="span12 input-icon input-icon-right">
-																   <p:selectBooleanCheckbox value="#{partnerBean.currentPartner.partnerType}" />  
- 																</span><span class="help-inline"> Oui si association, Non si c'est une organisation publique </span>
+																	<h:selectOneMenu id="city"
+																		value="#{partnerBean.currentPartner.partnerType}"
+																		effect="fold" editable="true">
+																		<f:selectItem itemLabel="Organisation publique"
+																			itemValue="PUB" />
+																		<f:selectItem itemLabel="Association" itemValue="ORG" />
+																		<f:selectItem itemLabel="Organisation international"
+																			itemValue="INT" />
+																		<f:selectItem itemLabel="Autre" itemValue="OTH" />
+																	</h:selectOneMenu>
+																</span>
 															</h:panelGroup>
 														</h:panelGroup>
 
@@ -435,11 +464,12 @@
 															<h:panelGroup layout="block" class="controls">
 																<span class="span6 input-icon input-icon-right">
 
-																	<p:fileUpload label="Choisir image" 
+																	<p:fileUpload label="Choisir image"
 																		cancelLabel="Annuler" uploadLabel="Envoyer"
 																		fileUploadListener="#{partnerBean.handleFileUpload}"
 																		mode="advanced" sizeLimit="1000000" fileLimit="1"
-																		allowTypes="/(\.|\/)(gif|jpe?g|png)$/" /> </span>
+																		allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+																</span>
 															</h:panelGroup>
 														</h:panelGroup>
 
@@ -466,8 +496,7 @@
 											
  -->
 												<p:commandLink styleClass="btn btn-success btn-next"
-													action="#{partnerBean.ajouter()}">
-	Sauvegarder	<i class="icon-arrow-right icon-on-right"></i>
+													action="#{partnerBean.edit()}">	Sauvegarder	<i class="icon-arrow-right icon-on-right"></i>
 												</p:commandLink>
 											</h:form>
 
