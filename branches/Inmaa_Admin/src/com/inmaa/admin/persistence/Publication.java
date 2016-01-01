@@ -1,5 +1,5 @@
 package com.inmaa.admin.persistence;
-// Generated 25 déc. 2015 16:35:57 by Hibernate Tools 4.3.1.Final
+// Generated 1 janv. 2016 18:44:24 by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -18,32 +18,36 @@ import javax.persistence.UniqueConstraint;
 public class Publication implements java.io.Serializable {
 
 	private int publicationId;
+	private Integer seqNo;
 	private String publicationName;
 	private Date publicationDate;
 	private String publicationLink;
 	private String publicationUrl;
 	private String publicationPicture;
+	private String publicationDesc;
+	private String publicationType;
 
 	public Publication() {
 	}
 
-	public Publication(int publicationId, String publicationName, Date publicationDate, String publicationLink,
-			String publicationPicture) {
+	public Publication(int publicationId, String publicationName, Date publicationDate) {
 		this.publicationId = publicationId;
 		this.publicationName = publicationName;
 		this.publicationDate = publicationDate;
-		this.publicationLink = publicationLink;
-		this.publicationPicture = publicationPicture;
 	}
 
-	public Publication(int publicationId, String publicationName, Date publicationDate, String publicationLink,
-			String publicationUrl, String publicationPicture) {
+	public Publication(int publicationId, Integer seqNo, String publicationName, Date publicationDate,
+			String publicationLink, String publicationUrl, String publicationPicture, String publicationDesc,
+			String publicationType) {
 		this.publicationId = publicationId;
+		this.seqNo = seqNo;
 		this.publicationName = publicationName;
 		this.publicationDate = publicationDate;
 		this.publicationLink = publicationLink;
 		this.publicationUrl = publicationUrl;
 		this.publicationPicture = publicationPicture;
+		this.publicationDesc = publicationDesc;
+		this.publicationType = publicationType;
 	}
 
 	@Id
@@ -55,6 +59,15 @@ public class Publication implements java.io.Serializable {
 
 	public void setPublicationId(int publicationId) {
 		this.publicationId = publicationId;
+	}
+
+	@Column(name = "SeqNo")
+	public Integer getSeqNo() {
+		return this.seqNo;
+	}
+
+	public void setSeqNo(Integer seqNo) {
+		this.seqNo = seqNo;
 	}
 
 	@Column(name = "Publication_Name", unique = true, nullable = false, length = 45)
@@ -76,7 +89,7 @@ public class Publication implements java.io.Serializable {
 		this.publicationDate = publicationDate;
 	}
 
-	@Column(name = "Publication_Link", nullable = false, length = 225)
+	@Column(name = "Publication_Link", length = 225)
 	public String getPublicationLink() {
 		return this.publicationLink;
 	}
@@ -94,13 +107,31 @@ public class Publication implements java.io.Serializable {
 		this.publicationUrl = publicationUrl;
 	}
 
-	@Column(name = "Publication_Picture", nullable = false, length = 80)
+	@Column(name = "Publication_Picture", length = 80)
 	public String getPublicationPicture() {
 		return this.publicationPicture;
 	}
 
 	public void setPublicationPicture(String publicationPicture) {
 		this.publicationPicture = publicationPicture;
+	}
+
+	@Column(name = "Publication_Desc", length = 65535)
+	public String getPublicationDesc() {
+		return this.publicationDesc;
+	}
+
+	public void setPublicationDesc(String publicationDesc) {
+		this.publicationDesc = publicationDesc;
+	}
+
+	@Column(name = "Publication_Type", length = 4)
+	public String getPublicationType() {
+		return this.publicationType;
+	}
+
+	public void setPublicationType(String publicationType) {
+		this.publicationType = publicationType;
 	}
 
 }

@@ -235,6 +235,24 @@
 					</ul>
 				</li>
 
+				<li ><h:outputLink value="#" class="dropdown-toggle">
+						<i class="icon-desktop"></i>
+						<span class="menu-text"> Publications </span>
+						<b class="arrow icon-angle-down"></b>
+					</h:outputLink>
+
+					<ul class="submenu">
+						<li><h:outputLink value="table-publications.xhtml">
+								<i class="icon-double-angle-right"></i> Tous les Publications 
+						</h:outputLink>
+						</li>
+
+						<li  ><h:outputLink value="form-publications.xhtml">
+								<i class="icon-double-angle-right"></i> Nouvelle Publication 
+						</h:outputLink>
+						</li>
+					</ul>
+				</li>
 				<li><h:outputLink value="calendar.xhtml">
 						<i class="icon-calendar"></i>
 
@@ -414,15 +432,23 @@
 																		language="ar" checkDirtyInterval="0" /> </span>
 															</h:panelGroup>
 														</h:panelGroup>
-														
+
 														<h:panelGroup layout="block" class="control-group success">
 															<p:outputLabel styleClass="control-label"
-																 value="Est une association ?  " />
+																value="Type de partenaire" />
 
 															<h:panelGroup layout="block" class="controls">
 																<span class="span12 input-icon input-icon-right">
-																   <p:selectBooleanCheckbox value="#{partnerBean.currentPartner.partnerType}" />  
- 																</span><span class="help-inline"> Oui si association, Non si c'est une organisation publique </span>
+ 																	<h:selectOneMenu id="city"
+																		value="#{partnerBean.currentPartner.partnerType}" effect="fold"
+																		editable="true">
+ 																		<f:selectItem itemLabel="Organisation publique" itemValue="PUB" />
+ 																		<f:selectItem itemLabel="Association" itemValue="ORG" />
+ 																		<f:selectItem itemLabel="Organisation international" itemValue="INT" />
+ 																		<f:selectItem itemLabel="Autre" itemValue="OTH" />
+																	</h:selectOneMenu>
+
+																</span>
 															</h:panelGroup>
 														</h:panelGroup>
 

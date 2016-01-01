@@ -1,5 +1,5 @@
 package com.inmaa.admin.persistence;
-// Generated 25 déc. 2015 16:35:57 by Hibernate Tools 4.3.1.Final
+// Generated 1 janv. 2016 18:44:24 by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -26,7 +26,7 @@ public class Partner implements java.io.Serializable {
 	private Date partnerStartDate;
 	private String partnerDesc;
 	private String partnerLogo;
-	private Boolean partnerType;
+	private String partnerType;
 
 	public Partner() {
 	}
@@ -38,7 +38,7 @@ public class Partner implements java.io.Serializable {
 	}
 
 	public Partner(Integer seqNo, String partnerName, String partnerPlace, Date partnerStartDate, String partnerDesc,
-			String partnerLogo, Boolean partnerType) {
+			String partnerLogo, String partnerType) {
 		this.seqNo = seqNo;
 		this.partnerName = partnerName;
 		this.partnerPlace = partnerPlace;
@@ -115,12 +115,12 @@ public class Partner implements java.io.Serializable {
 		this.partnerLogo = partnerLogo;
 	}
 
-	@Column(name = "Partner_Type")
-	public Boolean getPartnerType() {
+	@Column(name = "Partner_Type", length = 4)
+	public String getPartnerType() {
 		return this.partnerType;
 	}
 
-	public void setPartnerType(Boolean partnerType) {
+	public void setPartnerType(String partnerType) {
 		this.partnerType = partnerType;
 	}
 

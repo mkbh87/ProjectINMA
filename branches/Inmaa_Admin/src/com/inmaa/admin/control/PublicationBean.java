@@ -19,7 +19,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
@@ -33,83 +32,79 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.inmaa.admin.persistence.Member;
-import com.inmaa.admin.persistence.Partner;
-import com.inmaa.admin.service.IPartnerService;
+import com.inmaa.admin.persistence.Publication;
+import com.inmaa.admin.service.IPublicationService;
 
-@Component("partnerBean")
+@Component("publicationBean")
 @ViewScoped
-public class PartnerBean implements Serializable{
+public class PublicationBean implements Serializable{
 	/**
 	 * 
 	 */
 	@Autowired
-	IPartnerService partnerService;
-	private Partner currentPartner ;
-	private transient DataModel<Partner> es;
+	IPublicationService publicationService;
+	private Publication currentPublication ;
+	private transient DataModel<Publication> es;
 	private int id;
-	private List<Partner> partnerList;
+	private List<Publication> publicationList;
 	List<Member> members = new ArrayList<Member>();
 	private DualListModel<Member> memberModel;
-	private UploadedFile uploadedFile;
+	private UploadedFile uploadedLogo;
+	private UploadedFile uploadedDoc;
+
 	private String fileName;
 
 	private static final long serialVersionUID = 1L;
 		
 	@PostConstruct
 	public void init() {
-		partnerList = partnerService.lister();
-		es = new ListDataModel<Partner>();
-		es.setWrappedData( partnerService.lister());
+		publicationList = publicationService.lister();
+		es = new ListDataModel<Publication>();
+		es.setWrappedData( publicationService.lister());
 		//		source = getmemberList();
 		//		memberModel = new DualListModel<Member>(source, target);
 		//vider();
 	}
 
-	private List<Member> getmemberList() {
-		List<Member> members = null;
-
-		members =  partnerService.listerMember();
-
-		return members;
+	public Publication getcurrentPublication() {
+		return currentPublication;
 	}
 
-	public Partner getcurrentPartner() {
-		return currentPartner;
+	public void setcurrentPublication(Publication p) {
+		this.currentPublication = p;
 	}
 
-	public void setcurrentPartner(Partner p) {
-		this.currentPartner = p;
-	}
-
-	public PartnerBean(){
-		this.currentPartner = new Partner();	
+	public PublicationBean(){
+		this.currentPublication = new Publication();	
 
 	}
 
-	public IPartnerService getPartnerService() {
-		return partnerService;
+	public IPublicationService getPublicationService() {
+		return publicationService;
 	}
 
-	public void setPartnerService(IPartnerService partnerService) {
-		this.partnerService = partnerService;
+	public void setPublicationService(IPublicationService publicationService) {
+		this.publicationService = publicationService;
 	}
 
-	public DataModel<Partner> getEs() {
+	public DataModel<Publication> getEs() {
 		return es;
 	}
 
-	public void setEs(DataModel<Partner> es) {
+	public void setEs(DataModel<Publication> es) {
 		this.es = es;
 	}
 
 	public String ajouter(){
 		String bodymsg = "";
 		try {
-			bodymsg = submitLogoFile();
-			int seqno = partnerService.maxSeqno();
-			currentPartner.setSeqNo(seqno + 10);
-			partnerService.enregistrer(currentPartner);
-			es.setWrappedData( partnerService.lister());
+			bodymsg = submitLogoFile(uploadedLogo,"pic");
+			bodymsg += submitLogoFile(uploadedDoc,"doc");
+
+			int seqno = publicationService.maxSeqno();
+			currentPublication.setSeqNo(seqno + 10);
+			publicationService.enregistrer(currentPublication);
+			es.setWrappedData( publicationService.lister());
 		} catch(Exception e) {
 			//Error during hibernate query
 			if(e.getCause() != null)
@@ -125,13 +120,13 @@ public class PartnerBean implements Serializable{
 			return "";
 		}
 		vider();
-		return "table-partners.xhtml?faces-redirect=true";
+		return "table-publications.xhtml?faces-redirect=true";
 	}
 
 	public void delete(){
 		try {
-			partnerService.supprimer(currentPartner);
-			es.setWrappedData( partnerService.lister());
+			publicationService.supprimer(currentPublication);
+			es.setWrappedData( publicationService.lister());
 		} catch(Exception e) {
 			//Error during hibernate query
 			e.printStackTrace();
@@ -143,16 +138,24 @@ public class PartnerBean implements Serializable{
 		String bodymsg="Projet modifié avec succès";
 		try {
 
-			if(uploadedFile != null)
+			if(uploadedLogo != null)
 			{
-				if(currentPartner.getPartnerLogo() != null)
-					deletePicture(currentPartner.getPartnerLogo());
-				submitLogoFile();
+				if(currentPublication.getPublicationPicture() != null)
+					deletePicture(currentPublication.getPublicationPicture());
+				submitLogoFile(uploadedLogo,"pic");
+ 
 			}
 			
+			if(uploadedDoc != null)
+			{
+				if(currentPublication.getPublicationPicture() != null)
+					deletePicture(currentPublication.getPublicationPicture());
+ 				submitLogoFile(uploadedDoc,"doc");
+
+			}
 			
-			partnerService.mettre_a_jour(currentPartner);
-			es.setWrappedData( partnerService.lister());
+			publicationService.mettre_a_jour(currentPublication);
+			es.setWrappedData( publicationService.lister());
 		} catch(Exception e) {
 			//Error during hibernate query
 			bodymsg= e.getMessage().replace("'", "") + "      ";
@@ -166,32 +169,33 @@ public class PartnerBean implements Serializable{
 	}
 
 
-	public String showEdit(Partner p){
-		currentPartner = p;
-		setId(currentPartner.getPartnerId());
-		return "edit-partners.xhtml?faces-redirect=true&amp;includeViewParams=true";
+	public String showEdit(Publication p){
+		currentPublication = p;
+		setId(currentPublication.getPublicationId());
+		return "edit-publications.xhtml?faces-redirect=true&amp;includeViewParams=true";
 	}
 
-	public void readyforDelete(Partner p){
-		currentPartner = p;
-		setId(currentPartner.getPartnerId());
+	public void readyforDelete(Publication p){
+		currentPublication = p;
+		setId(currentPublication.getPublicationId());
 	}
 
 	public void vider(){
-		currentPartner = new Partner();
-		uploadedFile = null;
+		currentPublication = new Publication();
+		uploadedLogo = null;
+		uploadedDoc = null;
 		memberModel = null;
 		fileName= null;
 	}
 
-	public Partner getpartnerById(int p_id)
+	public Publication getpublicationById(int p_id)
 	{
-		Iterator<Partner> itr = es.iterator();
+		Iterator<Publication> itr = es.iterator();
 		while(itr.hasNext()) {
-			currentPartner = itr.next();
-			if(currentPartner.getPartnerId() == p_id)
+			currentPublication = itr.next();
+			if(currentPublication.getPublicationId() == p_id)
 			{
-				return currentPartner;
+				return currentPublication;
 			}
 		}
 		return null;
@@ -199,19 +203,19 @@ public class PartnerBean implements Serializable{
 
 	public void setId(int id) {
 		this.id = id;
-		currentPartner = getpartnerById(id);
+		currentPublication = getpublicationById(id);
 	}
 
 	public int getId() {
 		return id;
 	}
 
-	public List<Partner> getPartnerList() {
-		return partnerList;
+	public List<Publication> getPublicationList() {
+		return publicationList;
 	}
 
-	public void setPartnerList(List<Partner> partners) {
-		this.partnerList = partners;
+	public void setPublicationList(List<Publication> publications) {
+		this.publicationList = publications;
 	}
 
 	public void setmemberModel(DualListModel<Member> memberModel) {
@@ -222,24 +226,12 @@ public class PartnerBean implements Serializable{
 		return memberModel;
 	} 
 
-	@SuppressWarnings("null")
-	public String limitedDesc(String desc)
-	{
-		if(desc == null || desc == "")
-			desc = currentPartner.getPartnerDesc();
-
-		if(desc != null && desc.length()>100)
-			desc = desc.substring(0, 100) + " ...";
-
-		return desc;
-	}
-
-	public String submitLogoFile() {
+	public String submitLogoFile(UploadedFile filetoUp,String type ) {
 
 		String msg = "";
-		if (uploadedFile != null){
+		if (filetoUp != null){
 			// Prepare filename prefix and suffix for an unique filename in upload folder.
-			String suffix = FilenameUtils.getExtension(uploadedFile.getFileName());
+			String suffix = FilenameUtils.getExtension(filetoUp.getFileName());
 			// Prepare file and outputstream.
 			File file = null;
 			OutputStream output = null;
@@ -248,14 +240,18 @@ public class PartnerBean implements Serializable{
 				// Create file with unique name in upload folder and write to it.
 				file = File.createTempFile("img", "." + suffix, new File(ConfigBean.getImgFilePath()));
 				output = new FileOutputStream(file);
-				IOUtils.copy(uploadedFile.getInputstream(), output);
-				currentPartner.setPartnerLogo(file.getName());
-				msg="Image Envoyé, ";
+				IOUtils.copy(filetoUp.getInputstream(), output);
+				if (type.equals("pic"))
+					currentPublication.setPublicationPicture(file.getName());
+				else if (type.equals("doc"))
+					currentPublication.setPublicationLink(file.getName());
+
+				msg="Document Envoyé, ";
 
 			} catch (Exception e) {
 				// Cleanup.
 				if (file != null) file.delete();
-				msg="Erreur lors de l envoie d image, ";
+				msg="Erreur lors de l'envoie de document, ";
 				// Always log stacktraces (with a real logger).
 				e.printStackTrace();
 			} finally {
@@ -263,13 +259,13 @@ public class PartnerBean implements Serializable{
 			}
 		}
 		else
-			msg="il y a pas d image, ";
+			msg="il y a pas d document, ";
 		
 		return msg;
 	}
 
 	public UploadedFile getUploadedFile() {
-		return uploadedFile;
+		return uploadedLogo;
 	}
 
 	public String getFileName() {
@@ -277,12 +273,12 @@ public class PartnerBean implements Serializable{
 	}
 
 	public void setUploadedFile(UploadedFile uploadedFile) {
-		this.uploadedFile = uploadedFile;
+		this.uploadedLogo = uploadedFile;
 	}
 
 	public void handleFileUpload(FileUploadEvent event) {
 
-		uploadedFile = event.getFile();
+		uploadedLogo = event.getFile();
 	}
 
 
@@ -321,7 +317,16 @@ public class PartnerBean implements Serializable{
 		    // File permission problems are caught here.
 		    System.err.println(x);
 		}
-	}   
+	}
+
+	public void setUploadedDoc(UploadedFile uploadedFile) {
+		this.uploadedDoc = uploadedFile;
+	}
+
+	public void handleDocUpload(FileUploadEvent event) {
+
+		uploadedDoc = event.getFile();
+	}
 }
 
  
