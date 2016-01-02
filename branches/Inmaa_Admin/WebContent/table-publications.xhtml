@@ -359,15 +359,14 @@
 							<h:form id="form1">
  							
 								<p:dataTable 
-									styleClass="table table-striped table-bordered table-hover"
+									styleClass="table table-striped table-bordered table-hover" sortBy="#{publ.seqNo}"
 									var="publ" value="#{publicationBean.es}" paginator="true" rows="20"
 									editable="true" id="sample-table-2" paginatorPosition="bottom"
 									resizableColumns="true">
 									
-									<p:column styleClass="center"  sortBy="#{publ.seqNo}">
-										<f:facet name="header" styleClass="hidden-phone">
-											<i class="icon-time bigger-110 hidden-phone"></i>
-											<h:outputText value="Numero" />
+									<p:column styleClass="center" style="width:30px"  sortBy="#{publ.seqNo}">
+										<f:facet name="header" >
+											<h:outputText value="N°" />
 										</f:facet>
 										<h:outputText styleClass="hidden-phone" value="#{publ.seqNo}" />
 									</p:column>
@@ -393,7 +392,7 @@
 									<p:column styleClass="center" sortBy="#{publ.publicationType}">
 										<f:facet name="header" styleClass="hidden-phone">
 											<i class="icon-time bigger-110 hidden-phone"></i>
-											<h:outputText value="Date de Debut" />
+											<h:outputText value="Type" />
 											<span class="lbl"></span>
 										</f:facet>
 										<span class="lbl"></span>

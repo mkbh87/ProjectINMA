@@ -369,17 +369,17 @@
 														class="title">Sauvegarde</span></li>
 												</ul>
 											</h:panelGroup>
-											<hr />
-											<h:panelGroup layout="block"
-												class="step-content row-fluid position-relative"
-												id="step-container">
-													<h:outputLink value="#{projectBean.vider()}"/>
+											<p:separator />
+												<h:panelGroup layout="block"
+													class="step-content row-fluid position-relative"
+													id="step-container">
+													<h:outputLink value="#{projectBean.vider()}" />
 													<h:panelGroup layout="block" class="step-pane active"
-													id="step1">
-													<h3 class="lighter block green">Nouveau Projet</h3>
+														id="step1">
+														<h3 class="lighter block green">Nouveau Projet</h3>
 
 
-<!-- <p:selectManyMenu value="#{projectbean.members}"  var="pr">
+														<!-- <p:selectManyMenu value="#{projectbean.members}"  var="pr">
 	<f:selectItems value="#{projectbean.members}" var="player"
 	itemLabel="#{player.memberName}" itemValue="#{player}" />
  	<p:column>
@@ -397,19 +397,20 @@
 																<span class="span8 input-icon input-icon-right">
 																	<h:inputText styleClass="span12" id="intitule"
 																		value="#{projectBean.currentProject.projectName}" />
-																	<i class="icon-warning-sign"></i> </span>
+																	<i class="icon-warning-sign"></i>
+																</span>
 																<span class="help-inline"> Champs obligatoire </span>
 															</h:panelGroup>
 														</h:panelGroup>
 
 														<h:panelGroup layout="block" class="control-group success">
-															<p:outputLabel styleClass="control-label"
-																for="def" value="Court Description " />
+															<p:outputLabel styleClass="control-label" for="def"
+																value="Court Description " />
 
 															<h:panelGroup layout="block" class="controls">
 																<span class="span8 input-icon input-icon-right">
 																	<h:inputTextarea styleClass="span12 limited" rows="2"
-																		 id="def"
+																		id="def"
 																		value="#{projectBean.currentProject.projectDef}" />
 																</span>
 															</h:panelGroup>
@@ -417,11 +418,13 @@
 
 														<h:panelGroup layout="block" class="control-group success">
 															<p:outputLabel styleClass="control-label"
-																 value="Description " />
+																value="Description " />
 
 															<h:panelGroup layout="block" class="controls">
 																<span class="span8 input-icon input-icon-right">
-																	<pe:ckEditor id="editor" value="#{projectBean.currentProject.projectDesc}" language="ar" width="800" checkDirtyInterval="0" />   
+																	<pe:ckEditor id="editor"
+																		value="#{projectBean.currentProject.projectDesc}"
+																		language="ar" width="800" checkDirtyInterval="0" />
 																</span>
 															</h:panelGroup>
 														</h:panelGroup>
@@ -432,13 +435,13 @@
 
 															<h:panelGroup layout="block" class="controls">
 																<span class="span6 input-icon input-icon-right">
-																<p:fileUpload label="Choisir image" 
+																	<p:fileUpload label="Choisir image"
 																		cancelLabel="Annuler" uploadLabel="Envoyer"
 																		fileUploadListener="#{projectBean.handleFileUpload}"
 																		mode="advanced" sizeLimit="1000000" fileLimit="1"
 																		allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
- 																
- 																</span>
+
+																</span>
 															</h:panelGroup>
 														</h:panelGroup>
 
@@ -451,10 +454,13 @@
 																	<h:panelGroup layout="block" class="control-group">
 																		<h:panelGroup layout="block"
 																			class="row-fluid input-append">
- <p:calendar value="#{projectBean.currentProject.projectStartDate}" mode="popup"/>
- 
+																			<p:calendar
+																				value="#{projectBean.currentProject.projectStartDate}"
+																				mode="popup" />
+
 																		</h:panelGroup>
-																	</h:panelGroup> </span>
+																	</h:panelGroup>
+																</span>
 															</h:panelGroup>
 														</h:panelGroup>
 
@@ -467,20 +473,26 @@
 																<span class="span6 input-icon input-icon-right">
 																	<h:inputText styleClass="span12" id="Endroit"
 																		value="#{projectBean.currentProject.projectLocation}" />
-																	 </span><span class="help-inline"> Utiliser le virgule comme separateur </span> 
+																</span>
+																<span class="help-inline"> Utiliser le virgule
+																	comme separateur </span>
 															</h:panelGroup>
 														</h:panelGroup>
 
 
 
-														<h:panelGroup layout="block" styleClass="control-group success">
-															<p:outputLabel styleClass="control-label" for="Partenaire" value="Partenaire" />
+														<h:panelGroup layout="block"
+															styleClass="control-group success">
+															<p:outputLabel styleClass="control-label"
+																for="Partenaire" value="Partenaire" />
 
 															<h:panelGroup layout="block" styleClass="controls">
 																<span class="span6 input-icon input-icon-right">
 																	<h:inputText styleClass="span12" id="Partenaire"
 																		value="#{projectBean.currentProject.projectPartner}" />
-																	  </span><span class="help-inline"> Utiliser le virgule comme separateur </span> 
+																</span>
+																<span class="help-inline"> Utiliser le virgule
+																	comme separateur </span>
 															</h:panelGroup>
 														</h:panelGroup>
 
@@ -493,68 +505,70 @@
 																value="Telephone " />
 
 															<h:panelGroup layout="block" styleClass="controls">
-																<span class="span3 input-icon input-icon-right">
-																	<h:inputText styleClass="span3" id="Telephone"
+																<span class="span6 input-icon input-icon-right">
+																	<h:inputText styleClass="span6" id="Telephone"
 																		value="#{projectBean.currentProject.projectPhone}" />
-																		
-																	  </span>
+
+																</span>
 															</h:panelGroup>
 														</h:panelGroup>
-  
- 
-    <p:separator />
+													</h:panelGroup>
+													<p:separator />
 
 
+													<h:panelGroup layout="block" class="step-pane" id="step4">
+														<h:panelGroup layout="block" class="center">
+															<h3 class="green">le projet a ajouté :</h3>
+														</h:panelGroup>
+
+														<h:panelGroup layout="block" class="right">
+															<ul>
+																<li><strong> إسم المشروع | </strong> <h:outputText
+																		value="#{projectBean.currentProject.projectName}" /></li>
+
+																<li><strong> شعار المشروع | </strong> <h:outputText
+																		value="#{projectBean.currentProject.projectLogo}" /></li>
+																<li><i class="fa fa-calendar"> <strong>
+																			إنطلاق المشروع | </strong>
+																</i> <h:outputText
+																		value="#{projectBean.getDateFormated(projectBean.currentProject.projectStartDate)}" />
+																</li>
+																<li><i class="fa fa-map-marker"> <strong>مجال
+																			المشروع | </strong>
+																</i> <h:outputText styleClass="desc-info"
+																		value="#{projectBean.currentProject.projectLocation}" />
+																</li>
+																<li><i class="fa fa-child"> <strong>الأطرف
+																			المشاركة | </strong>
+																</i> <h:outputText styleClass="desc-info"
+																		value="#{projectBean.currentProject.projectPartner}" />
+																</li>
+																<li><i class="fa fa-phone"> <strong>
+																			للإتصال | </strong>
+																</i> <span dir="ltr" class="desc-info"> <h:outputText
+																			value="#{projectBean.currentProject.projectPhone}" />
+																</span></li>
+																<li><strong> تفاصيل المشروع | </strong> <h:outputText
+																		value="#{projectBean.currentProject.projectDesc}" />
+																</li>
+																<p:commandLink styleClass="btn btn-success btn-next"
+																	action="#{projectBean.ajouter()}">
+																	Ajouter	<i class="icon-arrow-right icon-on-right"></i>
+																</p:commandLink>
+
+																<p:dialog header="Modification du projet"
+																	widgetVar="dlg2" modal="true" height="100">
+																	<h:outputText value="ERROR" />
+																</p:dialog>
+
+
+															</ul>
+														</h:panelGroup>
+													</h:panelGroup>
 												</h:panelGroup>
 
 
-<h:panelGroup layout="block" class="step-pane" id="step4"  >
-	<h:panelGroup layout="block" class="center">
-		<h3 class="green">le projet a ajouté :</h3>
-	</h:panelGroup>
-	
-	<h:panelGroup layout="block" class="right">
-	<ul>
-	<li><strong>	إسم  المشروع | </strong>	<h:outputText
-			value="#{projectBean.currentProject.projectName}" /></li>
-		
-	<li><strong>	شعار  المشروع | </strong>	<h:outputText 	value="#{projectBean.currentProject.projectLogo}"/>
-</li>
-		<li><i class="fa fa-calendar"> <strong>	إنطلاق المشروع | </strong> </i> <h:outputText
-				value="#{projectBean.getDateFormated(projectBean.currentProject.projectStartDate)}" />
-		</li>
-		<li><i class="fa fa-map-marker"> <strong>مجال
-					المشروع | </strong> </i> <h:outputText styleClass="desc-info"
-				value="#{projectBean.currentProject.projectLocation}" />
-		</li>
-		<li><i class="fa fa-child"> <strong>الأطرف
-					المشاركة | </strong> </i> <h:outputText styleClass="desc-info"
-				value="#{projectBean.currentProject.projectPartner}" />
-		</li>
-		<li><i class="fa fa-phone"> <strong>
-					للإتصال | </strong> </i> <span dir="ltr" class="desc-info">
-				<h:outputText
-					value="#{projectBean.currentProject.projectPhone}" />
-		</span></li>
-<li><strong>	تفاصيل المشروع | </strong>
-		<h:outputText
-			value="#{projectBean.currentProject.projectDesc}" />
-</li>
-	<p:commandLink styleClass="btn btn-success btn-next" action="#{projectBean.ajouter()}">
-	Ajouter	<i class="icon-arrow-right icon-on-right"></i>
-	</p:commandLink>
-
-<p:dialog header="Modification du projet" widgetVar="dlg2" modal="true" height="100">
-    <h:outputText value="ERROR" />
-</p:dialog>   
-
-
-</ul>
-	</h:panelGroup>
-</h:panelGroup>											</h:panelGroup>
-
-											<hr />
-<!-- 											<h:panelGroup layout="block" class="row-fluid wizard-actions">
+												<!-- 											<h:panelGroup layout="block" class="row-fluid wizard-actions">
 												<p:commandLink class="btn btn-prev" >
 													<i class="icon-arrow-left"></i> Retour
 												</p:commandLink>

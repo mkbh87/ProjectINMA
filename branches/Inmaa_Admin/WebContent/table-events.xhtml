@@ -339,10 +339,18 @@
 
 							<h:form id="form1">
 								<p:dataTable
-									styleClass="table table-striped table-bordered table-hover"
+									styleClass="table table-striped table-bordered table-hover" sortBy="#{et.seqNo}"
 									var="et" value="#{eventBean.events}" paginator="true" rows="20"
 									editable="true" id="sample-table-2" paginatorPosition="bottom"
 									resizableColumns="true">
+									
+									<p:column styleClass="center" style="width:30px"  sortBy="#{et.seqNo}">
+										<f:facet name="header" >
+											<h:outputText value="N°" />
+										</f:facet>
+										<h:outputText styleClass="hidden-phone" value="#{et.seqNo}" />
+									</p:column>
+
 
 									<p:column styleClass="center" sortBy="#{et.eventName}">
 										<f:facet name="header">

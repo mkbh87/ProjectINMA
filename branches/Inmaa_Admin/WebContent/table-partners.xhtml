@@ -358,10 +358,17 @@
 							<h:form id="form1">
  							
 								<p:dataTable 
-									styleClass="table table-striped table-bordered table-hover"
+									styleClass="table table-striped table-bordered table-hover" sortBy="#{part.seqNo}"
 									var="part" value="#{partnerBean.es}" paginator="true" rows="20"
 									editable="true" id="sample-table-2" paginatorPosition="bottom"
 									resizableColumns="true">
+																		
+									<p:column styleClass="center" style="width:30px"  sortBy="#{part.seqNo}">
+										<f:facet name="header" >
+											<h:outputText value="N°" />
+										</f:facet>
+										<h:outputText styleClass="hidden-phone" value="#{part.seqNo}" />
+									</p:column>
 									
 									<p:column styleClass="center" sortBy="#{part.partnerName}">
 										<f:facet name="header">
