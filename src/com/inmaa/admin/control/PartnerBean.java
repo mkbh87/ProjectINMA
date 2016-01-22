@@ -2,24 +2,15 @@ package com.inmaa.admin.control;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
-import java.nio.file.DirectoryNotEmptyException;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
@@ -35,6 +26,7 @@ import org.springframework.stereotype.Component;
 import com.inmaa.admin.persistence.Member;
 import com.inmaa.admin.persistence.Partner;
 import com.inmaa.admin.service.IPartnerService;
+import com.inmaa.admin.tools.Utils;
 
 @Component("partnerBean")
 @ViewScoped
@@ -60,17 +52,6 @@ public class PartnerBean implements Serializable{
 		partnerList = partnerService.lister();
 		es = new ListDataModel<Partner>();
 		es.setWrappedData( partnerService.lister());
-		//		source = getmemberList();
-		//		memberModel = new DualListModel<Member>(source, target);
-		//vider();
-	}
-
-	private List<Member> getmemberList() {
-		List<Member> members = null;
-
-		members =  partnerService.listerMember();
-
-		return members;
 	}
 
 	public Partner getcurrentPartner() {
@@ -146,7 +127,7 @@ public class PartnerBean implements Serializable{
 			if(uploadedFile != null)
 			{
 				if(currentPartner.getPartnerLogo() != null)
-					deletePicture(currentPartner.getPartnerLogo());
+					Utils.deletePicture(currentPartner.getPartnerLogo());
 				submitLogoFile();
 			}
 			
@@ -222,18 +203,6 @@ public class PartnerBean implements Serializable{
 		return memberModel;
 	} 
 
-	@SuppressWarnings("null")
-	public String limitedDesc(String desc)
-	{
-		if(desc == null || desc == "")
-			desc = currentPartner.getPartnerDesc();
-
-		if(desc != null && desc.length()>100)
-			desc = desc.substring(0, 100) + " ...";
-
-		return desc;
-	}
-
 	public String submitLogoFile() {
 
 		String msg = "";
@@ -285,21 +254,6 @@ public class PartnerBean implements Serializable{
 		uploadedFile = event.getFile();
 	}
 
-
-	public String getDateFormated(Date d)
-	{
-		if(d != null)
-		{
-			String date;
-			Calendar startdate = new GregorianCalendar();
-			startdate.setTime(d);
-			date = "" + startdate.get(Calendar.DATE) 
-			+ " " +startdate.get(Calendar.MONTH)
-			+ " " + startdate.get(Calendar.YEAR);
-			return date;
-		}
-		return null;
-	}
 	public List<Member> getMembers() {
 		return members;
 	}
@@ -308,20 +262,6 @@ public class PartnerBean implements Serializable{
 		this.members = members;
 	}
 	
-	private void deletePicture(String pictureName) {
-		File file = new File(ConfigBean.getImgFilePath() +"/"+ pictureName);
-		Path path = file.toPath();
-		try {
-		    Files.delete(path);
-		} catch (NoSuchFileException x) {
-		    System.err.format("%s: no such" + " file or directory%n", path);
-		} catch (DirectoryNotEmptyException x) {
-		    System.err.format("%s not empty%n", path);
-		} catch (IOException x) {
-		    // File permission problems are caught here.
-		    System.err.println(x);
-		}
-	}   
 }
 
  

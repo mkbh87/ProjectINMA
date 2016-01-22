@@ -1,5 +1,5 @@
 package com.inmaa.admin.persistence;
-// Generated 1 janv. 2016 18:44:24 by Hibernate Tools 4.3.1.Final
+// Generated 22 janv. 2016 20:06:23 by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -36,7 +36,9 @@ public class Event implements java.io.Serializable {
 	private String eventPresenter;
 	private Set<Project> projects = new HashSet<Project>(0);
 	private Set<SubEvent> subEvents = new HashSet<SubEvent>(0);
+	private Set<Partner> partners = new HashSet<Partner>(0);
 	private Set<Article> articles = new HashSet<Article>(0);
+	private Set<Member> members = new HashSet<Member>(0);
 
 	public Event() {
 	}
@@ -53,7 +55,7 @@ public class Event implements java.io.Serializable {
 
 	public Event(Integer seqNo, String eventName, String eventDesc, Date eventStartDate, Date eventEndDate,
 			String eventLogo, String eventLocation, String eventPresenter, Set<Project> projects,
-			Set<SubEvent> subEvents, Set<Article> articles) {
+			Set<SubEvent> subEvents, Set<Partner> partners, Set<Article> articles, Set<Member> members) {
 		this.seqNo = seqNo;
 		this.eventName = eventName;
 		this.eventDesc = eventDesc;
@@ -64,7 +66,9 @@ public class Event implements java.io.Serializable {
 		this.eventPresenter = eventPresenter;
 		this.projects = projects;
 		this.subEvents = subEvents;
+		this.partners = partners;
 		this.articles = articles;
+		this.members = members;
 	}
 
 	@Id
@@ -174,6 +178,18 @@ public class Event implements java.io.Serializable {
 		this.subEvents = subEvents;
 	}
 
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "Event_Partner", catalog = "inmaa", joinColumns = {
+			@JoinColumn(name = "Event_Id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "Partner_Id", nullable = false, updatable = false) })
+	public Set<Partner> getPartners() {
+		return this.partners;
+	}
+
+	public void setPartners(Set<Partner> partners) {
+		this.partners = partners;
+	}
+
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "events")
 	public Set<Article> getArticles() {
 		return this.articles;
@@ -181,6 +197,18 @@ public class Event implements java.io.Serializable {
 
 	public void setArticles(Set<Article> articles) {
 		this.articles = articles;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "Event_Member", catalog = "inmaa", joinColumns = {
+			@JoinColumn(name = "Event_Id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "Member_Id", nullable = false, updatable = false) })
+	public Set<Member> getMembers() {
+		return this.members;
+	}
+
+	public void setMembers(Set<Member> members) {
+		this.members = members;
 	}
 
 }

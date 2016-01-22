@@ -2,17 +2,9 @@ package com.inmaa.admin.control;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
-import java.nio.file.DirectoryNotEmptyException;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -37,7 +29,10 @@ import com.inmaa.admin.persistence.Event;
 import com.inmaa.admin.persistence.Member;
 import com.inmaa.admin.persistence.SubEvent;
 import com.inmaa.admin.service.IEventService;
+import com.inmaa.admin.service.IMemberService;
+import com.inmaa.admin.service.IPartnerService;
 import com.inmaa.admin.service.ISubEventService;
+import com.inmaa.admin.tools.Utils;
 
 @Component("subEventBean")
 @ViewScoped
@@ -52,7 +47,12 @@ public class SubEventBean  implements Serializable {
 
 	@Autowired
 	ISubEventService subEventService;
+		
+	@Autowired
+	IPartnerService partnerService;
 
+	@Autowired
+	IMemberService memberService;
 
 	private SubEvent currentSubEvent ;
  	private transient DataModel<SubEvent> subEvents;
@@ -67,7 +67,6 @@ public class SubEventBean  implements Serializable {
 	private DualListModel<Event> listeEv;
 	List<Event> eventsSource = new ArrayList<Event>();
 	List<Event> eventsTarget = new ArrayList<Event>();
-
 
 	@PostConstruct
 	public void init() {
@@ -153,7 +152,7 @@ public class SubEventBean  implements Serializable {
 			if(uploadedFile != null)
 			{
 				if(currentSubEvent.getSubEventLogo() != null)
-					deletePicture(currentSubEvent.getSubEventLogo());
+					Utils.deletePicture(currentSubEvent.getSubEventLogo());
 				submitLogoFile();
 			}
 
@@ -277,42 +276,20 @@ public class SubEventBean  implements Serializable {
 	}
 
 
-	public String getDateFormated(Date d)
-	{
-		if(d != null)
-		{
-			String date;
-			Calendar startdate = new GregorianCalendar();
-			startdate.setTime(d);
-			date = "" + startdate.get(Calendar.DATE) 
-			+ " " +startdate.get(Calendar.MONTH)
-			+ " " + startdate.get(Calendar.YEAR);
-			return date;
-		}
-		return null;
-	}
-
+	
 	public void initializeLazyJoins()
 	{
 		subEventService.initializeLazyJoins(currentSubEvent);
 
 		eventsTarget = new ArrayList<Event>();
 		eventsTarget = new ArrayList<Event>(currentSubEvent.getEvents());	
-		eventsSource = seteventsSource(eventsTarget);
+		eventsSource = Utils.setListSource(eventsTarget, eventService.lister());
 		listeEv  = new DualListModel<Event>(eventsSource, eventsTarget);
 	}
 
 	public DualListModel<Event> getListeEv() {
 		return listeEv;
 	}
-
-	public List<Event> seteventsSource(List<Event> target) {
-		List<Event> listSource = eventService.lister();
-		listSource.removeAll(target);
-		listSource = subtract(listSource, target );
-		return listSource;
-	}
-
 
 	public void setListeEv(DualListModel<Event> listeEv) {
 		this.listeEv = listeEv;
@@ -334,19 +311,5 @@ public class SubEventBean  implements Serializable {
         }
         return result;
     }
-	
-	private void deletePicture(String pictureName) {
-		File file = new File(ConfigBean.getImgFilePath() +"/"+ pictureName);
-		Path path = file.toPath();
-		try {
-		    Files.delete(path);
-		} catch (NoSuchFileException x) {
-		    System.err.format("%s: no such" + " file or directory%n", path);
-		} catch (DirectoryNotEmptyException x) {
-		    System.err.format("%s not empty%n", path);
-		} catch (IOException x) {
-		    // File permission problems are caught here.
-		    System.err.println(x);
-		}
-	}
+
 }

@@ -1,5 +1,5 @@
 package com.inmaa.admin.persistence;
-// Generated 1 janv. 2016 18:44:24 by Hibernate Tools 4.3.1.Final
+// Generated 22 janv. 2016 20:06:23 by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -32,6 +32,7 @@ public class Member implements java.io.Serializable {
 	private String memberFacebook;
 	private String memberTwitter;
 	private Set<Project> projects = new HashSet<Project>(0);
+	private Set<Event> events = new HashSet<Event>(0);
 
 	public Member() {
 	}
@@ -46,7 +47,7 @@ public class Member implements java.io.Serializable {
 
 	public Member(Integer seqNo, String memberName, String memberName1, String memberStatus, int memberAge,
 			boolean memberIsOrg, String memberTravail, String memberImage, String memberFacebook, String memberTwitter,
-			Set<Project> projects) {
+			Set<Project> projects, Set<Event> events) {
 		this.seqNo = seqNo;
 		this.memberName = memberName;
 		this.memberName1 = memberName1;
@@ -58,6 +59,7 @@ public class Member implements java.io.Serializable {
 		this.memberFacebook = memberFacebook;
 		this.memberTwitter = memberTwitter;
 		this.projects = projects;
+		this.events = events;
 	}
 
 	@Id
@@ -169,6 +171,15 @@ public class Member implements java.io.Serializable {
 
 	public void setProjects(Set<Project> projects) {
 		this.projects = projects;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "members")
+	public Set<Event> getEvents() {
+		return this.events;
+	}
+
+	public void setEvents(Set<Event> events) {
+		this.events = events;
 	}
 
 }

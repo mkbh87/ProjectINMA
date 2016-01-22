@@ -95,7 +95,8 @@ public class IProjectServiceImpl implements IProjectService{
 		session.refresh(entity);
 		Hibernate.initialize(entity.getArticles());
 		Hibernate.initialize(entity.getEvents());
-
+		Hibernate.initialize(entity.getPartners());
+		Hibernate.initialize(entity.getMembers());
 		session.close();
 
 	}

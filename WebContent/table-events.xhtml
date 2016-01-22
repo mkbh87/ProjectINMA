@@ -359,7 +359,7 @@
 										<h:outputText value="#{et.eventName}" />
 									</p:column>
 
-									<p:column styleClass="center" sortBy="#{et.eventStartDate}">
+									<p:column styleClass="center" style="width:130px" sortBy="#{et.eventStartDate}">
 										<f:facet name="header" styleClass="hidden-phone">
 											<i class="icon-time bigger-110 hidden-phone"></i>
 											<h:outputText value="Date de Debut" />
@@ -370,7 +370,7 @@
 									</p:column>
 
 
-									<p:column styleClass="center" sortBy="#{et.eventEndDate}">
+									<p:column styleClass="center" style="width:130px" sortBy="#{et.eventEndDate}">
 										<f:facet name="header" styleClass="hidden-phone">
 											<i class="icon-time bigger-110 hidden-phone"></i>
 											<h:outputText value="Date de Fin" />
@@ -380,34 +380,34 @@
 										<h:outputText value="#{et.eventEndDate}" />
 									</p:column>
 									
-									<p:column styleClass="center">
+									<p:column styleClass="center" style="width:130px">
 										<f:facet name="header">
 											<h:outputText value="Endroit" />
 										</f:facet>
 										<h:outputText value="#{et.eventLocation}" />
 									</p:column>
 									
-									<p:column styleClass="center" sortBy="#{et.eventPresenter}">
+									<p:column styleClass="center" style="width:130px" sortBy="#{et.eventPresenter}">
 										<f:facet name="header">
 											<h:outputText value="Presenter par" />
 										</f:facet>
 										<h:outputText value="#{et.eventPresenter}" />
 									</p:column>
 									
-									<p:column styleClass="center">
+									<p:column styleClass="center" >
 										<f:facet name="header">
 											<h:outputText value="" />
 										</f:facet>
-										<p:commandLink styleClass="btn btn-mini btn-info"
+										<p:commandLink styleClass="btn btn-mini btn-info" 
 											action="#{eventBean.showEdit(et)}">
-											<f:param name="id" value="#{et.eventId}" /> Modifier 
+											<f:param name="id" value="#{et.eventId}" /> Modifier
 											<i class="icon-edit bigger-120"></i>
 										</p:commandLink>
 										&nbsp;
 										<p:commandLink styleClass="btn btn-mini btn-danger"
 											action="#{eventBean.readyforDelete(et)}" ajax="true"
 											update=":form1:sample-table-2:ll"
-											oncomplete="PF('CDialogWidget').show();" > Supprimer 
+											oncomplete="PF('CDialogWidget').show();" > Supprimer
 												<i class="icon-trash bigger-120"></i>
 										</p:commandLink>
 

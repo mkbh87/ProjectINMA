@@ -1,5 +1,5 @@
 package com.inmaa.admin.persistence;
-// Generated 1 janv. 2016 18:44:24 by Hibernate Tools 4.3.1.Final
+// Generated 22 janv. 2016 20:06:23 by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import javax.persistence.Column;

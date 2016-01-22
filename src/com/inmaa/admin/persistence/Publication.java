@@ -1,9 +1,11 @@
 package com.inmaa.admin.persistence;
-// Generated 1 janv. 2016 18:44:24 by Hibernate Tools 4.3.1.Final
+// Generated 22 janv. 2016 20:06:23 by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -17,7 +19,7 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "Publication", catalog = "inmaa", uniqueConstraints = @UniqueConstraint(columnNames = "Publication_Name") )
 public class Publication implements java.io.Serializable {
 
-	private int publicationId;
+	private Integer publicationId;
 	private Integer seqNo;
 	private String publicationName;
 	private Date publicationDate;
@@ -30,16 +32,13 @@ public class Publication implements java.io.Serializable {
 	public Publication() {
 	}
 
-	public Publication(int publicationId, String publicationName, Date publicationDate) {
-		this.publicationId = publicationId;
+	public Publication(String publicationName, Date publicationDate) {
 		this.publicationName = publicationName;
 		this.publicationDate = publicationDate;
 	}
 
-	public Publication(int publicationId, Integer seqNo, String publicationName, Date publicationDate,
-			String publicationLink, String publicationUrl, String publicationPicture, String publicationDesc,
-			String publicationType) {
-		this.publicationId = publicationId;
+	public Publication(Integer seqNo, String publicationName, Date publicationDate, String publicationLink,
+			String publicationUrl, String publicationPicture, String publicationDesc, String publicationType) {
 		this.seqNo = seqNo;
 		this.publicationName = publicationName;
 		this.publicationDate = publicationDate;
@@ -51,13 +50,14 @@ public class Publication implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "Publication_Id", unique = true, nullable = false)
-	public int getPublicationId() {
+	public Integer getPublicationId() {
 		return this.publicationId;
 	}
 
-	public void setPublicationId(int publicationId) {
+	public void setPublicationId(Integer publicationId) {
 		this.publicationId = publicationId;
 	}
 

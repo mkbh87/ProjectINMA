@@ -354,42 +354,31 @@
 
 									<h:panelGroup layout="block" class="widget-body widget-main">
 										<h:panelGroup layout="block" class="row-fluid">
-										
-										<h:form class="form-horizontal" id="form" prependId="false" enctype="multipart/form-data"
-														acceptcharset="UTF-8">
-											<h:panelGroup layout="block" id="fuelux-wizard"
-												class="row-fluid hide" data-target="#step-container">
-												<ul class="wizard-steps">
-													<li data-target="#step1" class="active"><span
-														class="step">1</span> <span class="title">Ajout</span></li>
+
+											<h:form class="form-h" id="form" prependId="false"
+												enctype="multipart/form-data" acceptcharset="UTF-8">
+												<h:panelGroup layout="block" id="fuelux-wizard"
+													class="row-fluid hide" data-target="#step-container">
+													<ul class="wizard-steps">
+														<li data-target="#step1" class="active"><span
+															class="step">1</span> <span class="title">Ajout</span></li>
 
 
 
-													<li data-target="#step4"><span class="step">2</span> <span
-														class="title">Sauvegarde</span></li>
-												</ul>
-											</h:panelGroup>
-											<p:separator />
+														<li data-target="#step2"><span class="step">2</span>
+															<span class="title">Sauvegarde</span></li>
+													</ul>
+												</h:panelGroup>
+												<p:separator />
 												<h:panelGroup layout="block"
 													class="step-content row-fluid position-relative"
 													id="step-container">
 													<h:outputLink value="#{projectBean.vider()}" />
-													<h:panelGroup layout="block" class="step-pane active"
-														id="step1">
+													<h:panelGroup layout="block" class="step-pane active" id="step1">
 														<h3 class="lighter block green">Nouveau Projet</h3>
 
-
-														<!-- <p:selectManyMenu value="#{projectbean.members}"  var="pr">
-	<f:selectItems value="#{projectbean.members}" var="player"
-	itemLabel="#{player.memberName}" itemValue="#{player}" />
- 	<p:column>
-		<h:outputText value ="#{pr.ProjectName}"/>
-	</p:column>
-</p:selectManyMenu>
- -->
-
 														<h:panelGroup layout="block"
-															styleClass="control-group success">
+															styleClass="control-group">
 															<p:outputLabel styleClass="control-label" for="intitule"
 																value="Nom de Projet " />
 
@@ -403,7 +392,7 @@
 															</h:panelGroup>
 														</h:panelGroup>
 
-														<h:panelGroup layout="block" class="control-group success">
+														<h:panelGroup layout="block" class="control-group">
 															<p:outputLabel styleClass="control-label" for="def"
 																value="Court Description " />
 
@@ -416,12 +405,12 @@
 															</h:panelGroup>
 														</h:panelGroup>
 
-														<h:panelGroup layout="block" class="control-group success">
+														<h:panelGroup layout="block" class="control-group">
 															<p:outputLabel styleClass="control-label"
 																value="Description " />
 
 															<h:panelGroup layout="block" class="controls">
-																<span class="span8 input-icon input-icon-right">
+																<span class="span12 input-icon input-icon-right">
 																	<pe:ckEditor id="editor"
 																		value="#{projectBean.currentProject.projectDesc}"
 																		language="ar" width="800" checkDirtyInterval="0" />
@@ -429,7 +418,7 @@
 															</h:panelGroup>
 														</h:panelGroup>
 
-														<h:panelGroup layout="block" class="control-group success">
+														<h:panelGroup layout="block" class="control-group">
 															<p:outputLabel styleClass="control-label" for="intitule"
 																value="Logo de projet " />
 
@@ -445,7 +434,7 @@
 															</h:panelGroup>
 														</h:panelGroup>
 
-														<h:panelGroup layout="block" class="control-group success">
+														<h:panelGroup layout="block" class="control-group">
 															<p:outputLabel styleClass="control-label" for="intitule"
 																value="Date de debut de projet " />
 
@@ -457,7 +446,6 @@
 																			<p:calendar
 																				value="#{projectBean.currentProject.projectStartDate}"
 																				mode="popup" />
-
 																		</h:panelGroup>
 																	</h:panelGroup>
 																</span>
@@ -465,7 +453,7 @@
 														</h:panelGroup>
 
 														<h:panelGroup layout="block"
-															styleClass="control-group success">
+															styleClass="control-group">
 															<p:outputLabel styleClass="control-label" for="Endroit"
 																value="l'emplacement " />
 
@@ -482,7 +470,7 @@
 
 
 														<h:panelGroup layout="block"
-															styleClass="control-group success">
+															styleClass="control-group">
 															<p:outputLabel styleClass="control-label"
 																for="Partenaire" value="Partenaire" />
 
@@ -498,24 +486,68 @@
 
 
 
+														<h:panelGroup layout="block" class="control-group">
+															<label class="control-label" for="phone">Telephone</label>
 
-														<h:panelGroup layout="block"
-															styleClass="control-group success">
-															<p:outputLabel styleClass="control-label" for="Telephone"
-																value="Telephone " />
+															<h:panelGroup layout="block" class="controls">
+																<h:panelGroup layout="block" class="span3 input-prepend">
+																	<span class="add-on"> <i class="icon-phone"></i>
+																	</span>
 
-															<h:panelGroup layout="block" styleClass="controls">
-																<span class="span6 input-icon input-icon-right">
-																	<h:inputText styleClass="span6" id="Telephone"
+
+																	<h:inputText styleClass="span6" type="tel" id="phone"
+																		name="phone"
 																		value="#{projectBean.currentProject.projectPhone}" />
-
-																</span>
+																</h:panelGroup>
 															</h:panelGroup>
 														</h:panelGroup>
 													</h:panelGroup>
+													
+													
 													<p:separator />
+													<h:panelGroup layout="block" class="step-pane active" id="step2">
+													 
+														<h3 class="lighter block green">Liaison  </h3>
+															
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label" 
+																value="Jointure avec les partenaires " />
 
+															<h:panelGroup layout="block" class="controls" >
 
+																<p:pickList value="#{projectBean.listePartners}" var="partner" 
+																	itemValue="#{partner}" converter="stdConverter">
+																	<f:facet name="sourceCaption">Tous les partners</f:facet>
+																	<f:facet name="targetCaption">Les partners liés au project</f:facet>
+
+																	<p:column style="text-align:center">
+																	#{partner.partnerName} 
+																	</p:column>
+																</p:pickList>
+															</h:panelGroup>
+														</h:panelGroup>
+														
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label" 
+																value="Jointure avec les members " />
+
+															<h:panelGroup layout="block" class="controls" >
+
+																<p:pickList value="#{projectBean.listeMembers}" var="member" 
+																	itemValue="#{member}" converter="stdConverter">
+																	<f:facet name="sourceCaption">Tous les members</f:facet>
+																	<f:facet name="targetCaption">Les members liés au project</f:facet>
+
+																	<p:column style="text-align:center">
+																	#{member.memberName} 
+																	</p:column>
+																</p:pickList>
+															</h:panelGroup>
+														</h:panelGroup>
+
+														<p:separator />
+
+												</h:panelGroup>
 													<h:panelGroup layout="block" class="step-pane" id="step4">
 														<h:panelGroup layout="block" class="center">
 															<h3 class="green">le projet a ajouté :</h3>
@@ -531,7 +563,7 @@
 																<li><i class="fa fa-calendar"> <strong>
 																			إنطلاق المشروع | </strong>
 																</i> <h:outputText
-																		value="#{projectBean.getDateFormated(projectBean.currentProject.projectStartDate)}" />
+																		value="#{Utils.getDateFormated(projectBean.currentProject.projectStartDate)}" />
 																</li>
 																<li><i class="fa fa-map-marker"> <strong>مجال
 																			المشروع | </strong>
@@ -567,34 +599,21 @@
 													</h:panelGroup>
 												</h:panelGroup>
 
-
-												<!-- 											<h:panelGroup layout="block" class="row-fluid wizard-actions">
-												<p:commandLink class="btn btn-prev" >
-													<i class="icon-arrow-left"></i> Retour
-												</p:commandLink>
-
-												<p:commandLink styleClass="btn btn-success btn-next" >
-														Suivant	<i class="icon-arrow-right icon-on-right"></i>
+												<p:commandLink styleClass="btn btn-success btn-next"
+													action="#{projectBean.ajouter()}"> Sauvegarder	<i class="icon-save"></i>
 												</p:commandLink>
 
 
-											</h:panelGroup>
-											
-											
- -->										
- 	<p:commandLink styleClass="btn btn-success btn-next" action="#{projectBean.ajouter()}" >
-	Sauvegarder	<i class="icon-arrow-right icon-on-right"></i>
-	</p:commandLink>
+											</h:form>
+											<div class="row-fluid wizard-actions">
+												<button class="btn btn-prev">
+													<i class="icon-arrow-left"></i> Prev
+												</button>
 
-<p:dialog header="Enregistrement du projet" widgetVar="dlg2" modal="true" height="100">
-    <h3 class="blue">error</h3>
-    <h:panelGroup >											
-    	<h:button styleClass="btn btn-success"  action="@{projectBean.vider()}" value="Ok" style="float:right">  </h:button>
-    </h:panelGroup>
-</p:dialog>   
- 
- </h:form>
-										
+												<button class="btn btn-success btn-next" data-last="Finish ">
+													Next <i class="icon-arrow-right icon-on-right"></i>
+												</button>
+											</div>
 										</h:panelGroup>
 
 										<!--/widget-main-->
@@ -614,7 +633,7 @@
 				  
 
 
-									<li data-target="#modal-step4"><span class="step">2</span>
+									<li data-target="#modal-step4"><span class="step">4</span>
 										<span class="title">Sauvegarde</span>
 									</li>
 								</ul>
@@ -629,20 +648,12 @@
 									</h:panelGroup>
 								</h:panelGroup>
 
-								<h:panelGroup layout="block" class="step-pane" id="modal-step2">
-									<h:panelGroup layout="block" class="center">
-										<h4 class="blue">Step 2</h4>
-									</h:panelGroup>
-								</h:panelGroup>
-
-
-
 								<h:panelGroup layout="block" class="step-pane" id="modal-step4">
 									<h:panelGroup layout="block" class="center">
-										<h4 class="blue">Step 3</h4>
+										<h4 class="blue">Step 4</h4>
 									</h:panelGroup>
 								</h:panelGroup>
-							</h:panelGroup>
+ 							</h:panelGroup>
 
 						</h:panelGroup>
 						<!--PAGE CONTENT ENDS-->
@@ -715,7 +726,7 @@
             
 
 
-            var $validation = false;
+            var $validation = true;
             $('#fuelux-wizard').ace_wizard().on('change', function(e, info) {
                 if (info.step == 1 && $validation) {
                     if (!$('#validation-form').valid()) return false;
@@ -730,15 +741,15 @@
             });
 
 
-            $('#validation-form').hide();
+            $('#validation-form').show();
             $('#skip-validation').removeAttr('checked').on('click', function() {
                 $validation = this.checked;
                 if (this.checked) {
-                    $('#sample-form').hide();
-                    $('#validation-form').show();
-                } else {
-                    $('#validation-form').hide();
                     $('#sample-form').show();
+                    $('#validation-form').hide();
+                } else {
+                    $('#validation-form').show();
+                    $('#sample-form').hide();
                 }
             });
 
@@ -748,7 +759,7 @@
 
 
             $.mask.definitions['~'] = '[+-]';
-            $('#phone').mask('(999) 999-9999');
+            $('#phone').mask('(+216) 99 999 999');
 
             jQuery.validator.addMethod("phone", function(value, element) {
                 return this.optional(element) || /^\(\d{3}\) \d{3}\-\d{4}( x\d{1,6})?$/.test(value);
