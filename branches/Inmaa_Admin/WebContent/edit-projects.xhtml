@@ -43,9 +43,11 @@
 </h:head>
 
 <h:body>
-			<f:metadata>
-				<f:viewParam name="id" value="#{projectBean.id}" />
-			</f:metadata>
+	<f:metadata>
+		<f:viewParam name="id" value="#{projectBean.id}" />
+		<f:event type="preRenderView"
+			listener="#{projectBean.initializeLazyJoins()}" />
+	</f:metadata>
 
 	<h:panelGroup layout="block" styleClass="navbar">
 		<h:panelGroup layout="block" styleClass="navbar-inner">
@@ -154,7 +156,7 @@
 						</h:outputLink>
 						</li>
 
-						<li ><h:outputLink value="form-projects.xhtml">
+						<li class="active"><h:outputLink value="form-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau Projet
 						</h:outputLink>
 						</li>
@@ -357,8 +359,7 @@
 
 									<h:panelGroup layout="block" class="widget-body widget-main">
 										<h:panelGroup layout="block" class="row-fluid">
-										
-										<h:form class="form-horizontal" id="form" prependId="false" enctype="multipart/form-data"
+										<h:form class="form-h" id="form" prependId="false" enctype="multipart/form-data"
 														acceptcharset="UTF-8">
 											<h:panelGroup layout="block" id="fuelux-wizard"
 												class="row-fluid hide" data-target="#step-container">
@@ -368,8 +369,8 @@
 
 
 
-													<li data-target="#step4"><span class="step">2</span> <span
-														class="title">Sauvegarde</span></li>
+														<li data-target="#step2"><span class="step">2</span>
+															<span class="title">Sauvegarde</span></li>
 												</ul>
 											</h:panelGroup>
 											<p:separator />
@@ -383,7 +384,7 @@
 
 
 														<h:panelGroup layout="block"
-															styleClass="control-group success">
+															styleClass="control-group">
 															<p:outputLabel styleClass="control-label" for="intitule"
 																value="Nom de Projet " />
 
@@ -396,7 +397,7 @@
 															</h:panelGroup>
 														</h:panelGroup>
 
-														<h:panelGroup layout="block" class="control-group success">
+														<h:panelGroup layout="block" class="control-group">
 															<p:outputLabel styleClass="control-label"
 																for="def" value="Court Description " />
 
@@ -409,12 +410,12 @@
 															</h:panelGroup>
 														</h:panelGroup>
 
-														<h:panelGroup layout="block" class="control-group success">
+														<h:panelGroup layout="block" class="control-group">
 															<p:outputLabel styleClass="control-label"
 																value="Description " />
 
 															<h:panelGroup layout="block" class="controls">
-																<span class="span8 input-icon input-icon-right">
+																<span class="span12 input-icon input-icon-right">
 																<p:growl id="growl" showDetail="true" />  
 																<pe:ckEditor id="editor" value="#{projectBean.currentProject.projectDesc}" 
 																language="ar" width="800" checkDirtyInterval="0"  />
@@ -422,21 +423,23 @@
 															</h:panelGroup>
 														</h:panelGroup>
 
-														<h:panelGroup layout="block" class="control-group success">
+														<h:panelGroup layout="block" class="control-group">
 															<p:outputLabel styleClass="control-label" for="intitule"
 																value="Logo de projet " />
 
 															<h:panelGroup layout="block" class="controls">
 																<span class="span6 input-icon input-icon-right">
-																
-	 <p:fileUpload label="Choisir image" fileUploadListener="#{projectBean.handleFileUpload}" 
-	 auto="true"   sizeLimit="1000000" fileLimit="1" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
- 																
- 																</span>
+																	<p:fileUpload label="Choisir image"
+																		cancelLabel="Annuler" uploadLabel="Envoyer"
+																		fileUploadListener="#{projectBean.handleFileUpload}"
+																		mode="advanced" sizeLimit="1000000" fileLimit="1"
+																		allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+
+																</span>
 															</h:panelGroup>
 														</h:panelGroup>
 
-														<h:panelGroup layout="block" class="control-group success">
+														<h:panelGroup layout="block" class="control-group">
 															<p:outputLabel styleClass="control-label" for="intitule"
 																value="Date de debut de projet " />
 
@@ -445,15 +448,18 @@
 																	<h:panelGroup layout="block" class="control-group">
 																		<h:panelGroup layout="block"
 																			class="row-fluid input-append">
- <p:calendar value="#{projectBean.currentProject.projectStartDate}" mode="popup"/>
- 
+																			<p:calendar
+																				value="#{projectBean.currentProject.projectStartDate}"
+																				mode="popup" />
+
 																		</h:panelGroup>
-																	</h:panelGroup> </span>
+																	</h:panelGroup>
+																</span>
 															</h:panelGroup>
 														</h:panelGroup>
 
 														<h:panelGroup layout="block"
-															styleClass="control-group success">
+															styleClass="control-group">
 															<p:outputLabel styleClass="control-label" for="Endroit"
 																value="l'emplacement " />
 
@@ -461,36 +467,92 @@
 																<span class="span6 input-icon input-icon-right">
 																	<h:inputText styleClass="span12" id="Endroit"
 																		value="#{projectBean.currentProject.projectLocation}" />
-																	 </span><span class="help-inline"> Utiliser le virgule comme separateur </span> 
+																</span>
+																<span class="help-inline"> Utiliser le virgule
+																	comme separateur </span>
 															</h:panelGroup>
 														</h:panelGroup>
 
 
 
-														<h:panelGroup layout="block" styleClass="control-group success">
-															<p:outputLabel styleClass="control-label" for="Partenaire" value="Partenaire" />
+														<h:panelGroup layout="block"
+															styleClass="control-group">
+															<p:outputLabel styleClass="control-label"
+																for="Partenaire" value="Partenaire" />
 
 															<h:panelGroup layout="block" styleClass="controls">
 																<span class="span6 input-icon input-icon-right">
 																	<h:inputText styleClass="span12" id="Partenaire"
 																		value="#{projectBean.currentProject.projectPartner}" />
-																	  </span><span class="help-inline"> Utiliser le virgule comme separateur </span> 
+																</span>
+																<span class="help-inline"> Utiliser le virgule
+																	comme separateur </span>
 															</h:panelGroup>
 														</h:panelGroup>
 
-														<h:panelGroup layout="block"
-															styleClass="control-group success">
-															<p:outputLabel styleClass="control-label" for="Telephone"
-																value="Telephone " />
 
-															<h:panelGroup layout="block" styleClass="controls">
-																<span class="span6 input-icon input-icon-right">
-																	<h:inputText styleClass="span6" id="Telephone"
+
+														<h:panelGroup layout="block" class="control-group">
+															<label class="control-label" for="phone">Telephone</label>
+
+															<h:panelGroup layout="block" class="controls">
+																<h:panelGroup layout="block" class="span3 input-prepend">
+																	<span class="add-on"> <i class="icon-phone"></i>
+																	</span>
+
+
+																	<h:inputText styleClass="span6" type="tel" id="phone"
+																		name="phone"
 																		value="#{projectBean.currentProject.projectPhone}" />
-																		
-																	  </span>
+																</h:panelGroup>
 															</h:panelGroup>
 														</h:panelGroup>
+													</h:panelGroup>
+													
+													
+													<p:separator />
+													<h:panelGroup layout="block" class="step-pane active" id="step2">
+													 
+														<h3 class="lighter block green">Liaison  </h3>
+															
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label" 
+																value="Jointure avec les partenaires " />
+
+															<h:panelGroup layout="block" class="controls" >
+
+																<p:pickList value="#{projectBean.listePartners}" var="partner" 
+																	itemValue="#{partner}" converter="stdConverter">
+																	<f:facet name="sourceCaption">Tous les partners</f:facet>
+																	<f:facet name="targetCaption">Les partners liés au project</f:facet>
+
+																	<p:column style="text-align:center">
+																	#{partner.partnerName} 
+																	</p:column>
+																</p:pickList>
+															</h:panelGroup>
+														</h:panelGroup>
+														
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label" 
+																value="Jointure avec les members " />
+
+															<h:panelGroup layout="block" class="controls" >
+
+																<p:pickList value="#{projectBean.listeMembers}" var="member" 
+																	itemValue="#{member}" converter="stdConverter">
+																	<f:facet name="sourceCaption">Tous les members</f:facet>
+																	<f:facet name="targetCaption">Les members liés au project</f:facet>
+
+																	<p:column style="text-align:center">
+																	#{member.memberName} 
+																	</p:column>
+																</p:pickList>
+															</h:panelGroup>
+														</h:panelGroup>
+
+														<p:separator />
+
 												</h:panelGroup>
 
 													<h:panelGroup layout="block"
@@ -668,7 +730,7 @@
 
 
             $.mask.definitions['~'] = '[+-]';
-            $('#phone').mask('(999) 999-9999');
+            $('#phone').mask('(+216) 99 999 999');
 
             jQuery.validator.addMethod("phone", function(value, element) {
                 return this.optional(element) || /^\(\d{3}\) \d{3}\-\d{4}( x\d{1,6})?$/.test(value);

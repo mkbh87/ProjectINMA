@@ -1,5 +1,5 @@
 package com.inmaa.admin.persistence;
-// Generated 1 janv. 2016 18:44:24 by Hibernate Tools 4.3.1.Final
+// Generated 22 janv. 2016 20:06:23 by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -37,6 +37,7 @@ public class Project implements java.io.Serializable {
 	private String projectDef;
 	private Set<Event> events = new HashSet<Event>(0);
 	private Set<Article> articles = new HashSet<Article>(0);
+	private Set<Partner> partners = new HashSet<Partner>(0);
 	private Set<Member> members = new HashSet<Member>(0);
 
 	public Project() {
@@ -51,7 +52,7 @@ public class Project implements java.io.Serializable {
 
 	public Project(Integer seqNo, String projectLogo, String projectDesc, String projectName, Date projectStartDate,
 			String projectLocation, String projectPhone, String projectPartner, String projectDef, Set<Event> events,
-			Set<Article> articles, Set<Member> members) {
+			Set<Article> articles, Set<Partner> partners, Set<Member> members) {
 		this.seqNo = seqNo;
 		this.projectLogo = projectLogo;
 		this.projectDesc = projectDesc;
@@ -63,6 +64,7 @@ public class Project implements java.io.Serializable {
 		this.projectDef = projectDef;
 		this.events = events;
 		this.articles = articles;
+		this.partners = partners;
 		this.members = members;
 	}
 
@@ -124,7 +126,7 @@ public class Project implements java.io.Serializable {
 		this.projectStartDate = projectStartDate;
 	}
 
-	@Column(name = "Project_Location", length = 45)
+	@Column(name = "Project_Location")
 	public String getProjectLocation() {
 		return this.projectLocation;
 	}
@@ -176,6 +178,18 @@ public class Project implements java.io.Serializable {
 
 	public void setArticles(Set<Article> articles) {
 		this.articles = articles;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "Project_Partner", catalog = "inmaa", joinColumns = {
+			@JoinColumn(name = "Project_Id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "Partner_Id", nullable = false, updatable = false) })
+	public Set<Partner> getPartners() {
+		return this.partners;
+	}
+
+	public void setPartners(Set<Partner> partners) {
+		this.partners = partners;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)

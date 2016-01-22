@@ -10,6 +10,8 @@ import org.primefaces.model.DualListModel;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.inmaa.admin.persistence.Event;
+import com.inmaa.admin.persistence.Member;
+import com.inmaa.admin.persistence.Partner;
 import com.inmaa.admin.persistence.Project;
 
 @FacesConverter(value = "stdConverter", forClass = stdConverter.class)
@@ -35,6 +37,16 @@ public class stdConverter implements Converter {
 					if (arg2.equals(id)) {
 						ret = o; break;
 					}
+				}else if (o instanceof Partner){
+					String id = "" + ((Partner) o).getPartnerId();
+					if (arg2.equals(id)) {
+						ret = o; break;
+					}
+				}else if (o instanceof Member){
+					String id = "" + ((Member) o).getMemberId();
+					if (arg2.equals(id)) {
+						ret = o; break;
+					}
 				}
 			}
 			if (ret == null)
@@ -51,6 +63,16 @@ public class stdConverter implements Converter {
 						if (arg2.equals(id)) {
 							ret = o; break;
 						}
+					}else if (o instanceof Partner){
+						String id = "" + ((Partner) o).getPartnerId();
+						if (arg2.equals(id)) {
+							ret = o; break;
+						}
+					}else if (o instanceof Member){
+						String id = "" + ((Member) o).getMemberId();
+						if (arg2.equals(id)) {
+							ret = o; break;
+						}
 					}
 				}
 
@@ -62,11 +84,14 @@ public class stdConverter implements Converter {
 	@Override
 	public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
 		String str = "";
-		if (arg2 instanceof Project) {
+		if (arg2 instanceof Project) 
 			str = "" + ((Project) arg2).getProjectId();
-		}
 		else if(arg2 instanceof Event)
 			str = "" + ((Event) arg2).getEventId();
+		else if(arg2 instanceof Partner)
+			str = "" + ((Partner) arg2).getPartnerId();
+		else if(arg2 instanceof Member)
+			str = "" + ((Member) arg2).getMemberId();
 		return str;
 	}
 

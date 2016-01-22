@@ -2,21 +2,12 @@ package com.inmaa.admin.control;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
-import java.nio.file.DirectoryNotEmptyException;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -35,9 +26,13 @@ import org.springframework.stereotype.Component;
 
 import com.inmaa.admin.persistence.Event;
 import com.inmaa.admin.persistence.Member;
+import com.inmaa.admin.persistence.Partner;
 import com.inmaa.admin.persistence.Project;
 import com.inmaa.admin.service.IEventService;
+import com.inmaa.admin.service.IMemberService;
+import com.inmaa.admin.service.IPartnerService;
 import com.inmaa.admin.service.IProjectService;
+import com.inmaa.admin.tools.Utils;
 
 @Component("eventBean")
 @ViewScoped
@@ -52,7 +47,11 @@ public class EventBean  implements Serializable {
 
 	@Autowired
 	IProjectService projectService;
+	@Autowired
+	IPartnerService partnerService;
 
+	@Autowired
+	IMemberService memberService;
 	private Event currentEvent ;
  	private transient DataModel<Event> events;
 
@@ -66,7 +65,13 @@ public class EventBean  implements Serializable {
 	private DualListModel<Project> listePro;
 	List<Project> prosSource = new ArrayList<Project>();
 	List<Project> prosTarget = new ArrayList<Project>();
-
+	private DualListModel<Member> listeMembers;
+	List<Member> MemberSource = new ArrayList<Member>();
+	List<Member> MemberTarget = new ArrayList<Member>();
+	
+	private DualListModel<Partner> listePartners;
+	List<Partner> PartnerSource = new ArrayList<Partner>();
+	List<Partner> PartnerTarget = new ArrayList<Partner>();
 
 	@PostConstruct
 	public void init() {
@@ -106,12 +111,15 @@ public class EventBean  implements Serializable {
 	public String ajouter(){
 		String bodymsg = "";
 		try {
-			Set<Project> temp = new HashSet<Project>(listePro.getTarget());
-			currentEvent.setProjects(temp);
 
 			bodymsg = submitLogoFile();
 			int seqno = eventService.maxSeqno();
 			currentEvent.setSeqNo(seqno + 10);
+			
+			currentEvent.setProjects(new HashSet<Project>(listePro.getTarget()));
+			currentEvent.setPartners(new HashSet<Partner>(listePartners.getTarget()));
+			currentEvent.setMembers( new HashSet<Member>(listeMembers.getTarget()));
+
 			eventService.enregistrer(currentEvent);
 			events.setWrappedData( eventService.lister());
 		} catch(Exception e) {
@@ -152,12 +160,13 @@ public class EventBean  implements Serializable {
 			if(uploadedFile != null)
 			{
 				if(currentEvent.getEventLogo() != null)
-					deletePicture(currentEvent.getEventLogo());
+					Utils.deletePicture(currentEvent.getEventLogo());
 				submitLogoFile();
 			}
 
-			Set<Project> temp = new HashSet<Project>(listePro.getTarget());
-			currentEvent.setProjects(temp);
+			currentEvent.setProjects(new HashSet<Project>(listePro.getTarget()));
+			currentEvent.setPartners(new HashSet<Partner>(listePartners.getTarget()));
+			currentEvent.setMembers( new HashSet<Member>(listeMembers.getTarget()));
 
 			eventService.mettre_a_jour(currentEvent);
 			events.setWrappedData( eventService.lister());
@@ -169,21 +178,6 @@ public class EventBean  implements Serializable {
 		}
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification de l événement",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
-	}
-
-	private void deletePicture(String pictureName) {
-		File file = new File(ConfigBean.getImgFilePath() +"/"+ pictureName);
-		Path path = file.toPath();
-		try {
-		    Files.delete(path);
-		} catch (NoSuchFileException x) {
-		    System.err.format("%s: no such" + " file or directory%n", path);
-		} catch (DirectoryNotEmptyException x) {
-		    System.err.format("%s not empty%n", path);
-		} catch (IOException x) {
-		    // File permission problems are caught here.
-		    System.err.println(x);
-		}
 	}
 
 	public String showEdit(Event p){
@@ -205,6 +199,14 @@ public class EventBean  implements Serializable {
 		prosTarget = new ArrayList<Project>();
 		prosSource = projectService.lister();
 		listePro  = new DualListModel<Project>(prosSource, prosTarget);
+		
+		PartnerTarget = new ArrayList<Partner>();
+		PartnerSource = partnerService.lister();
+		listePartners = new DualListModel<Partner>(PartnerSource, PartnerTarget);
+
+		MemberTarget = new ArrayList<Member>();
+		MemberSource = memberService.lister();
+		listeMembers = new DualListModel<Member>(MemberSource, MemberTarget);
 
 	}
 
@@ -229,32 +231,12 @@ public class EventBean  implements Serializable {
 		return id;
 	}
 
-	//	public String viewEventDetail(){
-	//		currentEvent = getEvents().getRowData();
-	//		setId(currentEvent.getEventId());
-	//		return "form-events.xhtml?faces-redirect=true&includeViewParams=true";
-	//
-	//	}
-
 	public void setMemberModel(DualListModel<Member> memberModel) {
 		this.memberModel = memberModel;
 	}
 
 	public DualListModel<Member> getMemberModel() {
 		return memberModel;
-	}
-
-
-	@SuppressWarnings("null")
-	public String limitedDesc(String desc)
-	{
-		if(desc == null || desc == "")
-			desc = currentEvent.getEventDesc();
-
-		if(desc != null && desc.length()>200)
-			desc = desc.substring(0, 200) + " ...";
-
-		return desc;
 	}
 
 	public String submitLogoFile() {
@@ -309,62 +291,47 @@ public class EventBean  implements Serializable {
 		uploadedFile = event.getFile();
 	}
 
-
-	public String getDateFormated(Date d)
-	{
-		if(d != null)
-		{
-			String date;
-			Calendar startdate = new GregorianCalendar();
-			startdate.setTime(d);
-			date = "" + startdate.get(Calendar.DATE) 
-			+ " " +startdate.get(Calendar.MONTH)
-			+ " " + startdate.get(Calendar.YEAR);
-			return date;
-		}
-		return null;
-	}
-
 	public void initializeLazyJoins()
 	{
 		eventService.initializeLazyJoins(currentEvent);
-
+		
 		prosTarget = new ArrayList<Project>();
 		prosTarget = new ArrayList<Project>(currentEvent.getProjects());	
-		prosSource = setprosSource(prosTarget);
+		prosSource = Utils.setListSource(prosTarget,projectService.lister());
 		listePro  = new DualListModel<Project>(prosSource, prosTarget);
+		
+		PartnerTarget = new ArrayList<Partner>();
+		PartnerTarget = new ArrayList<Partner>(currentEvent.getPartners());	
+		PartnerSource = Utils.setListSource(PartnerTarget, partnerService.lister());
+		listePartners = new DualListModel<Partner>(PartnerSource, PartnerTarget);
+		
+		MemberTarget = new ArrayList<Member>();
+		MemberTarget = new ArrayList<Member>(currentEvent.getMembers());	
+		MemberSource = Utils.setListSource(MemberTarget, memberService.lister());
+		listeMembers = new DualListModel<Member>(MemberSource, MemberTarget);
 	}
 
 	public DualListModel<Project> getListePro() {
 		return listePro;
 	}
 
-	public List<Project> setprosSource(List<Project> target) {
-		List<Project> listSource = projectService.lister();
-		listSource.removeAll(target);
-		listSource = subtract(listSource, target );
-		return listSource;
-	}
-
-
 	public void setListePro(DualListModel<Project> listePro) {
 		this.listePro = listePro;
 	}
-	
-	public List<Project> subtract(List<Project> list1, List<Project> list2) {
-		boolean found = false;
-        List<Project> result = new ArrayList<Project>();
-        for (Project t1 : list1) {
-        	for (Project t2 : list2) {
-        		if( t1.getProjectId().equals(t2.getProjectId()))  {
-        			found = true;
-        			break;
-        		}
-        	}
-        	if(!found)
-        		result.add(t1);
-        	found = false;
-        }
-        return result;
-    }
+
+	public DualListModel<Member> getListeMembers() {
+		return listeMembers;
+	}
+
+	public void setListeMembers(DualListModel<Member> listeMembers) {
+		this.listeMembers = listeMembers;
+	}
+
+	public DualListModel<Partner> getListePartners() {
+		return listePartners;
+	}
+
+	public void setListePartners(DualListModel<Partner> listePartners) {
+		this.listePartners = listePartners;
+	}
 }

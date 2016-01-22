@@ -1,12 +1,16 @@
 package com.inmaa.admin.persistence;
-// Generated 1 janv. 2016 18:44:24 by Hibernate Tools 4.3.1.Final
+// Generated 22 janv. 2016 20:06:23 by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,6 +31,8 @@ public class Partner implements java.io.Serializable {
 	private String partnerDesc;
 	private String partnerLogo;
 	private String partnerType;
+	private Set<Event> events = new HashSet<Event>(0);
+	private Set<Project> projects = new HashSet<Project>(0);
 
 	public Partner() {
 	}
@@ -38,7 +44,7 @@ public class Partner implements java.io.Serializable {
 	}
 
 	public Partner(Integer seqNo, String partnerName, String partnerPlace, Date partnerStartDate, String partnerDesc,
-			String partnerLogo, String partnerType) {
+			String partnerLogo, String partnerType, Set<Event> events, Set<Project> projects) {
 		this.seqNo = seqNo;
 		this.partnerName = partnerName;
 		this.partnerPlace = partnerPlace;
@@ -46,6 +52,8 @@ public class Partner implements java.io.Serializable {
 		this.partnerDesc = partnerDesc;
 		this.partnerLogo = partnerLogo;
 		this.partnerType = partnerType;
+		this.events = events;
+		this.projects = projects;
 	}
 
 	@Id
@@ -122,6 +130,24 @@ public class Partner implements java.io.Serializable {
 
 	public void setPartnerType(String partnerType) {
 		this.partnerType = partnerType;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "partners")
+	public Set<Event> getEvents() {
+		return this.events;
+	}
+
+	public void setEvents(Set<Event> events) {
+		this.events = events;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "partners")
+	public Set<Project> getProjects() {
+		return this.projects;
+	}
+
+	public void setProjects(Set<Project> projects) {
+		this.projects = projects;
 	}
 
 }

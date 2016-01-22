@@ -83,6 +83,8 @@ public class IEventServiceImpl implements IEventService {
 		session.refresh(entity);
 		Hibernate.initialize(entity.getProjects());
 		Hibernate.initialize(entity.getArticles());
+		Hibernate.initialize(entity.getPartners());
+		Hibernate.initialize(entity.getMembers());
 
 		session.close();
 

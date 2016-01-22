@@ -2,17 +2,9 @@ package com.inmaa.admin.control;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
-import java.nio.file.DirectoryNotEmptyException;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -40,6 +32,7 @@ import com.inmaa.admin.service.IArticleService;
 import com.inmaa.admin.service.IArticleServiceImpl;
 import com.inmaa.admin.service.IEventService;
 import com.inmaa.admin.service.IProjectService;
+import com.inmaa.admin.tools.Utils;
 
 @Component("articleBean")
 @ViewScoped
@@ -162,7 +155,7 @@ public class ArticleBean implements Serializable{
 			if(uploadedFile != null)
 			{
 				if(currentArticle.getArticlePicture() != null)
-					deletePicture(currentArticle.getArticlePicture());
+					Utils.deletePicture(currentArticle.getArticlePicture());
 				submitLogoFile();
 			}
 
@@ -244,19 +237,6 @@ public class ArticleBean implements Serializable{
 		this.articleList = articles;
 	}
 
-
-	@SuppressWarnings("null")
-	public String limitedDesc(String desc)
-	{
-		if(desc == null || desc == "")
-			desc = currentArticle.getArticleDesc();
-
-		if(desc != null && desc.length()>100)
-			desc = desc.substring(0, 100) + " ...";
-
-		return desc;
-	}
-
 	public String submitLogoFile() {
 
 		String msg = "";
@@ -309,33 +289,18 @@ public class ArticleBean implements Serializable{
 	}
 
 
-	public String getDateFormated(Date d)
-	{
-		if(d != null)
-		{
-			String date;
-			Calendar startdate = new GregorianCalendar();
-			startdate.setTime(d);
-			date = "" + startdate.get(Calendar.DATE) 
-			+ " " +startdate.get(Calendar.MONTH)
-			+ " " + startdate.get(Calendar.YEAR);
-			return date;
-		}
-		return null;
-	}
-
 	public void initializeLazyJoins()
 	{
 		articleService.initializeLazyJoins(currentArticle);
 		
 		prosTarget = new ArrayList<Project>();
 		prosTarget = new ArrayList<Project>(currentArticle.getProjects());	
-		prosSource = setprosSource(prosTarget);
+		prosSource = Utils.setListSource(prosTarget,projectService.lister());
 		listePro  = new DualListModel<Project>(prosSource, prosTarget);
 
 		evesTarget = new ArrayList<Event>();
 		evesTarget = new ArrayList<Event>(currentArticle.getEvents());	
-		evesSource = setevesSource(evesTarget);
+		evesSource = Utils.setListSource(evesTarget,eventService.lister());
 		listeEv  = new DualListModel<Event>(evesSource, evesTarget);
 
 	}
@@ -344,11 +309,7 @@ public class ArticleBean implements Serializable{
 		return listePro;
 	}
 
-	public List<Project> setprosSource(List<Project> target) {
-		List<Project> listSource = projectService.lister();
-		listSource = subtract(listSource, target );
-		return listSource;
-	}
+	 
 	
 	public void setListePro(DualListModel<Project> listePro) {
 		this.listePro = listePro;
@@ -358,54 +319,8 @@ public class ArticleBean implements Serializable{
 		return listeEv;
 	}
 	
-	public List<Event> setevesSource(List<Event> target) {
-		List<Event> listSource = eventService.lister();
-		listSource = subtract(listSource, target );
-		return listSource;
-	}
-
-
 	public void setListeEv(DualListModel<Event> listeEv) {
 		this.listeEv = listeEv;
 	}
 
-	public<T> List<T> subtract(List<T> list1, List<T> list2) {
-		boolean found = false;
-		List<T> result = new ArrayList<T>();
-
-		for (T t1 : list1) {
-			for (T t2 : list2) {
-				if (t1 instanceof Project) {
-					if( ((Project) t1).getProjectId().equals(((Project) t2).getProjectId()))  {
-						found = true;
-						break;
-					}
-				}else if (t1 instanceof Event) {
-					if( ((Event) t1).getEventId().equals(((Event) t2).getEventId()))  {
-						found = true;
-						break;
-					}
-				}
-			}
-			if(!found)
-				result.add(t1);
-			found = false;
-		}
-		return result;
-	}
-	
-	private void deletePicture(String pictureName) {
-		File file = new File(ConfigBean.getImgFilePath() +"/"+ pictureName);
-		Path path = file.toPath();
-		try {
-		    Files.delete(path);
-		} catch (NoSuchFileException x) {
-		    System.err.format("%s: no such" + " file or directory%n", path);
-		} catch (DirectoryNotEmptyException x) {
-		    System.err.format("%s not empty%n", path);
-		} catch (IOException x) {
-		    // File permission problems are caught here.
-		    System.err.println(x);
-		}
-	}
 }

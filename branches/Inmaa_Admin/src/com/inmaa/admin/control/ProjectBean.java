@@ -2,17 +2,10 @@ package com.inmaa.admin.control;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
-import java.nio.file.DirectoryNotEmptyException;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -31,10 +24,13 @@ import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.inmaa.admin.persistence.Event;
 import com.inmaa.admin.persistence.Member;
+import com.inmaa.admin.persistence.Partner;
 import com.inmaa.admin.persistence.Project;
+import com.inmaa.admin.service.IMemberService;
+import com.inmaa.admin.service.IPartnerService;
 import com.inmaa.admin.service.IProjectService;
+import com.inmaa.admin.tools.Utils;
 
 @Component("projectBean")
 @ViewScoped
@@ -46,15 +42,27 @@ public class ProjectBean implements Serializable{
 
 	@Autowired
 	IProjectService projectService;
+	
+	@Autowired
+	IPartnerService partnerService;
+
+	@Autowired
+	IMemberService memberService;
+
 	private Project currentProject ;
 	private transient DataModel<Project> es;
 	private int id;
 	private List<Project> projectList;
-	List<Member> members = new ArrayList<Member>();
-	private DualListModel<Member> memberModel;
 	private UploadedFile uploadedFile;
 	private String fileName;
-
+	
+	private DualListModel<Member> listeMembers;
+	List<Member> MemberSource = new ArrayList<Member>();
+	List<Member> MemberTarget = new ArrayList<Member>();
+	
+	private DualListModel<Partner> listePartners;
+	List<Partner> PartnerSource = new ArrayList<Partner>();
+	List<Partner> PartnerTarget = new ArrayList<Partner>();
 
 
 	@PostConstruct
@@ -62,14 +70,6 @@ public class ProjectBean implements Serializable{
 		projectList = projectService.lister();
 		es = new ListDataModel<Project>();
 		es.setWrappedData( projectService.lister());
-	}
-
-	private List<Member> getmemberList() {
-		List<Member> members = null;
-
-		members =  projectService.listerMember();
-
-		return members;
 	}
 
 	public Project getcurrentProject() {
@@ -107,6 +107,10 @@ public class ProjectBean implements Serializable{
 			bodymsg = submitLogoFile();
 			int seqno = projectService.maxSeqno();
 			currentProject.setSeqNo(seqno + 10);
+			
+			currentProject.setPartners(new HashSet<Partner>(listePartners.getTarget()));
+			currentProject.setMembers( new HashSet<Member>(listeMembers.getTarget()));
+			
 			projectService.enregistrer(currentProject);
 			es.setWrappedData( projectService.lister());
 		} catch(Exception e) {
@@ -146,10 +150,11 @@ public class ProjectBean implements Serializable{
 			if(uploadedFile != null)
 			{
 				if(currentProject.getProjectLogo() != null)
-					deletePicture(currentProject.getProjectLogo());
+					Utils.deletePicture(currentProject.getProjectLogo());
 				submitLogoFile();
 			}
-			
+			currentProject.setPartners(new HashSet<Partner>(listePartners.getTarget()));
+			currentProject.setMembers( new HashSet<Member>(listeMembers.getTarget()));
 			
 			projectService.mettre_a_jour(currentProject);
 			es.setWrappedData( projectService.lister());
@@ -180,8 +185,15 @@ public class ProjectBean implements Serializable{
 	public void vider(){
 		currentProject = new Project();
 		uploadedFile = null;
-		memberModel = null;
-		fileName= null;
+ 		fileName= null;
+		
+		PartnerTarget = new ArrayList<Partner>();
+		PartnerSource = partnerService.lister();
+		setListePartners(new DualListModel<Partner>(PartnerSource, PartnerTarget));
+
+		MemberTarget = new ArrayList<Member>();
+		MemberSource = memberService.lister();
+		setListeMembers(new DualListModel<Member>(MemberSource, MemberTarget));
 	}
 
 	public Project getprojectById(int p_id)
@@ -212,26 +224,6 @@ public class ProjectBean implements Serializable{
 
 	public void setProjectList(List<Project> projects) {
 		this.projectList = projects;
-	}
-
-	public void setmemberModel(DualListModel<Member> memberModel) {
-		this.memberModel = memberModel;
-	}
-
-	public DualListModel<Member> getmemberModel() {
-		return memberModel;
-	} 
-
-	@SuppressWarnings("null")
-	public String limitedDesc(String desc)
-	{
-		if(desc == null || desc == "")
-			desc = currentProject.getProjectDesc();
-
-		if(desc != null && desc.length()>100)
-			desc = desc.substring(0, 100) + " ...";
-
-		return desc;
 	}
 
 	public String submitLogoFile() {
@@ -285,41 +277,36 @@ public class ProjectBean implements Serializable{
 		uploadedFile = event.getFile();
 	}
 
-
-	public String getDateFormated(Date d)
+	public void initializeLazyJoins()
 	{
-		if(d != null)
-		{
-			String date;
-			Calendar startdate = new GregorianCalendar();
-			startdate.setTime(d);
-			date = "" + startdate.get(Calendar.DATE) 
-			+ " " +startdate.get(Calendar.MONTH)
-			+ " " + startdate.get(Calendar.YEAR);
-			return date;
-		}
-		return null;
+		projectService.initializeLazyJoins(currentProject);
+
+		PartnerTarget = new ArrayList<Partner>();
+		PartnerTarget = new ArrayList<Partner>(currentProject.getPartners());	
+		PartnerSource = Utils.setListSource(PartnerTarget, partnerService.lister());
+		setListePartners(new DualListModel<Partner>(PartnerSource, PartnerTarget));
+		
+		MemberTarget = new ArrayList<Member>();
+		MemberTarget = new ArrayList<Member>(currentProject.getMembers());	
+		MemberSource = Utils.setListSource(MemberTarget, memberService.lister());
+		setListeMembers(new DualListModel<Member>(MemberSource, MemberTarget));
 	}
-	public List<Member> getMembers() {
-		return members;
+	
+
+	public DualListModel<Partner> getListePartners() {
+		return listePartners;
 	}
 
-	public void setMembers(List<Member> members) {
-		this.members = members;
+	public void setListePartners(DualListModel<Partner> listePartners) {
+		this.listePartners = listePartners;
 	}
 
-	private void deletePicture(String pictureName) {
-		File file = new File(ConfigBean.getImgFilePath() +"/"+ pictureName);
-		Path path = file.toPath();
-		try {
-			Files.delete(path);
-		} catch (NoSuchFileException x) {
-			System.err.format("%s: no such" + " file or directory%n", path);
-		} catch (DirectoryNotEmptyException x) {
-			System.err.format("%s not empty%n", path);
-		} catch (IOException x) {
-			// File permission problems are caught here.
-			System.err.println(x);
-		}
+	public DualListModel<Member> getListeMembers() {
+		return listeMembers;
 	}
+
+	public void setListeMembers(DualListModel<Member> listeMembers) {
+		this.listeMembers = listeMembers;
+	}
+
 }

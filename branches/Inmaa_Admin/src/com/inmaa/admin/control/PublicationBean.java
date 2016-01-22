@@ -2,17 +2,9 @@ package com.inmaa.admin.control;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
-import java.nio.file.DirectoryNotEmptyException;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -34,6 +26,7 @@ import org.springframework.stereotype.Component;
 import com.inmaa.admin.persistence.Member;
 import com.inmaa.admin.persistence.Publication;
 import com.inmaa.admin.service.IPublicationService;
+import com.inmaa.admin.tools.Utils;
 
 @Component("publicationBean")
 @ViewScoped
@@ -141,7 +134,7 @@ public class PublicationBean implements Serializable{
 			if(uploadedLogo != null)
 			{
 				if(currentPublication.getPublicationPicture() != null)
-					deletePicture(currentPublication.getPublicationPicture());
+					Utils.deletePicture(currentPublication.getPublicationPicture());
 				submitLogoFile(uploadedLogo,"pic");
  
 			}
@@ -149,7 +142,7 @@ public class PublicationBean implements Serializable{
 			if(uploadedDoc != null)
 			{
 				if(currentPublication.getPublicationPicture() != null)
-					deletePicture(currentPublication.getPublicationPicture());
+					Utils.deletePicture(currentPublication.getPublicationPicture());
  				submitLogoFile(uploadedDoc,"doc");
 
 			}
@@ -281,21 +274,6 @@ public class PublicationBean implements Serializable{
 		uploadedLogo = event.getFile();
 	}
 
-
-	public String getDateFormated(Date d)
-	{
-		if(d != null)
-		{
-			String date;
-			Calendar startdate = new GregorianCalendar();
-			startdate.setTime(d);
-			date = "" + startdate.get(Calendar.DATE) 
-			+ " " +startdate.get(Calendar.MONTH)
-			+ " " + startdate.get(Calendar.YEAR);
-			return date;
-		}
-		return null;
-	}
 	public List<Member> getMembers() {
 		return members;
 	}
@@ -304,21 +282,6 @@ public class PublicationBean implements Serializable{
 		this.members = members;
 	}
 	
-	private void deletePicture(String pictureName) {
-		File file = new File(ConfigBean.getImgFilePath() +"/"+ pictureName);
-		Path path = file.toPath();
-		try {
-		    Files.delete(path);
-		} catch (NoSuchFileException x) {
-		    System.err.format("%s: no such" + " file or directory%n", path);
-		} catch (DirectoryNotEmptyException x) {
-		    System.err.format("%s not empty%n", path);
-		} catch (IOException x) {
-		    // File permission problems are caught here.
-		    System.err.println(x);
-		}
-	}
-
 	public void setUploadedDoc(UploadedFile uploadedFile) {
 		this.uploadedDoc = uploadedFile;
 	}
