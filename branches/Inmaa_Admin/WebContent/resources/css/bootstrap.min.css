@@ -198,8 +198,7 @@ textarea {
 }
 body {
     margin: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
+     font-size: 12px;
     line-height: 20px;
     color: #333;
     background-color: #fff
@@ -875,7 +874,7 @@ input,
 button,
 select,
 textarea {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: normal;
     line-height: 20px
 }
@@ -907,10 +906,10 @@ input[type="tel"],
 input[type="color"],
 .uneditable-input {
     display: inline-block;
-    height: 20px;
+    height: 18px;
     padding: 4px 6px;
     margin-bottom: 10px;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 20px;
     color: #555;
     vertical-align: middle;
@@ -1413,7 +1412,7 @@ select:focus:invalid:focus {
 .input-prepend .dropdown-menu,
 .input-append .popover,
 .input-prepend .popover {
-    font-size: 14px
+    font-size: 12px
 }
 .input-append input,
 .input-prepend input,
@@ -1441,10 +1440,10 @@ select:focus:invalid:focus {
 .input-prepend .add-on {
     display: inline-block;
     width: auto;
-    height: 20px;
+    height: 17px;
     min-width: 16px;
     padding: 4px 5px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: normal;
     line-height: 20px;
     text-align: center;
@@ -2660,7 +2659,7 @@ button.close {
     padding: 4px 12px;
     margin-bottom: 0;
     *margin-left: .3em;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 20px;
     color: #333;
     text-align: center;
@@ -3069,7 +3068,7 @@ input[type="submit"].btn.btn-mini {
 .btn-group>.btn,
 .btn-group>.dropdown-menu,
 .btn-group>.popover {
-    font-size: 14px
+    font-size: 12px
 }
 .btn-group>.btn-mini {
     font-size: 10.5px
@@ -4566,7 +4565,7 @@ input[type="submit"].btn.btn-mini {
 .popover-title {
     padding: 8px 14px;
     margin: 0;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: normal;
     line-height: 18px;
     background-color: #f7f7f7;
