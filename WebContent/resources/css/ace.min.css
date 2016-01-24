@@ -6,8 +6,8 @@ body {
     padding-bottom: 0;
     background-color: #e4e6e9;
     min-height: 100%;
-    font-family: 'Open Sans';
-    font-size: 11px;
+    font-family: 'Open Sans' !importnant;
+    font-size: 10px;
     color: #393939
 }
 body:before {
@@ -32,7 +32,7 @@ body.breadcrumbs-fixed {
     position: relative
 }
 .main-content {
-    margin-left: 190px;
+    margin-left: 152px;
     margin-right: 0;
     margin-top: 0;
     min-height: 100%;
@@ -50,13 +50,13 @@ body.breadcrumbs-fixed {
 .page-content .page-header:first-child h1 {
     padding: 0;
     margin: 0 8px;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: lighter;
     color: #2679b5
 }
 .page-content .page-header:first-child h1 small {
     margin: 0 6px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: normal;
     color: #8089a0
 }
@@ -197,7 +197,7 @@ blockquote.pull-right {
     background-color: #eff3f8
 }
 .modal-header .close {
-    font-size: 32px
+    font-size: 30px
 }
 .well {
     border-radius: 0
@@ -216,11 +216,11 @@ blockquote.pull-right {
     line-height: 36px
 }
 .alert {
-    font-size: 14px;
+    font-size: 12px;
     border-radius: 0
 }
 .alert .close {
-    font-size: 16px
+    font-size: 14px
 }
 .alert-block p+p {
     margin-top: 10px
@@ -944,13 +944,13 @@ blockquote.pull-right {
 }
 .navbar .brand {
     color: #fff;
-    font-size: 24px;
+    font-size: 20px;
     text-shadow: none
 }
 .navbar .nav>li>a,
 .navbar .nav>li>a:hover,
 .navbar .nav>li>a:focus {
-    font-size: 13px;
+    font-size: 11px;
     text-shadow: none;
     color: #fff
 }
@@ -977,7 +977,7 @@ blockquote.pull-right {
     background-color: transparent
 }
 .ace-nav>li>a>[class*="icon-"] {
-    font-size: 16px;
+    font-size: 14px;
     color: #EEE;
     display: inline-block;
     width: 20px;
@@ -1080,7 +1080,7 @@ blockquote.pull-right {
     line-height: 24px;
     margin: 0 22px 0 12px;
     padding: 0;
-    font-size: 13px;
+    font-size: 11px;
     color: #333;
     border-radius: 0
 }
@@ -1099,7 +1099,7 @@ blockquote.pull-right {
 .breadcrumb .home-icon {
     margin-left: 4px;
     margin-right: 2px;
-    font-size: 20px;
+    font-size: 18px;
     position: relative;
     top: 2px
 }
@@ -1109,7 +1109,7 @@ blockquote.pull-right {
     margin: 0;
     position: relative;
     top: 1px;
-    font-size: 14px;
+    font-size: 12px;
     color: #b2b6bf
 }
 .nav-search {
@@ -1129,7 +1129,7 @@ blockquote.pull-right {
     -webkit-border-radius: 4px!important;
     -moz-border-radius: 4px!important;
     border-radius: 4px!important;
-    font-size: 13px;
+    font-size: 11px;
     color: #666!important;
     z-index: 11;
     -webkit-transition: all ease .15s;
@@ -1148,7 +1148,7 @@ blockquote.pull-right {
 }
 .nav-search .nav-search-icon {
     color: #6fb3e0!important;
-    font-size: 14px!important;
+    font-size: 12px!important;
     line-height: 24px!important
 }
 .sidebar>.nav-search {
@@ -1218,7 +1218,7 @@ blockquote.pull-right {
     padding: 0 5px
 }
 .sidebar {
-    width: 189px;
+    width: 150px;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -1228,7 +1228,7 @@ blockquote.pull-right {
 .sidebar:before {
     content: "";
     display: block;
-    width: 189px;
+    width: 155px;
     position: fixed;
     bottom: 0;
     top: 0;
@@ -1281,7 +1281,7 @@ li [class*=" icon-"],
     background-color: #f9f9f9;
     color: #585858;
     text-shadow: none!important;
-    font-size: 13px;
+    font-size: 11px;
     text-decoration: none
 }
 .nav-list>li>a>[class*="icon-"]:first-child {
@@ -1318,7 +1318,7 @@ li [class*=" icon-"],
     height: 14px;
     line-height: 14px;
     text-shadow: none;
-    font-size: 18px;
+    font-size: 16px;
     position: absolute;
     right: 9px;
     top: 11px;
@@ -1353,7 +1353,7 @@ li [class*=" icon-"],
     background-color: #fff;
     color: #0b6cbc;
     font-weight: bold;
-    font-size: 13px
+    font-size: 11px
 }
 .nav-list>li.active>a>[class*="icon-"] {
     font-weight: normal
@@ -1859,16 +1859,16 @@ li [class*=" icon-"],
     font-size: 16px
 }
 .btn-small {
-    padding: 0 8px;
+    padding: 0 4px;
     line-height: 24px;
     border-width: 4px;
-    font-size: 13px
+    font-size: 11px
 }
 .btn-mini {
     padding: 0 5px;
-    line-height: 22px;
-    border-width: 2px;
-    font-size: 12px
+    line-height: 20px;
+    border-width: 1px;
+    font-size: 11px
 }
 .btn-minier {
     padding: 0 4px;
@@ -3788,7 +3788,8 @@ input[readonly]:focus {
     background-color: #f9f9f9
 }
 .help-inline {
-    font-size: 13px!important
+    font-size: 10px !important;
+     margin-top: 5px;
 }
 .input-icon {
     position: relative
@@ -3814,11 +3815,12 @@ span.input-icon {
     line-height: 28px;
     display: inline-block;
     color: #909090;
-    font-size: 16px
+    font-size: 14px
 }
 .input-icon.input-icon-right>[class*="icon-"] {
     left: auto;
-    right: 3px
+    right: 3px;
+    margin-top: 5px;
 }
 .input-icon>input:focus+[class*="icon-"] {
     color: #579

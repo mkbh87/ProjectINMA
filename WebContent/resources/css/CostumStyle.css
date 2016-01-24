@@ -3,6 +3,10 @@
 	list-style-type: none;
 }
 
+.ui-widget {
+    font-family: 'Open Sans' !importnant;
+}
+
 .ui-confirm-dialog {
 	text-align: center !important;
 	position: absolute !important;
@@ -44,7 +48,7 @@
 
 .form-h .control-label {
 	float: left;
-	width: 160px;
+	width: 140px;
 	padding-top: 5px;
 	text-align: right
 }
@@ -52,12 +56,12 @@
 .form-h .controls {
 	*display: inline-block;
 	*padding-left: 20px;
-	margin-left: 180px;
+	margin-left: 160px;
 	*margin-left: 0
 }
 
 .form-h .controls:first-child {
-	*padding-left: 180px
+	*padding-left: 160px
 }
 
 .form-h .help-block {

@@ -144,7 +144,7 @@
 
 				<li><h:outputLink value="#"
 						class="dropdown-toggle">
-						<i class="icon-desktop"></i>
+						<i class="icon-pinterest"></i>
 						<span class="menu-text"> Projets </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
@@ -163,8 +163,8 @@
 				</li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
-						<i class="icon-desktop"></i>
-						<span class="menu-text"> Evenements </span>
+						<i class="icon-th-list"></i>
+						<span class="menu-text"> Evénements </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
 
@@ -189,7 +189,7 @@
 				</li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
-						<i class="icon-desktop"></i>
+						<i class="icon-user"></i>
 						<span class="menu-text"> Membres </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
@@ -208,7 +208,7 @@
 				</li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
-						<i class="icon-desktop"></i>
+						<i class="icon-book"></i>
 						<span class="menu-text"> Articles </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
@@ -227,7 +227,7 @@
 				</li>
 
 				<li class="active open"><h:outputLink value="#" class="dropdown-toggle">
-						<i class="icon-desktop"></i>
+						<i class="icon-group"></i>
 						<span class="menu-text"> Partenaires </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
@@ -246,7 +246,7 @@
 				</li>
 
 				<li ><h:outputLink value="#" class="dropdown-toggle">
-						<i class="icon-desktop"></i>
+						<i class="icon-file-text"></i>
 						<span class="menu-text"> Publications </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
@@ -360,7 +360,8 @@
 								<p:dataTable 
 									styleClass="table table-striped table-bordered table-hover" sortBy="#{part.seqNo}"
 									var="part" value="#{partnerBean.es}" paginator="true" rows="20"
-									editable="true" id="sample-table-2" paginatorPosition="bottom"
+									editable="true" id="sample-table-2" paginatorPosition="bottom" rowsPerPageTemplate="20,40,80"
+									paginatorTemplate=" {CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
 									resizableColumns="true">
 																		
 									<p:column styleClass="center" style="width:30px"  sortBy="#{part.seqNo}">
@@ -390,9 +391,17 @@
 									<p:column styleClass="center" >
 										<f:facet name="header" styleClass="hidden-phone">
 											<i class="icon-time bigger-110 hidden-phone"></i>
-											<h:outputText value="Courte description" />
+											<h:outputText value="Localisé à" />
 										</f:facet>
 										<h:outputText styleClass="hidden-phone" value="#{part.partnerPlace}" />
+									</p:column>
+									
+									<p:column styleClass="center" >
+										<f:facet name="header" styleClass="hidden-phone">
+											<i class="icon-time bigger-110 hidden-phone"></i>
+											<h:outputText value="Type de partenaire" />
+										</f:facet>
+										<h:outputText styleClass="hidden-phone" value="#{part.partnerType}" />
 									</p:column>
 
 									<p:column styleClass="center">
