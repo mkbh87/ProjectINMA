@@ -1218,7 +1218,7 @@ blockquote.pull-right {
     padding: 0 5px
 }
 .sidebar {
-    width: 150px;
+    width: 160px;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -1228,7 +1228,7 @@ blockquote.pull-right {
 .sidebar:before {
     content: "";
     display: block;
-    width: 155px;
+    width: 160px;
     position: fixed;
     bottom: 0;
     top: 0;
