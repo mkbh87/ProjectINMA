@@ -1078,7 +1078,7 @@ blockquote.pull-right {
     background-color: transparent;
     display: inline-block;
     line-height: 24px;
-    margin: 0 22px 0 12px;
+    margin: 7px 22px 0 12px;
     padding: 0;
     font-size: 11px;
     color: #333;
@@ -11555,4 +11555,11 @@ img.editable:hover {
     -webkit-box-shadow: -40px 0 0 #fbfbfc inset, -41px 0 0 #ececf0 inset;
     -moz-box-shadow: -40px 0 0 #fbfbfc inset, -41px 0 0 #ececf0 inset;
     box-shadow: -40px 0 0 #fbfbfc inset, -41px 0 0 #ececf0 inset
+}
+
+
+.profile-img {
+    margin-bottom: 10px !important;
+    margin-right: 15px !important;
+    margin-top: -10px !important;
 }
