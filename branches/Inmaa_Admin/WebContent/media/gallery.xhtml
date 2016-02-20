@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+	<title>Projets - inma Admin</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+	<!-- Mobile Specific Metas
+    ================================================== -->
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="format-detection" content="telephone=no" />
+
+	<!--basic styles-->
+
+	<h:outputStylesheet name="bootstrap.min.css" library="css" />
+	<h:outputStylesheet name="bootstrap-responsive.min.css" library="css" />
+	<h:outputStylesheet
+		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
+
+
+
+
+	<!--ace styles-->
+
+	<h:outputStylesheet library="css" name="ace.min.css" />
+	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
+	<h:outputStylesheet library="css" name="ace-skins.min.css" />
+
+</h:head>
+
+<h:body>
+
+	<h:panelGroup layout="block" styleClass="navbar">
+		<h:panelGroup layout="block" styleClass="navbar-inner">
+			<h:panelGroup layout="block" styleClass="container-fluid">
+
+				<h1 class="logo">
+					<h:outputLink value="../welcome.xhtml">
+						<h:graphicImage library="images" name="logo.png" styleClass="logo" />
+					</h:outputLink>
+				</h1>
+
+				<h:form>
+				<ul class="nav ace-nav pull-right">
+					<li class="light-blue">
+
+							<p:commandLink id="logout" action="#{loginMgmtBean.logout()}" styleClass="dropdown-toggle">
+								<h:graphicImage styleClass="nav-user-photo profile-img" library="images"
+									name="logo.png" alt="Inma Admin's Photo" />
+									<span class="user-info">  <strong>Logout</strong> <br/> Inma  Admin
+									</span>
+								<i class="icon-signout" style="font-size: 40px; padding-top: 2px;"></i>
+							</p:commandLink>
+
+					</li>
+				</ul>
+				</h:form>
+				<!--/.ace-nav-->
+			</h:panelGroup>
+			<!--/.container-fluid-->
+		</h:panelGroup>
+		<!--/.navbar-inner-->
+	</h:panelGroup>
+
+
+	<h:panelGroup layout="block"
+		styleClass="main-container container-fluid">
+		<h:outputLink class="menu-toggler" id="menu-toggler" value="#">
+			<span class="menu-text"></span>
+		</h:outputLink>
+
+		<h:panelGroup layout="block" styleClass="sidebar" id="sidebar">
+			<h:panelGroup layout="block" styleClass="sidebar-shortcuts"
+				id="sidebar-shortcuts">
+				<h:panelGroup layout="block" styleClass="sidebar-shortcuts-large"
+					id="sidebar-shortcuts-large">
+					<button class="btn btn-small btn-success">
+						<i class="icon-signal"></i>
+					</button>
+
+					<button class="btn btn-small btn-info">
+						<i class="icon-pencil"></i>
+					</button>
+
+					<button class="btn btn-small btn-warning">
+						<i class="icon-group"></i>
+					</button>
+
+					<button class="btn btn-small btn-danger">
+						<i class="icon-cogs"></i>
+					</button>
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" class="sidebar-shortcuts-mini"
+					id="sidebar-shortcuts-mini">
+					<span class="btn btn-success"></span>
+
+					<span class="btn btn-info"></span>
+
+					<span class="btn btn-warning"></span>
+
+					<span class="btn btn-danger"></span>
+				</h:panelGroup>
+			</h:panelGroup>
+
+			<!--#sidebar-shortcuts-->
+			<ul class="nav nav-list">
+				<li><h:outputLink value="../welcome.xhtml">
+						<i class="icon-dashboard"></i>
+						<span class="menu-text"> Dashboard </span>
+					</h:outputLink></li>
+
+
+				<li><h:outputLink value="#"
+						class="dropdown-toggle">
+						<i class="icon-pinterest"></i>
+						<span class="menu-text"> Projets </span>
+						<b class="arrow icon-angle-down"></b>
+					</h:outputLink>
+
+					<ul class="submenu">
+						<li><h:outputLink value="../projects/table-projects.xhtml">
+								<i class="icon-double-angle-right"></i> Tous les projets
+						</h:outputLink></li>
+
+						<li><h:outputLink value="../projects/form-projects.xhtml">
+								<i class="icon-double-angle-right"></i> Nouveau Projet
+						</h:outputLink></li>
+					</ul></li>
+
+				<li><h:outputLink value="#" class="dropdown-toggle">
+						<i class="icon-th-list"></i>
+						<span class="menu-text"> Événements </span>
+						<b class="arrow icon-angle-down"></b>
+					</h:outputLink>
+
+					<ul class="submenu">
+						<li><h:outputLink value="../events/table-events.xhtml">
+								<i class="icon-double-angle-right"></i> Tous les événements
+						</h:outputLink></li>
+
+						<li><h:outputLink value="../events/form-events.xhtml">
+								<i class="icon-double-angle-right"></i> Nouvel événement
+						</h:outputLink></li>
+						
+						<li><h:outputLink value="../events/table-subevents.xhtml">
+								<i class="icon-double-angle-right"></i> Tous sous événements
+						</h:outputLink></li>
+
+						<li><h:outputLink value="../events/form-subevents.xhtml">
+								<i class="icon-double-angle-right"></i> Nouvel sous événement
+						</h:outputLink></li>
+					</ul></li>
+
+				<li><h:outputLink value="#" class="dropdown-toggle">
+						<i class="icon-user"></i>
+						<span class="menu-text"> Membres </span>
+						<b class="arrow icon-angle-down"></b>
+					</h:outputLink>
+
+					<ul class="submenu">
+						<li><h:outputLink value="../members/table-members.xhtml">
+								<i class="icon-double-angle-right"></i> Tous les membres
+						</h:outputLink></li>
+
+						<li><h:outputLink value="../members/form-members.xhtml">
+								<i class="icon-double-angle-right"></i> Nouveau membre
+						</h:outputLink></li>
+					</ul></li>
+
+				<li><h:outputLink value="#" class="dropdown-toggle">
+						<i class="icon-book"></i>
+						<span class="menu-text"> Articles </span>
+						<b class="arrow icon-angle-down"></b>
+					</h:outputLink>
+
+					<ul class="submenu">
+						<li><h:outputLink value="../articles/table-articles.xhtml">
+								<i class="icon-double-angle-right"></i> Tous les articles
+						</h:outputLink></li>
+
+						<li><h:outputLink value="../articles/form-articles.xhtml">
+								<i class="icon-double-angle-right"></i> Nouvel article
+						</h:outputLink></li>
+					</ul></li>
+
+				<li><h:outputLink value="#" class="dropdown-toggle">
+						<i class="icon-group"></i>
+						<span class="menu-text"> Partenaires </span>
+						<b class="arrow icon-angle-down"></b>
+					</h:outputLink>
+
+					<ul class="submenu">
+						<li><h:outputLink value="../partners/table-partners.xhtml">
+								<i class="icon-double-angle-right"></i> Tous les Partenaires 
+						</h:outputLink>
+						</li>
+
+						<li><h:outputLink value="../partners/form-partners.xhtml">
+								<i class="icon-double-angle-right"></i> Nouveau Partenaire 
+						</h:outputLink>
+						</li>
+					</ul>
+				</li>
+
+				<li ><h:outputLink value="#" class="dropdown-toggle">
+						<i class="icon-file-text"></i>
+						<span class="menu-text"> Publications </span>
+						<b class="arrow icon-angle-down"></b>
+					</h:outputLink>
+
+					<ul class="submenu">
+						<li><h:outputLink value="../publications/table-publications.xhtml">
+								<i class="icon-double-angle-right"></i> Tous les Publications 
+						</h:outputLink>
+						</li>
+
+						<li  ><h:outputLink value="../publications/form-publications.xhtml">
+								<i class="icon-double-angle-right"></i> Nouvelle Publication 
+						</h:outputLink>
+						</li>
+					</ul>
+				</li>
+				<li><h:outputLink value="../events/calendar.xhtml">
+						<i class="icon-calendar"></i>
+
+						<span class="menu-text"> Calendrier <span
+							class="badge badge-transparent tooltip-error"
+							title="2&nbsp;Important&nbsp;Events"> <i
+								class="icon-warning-sign red bigger-130"></i>
+						</span>
+						</span>
+					</h:outputLink></li>
+
+				<li class="active"><h:outputLink value="gallery.xhtml">
+						<i class="icon-picture"></i>
+						<span class="menu-text"> Galerie </span>
+					</h:outputLink></li>
+
+				<li><h:outputLink value="#" class="dropdown-toggle">
+						<i class="icon-tag"></i>
+						<span class="menu-text"> More Pages </span>
+
+						<b class="arrow icon-angle-down"></b>
+					</h:outputLink>
+
+					<ul class="submenu">
+						<li><h:outputLink value="../configurations/profile.xhtml">
+								<i class="icon-double-angle-right"></i> User Profile
+						</h:outputLink></li>
+
+						<li><h:outputLink value="pricing.html">
+								<i class="icon-double-angle-right"></i> Pricing Tables
+						</h:outputLink></li>
+
+						<li><h:outputLink value="invoice.html">
+								<i class="icon-double-angle-right"></i> Invoice
+						</h:outputLink></li>
+
+						<li><h:outputLink value="login.html">
+								<i class="icon-double-angle-right"></i> Login &amp; Register
+						</h:outputLink></li>
+					</ul></li>
+				<li><h:outputLink value="../configurations/config.xhtml">
+						<i class="icon-cogs"></i>
+						<span class="menu-text"> Parametrage </span>
+					</h:outputLink></li>
+			</ul>
+
+			<h:panelGroup layout="block" styleClass="sidebar-collapse"
+				id="sidebar-collapse">
+				<i class="icon-double-angle-left"></i>
+			</h:panelGroup>
+		</h:panelGroup>
+
+		<h:panelGroup layout="block" styleClass="main-content">
+			<h:panelGroup layout="block" styleClass="breadcrumbs"
+				id="breadcrumbs">
+				<ul class="breadcrumb">
+					<li><i class="icon-home home-icon"></i> <h:outputLink
+							value="../welcome.xhtml">Home</h:outputLink> <span class="divider"> <i
+							class="icon-angle-right arrow-icon"></i>
+					</span></li>
+					<li class="active">Ajouter un projet</li>
+				</ul>
+				<!--.breadcrumb-->
+
+				<h:panelGroup layout="block" styleClass="nav-search" id="nav-search">
+					<!-- 					<form class="form-search" />
+					<span class="input-icon"> <input type="text"
+						placeholder="Search ..." class="input-small nav-search-input"
+						id="nav-search-input" autocomplete="off" /> <i
+						class="icon-search nav-search-icon"></i> </span>
+					</h:form>
+ -->
+				</h:panelGroup>
+				<!--#nav-search-->
+			</h:panelGroup>
+
+			<h:panelGroup layout="block" styleClass="page-content">
+
+
+				<div class="page-header position-relative">
+					<h1>
+						Gallery <small> <i class="icon-double-angle-right"></i>
+							responsive photo gallery using colorbox
+						</small>
+					</h1>
+				</div>
+				<!--/.page-header-->
+
+				<div class="row-fluid">
+					<div class="span12">
+						<!--PAGE CONTENT BEGINS-->
+
+						<div class="row-fluid">
+							<ul class="ace-thumbnails">
+								<h:panelGrid columns="1" cellpadding="5">
+
+									<p:commandButton value="Effects" type="button"
+										onclick="PF('dlg3').show();" />
+								</h:panelGrid>
+
+								<p:dialog header="Effects" widgetVar="dlg3" showEffect="explode"
+									hideEffect="bounce" height="100">
+									<h:outputText value="This dialog has nice effects." />
+								</p:dialog>
+								<p:dataList rows="500" value="#{mediaBean.medias}" var="image">
+									<li><a href="resources/images/gallery/image-1.jpg"
+										title="Photo Title" data-rel="colorbox"> <img
+											alt="150x150" src="#{image.mediaLink}" />
+											<div class="tags">
+												<span class="label label-info">breakfast</span> <span
+													class="label label-important">fruits</span> <span
+													class="label label-success">toast</span> <span
+													class="label label-warning arrowed-in">diet</span>
+											</div>
+									</a>
+
+										<div class="tools">
+											<a href="#"> <i class="icon-link"></i>
+											</a> <a href="#"> <i class="icon-paper-clip"></i>
+											</a> <a href="#"> <i class="icon-pencil"></i>
+											</a> <a href="#"> <i class="icon-remove red"></i>
+											</a>
+										</div></li>
+
+								</p:dataList>
+							</ul>
+
+							<ul class="ace-thumbnails">
+								<li><a href="resources/images/gallery/image-1.jpg"
+									title="Photo Title" data-rel="colorbox"> <img alt="150x150"
+										src="resources/images/gallery/thumb-1.jpg" />
+										<div class="tags">
+											<span class="label label-info">breakfast</span> <span
+												class="label label-important">fruits</span> <span
+												class="label label-success">toast</span> <span
+												class="label label-warning arrowed-in">diet</span>
+										</div>
+								</a>
+
+									<div class="tools">
+										<a href="#"> <i class="icon-link"></i>
+										</a> <a href="#"> <i class="icon-paper-clip"></i>
+										</a> <a href="#"> <i class="icon-pencil"></i>
+										</a> <a href="#"> <i class="icon-remove red"></i>
+										</a>
+									</div></li>
+
+								<li><a href="resources/images/gallery/image-2.jpg"
+									data-rel="colorbox"> <img alt="150x150"
+										src="resources/images/gallery/thumb-2.jpg" />
+										<div class="text">
+											<div class="inner">Sample Caption on Hover</div>
+										</div>
+								</a></li>
+
+								<li><a href="resources/images/gallery/image-3.jpg"
+									data-rel="colorbox"> <img alt="150x150"
+										src="resources/images/gallery/thumb-3.jpg" />
+										<div class="text">
+											<div class="inner">Sample Caption on Hover</div>
+										</div>
+								</a>
+
+									<div class="tools tools-bottom">
+										<a href="#"> <i class="icon-link"></i>
+										</a> <a href="#"> <i class="icon-paper-clip"></i>
+										</a> <a href="#"> <i class="icon-pencil"></i>
+										</a> <a href="#"> <i class="icon-remove red"></i>
+										</a>
+									</div></li>
+
+								<li><a href="resources/images/gallery/image-4.jpg"
+									data-rel="colorbox"> <img alt="150x150"
+										src="resources/images/gallery/thumb-4.jpg" />
+										<div class="tags">
+											<span class="label label-info arrowed">fountain</span> <span
+												class="label label-important">recreation</span>
+										</div>
+								</a>
+
+									<div class="tools tools-top">
+										<a href="#"> <i class="icon-link"></i>
+										</a> <a href="#"> <i class="icon-paper-clip"></i>
+										</a> <a href="#"> <i class="icon-pencil"></i>
+										</a> <a href="#"> <i class="icon-remove red"></i>
+										</a>
+									</div></li>
+
+								<li>
+									<div>
+										<img alt="150x150" src="resources/images/gallery/thumb-5.jpg" />
+										<div class="text">
+											<div class="inner">
+												<span>Some Title!</span> <br /> <a
+													href="resources/images/gallery/image-5.jpg"
+													data-rel="colorbox"> <i class="icon-zoom-in"></i>
+												</a> <a href="#"> <i class="icon-user"></i>
+												</a> <a href="#"> <i class="icon-share-alt"></i>
+												</a>
+											</div>
+										</div>
+									</div>
+								</li>
+
+								<li><a href="resources/images/gallery/image-6.jpg"
+									data-rel="colorbox"> <img alt="150x150"
+										src="resources/images/gallery/thumb-6.jpg" />
+								</a>
+
+									<div class="tools tools-right">
+										<a href="#"> <i class="icon-link"></i>
+										</a> <a href="#"> <i class="icon-paper-clip"></i>
+										</a> <a href="#"> <i class="icon-pencil"></i>
+										</a> <a href="#"> <i class="icon-remove red"></i>
+										</a>
+									</div></li>
+
+								<li><a href="resources/images/gallery/image-1.jpg"
+									data-rel="colorbox"> <img alt="150x150"
+										src="resources/images/gallery/thumb-1.jpg" />
+								</a>
+
+									<div class="tools">
+										<a href="#"> <i class="icon-link"></i>
+										</a> <a href="#"> <i class="icon-paper-clip"></i>
+										</a> <a href="#"> <i class="icon-pencil"></i>
+										</a> <a href="#"> <i class="icon-remove red"></i>
+										</a>
+									</div></li>
+
+								<li><a href="resources/images/gallery/image-2.jpg"
+									data-rel="colorbox"> <img alt="150x150"
+										src="resources/images/gallery/thumb-2.jpg" />
+								</a>
+
+									<div class="tools tools-top">
+										<a href="#"> <i class="icon-link"></i>
+										</a> <a href="#"> <i class="icon-paper-clip"></i>
+										</a> <a href="#"> <i class="icon-pencil"></i>
+										</a> <a href="#"> <i class="icon-remove red"></i>
+										</a>
+									</div></li>
+							</ul>
+						</div>
+						<!--PAGE CONTENT ENDS-->
+					</div>
+					<!--/.span-->
+				</div>
+				<!--/.row-fluid-->
+
+				<div class="page-header position-relative">
+					<h1>
+						Video <small> <i class="icon-double-angle-right"></i>
+							Liens vers YouTube
+						</small>
+					</h1>
+				</div>
+				<h:form id="form">
+					<p:growl id="msgs" showDetail="true" />
+
+					<p:dataTable id="videos1" var="video" value="#{mediaBean.videos}"
+						editable="true" style="margin-bottom:20px">
+						<f:facet name="header">
+           					Row Editing
+       					</f:facet>
+
+						<p:ajax event="rowEdit" listener="#{mediaBean.onRowEdit}"
+							update=":form:msgs" />
+						<p:ajax event="rowEditCancel" listener="#{mediaBean.onRowCancel}"
+							update=":form:msgs" />
+
+						<p:column headerText="Titre">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{video.mediaId}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="modelInput" value="#{video.mediaId}"
+										style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column headerText="date">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{video.mediaDate}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{video.mediaDate}" style="width:100%"
+										label="Date" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column headerText="endroit">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{video.mediaLocation}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="modelLocation" value="#{video.mediaLocation}"
+										style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column headerText="liens">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{video.mediaLink}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="modelLink" value="#{video.mediaLink}"
+										style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column style="width:32px">
+							<p:rowEditor />
+						</p:column>
+					</p:dataTable>
+					<p:commandButton value="Add another price" process="@this" update="videos1" action="#{mediaBean.addNewLine()}" />
+
+					<p:contextMenu for="videos1" widgetVar="cMenu">
+						<p:menuitem value="Edit Cell" icon="ui-icon-search"
+							onclick="PF('cellVideos').showCellEditor();return false;" />
+						<p:menuitem value="Hide Menu" icon="ui-icon-close"
+							onclick="PF('cMenu').hide()" />
+					</p:contextMenu>
+
+				</h:form>
+				<!--/.page-header-->
+
+
+			</h:panelGroup>
+			<!--/.page-content-->
+
+			<h:panelGroup layout="block" styleClass="ace-settings-container"
+				id="ace-settings-container">
+
+				<h:panelGroup layout="block" styleClass="ace-settings-box"
+					id="ace-settings-box">
+					<h:panelGroup>
+						<h:panelGroup layout="block" styleClass="pull-left">
+							<select id="skin-colorpicker" class="hide">
+								<option data-class="default" value="#438EB9" />#438EB9
+								<option data-class="skin-1" value="#222A2D" />#222A2D
+								<option data-class="skin-2" value="#C6487E" />#C6487E
+								<option data-class="skin-3" value="#D0D0D0" />#D0D0D0
+							</select>
+						</h:panelGroup>
+						<span>&nbsp; Choose Skin</span>
+					</h:panelGroup>
+
+					<h:panelGroup>
+						<input type="checkbox" class="ace-checkbox-2"
+							id="ace-settings-header" />
+						<label class="lbl" for="ace-settings-header"> Fixed Header</label>
+					</h:panelGroup>
+
+					<h:panelGroup>
+						<input type="checkbox" class="ace-checkbox-2"
+							id="ace-settings-sidebar" />
+						<label class="lbl" for="ace-settings-sidebar"> Fixed
+							Sidebar</label>
+					</h:panelGroup>
+
+					<h:panelGroup>
+						<input type="checkbox" class="ace-checkbox-2"
+							id="ace-settings-breadcrumbs" />
+						<label class="lbl" for="ace-settings-breadcrumbs"> Fixed
+							Breadcrumbs</label>
+					</h:panelGroup>
+
+					<h:panelGroup>
+						<input type="checkbox" class="ace-checkbox-2"
+							id="ace-settings-rtl" />
+						<label class="lbl" for="ace-settings-rtl"> Right To Left
+							(rtl)</label>
+					</h:panelGroup>
+				</h:panelGroup>
+			</h:panelGroup>
+			<!--/#ace-settings-container-->
+		</h:panelGroup>
+		<!--/.main-content-->
+	</h:panelGroup>
+	<!--/.main-container-->
+
+	<a href="#" id="btn-scroll-up"
+		class="btn-scroll-up btn btn-small btn-inverse"> <i
+		class="icon-double-angle-up icon-only bigger-110"></i>
+	</a>
+
+	<!--basic scripts-->
+
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"/>
+
+	<!--<![endif]-->
+
+	<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"/>
+<![endif]-->
+
+	<!--[if !IE]>-->
+
+	<script type="text/javascript">
+		//<![CDATA[
+		window.jQuery
+				|| document
+						.write("<h:outputScript library='js' name='jquery-2.0.3.min.js'>"
+								+ "<"+"/script>");
+		//]]>
+	</script>
+
+	<!--<![endif]-->
+
+	<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<h:outputScript library='js' name='jquery-1.10.2.min.js' />");
+</script>
+<![endif]-->
+
+	<script type="text/javascript">
+		//<![CDATA[
+		if ("ontouchend" in document)
+			document
+					.write("<h:outputScript library='js' name='jquery.mobile.custom.min.js'>"
+							+ "<"+"/script>");
+		//]]>
+	</script>
+	<h:outputScript library="js" name="bootstrap.min.js"/>
+
+	<!--page specific plugin scripts-->
+
+	<h:outputScript library="js" name="jquery.colorbox-min.js"/>
+
+	<!--ace scripts-->
+
+	<h:outputScript library="js" name="ace-elements.min.js"/>
+	<h:outputScript library="js" name="ace.min.js"/>
+
+	<!--inline scripts related to this page-->
+
+	<script type="text/javascript">
+		//<![CDATA[
+		$(function() {
+			var colorbox_params = {
+				reposition : true,
+				scalePhotos : true,
+				scrolling : false,
+				previous : '<i class="icon-arrow-left"></i>',
+				next : '<i class="icon-arrow-right"></i>',
+				close : '&times;',
+				current : '{current} of {total}',
+				maxWidth : '100%',
+				maxHeight : '100%',
+				onOpen : function() {
+					document.body.style.overflow = 'hidden';
+				},
+				onClosed : function() {
+					document.body.style.overflow = 'auto';
+				},
+				onComplete : function() {
+					$.colorbox.resize();
+				}
+			};
+
+			$('.ace-thumbnails [data-rel="colorbox"]')
+					.colorbox(colorbox_params);
+			$("#cboxLoadingGraphic").append(
+					"<i class='icon-spinner orange'></i>");//let's add a custom loading icon
+
+			/**$(window).on('resize.colorbox', function() {
+				try {
+					//this function has been changed in recent versions of colorbox, so it won't work
+					$.fn.colorbox.load();//to redraw the current frame
+				} catch(e){}
+			});*/
+		})
+		//]]>
+	</script>
+</h:body>
+
+</html>

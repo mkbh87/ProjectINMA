@@ -4,23 +4,74 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
 	version="2.0">
-
+	<!-- Enable Spring -->
 	<application>
-
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
-
 	</application>
-	
-	
+	<!-- Simple Navigation Rule -->
+
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
-			<from-outcome>editProjet</from-outcome>
-			<to-view-id>/form-projects.xhtml</to-view-id>
+		    <from-action>#{navigator.navigateTo}</from-action>
+ 			<from-outcome>table-projects</from-outcome>
+			<to-view-id>/projects/table-projects.xhtml</to-view-id>
 			<redirect></redirect>
 		</navigation-case>
-				
+		
+		<navigation-case>
+		    <from-action>#{navigator.navigateTo}</from-action>
+ 			<from-outcome>form-projects</from-outcome>
+			<to-view-id>/projects/form-projects.xhtml</to-view-id>
+			<redirect></redirect>
+		</navigation-case>
+		
+		<navigation-case>
+		    <from-action>#{navigator.navigateTo}</from-action>
+ 			<from-outcome>form-events</from-outcome>
+			<to-view-id>/events/form-events.xhtml</to-view-id>
+			<redirect></redirect>
+		</navigation-case>
+		
+		<navigation-case>
+ 			<from-outcome>table-events</from-outcome>
+			<to-view-id>/events/table-events.xhtml</to-view-id>
+			<redirect></redirect>
+		</navigation-case>
 	</navigation-rule>
-	
-	
+
+
+	<navigation-rule>
+		<from-view-id>/welcome.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{loginMgmtBean.logout}</from-action>
+			<from-outcome>loggedout</from-outcome>
+			<to-view-id>/auth/login.xhtml</to-view-id>
+			<redirect></redirect>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>auth/login.xhtml</display-name>
+		<from-view-id>/auth/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{loginMgmtBean.login}</from-action>
+			<from-outcome>Secured</from-outcome>
+			<to-view-id>/welcome.xhtml</to-view-id>
+			<redirect></redirect>
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+	<navigation-rule>
+		<from-view-id>/welcome.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>form-articles</from-outcome>
+			<to-view-id>/articles/form-articles.xhtml</to-view-id>
+			<redirect></redirect>
+		</navigation-case>
+	</navigation-rule>
+
 </faces-config>

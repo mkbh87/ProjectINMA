@@ -9,8 +9,8 @@
 
 		<!--basic styles-->
 
-		<link href="css/bootstrap.min.css" rel="stylesheet" />
-		<link href="resources/css/bootstrap-responsive.min.css" rel="stylesheet" />
+		<link href="../resources/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="../resources/css/bootstrap-responsive.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="resources/css/font-awesome.min.css" />
 
 		<!--[if IE 7]>
@@ -19,7 +19,7 @@
 
 		               
 
-		<link rel="stylesheet" href="resources/css/select2.css" />
+		<link rel="stylesheet" href="../resources/css/select2.css" />
 
 		<!--fonts-->
 
@@ -27,9 +27,9 @@
 
 		<!--ace styles-->
 
-		<link rel="stylesheet" href="resources/css/ace.min.css" />
-		<link rel="stylesheet" href="resources/css/ace-responsive.min.css" />
-		<link rel="stylesheet" href="resources/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="../resources/css/ace.min.css" />
+		<link rel="stylesheet" href="../resources/css/ace-responsive.min.css" />
+		<link rel="stylesheet" href="../resources/css/ace-skins.min.css" />
 
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="resources/css/ace-ie.min.css" />
@@ -585,7 +585,7 @@
 					<ul class="breadcrumb">
 						<li>
 							<i class="icon-home home-icon"></i>
-							<a href="#">Home</a>
+							<a href="../welcome.xhtml">Home</a>
 
 							<span class="divider">
 								<i class="icon-angle-right arrow-icon"></i>
@@ -679,8 +679,7 @@
 														</ul>
 													</div>
 
-													<p:separator />
-													<div class="step-content row-fluid position-relative" id="step-container">
+ 													<div class="step-content row-fluid position-relative" id="step-container">
 														<div class="step-pane active" id="step1">
 															<h3 class="lighter block green">Enter the following information</h3>
 
@@ -1009,8 +1008,7 @@
 														</div>
 													</div>
 
-													<p:separator />
-													<div class="row-fluid wizard-actions">
+ 													<div class="row-fluid wizard-actions">
 														<button class="btn btn-prev">
 															<i class="icon-arrow-left"></i>
 															Prev
@@ -1150,41 +1148,47 @@
 
 		<!--[if !IE]>-->
 
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"/>
 
 		<!--<![endif]-->
 
 		<!--[if IE]>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"/>
 <![endif]-->
 
 		<!--[if !IE]>-->
 
-<script type="text/javascript">
-	//<![CDATA[ 
-			window.jQuery || document.write("<script src='resources/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+	<script type="text/javascript">
+		//<![CDATA[ 
+		window.jQuery
+				|| document
+						.write("<h:outputScript library='js' name='jquery-2.0.3.min.js' />");
 		//]]>
-		</script>
+	</script>
 
 	<script type="text/javascript">
-	//<![CDATA[ 
-			if("ontouchend" in document) document.write("<script src='resources/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		//<![CDATA[ 
+		if ("ontouchend" in document)
+			document
+					.write("<h:outputScript library='js' name='jquery.mobile.custom.min.js' />");
 		//]]>
-		</script>		<script src="resources/js/bootstrap.min.js"></script>
+	</script>
+
+		<script href="../ressources/js/bootstrap.min.js" />
 
 		<!--page specific plugin scripts-->
 
-		<script src="resources/js/fuelux/fuelux.wizard.min.js"></script>
-		<script src="resources/js/jquery.validate.min.js"></script>
-		<script src="resources/js/additional-methods.min.js"></script>
-		<script src="resources/js/bootbox.min.js"></script>
-		<script src="resources/js/jquery.maskedinput.min.js"></script>
+		<script href="../ressources/js/fuelux/fuelux.wizard.min.js" />
+		<script href="../ressources/js/jquery.validate.min.js"/>
+		<script href="../ressources/js/additional-methods.min.js"/>
+		<script href="../ressources/js/bootbox.min.js"/>
+		<script href="../ressources/js/jquery.maskedinput.min.js"/>
 		
 
 		<!--ace scripts-->
 
-		<script src="resources/js/ace-elements.min.js"></script>
-		<script src="resources/js/ace.min.js"></script>
+		<script href="ace-elements.min.js"/>
+		<script href="ace.min.js"/>
 
 		<!--inline scripts related to this page-->
 
