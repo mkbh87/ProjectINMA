@@ -55,7 +55,8 @@
 				<value>com.inmaa.admin.persistence.Publication</value>
 				<value>com.inmaa.admin.persistence.Partner</value>
 				<value>com.inmaa.admin.persistence.SubEvent</value>
-				
+				<value>com.inmaa.admin.persistence.Users</value>
+				<value>com.inmaa.admin.persistence.Authorities</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

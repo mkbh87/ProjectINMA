@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:sec="http://www.springframework.org/schema/security"
+    xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.1.xsd 
+       http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security-3.1.xsd"
+       >
+        
+    <beans:bean id="navigator" name="navigator" class="com.inmaa.admin.control.Navigator" scope="session">
+    </beans:bean>
+     
+    <beans:bean id="loginBean" name="loginBean" class="com.inmaa.admin.control.LoginBean" scope="prototype">
+        <beans:property name="authenticationManager" ref="authenticationManager"></beans:property>
+        <beans:property name="rememberMeServices" ref="rememberMeServices"></beans:property>
+        <beans:property name="userDetailsService" ref="customjdbcUserService"></beans:property>
+    </beans:bean>
+     
+    <beans:bean id="dataSource"
+        class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<beans:property name="url" value="jdbc:mysql://localhost:3306/inmaa" />
+		<beans:property name="username" value="root" />
+		<beans:property name="password" value="mkhalil" />
+   </beans:bean>
+    
+   <beans:bean id="customjdbcUserService" class="com.inmaa.admin.tools.CustomAuthenticationProvider">
+        <beans:property name="dataSource" ref="dataSource"/>
+        <beans:property name="enableAuthorities" value="true"/>
+        <beans:property name="usersByUsernameQuery">
+            <beans:value>SELECT username,password,enabled FROM Users WHERE username = ?</beans:value>
+        </beans:property>
+        <beans:property name="authoritiesByUsernameQuery">
+            <beans:value>
+                 SELECT u.username, a.authorityname FROM Users u JOIN Users_Authorities ua on u.id = ua.user_id JOIN Authorities a on ua.authorities_id = a.id WHERE u.username = ?
+            </beans:value>
+        </beans:property>
+   </beans:bean>
+    
+    <beans:bean id="rememberMeServices"
+        class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">
+        <beans:property name="key" value="jsfspring-sec" /> 
+        <beans:property  name="userDetailsService" ref="customjdbcUserService" /> 
+        <beans:property  name="alwaysRemember" value="true" /> 
+        <beans:property  name="tokenValiditySeconds" value="60" /> 
+    </beans:bean>
+     
+    <beans:bean id="rememberMeAuthenticationProvider"
+        class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
+        <beans:property name="key" value="jsfspring-sec"/>
+    </beans:bean>
+     
+    <beans:bean id="rememberMeFilter"
+        class="org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter">
+        <beans:property name="rememberMeServices" ref="rememberMeServices"/>
+        <beans:property name="authenticationManager" ref="authenticationManager" />
+    </beans:bean>
+    
+</beans:beans>

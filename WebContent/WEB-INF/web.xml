@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-	id="WebApp_ID" version="3.0">
-	<display-name>Jsf2Primefaces</display-name>
+	version="3.0">
 
 	<welcome-file-list>
-		<welcome-file>welcome.xhtml</welcome-file>
+		<welcome-file>/index.jsp</welcome-file>
 	</welcome-file-list>
 
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-
-	<listener>
-		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
-	</listener>
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:application-context.xml</param-value>
+		<param-value>classpath:jsfspring-sec-bean-config.xml
+				classpath:jsfspring-sec-security-config.xml
+				classpath:application-context.xml</param-value>
 	</context-param>
 
 	<context-param>
@@ -27,6 +21,10 @@
 		<param-value>UTF-8</param-value>
 	</context-param>
 
+	<context-param>
+		<param-name>javax.faces.WEBAPP_RESOURCES_DIRECTORY</param-name>
+		<param-value>/WebContent/resources</param-value>
+	</context-param>
 
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
@@ -37,7 +35,6 @@
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
-
 	</servlet-mapping>
 
 	<context-param>
@@ -46,12 +43,6 @@
 	</context-param>
 
 	<context-param>
-		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
-		<param-value>.xhtml</param-value>
-	</context-param>
-
-	<context-param>
-
 		<param-name>primefaces.FONT_AWESOME</param-name>
 		<param-value>true</param-value>
 	</context-param>
@@ -59,34 +50,46 @@
 	<context-param>
 		<param-name>primefaces.UPLOADER</param-name>
 		<param-value>commons</param-value>
-	</context-param>
-
+	</context-param>   
+    
 	<context-param>
-
 		<description>State saving method: 'client' or 'server' (=default). See JSF Specification 2.5.2</description>
 		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
 		<param-value>client</param-value>
 	</context-param>
 
 	<context-param>
-
 		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
 		<param-value>resources.application</param-value>
 	</context-param>
 
 	<context-param>
-
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
 		<param-value>Production</param-value>
 	</context-param>
-	<context-param>
 
+	<context-param>
 		<param-name>org.primefaces.resource optimization.enabled</param-name>
 		<param-value>false</param-value>
 	</context-param>
+
 	<listener>
-		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+
+
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>
+			org.springframework.web.filter.DelegatingFilterProxy
+		</filter-class>
+	</filter>
+	 
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 	<mime-mapping>
 		<extension>eot</extension>
 		<mime-type>application/vnd.ms-fontobject</mime-type>
@@ -121,8 +124,6 @@
 		<extension>ico</extension>
 		<mime-type>image/x-icon</mime-type>
 	</mime-mapping>
-
-
 	<!--CharsetFilter start -->
 
 	<filter>
