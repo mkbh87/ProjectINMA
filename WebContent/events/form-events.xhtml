@@ -442,7 +442,7 @@
 																<span class="span12 input-icon input-icon-right">
 																	<pe:ckEditor id="editor"
 																		value="#{eventBean.currentEvent.eventDesc}"
-																		language="ar" width="90%" checkDirtyInterval="0" /> </span>
+																		language="ar" width="85%" checkDirtyInterval="0" /> </span>
 															</h:panelGroup>
 														</h:panelGroup>
 
@@ -478,7 +478,7 @@
 																<p:pickList value="#{eventBean.listePro}" var="project" 
 																	itemValue="#{project}" converter="stdConverter">
 																	<f:facet name="sourceCaption">Tous les projets</f:facet>
-																	<f:facet name="targetCaption">Les projets liés a l'evenement</f:facet>
+																	<f:facet name="targetCaption">Les projets liés a l'événement</f:facet>
 
 																	<p:column style="text-align:center">
 																	#{project.projectName} 
@@ -494,8 +494,8 @@
 
 																<p:pickList value="#{eventBean.listePartners}" var="partner" 
 																	itemValue="#{partner}" converter="stdConverter">
-																	<f:facet name="sourceCaption">Tous les partners</f:facet>
-																	<f:facet name="targetCaption">Les partners liés </f:facet>
+																	<f:facet name="sourceCaption">Tous les partenaires</f:facet>
+																	<f:facet name="targetCaption">Les partenaires liés </f:facet>
 
 																	<p:column style="text-align:center">
 																	#{partner.partnerName} 

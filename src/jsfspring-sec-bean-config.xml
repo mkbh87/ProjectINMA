@@ -44,7 +44,7 @@
         <beans:property name="key" value="jsfspring-sec" /> 
         <beans:property  name="userDetailsService" ref="customjdbcUserService" /> 
         <beans:property  name="alwaysRemember" value="true" /> 
-        <beans:property  name="tokenValiditySeconds" value="60" /> 
+        <beans:property  name="tokenValiditySeconds" value="600" /> 
     </beans:bean>
      
     <beans:bean id="rememberMeAuthenticationProvider"

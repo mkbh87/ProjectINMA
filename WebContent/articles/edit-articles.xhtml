@@ -414,7 +414,7 @@
 																<span class="span12 input-icon input-icon-right">
 																	<pe:ckEditor id="editor"
 																		value="#{articleBean.currentArticle.articleDesc}"
-																		language="ar" width="800" checkDirtyInterval="0" />
+																		language="ar" width="85%" checkDirtyInterval="0" />
 																</span>
 															</h:panelGroup>
 														</h:panelGroup>
@@ -473,8 +473,8 @@
 
 																<p:pickList value="#{articleBean.listeEv}" var="event"
 																	itemValue="#{event}" converter="stdConverter">
-																	<f:facet name="sourceCaption">Tous les projets</f:facet>
-																	<f:facet name="targetCaption">Les evenement liés a l'article</f:facet>
+																	<f:facet name="sourceCaption">Tous les événements</f:facet>
+																	<f:facet name="targetCaption">Les événements liés a l'article</f:facet>
 
 																	<p:column style="text-align:center">
 																	#{event.eventName} 

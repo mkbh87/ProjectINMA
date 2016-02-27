@@ -403,7 +403,7 @@
 																<span class="span12 input-icon input-icon-right">
 																<p:growl id="growl" showDetail="true" />  
 																<pe:ckEditor id="editor" value="#{projectBean.currentProject.projectDesc}" 
-																language="ar" width="800" checkDirtyInterval="0"  />
+																language="ar" width="85%" checkDirtyInterval="0"  />
 																</span>
 															</h:panelGroup>
 														</h:panelGroup>
@@ -509,8 +509,8 @@
 
 																<p:pickList value="#{projectBean.listePartners}" var="partner" 
 																	itemValue="#{partner}" converter="stdConverter">
-																	<f:facet name="sourceCaption">Tous les partners</f:facet>
-																	<f:facet name="targetCaption">Les partners liés au project</f:facet>
+																	<f:facet name="sourceCaption">Tous les partenaires</f:facet>
+																	<f:facet name="targetCaption">Les partenaires liés au project</f:facet>
 
 																	<p:column style="text-align:center">
 																	#{partner.partnerName} 
