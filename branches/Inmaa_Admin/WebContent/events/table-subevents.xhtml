@@ -247,10 +247,24 @@
 								class="icon-warning-sign red bigger-130"></i> </span> </span>
 					</h:outputLink></li>
 
-				<li><h:outputLink value="../media/gallery.xhtml">
+				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-picture"></i>
 						<span class="menu-text"> Galerie </span>
-					</h:outputLink></li>
+						<b class="arrow icon-angle-down"></b>
+					</h:outputLink>
+
+					<ul class="submenu">
+						<li><h:outputLink value="../media/gallery.xhtml">
+								<i class="icon-double-angle-right"></i> Images 
+						</h:outputLink>
+						</li>
+
+						<li  ><h:outputLink value="../media/videos.xhtml">
+								<i class="icon-double-angle-right"></i> Videos 
+						</h:outputLink>
+						</li>
+					</ul>
+				</li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-tag"></i>
@@ -375,17 +389,17 @@
 										<h:outputText value="#{et.subEventLocation}" />
 									</p:column>
 																	
-									<p:column styleClass="center">
+									<p:column styleClass="center" style="width:150px" >
 										<f:facet name="header">
 											<h:outputText value="" />
 										</f:facet>
-										<p:commandLink styleClass="btn btn-mini btn-info"
+										<p:commandLink styleClass="btn btn-minier btn-info"
 											action="#{subEventBean.showEdit(et)}">
 											<f:param name="id" value="#{et.subEventId}" /> Modifier 
 											<i class="icon-edit bigger-120"></i>
 										</p:commandLink>
-										&nbsp;
-										<p:commandLink styleClass="btn btn-mini btn-danger"
+										
+										<p:commandLink styleClass="btn btn-minier btn-danger"
 											action="#{subEventBean.readyforDelete(et)}" ajax="true"
 											update=":form1:sample-table-2:ll"
 											oncomplete="PF('CDialogWidget').show();" > Supprimer 

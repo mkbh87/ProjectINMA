@@ -1871,10 +1871,11 @@ li [class*=" icon-"],
     font-size: 11px
 }
 .btn-minier {
-    padding: 0 4px;
+    padding: 0 2px;
     line-height: 18px;
     border-width: 1px;
-    font-size: 11px
+    font-size: 8px;
+    margin: 1px;
 }
 button.btn:active {
     top: 1px;

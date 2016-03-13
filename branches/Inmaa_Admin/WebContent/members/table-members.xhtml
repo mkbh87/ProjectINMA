@@ -12,7 +12,7 @@
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
-	<title>Projets - inma Admin</title>
+	<title>Membres - inma Admin</title>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="" />
@@ -258,10 +258,23 @@
 					</h:outputLink>
 				</li>
 
-				<li><h:outputLink value="../media/gallery.xhtml">
+				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-picture"></i>
 						<span class="menu-text"> Galerie </span>
+						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
+
+					<ul class="submenu">
+						<li><h:outputLink value="../media/gallery.xhtml">
+								<i class="icon-double-angle-right"></i> Images 
+						</h:outputLink>
+						</li>
+
+						<li  ><h:outputLink value="../media/videos.xhtml">
+								<i class="icon-double-angle-right"></i> Videos 
+						</h:outputLink>
+						</li>
+					</ul>
 				</li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
@@ -407,17 +420,17 @@
 										<h:outputText value="#{member.memberStatus}" />
 									</p:column>
 
-									<p:column styleClass="center">
+									<p:column styleClass="center" style="width:150px" >
 										<f:facet name="header">
 											<h:outputText value="" />
 										</f:facet>
-										<p:commandLink styleClass="btn btn-mini btn-info"
+										<p:commandLink styleClass="btn btn-minier btn-info"
 											action="#{memberBean.showEdit(member)}">
 											<f:param name="id" value="#{member.memberId}" /> Modifier 
 											<i class="icon-edit bigger-120"></i>
 										</p:commandLink>
-										&nbsp;
-										<p:commandLink styleClass="btn btn-mini btn-danger"
+										
+										<p:commandLink styleClass="btn btn-minier btn-danger"
 											action="#{memberBean.readyforDelete(member)}" ajax="true"
 											update=":form1:sample-table-2:ll"
 											oncomplete="PF('CDialogWidget').show();" > Supprimer 
