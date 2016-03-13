@@ -11,7 +11,7 @@ public interface IMediaService {
 		
 		public void mettre_a_jour(Media entity);
 		
-		public List<Media> lister();
+		public List<Media> listerPic();
 
 		public int maxSeqno();
 		

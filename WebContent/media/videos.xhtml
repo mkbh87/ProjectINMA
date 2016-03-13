@@ -12,8 +12,12 @@
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
-	<title>Galerie - inma Admin</title>
+	<title>Videos - inma Admin</title>
 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
 	<!-- Mobile Specific Metas
     ================================================== -->
 	<meta name="viewport"
@@ -22,13 +26,8 @@
 
 	<!--basic styles-->
 
-	<h:outputStylesheet library="css" name="font-awesome-ie7.min.css" />
 	<h:outputStylesheet name="bootstrap.min.css" library="css" />
 	<h:outputStylesheet name="bootstrap-responsive.min.css" library="css" />
-	<!--ace styles-->
-	<h:outputStylesheet library="css" name="ace.min.css" />
-	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
-	<h:outputStylesheet library="css" name="ace-skins.min.css" />
 	<h:outputStylesheet
 		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
 
@@ -40,7 +39,7 @@
 	<h:outputStylesheet library="css" name="ace.min.css" />
 	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
 	<h:outputStylesheet library="css" name="ace-skins.min.css" />
-	<h:outputStylesheet library="css" name="CostumStyle.css" />
+
 </h:head>
 
 <h:body>
@@ -55,7 +54,8 @@
 					</h:outputLink>
 				</h1>
 
- 				<ul class="nav ace-nav pull-right">
+				<h:form>
+				<ul class="nav ace-nav pull-right">
 					<li class="light-blue">
 
 							<p:commandLink id="logout" action="#{loginMgmtBean.logout()}" styleClass="dropdown-toggle">
@@ -68,7 +68,8 @@
 
 					</li>
 				</ul>
- 				<!--/.ace-nav-->
+				</h:form>
+				<!--/.ace-nav-->
 			</h:panelGroup>
 			<!--/.container-fluid-->
 		</h:panelGroup>
@@ -104,7 +105,7 @@
 					</button>
 				</h:panelGroup>
 
-				<h:panelGroup layout="block" styleClass="sidebar-shortcuts-mini"
+				<h:panelGroup layout="block" class="sidebar-shortcuts-mini"
 					id="sidebar-shortcuts-mini">
 					<span class="btn btn-success"></span>
 
@@ -124,7 +125,8 @@
 					</h:outputLink></li>
 
 
-				<li><h:outputLink value="#" styleClass="dropdown-toggle">
+				<li><h:outputLink value="#"
+						class="dropdown-toggle">
 						<i class="icon-pinterest"></i>
 						<span class="menu-text"> Projets </span>
 						<b class="arrow icon-angle-down"></b>
@@ -243,7 +245,7 @@
 						</span>
 						</span>
 					</h:outputLink></li>
-				
+
 				<li class="active open"><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-picture"></i>
 						<span class="menu-text"> Galerie </span>
@@ -251,18 +253,18 @@
 					</h:outputLink>
 
 					<ul class="submenu">
-						<li class="active"><h:outputLink value="../media/gallery.xhtml">
+						<li><h:outputLink value="../media/gallery.xhtml">
 								<i class="icon-double-angle-right"></i> Images 
 						</h:outputLink>
 						</li>
 
-						<li  ><h:outputLink value="../media/videos.xhtml">
+						<li class="active"><h:outputLink value="../media/videos.xhtml">
 								<i class="icon-double-angle-right"></i> Videos 
 						</h:outputLink>
 						</li>
 					</ul>
 				</li>
-				
+
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-tag"></i>
 						<span class="menu-text"> More Pages </span>
@@ -307,7 +309,7 @@
 							value="../welcome.xhtml">Home</h:outputLink> <span class="divider"> <i
 							class="icon-angle-right arrow-icon"></i>
 					</span></li>
-					<li class="active">Gestion des images</li>
+					<li class="active">Ajouter un projet</li>
 				</ul>
 				<!--.breadcrumb-->
 
@@ -327,19 +329,21 @@
 
 
 				<div class="page-header position-relative">
-						<h1>
+					<h1>
 						Galerie <small> <i class="icon-double-angle-right"></i>
 							Gérer les images et les videos 
 						</small>
 					</h1>
 				</div>
+				<!--/.page-header-->
+
 				
 				<!--/.page-header-->
 								
 				<div class="page-header position-relative">
 					<h1>
-						Images <small> <i class="icon-double-angle-right"></i>
-							Table des images
+						Videos <small> <i class="icon-double-angle-right"></i>
+							Table des videos
 						</small>
 					</h1>
 				</div>
@@ -443,11 +447,11 @@
 
  					<p:growl id="msgs" showDetail="true" />
 
-					<p:dataTable id="images1" var="img" value="#{mediaBean.pictureList}"
+					<p:dataTable id="images1" var="img" value="#{mediaBean.videoList}"
 						editable="true" style="margin-bottom:20px">
 						<f:facet name="header"> Table modifiable </f:facet>
 
-						<p:ajax event="rowEdit" listener="#{mediaBean.onPicRowEdit}"
+						<p:ajax event="rowEdit" listener="#{mediaBean.onVidRowEdit}"
 							update=":form:msgs" />
 						<p:ajax event="rowEditCancel" listener="#{mediaBean.onRowCancel}"
 							update=":form:msgs" />
@@ -536,7 +540,7 @@
 					</p:dataTable>
 		
 					
-					<p:commandButton actionListener="#{mediaBean.newPicLine}"
+					<p:commandButton actionListener="#{mediaBean.newVidLine}"
 					value="New" update="images1"
 					oncomplete="addRowOnComplete()" ajax="true" />
 <p:separator />

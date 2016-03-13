@@ -11,9 +11,9 @@
 	text-align: center !important;
 	position: absolute !important;
 	left: 25% !important;
-	top: 30% !important;
+	top: 15% !important;
 	z-index: 50 !important;
-	width: inherit !important;
+	width: 400px !important;
 }
 
 .table-striped tbody>tr:nth-child(2n+1)>td, .table-striped tbody>tr:nth-child(2n+1)>th

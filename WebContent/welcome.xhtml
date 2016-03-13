@@ -250,10 +250,24 @@
 								class="icon-warning-sign red bigger-130"></i> </span> </span>
 					</h:outputLink></li>
 
-				<li><h:outputLink value="media/gallery.xhtml">
+				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-picture"></i>
 						<span class="menu-text"> Galerie </span>
-					</h:outputLink></li>
+						<b class="arrow icon-angle-down"></b>
+					</h:outputLink>
+
+					<ul class="submenu">
+						<li><h:outputLink value="media/gallery.xhtml">
+								<i class="icon-double-angle-right"></i> Images 
+						</h:outputLink>
+						</li>
+
+						<li  ><h:outputLink value="media/videos.xhtml">
+								<i class="icon-double-angle-right"></i> Videos 
+						</h:outputLink>
+						</li>
+					</ul>
+				</li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-tag"></i>
@@ -328,7 +342,7 @@
 
 						<h:panelGroup layout="block" class="alert alert-block alert-success">
 							<i class="icon-ok green"></i> L'administration de site web <strong class="green">
-								 Inma Maâmoura <strong>(v2.0.0)</strong> </strong>.
+								 Inma Maâmoura <strong>(v2.5.0)</strong> </strong>.
 						</h:panelGroup>
 
 						<h:panelGroup layout="block" class="space-6"></h:panelGroup>

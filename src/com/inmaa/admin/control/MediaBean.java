@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,6 +12,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
@@ -22,14 +22,12 @@ import org.primefaces.context.RequestContext;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.RowEditEvent;
-import org.primefaces.model.DualListModel;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.inmaa.admin.persistence.Media;
 import com.inmaa.admin.service.IMediaService;
-
 
 @Component("mediaBean")
 @ViewScoped
@@ -44,38 +42,31 @@ public class MediaBean implements Serializable{
 
 	private Media currentMedia ;
 
-	List<Media> target = new ArrayList<Media>();
-	List<Media> source = new ArrayList<Media>();
-	private DualListModel<Media> mediaModel;
+	private List<Media> pictureList;
+	private List<Media> videoList;
 
-	private List<Media> mediaList;
-
-	private transient DataModel<Media> medias;
+	private transient DataModel<Media> pictures;
 	private transient DataModel<Media> videos;
 
 	private int id;
 	private UploadedFile uploadedFile;
 	private String fileName;
-
-
+ 
 
 	@PostConstruct
 	public void init() {
-		mediaList = mediaService.lister();
-		medias = new ListDataModel<Media>();
-		medias.setWrappedData( mediaService.lister());
+		pictures = new ListDataModel<Media>();
+		pictures.setWrappedData( mediaService.listerPic());
+		pictures = new ListDataModel<Media>();
+		pictures.setWrappedData( mediaService.listerVideos());
+	
+		pictureList = mediaService.listerPic();
+		pictureList.add(new Media());
 		
-		
-		mediaList = mediaService.listerVideos();
-		videos = new ListDataModel<Media>();
-		videos.setWrappedData( mediaService.listerVideos());
-		
-		source = getmediaList();
-		List<Media> target = new ArrayList<Media>();
-		mediaModel = new DualListModel<Media>(source, target);
-
-
+		videoList = mediaService.listerVideos();
+		videoList.add(new Media());
 	}
+	
 	public Media getcurrentMedia() {
 		return currentMedia;
 	}
@@ -97,12 +88,12 @@ public class MediaBean implements Serializable{
 		this.mediaService = mediaService;
 	}
 
-	public DataModel<Media> getMedias() {
-		return medias;
+	public DataModel<Media> getPictures() {
+		return pictures;
 	}
 
-	public void setMedias(DataModel<Media> medias) {
-		this.medias = medias;
+	public void setPictures(DataModel<Media> medias) {
+		this.pictures = medias;
 	}
 
 	public String vider(){
@@ -110,26 +101,19 @@ public class MediaBean implements Serializable{
 		return null;
 	}
 
-	public List<Media> getmediaList() {
-
-		return mediaList;
+	public List<Media> getPictureList() {
+		return pictureList;
 	}
 
-	public void setMediaList(List<Media> medias) {
-		this.mediaList = medias;
+	public void setPictureList(List<Media> medias) {
+		this.pictureList = medias;
 	}
 
 	public String viewMediaDetail(){
-		currentMedia = getMedias().getRowData();
+		currentMedia = getPictures().getRowData();
 		return "detailMedia";
 	}
 	
-	public void setmediaModel(DualListModel<Media> mediaModel) {
-		this.mediaModel = mediaModel;
-	}
-	public DualListModel<Media> getmediaModel() {
-		return mediaModel;
-	}
 	public void setId(int id) {
 		this.id = id;
 		currentMedia = getmediaById(id);
@@ -140,9 +124,18 @@ public class MediaBean implements Serializable{
 
 	public Media getmediaById(int id)
 	{
-		Iterator<Media> itr = medias.iterator();
+		Iterator<Media> itr = pictures.iterator();
 		while(itr.hasNext()) {
 			currentMedia = itr.next();
+			if(currentMedia.getMediaId() == id)
+			{
+				return currentMedia;
+			}
+		}
+		
+		Iterator<Media> itr2 = videos.iterator();
+		while(itr2.hasNext()) {
+			currentMedia = itr2.next();
 			if(currentMedia.getMediaId() == id)
 			{
 				return currentMedia;
@@ -199,7 +192,7 @@ public class MediaBean implements Serializable{
 			int seqno = mediaService.maxSeqno();
 			currentMedia.setSeqNo(seqno + 10);
 			mediaService.enregistrer(currentMedia);
-			medias.setWrappedData( mediaService.lister());
+			pictures.setWrappedData( mediaService.listerPic());
 		} catch(Exception e) {
 			//Error during hibernate query
 			if(e.getCause() != null)
@@ -229,7 +222,13 @@ public class MediaBean implements Serializable{
  			
 		}
 		currentMedia = new Media();
-		medias.setWrappedData( mediaService.lister());
+		pictures.setWrappedData( mediaService.listerPic());
+		
+		pictureList = mediaService.listerPic();
+		pictureList.add(new Media());
+		
+		videoList = mediaService.listerVideos();
+		videoList.add(new Media());
 
 	}
 
@@ -238,32 +237,6 @@ public class MediaBean implements Serializable{
 		setId(currentMedia.getMediaId());
 		return "edit-medias.xhtml?faces-redirect=true&amp;includeViewParams=true";
 	}
-	
-	public String edit(){
-		setId(currentMedia.getMediaId());
-		String bodymsg="Evenement modifié avec succès";
-		try {
-			
-			if(uploadedFile != null)
-				submitLogoFile();
-
-			mediaService.mettre_a_jour(currentMedia);
-
-		} catch(Exception e) {
-			//Error during hibernate query
- 			bodymsg= e.getMessage().replace("'", "") + "      ";
- 			if(e.getCause() != null)
- 				bodymsg  += e.getCause().getMessage().replace("'", "");
-		}
-
-
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification évenement",bodymsg );
-		RequestContext.getCurrentInstance().showMessageInDialog(message);
-		vider();
-
-		return "";
-	}
-	
 	
 	public void readyforDelete(Media p){
 		currentMedia = p;
@@ -277,11 +250,44 @@ public class MediaBean implements Serializable{
 		this.videos = videos;
 	}
 
-	public void onRowEdit(RowEditEvent event) {
+	public void onPicRowEdit(RowEditEvent event) {
+		//currentMedia = new Media((Media) event.getObject());
+		if(  ((Media) event.getObject()).getMediaId() == null )
+		{
+			int seqno = mediaService.maxSeqno();
+			((Media) event.getObject()).setSeqNo(seqno + 10);
+			((Media) event.getObject()).setMediaType(true);
+		}
+			
         FacesMessage msg = new FacesMessage("Media Edited", ((Media) event.getObject()).getMediaName());
         FacesContext.getCurrentInstance().addMessage(null, msg);
+        
+        mediaService.enregistrer((Media) event.getObject());
+		pictureList = mediaService.listerPic();
+		pictureList.add(new Media());
+
+
     }
      
+	public void onVidRowEdit(RowEditEvent event) {
+		//currentMedia = new Media((Media) event.getObject());
+		if(  ((Media) event.getObject()).getMediaId() == null )
+		{
+			int seqno = mediaService.maxSeqno();
+			((Media) event.getObject()).setSeqNo(seqno + 10);
+			((Media) event.getObject()).setMediaType(false);
+		}
+			
+        FacesMessage msg = new FacesMessage("Media Edited", ((Media) event.getObject()).getMediaName());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        
+        mediaService.enregistrer((Media) event.getObject());
+		videoList = mediaService.listerVideos();
+		videoList.add(new Media());
+
+
+    }
+	
     public void onRowCancel(RowEditEvent event) {
         FacesMessage msg = new FacesMessage("Edit Cancelled", ((Media) event.getObject()).getMediaName());
         FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -296,10 +302,20 @@ public class MediaBean implements Serializable{
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
     }
+        
+    public void newPicLine(ActionEvent actionEvent) {
+    	pictureList.add(new Media());
+    }
+
+    public void newVidLine(ActionEvent actionEvent) {
+    	videoList.add(new Media());
+    }
     
-    public void addNewLine() {
-        Media currentMedia = new Media();
-          ((List<Media>) videos).add(currentMedia);
-      }
-    
+	public List<Media> getVideoList() {
+		return videoList;
+	}
+
+	public void setVideoList(List<Media> videoList) {
+		this.videoList = videoList;
+	}
 }

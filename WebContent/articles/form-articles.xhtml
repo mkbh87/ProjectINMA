@@ -240,10 +240,24 @@
 						</span>
 					</h:outputLink></li>
 
-				<li><h:outputLink value="../media/gallery.xhtml">
+				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-picture"></i>
 						<span class="menu-text"> Galerie </span>
-					</h:outputLink></li>
+						<b class="arrow icon-angle-down"></b>
+					</h:outputLink>
+
+					<ul class="submenu">
+						<li><h:outputLink value="../media/gallery.xhtml">
+								<i class="icon-double-angle-right"></i> Images 
+						</h:outputLink>
+						</li>
+
+						<li  ><h:outputLink value="../media/videos.xhtml">
+								<i class="icon-double-angle-right"></i> Videos 
+						</h:outputLink>
+						</li>
+					</ul>
+				</li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-tag"></i>

@@ -51,9 +51,9 @@ public class IMediaServiceImpl implements IMediaService{
 	}
 
 	@Override
-	public List<Media> lister() {
+	public List<Media> listerPic() {
 		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createQuery("from Media where Media_Type='0'").list();
+		return sessionFactory.getCurrentSession().createQuery("from Media where Media_Type='1'").list();
 	}
 	@Override
 	public int maxSeqno() {
@@ -86,6 +86,6 @@ public class IMediaServiceImpl implements IMediaService{
 	@Override
 	public List<Media> listerVideos() {
 		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createQuery("from Media where Media_Type='1'").list();
+		return sessionFactory.getCurrentSession().createQuery("from Media where Media_Type='0'").list();
 	}
 }
