@@ -7881,7 +7881,7 @@ td .lbl:only-child {
 }
 .fc-widget-header,
 .fc-widget-content {
-    border: 1px solid #bcd4e5
+    border: 3px solid #bcd4e5
 }
 .fc-state-highlight {
     background: #FFC

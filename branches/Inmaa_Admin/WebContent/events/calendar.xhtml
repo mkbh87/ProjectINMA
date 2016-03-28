@@ -27,19 +27,26 @@
 
 	<!--basic styles-->
 
+	<h:outputStylesheet library="css" name="font-awesome-ie7.min.css" />
 	<h:outputStylesheet name="bootstrap.min.css" library="css" />
 	<h:outputStylesheet name="bootstrap-responsive.min.css" library="css" />
-	<h:outputStylesheet
-		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
-
-
-	               
-	
 	<!--ace styles-->
-
 	<h:outputStylesheet library="css" name="ace.min.css" />
 	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
 	<h:outputStylesheet library="css" name="ace-skins.min.css" />
+	<h:outputStylesheet
+		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
+
+	<link rel="stylesheet"
+		href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+		
+	<!--ace styles-->
+
+	<h:outputStylesheet library="css" name="fullcalendar.css" />
+	<h:outputStylesheet library="css" name="ace.min.css" />
+	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
+	<h:outputStylesheet library="css" name="ace-skins.min.css" />
+	<h:outputStylesheet library="css" name="CostumStyle.css" />
 
 </h:head>
 
@@ -127,7 +134,7 @@
 				</li>
 
 
-				<li class="active open"><h:outputLink value="#"
+				<li><h:outputLink value="#"
 						class="dropdown-toggle">
 						<i class="icon-pinterest"></i>
 						<span class="menu-text"> Projets </span>
@@ -140,7 +147,7 @@
 						</h:outputLink>
 						</li>
 
-						<li class="active"><h:outputLink value="../projects/form-projects.xhtml">
+						<li><h:outputLink value="../projects/form-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau Projet
 						</h:outputLink>
 						</li>
@@ -248,7 +255,7 @@
 						</li>
 					</ul>
 				</li>
-				<li><h:outputLink value="calendar.xhtml">
+				<li class="active open"><h:outputLink value="calendar.xhtml">
 						<i class="icon-calendar"></i>
 
 						<span class="menu-text"> Calendrier <span
@@ -346,10 +353,10 @@
 			
 					<div class="page-header position-relative">
 						<h1>
-							Full Calendar
+							 Calendrier
 							<small>
 								<i class="icon-double-angle-right"></i>
-								with draggable and editable events
+								 Calendrier des événements
 							</small>
 						</h1>
 					</div><!--/.page-header-->
@@ -429,47 +436,63 @@
 		<!--/.main-content-->
 	</h:panelGroup>
 	<!--/.main-container-->
-
-	<a href="#" id="btn-scroll-up"
+ 	<a href="#" id="btn-scroll-up"
 		class="btn-scroll-up btn btn-small btn-inverse"> <i
-		class="icon-double-angle-up icon-only bigger-110"></i> </a>
+		class="icon-double-angle-up icon-only bigger-110"></i>
+	</a>
 
 	<!--basic scripts-->
 
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"/>
+	<!--[if !IE]>-->
 
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-		<script type="text/javascript"> 	
-		//<![CDATA[
-			window.jQuery || document.write("<h:outputScript library='js' name='jquery-2.0.3.min.js' />");
-		//]]/>
-		</script>
- 
- 
+	<!--<![endif]-->
 
-		<script type="text/javascript"> 	
-		//<![CDATA[
-			if("ontouchend" in document) document.write("<h:outputScript library='js' name='jquery.mobile.custom.min.js' />");
-		//]]/>
-		</script>
-		<h:outputScript library="js" name="bootstrap.min.js"/>
+	<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<![endif]-->
 
-		<!--page specific plugin scripts-->
+	<!--[if !IE]>-->
 
-		<h:outputScript library="js" name="jquery-ui-1.10.3.custom.min.js"/>
-		<h:outputScript library="js" name="jquery.ui.touch-punch.min.js"/>
-		<h:outputScript library="js" name="fullcalendar.min.js"/>
-		<h:outputScript library="js" name="bootbox.min.js"/>
+	<script type="text/javascript">
+		//<![CDATA[ 
+			window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+			//]]>
+			</script>
 
-		<!--ace scripts-->
+	<!--<![endif]-->
 
-		<h:outputScript library="js" name="ace-elements.min.js"/>
-		<h:outputScript library="js" name="ace.min.js"/>
+	<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
 
-		<!--inline scripts related to this page-->
+	<script type="text/javascript">
+		//<![CDATA[ 
+			if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+			//]]>
+			</script>
+	<h:outputScript library="js" name="bootstrap.min.js" />
 
-		<script type="text/javascript"> 	
-		//<![CDATA[
+	<!--page specific plugin scripts-->
+	<h:outputScript library="js" name="jquery-ui-1.10.3.custom.min.js" />
+
+	<h:outputScript library="js" name="jquery.ui.touch-punch.min.js" />
+	<h:outputScript library="js" name="fullcalendar.min.js" />
+	<h:outputScript library="js" name="bootbox.min.js" />
+
+	<!--ace scripts-->
+
+	<h:outputScript library="js" name="ace-elements.min.js" />
+	<h:outputScript library="js" name="ace.min.js" />
+
+	<!--inline scripts related to this page-->
+
+	<script type="text/javascript">
+		//<![CDATA[ 
 			$(function() {
 
 /* initialize the external events
@@ -505,8 +528,8 @@
 	var d = date.getDate();
 	var m = date.getMonth();
 	var y = date.getFullYear();
-
-	
+ 
+    
 	var calendar = $('#calendar').fullCalendar({
 		 buttonText: {
 			prev: '<i class="icon-chevron-left"></i>',
@@ -519,22 +542,8 @@
 			right: 'month,agendaWeek,agendaDay'
 		},
 		events: [
-		{
-			title: 'All Day Event',
-			start: new Date(y, m, 1),
-			className: 'label-important'
-		},
-		{
-			title: 'Long Event',
-			start: new Date(y, m, d-5),
-			end: new Date(y, m, d-2),
-			className: 'label-success'
-		},
-		{
-			title: 'Some Event',
-			start: new Date(y, m, d-3, 16, 0),
-			allDay: false
-		}]
+			${eventBean.calendarEvents}
+		]
 		,
 		editable: true,
 		droppable: true, // this allows things to be dropped onto the calendar !!!
@@ -639,9 +648,7 @@
 
 
 })
-		//]]/>
+//]]>
 		</script>
-		
-		
 </h:body>
 </html>

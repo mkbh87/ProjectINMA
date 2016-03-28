@@ -53,7 +53,7 @@ public class EventBean  implements Serializable {
 	@Autowired
 	IMemberService memberService;
 	private Event currentEvent ;
- 	private transient DataModel<Event> events;
+	private transient DataModel<Event> events;
 
 	List<Member> target = new ArrayList<Member>();
 	List<Member> source = new ArrayList<Member>();
@@ -68,14 +68,16 @@ public class EventBean  implements Serializable {
 	private DualListModel<Member> listeMembers;
 	List<Member> MemberSource = new ArrayList<Member>();
 	List<Member> MemberTarget = new ArrayList<Member>();
-	
+
 	private DualListModel<Partner> listePartners;
 	List<Partner> PartnerSource = new ArrayList<Partner>();
 	List<Partner> PartnerTarget = new ArrayList<Partner>();
 
+	private String calendarEvents;
+
 	@PostConstruct
 	public void init() {
- 		events = new ListDataModel<Event>();
+		events = new ListDataModel<Event>();
 		events.setWrappedData( eventService.lister());
 	}
 
@@ -115,7 +117,7 @@ public class EventBean  implements Serializable {
 			bodymsg = submitLogoFile();
 			int seqno = eventService.maxSeqno();
 			currentEvent.setSeqNo(seqno + 10);
-			
+
 			currentEvent.setProjects(new HashSet<Project>(listePro.getTarget()));
 			currentEvent.setPartners(new HashSet<Partner>(listePartners.getTarget()));
 			currentEvent.setMembers( new HashSet<Member>(listeMembers.getTarget()));
@@ -199,7 +201,7 @@ public class EventBean  implements Serializable {
 		prosTarget = new ArrayList<Project>();
 		prosSource = projectService.lister();
 		listePro  = new DualListModel<Project>(prosSource, prosTarget);
-		
+
 		PartnerTarget = new ArrayList<Partner>();
 		PartnerSource = partnerService.lister();
 		listePartners = new DualListModel<Partner>(PartnerSource, PartnerTarget);
@@ -294,17 +296,17 @@ public class EventBean  implements Serializable {
 	public void initializeLazyJoins()
 	{
 		eventService.initializeLazyJoins(currentEvent);
-		
+
 		prosTarget = new ArrayList<Project>();
 		prosTarget = new ArrayList<Project>(currentEvent.getProjects());	
 		prosSource = Utils.setListSource(prosTarget,projectService.lister());
 		listePro  = new DualListModel<Project>(prosSource, prosTarget);
-		
+
 		PartnerTarget = new ArrayList<Partner>();
 		PartnerTarget = new ArrayList<Partner>(currentEvent.getPartners());	
 		PartnerSource = Utils.setListSource(PartnerTarget, partnerService.lister());
 		listePartners = new DualListModel<Partner>(PartnerSource, PartnerTarget);
-		
+
 		MemberTarget = new ArrayList<Member>();
 		MemberTarget = new ArrayList<Member>(currentEvent.getMembers());	
 		MemberSource = Utils.setListSource(MemberTarget, memberService.lister());
@@ -333,5 +335,46 @@ public class EventBean  implements Serializable {
 
 	public void setListePartners(DualListModel<Partner> listePartners) {
 		this.listePartners = listePartners;
+	}
+
+	public String getCalendarEvents() {
+		Iterator<Event> itr1 = events.iterator();
+		calendarEvents = "";
+		while(itr1.hasNext()) {
+			Event event = itr1.next();
+			calendarEvents = calendarEvents +
+					" {\n" + 
+					"		title: '  " + event.getEventName() + "  ' , \n" + 
+					"		start: new Date(" + event.getEventStartDate().toString().replace(":00.0", "").replace(" ", ", ").replace("-", ", ").replace(":", ", ") + "), \n" + 
+					"		end:   new Date(" + event.getEventEndDate().toString().replace(":00.0", "").replace(" ", ", ").replace("-", ", ").replace(":", ", ") + "), \n" + 
+					"		className: 'label-success', \n" +
+					"		allDay: " + allDay(event.getEventStartDate().toString()) + " \n" + 
+					" } ";
+
+			calendarEvents = calendarEvents + ", \n";
+
+		}
+
+
+		calendarEvents = removeLastChar(calendarEvents); 
+		return calendarEvents;
+	}
+
+	private String allDay(String string) {
+		if (string.contains("00:00:00.0"))
+			return "true" ;
+		else 
+			return "false";
+	}
+
+	public String removeLastChar(String str) {
+		if (str != null && str.length() > 0 && str.charAt(str.length()-1)==',') {
+			str = str.substring(0, str.length()-1);
+		}
+		return str;
+	}
+
+	public void setCalendarEvents(String calendarEvents) {
+		this.calendarEvents = calendarEvents;
 	}
 }
