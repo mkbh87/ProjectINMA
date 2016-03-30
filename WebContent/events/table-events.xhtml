@@ -12,7 +12,7 @@
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
-	<title>évenements - inma Admin</title>
+	<title>événements - inma Admin</title>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="" />
@@ -338,13 +338,13 @@
 						<!--PAGE CONTENT BEGINS-->
 
 						<h:panelGroup layout="block" styleClass="row-fluid">
-							<h:panelGroup layout="block" styleClass="table-header">table des évenements</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="table-header">table des événements</h:panelGroup>
 
 							<h:form id="form1">
 								<p:dataTable
 									styleClass="table table-striped table-bordered table-hover" sortBy="#{et.seqNo}"
 									var="et" value="#{eventBean.events}" paginator="true" rows="20"
-									editable="true" id="sample-table-2" paginatorPosition="bottom"
+									id="sample-table-2" paginatorPosition="bottom"
 									resizableColumns="true">
 									
 									<p:column styleClass="center" style="width:30px"  sortBy="#{et.seqNo}">

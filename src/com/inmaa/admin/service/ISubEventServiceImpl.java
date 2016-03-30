@@ -1,13 +1,17 @@
 package com.inmaa.admin.service;
 
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -86,5 +90,21 @@ public class ISubEventServiceImpl implements ISubEventService {
 		session.close();
 
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<SubEvent> listerbyEvent(int p_id) {
+		List<Integer> ids =  Arrays.asList(  p_id);
+
+		return sessionFactory
+			    .getCurrentSession()
+			    .createCriteria(SubEvent.class)
+			    .createAlias("events", "ep")
+			    .add( Restrictions.in( "ep.eventId", ids ) )
+			    .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+			    .addOrder( Order.asc("subEventStartDate") )
+			    .list();
+	}
+
 
 }

@@ -19,4 +19,6 @@ public interface ISubEventService {
 		
 		public void initializeLazyJoins(SubEvent entity);
 
+		public List<SubEvent> listerbyEvent(int p_id);
+
 }

@@ -53,6 +53,17 @@ public class SubEvent implements java.io.Serializable {
 		this.events = events;
 	}
 
+	public SubEvent(SubEvent object) {
+		// TODO Auto-generated constructor stub
+		this.seqNo = object.seqNo;
+		this.subEventName = object.subEventName;
+		this.subEventLogo = object.subEventLogo;
+		this.subEventStartDate = object.subEventStartDate;
+		this.subEventEndDate = object.subEventEndDate;
+		this.subEventLocation = object.subEventLocation;
+		this.events = object.events;
+	}
+
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
