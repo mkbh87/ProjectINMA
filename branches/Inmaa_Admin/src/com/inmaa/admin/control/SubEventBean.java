@@ -13,6 +13,8 @@ import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
@@ -20,6 +22,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.RowEditEvent;
 import org.primefaces.model.DualListModel;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +56,7 @@ public class SubEventBean  implements Serializable {
 
 	@Autowired
 	IMemberService memberService;
+	private List<SubEvent> subEventList;
 
 	private SubEvent currentSubEvent ;
  	private transient DataModel<SubEvent> subEvents;
@@ -67,6 +71,8 @@ public class SubEventBean  implements Serializable {
 	private DualListModel<Event> listeEv;
 	List<Event> eventsSource = new ArrayList<Event>();
 	List<Event> eventsTarget = new ArrayList<Event>();
+
+	private int eventID;
 
 	@PostConstruct
 	public void init() {
@@ -137,7 +143,8 @@ public class SubEventBean  implements Serializable {
 
 			subEventService.supprimer(currentSubEvent);
 			subEvents.setWrappedData( subEventService.lister());
-
+			if (eventID > 0)
+				subEventList = subEventService.listerbyEvent(eventID);
 		} catch(Exception e) {
 			//Error during hibernate query
 			System.out.print("Error: "+e.getMessage());
@@ -275,8 +282,6 @@ public class SubEventBean  implements Serializable {
 		uploadedFile = subEvent.getFile();
 	}
 
-
-	
 	public void initializeLazyJoins()
 	{
 		subEventService.initializeLazyJoins(currentSubEvent);
@@ -312,4 +317,61 @@ public class SubEventBean  implements Serializable {
         return result;
     }
 
+	public void getSubsbyEvent(int id)
+	{
+		eventID = id;
+		subEventList = subEventService.listerbyEvent(id);
+	}
+	
+	public void onRowEdit(RowEditEvent event) {
+		//currentMedia = new Media((Media) event.getObject());
+		if(  ((SubEvent) event.getObject()).getSubEventId() == null )
+		{
+			int seqno = subEventService.maxSeqno();
+			((SubEvent) event.getObject()).setSeqNo(seqno + 10);
+			ArrayList<Event> events = new ArrayList<Event>();
+			events.add(EventByID(eventID));
+			if (events.isEmpty())
+				return;
+			Set<Event> temp = new HashSet<Event>(events);
+			((SubEvent) event.getObject()).setEvents(temp);
+		}
+			
+        FacesMessage msg = new FacesMessage("Sous événement enregister", ((SubEvent) event.getObject()).getSubEventName());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        currentSubEvent= new SubEvent((SubEvent) event.getObject());
+        subEventService.enregistrer(currentSubEvent);
+        subEventList = subEventService.listerbyEvent(eventID);
+    }
+	
+    private Event EventByID(int evID) {
+    	Event ev = new Event();
+		Iterator<Event> itr = eventService.lister().iterator();
+		while(itr.hasNext()) {
+			ev = itr.next();
+			if(ev.getEventId() == evID)
+			{
+				return ev;
+			}
+		}
+		return null;
+	
+	}
+
+	public void onRowCancel(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("modification annuler", ((SubEvent) event.getObject()).getSubEventName());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+
+	public List<SubEvent> getSubEventList() {
+		return subEventList;
+	}
+
+	public void setSubEventList(List<SubEvent> subEventList) {
+		this.subEventList = subEventList;
+	}
+	
+    public void newLine(ActionEvent actionEvent) {
+    	subEventList.add(new SubEvent());
+    }
 }
