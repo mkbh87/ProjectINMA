@@ -449,7 +449,7 @@
 
 					<p:dataTable id="images1" var="img" value="#{mediaBean.videoList}"
 						editable="true" style="margin-bottom:20px">
-						<f:facet name="header"> Table modifiable </f:facet>
+						<f:facet name="header"> Table des videos modifiable </f:facet>
 
 						<p:ajax event="rowEdit" listener="#{mediaBean.onVidRowEdit}"
 							update=":form:msgs" />
@@ -490,10 +490,10 @@
 						<p:column headerText="date" style="width:60px">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{img.mediaDate}"  pattern="dd/MM/yyyy"/>
+									<h:outputText value="#{img.mediaDate}"  pattern="yyyy-MM-dd"/>
 								</f:facet>
 								<f:facet name="input">
-								<p:calendar value="#{img.mediaDate}" mode="popup" pattern="dd/MM/yyyy" />
+								<p:calendar value="#{img.mediaDate}" mode="popup" pattern="yyyy-MM-dd" />
 
 								</f:facet>
 							</p:cellEditor>

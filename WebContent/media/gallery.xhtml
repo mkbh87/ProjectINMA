@@ -444,41 +444,41 @@
  					<p:growl id="msgs" showDetail="true" />
 
 					<p:dataTable id="images1" var="img" value="#{mediaBean.pictureList}"
-						editable="true" style="margin-bottom:20px">
-						<f:facet name="header"> Table modifiable </f:facet>
+						editable="true" style="margin-bottom:20px" liveResize="true"  >
+						<f:facet name="header"> Table d'images modifiable </f:facet>
 
 						<p:ajax event="rowEdit" listener="#{mediaBean.onPicRowEdit}"
 							update=":form:msgs" />
 						<p:ajax event="rowEditCancel" listener="#{mediaBean.onRowCancel}"
 							update=":form:msgs" />
 							
-						<p:column style="width:32px">
+						<p:column style="width:15px">
 							<p:rowEditor />
 						</p:column>
 						
 						<p:column headerText="N°"  style="width:15px">
 							<h:outputText value="#{img.seqNo}" />
 						</p:column>
-						<p:column headerText="Titre">
+						<p:column headerText="Titre" style="width:200px">
 							<p:cellEditor>
 								<f:facet name="output">
 									<h:outputText value="#{img.mediaName}" />
 								</f:facet>
 								<f:facet name="input">
 									<p:inputText id="modelInput" value="#{img.mediaName}"
-										style="width:100%" />
+										style="width:98%" />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
 
-						<p:column headerText="liens">
+						<p:column headerText="Liens">
 							<p:cellEditor>
 								<f:facet name="output">
 									<h:outputText value="#{img.mediaLink}" />
 								</f:facet>
 								<f:facet name="input">
 									<p:inputText id="modelLink" value="#{img.mediaLink}"
-										style="width:100%" />
+										style="width:98%" />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
@@ -486,10 +486,10 @@
 						<p:column headerText="date" style="width:60px">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{img.mediaDate}"  pattern="dd/MM/yyyy"/>
+									<h:outputText value="#{img.mediaDate}"  pattern="yyyy-MM-dd"/>
 								</f:facet>
 								<f:facet name="input">
-								<p:calendar value="#{img.mediaDate}" mode="popup" pattern="dd/MM/yyyy" />
+								<p:calendar value="#{img.mediaDate}" mode="popup" pattern="yyyy-MM-dd" />
 
 								</f:facet>
 							</p:cellEditor>
@@ -507,7 +507,17 @@
 							</p:cellEditor>
 						</p:column>
 
-						
+						<p:column headerText="Album" style="width:80px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{img.mediaCollection}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="modelCollection" value="#{img.mediaCollection}"
+										style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
 
 						<p:column  styleClass="center" style="width: 15px" >
 										<f:facet name="header">
