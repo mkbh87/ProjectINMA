@@ -63,7 +63,7 @@ public class Media implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "Media_Date", length = 10)
+	@Column(name = "Media_Date", nullable = false, length = 10)
 	public Date getMediaDate() {
 		return this.mediaDate;
 	}
@@ -90,7 +90,7 @@ public class Media implements java.io.Serializable {
 		this.mediaCollection = mediaCollection;
 	}
 
-	@Column(name = "Media_Link")
+	@Column(name = "Media_Link", nullable = false)
 	public String getMediaLink() {
 		return this.mediaLink;
 	}
@@ -99,7 +99,7 @@ public class Media implements java.io.Serializable {
 		this.mediaLink = mediaLink;
 	}
 
-	@Column(name = "Media_Type")
+	@Column(name = "Media_Type",  nullable = false)
 	public Boolean getMediaType() {
 		return this.mediaType;
 	}

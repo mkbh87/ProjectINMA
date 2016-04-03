@@ -61,12 +61,10 @@ public class MediaBean implements Serializable{
 		pictures.setWrappedData( mediaService.listerVideos());
 	
 		pictureList = mediaService.listerPic();
-		pictureList.add(new Media());
-		
+ 		
 		videoList = mediaService.listerVideos();
-		videoList.add(new Media());
+ 		
 	}
-	
 	public Media getcurrentMedia() {
 		return currentMedia;
 	}
@@ -225,11 +223,8 @@ public class MediaBean implements Serializable{
 		pictures.setWrappedData( mediaService.listerPic());
 		
 		pictureList = mediaService.listerPic();
-		pictureList.add(new Media());
-		
+	
 		videoList = mediaService.listerVideos();
-		videoList.add(new Media());
-
 	}
 
 	public String showEdit(Media p){
@@ -259,13 +254,11 @@ public class MediaBean implements Serializable{
 			((Media) event.getObject()).setMediaType(true);
 		}
 			
-        FacesMessage msg = new FacesMessage("Media Edited", ((Media) event.getObject()).getMediaName());
+        FacesMessage msg = new FacesMessage("Picture Edited", ((Media) event.getObject()).getMediaName());
         FacesContext.getCurrentInstance().addMessage(null, msg);
         
         mediaService.enregistrer((Media) event.getObject());
 		pictureList = mediaService.listerPic();
-		pictureList.add(new Media());
-
 
     }
      
@@ -278,14 +271,11 @@ public class MediaBean implements Serializable{
 			((Media) event.getObject()).setMediaType(false);
 		}
 			
-        FacesMessage msg = new FacesMessage("Media Edited", ((Media) event.getObject()).getMediaName());
+        FacesMessage msg = new FacesMessage("Video Edited", ((Media) event.getObject()).getMediaName());
         FacesContext.getCurrentInstance().addMessage(null, msg);
         
         mediaService.enregistrer((Media) event.getObject());
 		videoList = mediaService.listerVideos();
-		videoList.add(new Media());
-
-
     }
 	
     public void onRowCancel(RowEditEvent event) {
