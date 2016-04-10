@@ -446,7 +446,7 @@
 																	<h:panelGroup layout="block" class="control-group">
 																		<h:panelGroup layout="block"
 																			class="row-fluid input-append">
-																			<p:calendar
+																			<p:calendar pattern="dd/MM/yyyy"
 																				value="#{projectBean.currentProject.projectStartDate}"
 																				mode="popup" />
 
@@ -488,7 +488,7 @@
 															</h:panelGroup>
 														</h:panelGroup>
  -->
-											<p:calendar locale="fr" id="to"  value="#{projectBean.currentProject.projectStartDate}" mode="inline"   />
+											<p:calendar locale="fr" id="to" pattern="dd/MM/yyyy" value="#{projectBean.currentProject.projectStartDate}" mode="inline"   />
 
 
 														<h:panelGroup layout="block" class="control-group">
