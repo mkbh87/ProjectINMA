@@ -340,7 +340,7 @@ public class SubEventBean  implements Serializable {
         FacesMessage msg = new FacesMessage("Sous événement enregister", ((SubEvent) event.getObject()).getSubEventName());
         FacesContext.getCurrentInstance().addMessage(null, msg);
         currentSubEvent= new SubEvent((SubEvent) event.getObject());
-        subEventService.enregistrer(currentSubEvent);
+        subEventService.mettre_a_jour(currentSubEvent);
         subEventList = subEventService.listerbyEvent(eventID);
     }
 	
