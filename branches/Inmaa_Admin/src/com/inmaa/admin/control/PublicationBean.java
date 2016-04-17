@@ -244,7 +244,7 @@ public class PublicationBean implements Serializable{
 			} catch (Exception e) {
 				// Cleanup.
 				if (file != null) file.delete();
-				msg="Erreur lors de l'envoie de document, ";
+				msg="Erreur lors de l_envoie de document, ";
 				// Always log stacktraces (with a real logger).
 				e.printStackTrace();
 			} finally {

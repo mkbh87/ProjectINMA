@@ -135,7 +135,7 @@
 								<i class="icon-double-angle-right"></i> Tous les projets
 						</h:outputLink></li>
 
-						<li class="active"><h:outputLink
+						<li><h:outputLink
 								value="../projects/form-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau Projet
 						</h:outputLink></li>
@@ -352,7 +352,7 @@
 
 									#{projectBean.actualize()}
 									#{eventBean.actualize()}
-									#{projectBean.actualize()}
+									#{articleBean.actualize()}
 									#{configBean.actualize()}
 									<h:form class="form-horizontal" id="form" prependId="false"
 										enctype="multipart/form-data" acceptcharset="UTF-8">
@@ -364,7 +364,6 @@
 												 
 											</h2>
 										</div>
-										<h:button value=""></h:button>
 
 										<p:separator />
 										
@@ -416,7 +415,7 @@
 											<p:column headerText="N°" style="width:15px">
 												<h:outputText value="#{art.seqNo}" />
 											</p:column>
-											<p:column headerText="project">
+											<p:column headerText="article">
 												<p:cellEditor>
 													<f:facet name="output">
 														<h:outputText value="#{art.articleTitle}" />
