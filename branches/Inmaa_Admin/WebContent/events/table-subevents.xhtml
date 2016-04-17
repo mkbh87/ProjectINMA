@@ -274,12 +274,12 @@
 					</h:outputLink>
 
 					<ul class="submenu">
-						<li><h:outputLink value="profile.xhtml">
+						<li><h:outputLink value="../more/profile.xhtml">
 								<i class="icon-double-angle-right"></i> User Profile
 						</h:outputLink></li>
 
-						<li><h:outputLink value="pricing.html">
-								<i class="icon-double-angle-right"></i> Pricing Tables
+						<li><h:outputLink value="../more/visualisation.xhtml">
+								<i class="icon-double-angle-right"></i> Visualisation
 						</h:outputLink></li>
 
 						<li><h:outputLink value="invoice.html">
@@ -342,7 +342,7 @@
 
 							<h:form id="form1">
 								<p:dataTable
-									styleClass="table table-striped table-bordered table-hover" sortBy="#{et.seqNo}"
+									styleClass="table table-striped table-bordered table-hover" sortOrder="descending" sortBy="#{et.seqNo}"
 									var="et" value="#{subEventBean.subEvents}" paginator="true" rows="20"
 									editable="true" id="sample-table-2" paginatorPosition="bottom"
 									resizableColumns="true">

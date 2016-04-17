@@ -377,4 +377,11 @@ public class EventBean  implements Serializable {
 	public void setCalendarEvents(String calendarEvents) {
 		this.calendarEvents = calendarEvents;
 	}
+	
+	public void actualize()
+	{
+		 
+		events = new ListDataModel<Event>();
+		events.setWrappedData( eventService.lister());
+	}
 }

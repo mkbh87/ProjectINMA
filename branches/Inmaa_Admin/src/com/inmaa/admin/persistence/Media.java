@@ -1,5 +1,5 @@
 package com.inmaa.admin.persistence;
-// Generated 28 févr. 2016 21:48:16 by Hibernate Tools 4.3.1.Final
+// Generated 16 avr. 2016 20:28:19 by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -53,7 +53,7 @@ public class Media implements java.io.Serializable {
 		this.mediaId = mediaId;
 	}
 
-	@Column(name = "Media_Name", length = 45)
+	@Column(name = "Media_Name", length = 65535)
 	public String getMediaName() {
 		return this.mediaName;
 	}

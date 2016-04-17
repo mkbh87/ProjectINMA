@@ -1,5 +1,5 @@
 package com.inmaa.admin.persistence;
-// Generated 28 févr. 2016 21:48:16 by Hibernate Tools 4.3.1.Final
+// Generated 16 avr. 2016 20:28:19 by Hibernate Tools 4.3.1.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,6 +21,7 @@ public class Config implements java.io.Serializable {
 	private String configIntroInma;
 	private String configIntroMaamoura;
 	private String configInmaGoal;
+	private Integer configNbrVisite;
 
 	public Config() {
 	}
@@ -30,12 +31,13 @@ public class Config implements java.io.Serializable {
 	}
 
 	public Config(String configImgpath, String configEmailList, String configIntroInma, String configIntroMaamoura,
-			String configInmaGoal) {
+			String configInmaGoal, Integer configNbrVisite) {
 		this.configImgpath = configImgpath;
 		this.configEmailList = configEmailList;
 		this.configIntroInma = configIntroInma;
 		this.configIntroMaamoura = configIntroMaamoura;
 		this.configInmaGoal = configInmaGoal;
+		this.configNbrVisite = configNbrVisite;
 	}
 
 	@Id
@@ -93,6 +95,15 @@ public class Config implements java.io.Serializable {
 
 	public void setConfigInmaGoal(String configInmaGoal) {
 		this.configInmaGoal = configInmaGoal;
+	}
+
+	@Column(name = "config_NbrVisite")
+	public Integer getConfigNbrVisite() {
+		return this.configNbrVisite;
+	}
+
+	public void setConfigNbrVisite(Integer configNbrVisite) {
+		this.configNbrVisite = configNbrVisite;
 	}
 
 }

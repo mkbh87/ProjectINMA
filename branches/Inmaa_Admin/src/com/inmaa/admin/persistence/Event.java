@@ -1,5 +1,5 @@
 package com.inmaa.admin.persistence;
-// Generated 28 févr. 2016 21:48:16 by Hibernate Tools 4.3.1.Final
+// Generated 16 avr. 2016 20:28:19 by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -36,6 +36,7 @@ public class Event implements java.io.Serializable {
 	private String eventLocation;
 	private String eventPresenter;
 	private String eventUrl;
+	private Integer eventNbrVisite;
 	private Set<Project> projects = new HashSet<Project>(0);
 	private Set<SubEvent> subEvents = new HashSet<SubEvent>(0);
 	private Set<Partner> partners = new HashSet<Partner>(0);
@@ -56,8 +57,9 @@ public class Event implements java.io.Serializable {
 	}
 
 	public Event(Integer seqNo, String eventName, String eventDesc, Date eventStartDate, Date eventEndDate,
-			String eventLogo, String eventLocation, String eventPresenter, String eventUrl, Set<Project> projects,
-			Set<SubEvent> subEvents, Set<Partner> partners, Set<Article> articles, Set<Member> members) {
+			String eventLogo, String eventLocation, String eventPresenter, String eventUrl, Integer eventNbrVisite,
+			Set<Project> projects, Set<SubEvent> subEvents, Set<Partner> partners, Set<Article> articles,
+			Set<Member> members) {
 		this.seqNo = seqNo;
 		this.eventName = eventName;
 		this.eventDesc = eventDesc;
@@ -67,6 +69,7 @@ public class Event implements java.io.Serializable {
 		this.eventLocation = eventLocation;
 		this.eventPresenter = eventPresenter;
 		this.eventUrl = eventUrl;
+		this.eventNbrVisite = eventNbrVisite;
 		this.projects = projects;
 		this.subEvents = subEvents;
 		this.partners = partners;
@@ -167,6 +170,15 @@ public class Event implements java.io.Serializable {
 
 	public void setEventUrl(String eventUrl) {
 		this.eventUrl = eventUrl;
+	}
+
+	@Column(name = "Event_NbrVisite")
+	public Integer getEventNbrVisite() {
+		return this.eventNbrVisite;
+	}
+
+	public void setEventNbrVisite(Integer eventNbrVisite) {
+		this.eventNbrVisite = eventNbrVisite;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)

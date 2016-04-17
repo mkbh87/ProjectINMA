@@ -1,5 +1,5 @@
 package com.inmaa.admin.persistence;
-// Generated 28 févr. 2016 21:48:16 by Hibernate Tools 4.3.1.Final
+// Generated 16 avr. 2016 20:28:19 by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -37,6 +37,7 @@ public class Project implements java.io.Serializable {
 	private String projectPartner;
 	private String projectDef;
 	private String projectUrl;
+	private Integer projectNbrVisite;
 	private Set<Event> events = new HashSet<Event>(0);
 	private Set<Article> articles = new HashSet<Article>(0);
 	private Set<Partner> partners = new HashSet<Partner>(0);
@@ -54,7 +55,8 @@ public class Project implements java.io.Serializable {
 
 	public Project(Integer seqNo, String projectLogo, String projectDesc, String projectName, Date projectStartDate,
 			String projectLocation, String projectPhone, String projectPartner, String projectDef, String projectUrl,
-			Set<Event> events, Set<Article> articles, Set<Partner> partners, Set<Member> members) {
+			Integer projectNbrVisite, Set<Event> events, Set<Article> articles, Set<Partner> partners,
+			Set<Member> members) {
 		this.seqNo = seqNo;
 		this.projectLogo = projectLogo;
 		this.projectDesc = projectDesc;
@@ -65,6 +67,7 @@ public class Project implements java.io.Serializable {
 		this.projectPartner = projectPartner;
 		this.projectDef = projectDef;
 		this.projectUrl = projectUrl;
+		this.projectNbrVisite = projectNbrVisite;
 		this.events = events;
 		this.articles = articles;
 		this.partners = partners;
@@ -172,6 +175,15 @@ public class Project implements java.io.Serializable {
 
 	public void setProjectUrl(String projectUrl) {
 		this.projectUrl = projectUrl;
+	}
+
+	@Column(name = "Project_NbrVisite")
+	public Integer getProjectNbrVisite() {
+		return this.projectNbrVisite;
+	}
+
+	public void setProjectNbrVisite(Integer projectNbrVisite) {
+		this.projectNbrVisite = projectNbrVisite;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "projects")
