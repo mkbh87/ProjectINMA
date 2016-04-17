@@ -28,6 +28,8 @@ public class ConfigBean  implements Serializable {
 	private Config currentConfig ;
 	private List<Config> configList;
 	private static String ImgFilePath;
+	public static int nbrVisite;
+	
 
 	@PostConstruct
 	public void init() {
@@ -37,7 +39,8 @@ public class ConfigBean  implements Serializable {
 		if (configList.size()>0)
 		{
 			currentConfig = configList.get(0);
-			ImgFilePath = configList.get(0).getConfigImgpath();			
+			ImgFilePath = configList.get(0).getConfigImgpath();
+			nbrVisite = configList.get(0).getConfigNbrVisite();
 		}
 	}
 
@@ -117,4 +120,24 @@ public class ConfigBean  implements Serializable {
 	public static void setImgFilePath(String imgFilePath) {
 		ImgFilePath = imgFilePath;
 	}
+
+	public static int getNbrVisite() {
+		return nbrVisite;
+	}
+
+	public static void setNbrVisite(int nbrVisite) {
+		ConfigBean.nbrVisite = nbrVisite;
+	}
+	
+	public void actualize()
+	{
+		configList = configService.lister();
+		if (configList.size()>0)
+		{
+			currentConfig = configList.get(0);
+			ImgFilePath = configList.get(0).getConfigImgpath();
+			nbrVisite = configList.get(0).getConfigNbrVisite();
+		}
+	}
+
 }

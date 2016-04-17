@@ -5,15 +5,14 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions" >
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
-	<title>Configuration - inma Admin</title>
+	<title>- inma Admin</title>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="" />
@@ -40,7 +39,6 @@
 	<h:outputStylesheet library="css" name="ace.min.css" />
 	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
 	<h:outputStylesheet library="css" name="ace-skins.min.css" />
-	<h:outputStylesheet library="css" name="CostumStyle.css" />
 
 </h:head>
 
@@ -51,25 +49,24 @@
 			<h:panelGroup layout="block" styleClass="container-fluid">
 
 				<h1 class="logo">
-					<h:outputLink value="../welcome.xhtml">
+					<h:outputLink value="welcome.xhtml">
 						<h:graphicImage library="images" name="logo.png" styleClass="logo" />
 					</h:outputLink>
 				</h1>
 
 				<h:form>
-				<ul class="nav ace-nav pull-right">
-					<li class="light-blue">
-
-							<p:commandLink id="logout" action="#{loginMgmtBean.logout()}" styleClass="dropdown-toggle">
-								<h:graphicImage styleClass="nav-user-photo profile-img" library="images"
-									name="logo.png" alt="Inma Admin's Photo" />
-									<span class="user-info">  <strong>Logout</strong> <br/> Inma  Admin
-									</span>
-								<i class="icon-signout" style="font-size: 40px; padding-top: 2px;"></i>
-							</p:commandLink>
-
-					</li>
-				</ul>
+					<ul class="nav ace-nav pull-right">
+						<li class="light-blue"><p:commandLink id="logout"
+								action="#{loginMgmtBean.logout()}" styleClass="dropdown-toggle">
+								<h:graphicImage styleClass="nav-user-photo profile-img"
+									library="images" name="logo.png" alt="Inma Admin's Photo" />
+								<span class="user-info"> <strong>Logout</strong> <br />
+									Inma Admin
+								</span>
+								<i class="icon-signout"
+									style="font-size: 40px; padding-top: 2px;"></i>
+							</p:commandLink></li>
+					</ul>
 				</h:form>
 				<!--/.ace-nav-->
 			</h:panelGroup>
@@ -121,7 +118,7 @@
 
 			<!--#sidebar-shortcuts-->
 			<ul class="nav nav-list">
-				<li><h:outputLink value="../welcome.xhtml">
+				<li><h:outputLink value="welcome.xhtml">
 						<i class="icon-dashboard"></i>
 						<span class="menu-text"> Dashboard </span>
 					</h:outputLink></li>
@@ -138,7 +135,8 @@
 								<i class="icon-double-angle-right"></i> Tous les projets
 						</h:outputLink></li>
 
-						<li><h:outputLink value="../projects/form-projects.xhtml">
+						<li class="active"><h:outputLink
+								value="../projects/form-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau Projet
 						</h:outputLink></li>
 					</ul></li>
@@ -208,34 +206,30 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../partners/table-partners.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les Partenaires 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../partners/form-partners.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau Partenaire 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
-				<li ><h:outputLink value="#" class="dropdown-toggle">
+				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-file-text"></i>
 						<span class="menu-text"> Publications </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
 
 					<ul class="submenu">
-						<li><h:outputLink value="../publications/table-publications.xhtml">
+						<li><h:outputLink
+								value="../publications/table-publications.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les Publications 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
-						<li  ><h:outputLink value="../publications/form-publications.xhtml">
+						<li><h:outputLink
+								value="../publications/form-publications.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvelle Publication 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 				<li><h:outputLink value="../events/calendar.xhtml">
 						<i class="icon-calendar"></i>
 
@@ -256,17 +250,15 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../media/gallery.xhtml">
 								<i class="icon-double-angle-right"></i> Images 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
-						<li  ><h:outputLink value="../media/videos.xhtml">
+						<li><h:outputLink value="../media/videos.xhtml">
 								<i class="icon-double-angle-right"></i> Videos 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
-				<li><h:outputLink value="#" class="dropdown-toggle">
+				<li class="active open"><h:outputLink value="#"
+						class="dropdown-toggle">
 						<i class="icon-tag"></i>
 						<span class="menu-text"> More Pages </span>
 
@@ -278,7 +270,8 @@
 								<i class="icon-double-angle-right"></i> User Profile
 						</h:outputLink></li>
 
-						<li><h:outputLink value="../more/visualisation.xhtml">
+						<li class="active"><h:outputLink
+								value="../more/visualisation.xhtml">
 								<i class="icon-double-angle-right"></i> Visualisation
 						</h:outputLink></li>
 
@@ -290,12 +283,10 @@
 								<i class="icon-double-angle-right"></i> Login &amp; Register
 						</h:outputLink></li>
 					</ul></li>
-
-				<li class="active"><h:outputLink value="config.xhtml">
+				<li><h:outputLink value="../configurations/config.xhtml">
 						<i class="icon-cogs"></i>
 						<span class="menu-text"> Parametrage </span>
 					</h:outputLink></li>
-
 			</ul>
 
 			<h:panelGroup layout="block" styleClass="sidebar-collapse"
@@ -309,10 +300,10 @@
 				id="breadcrumbs">
 				<ul class="breadcrumb">
 					<li><i class="icon-home home-icon"></i> <h:outputLink
-							value="../welcome.xhtml">Home</h:outputLink> <span class="divider"> <i
-							class="icon-angle-right arrow-icon"></i>
+							value="../welcome.xhtml">Home</h:outputLink> <span
+						class="divider"> <i class="icon-angle-right arrow-icon"></i>
 					</span></li>
-					<li class="active">Parametrage</li>
+					<li class="active">Statistique des nombres des visites</li>
 				</ul>
 				<!--.breadcrumb-->
 
@@ -329,148 +320,188 @@
 			</h:panelGroup>
 
 			<h:panelGroup layout="block" styleClass="page-content">
-				<h:panelGroup layout="block" class="page-header position-relative">
+
+
+
+
+				<div class="page-header position-relative">
 					<h1>
-						Insertion des parametres <small> <i
-							class="icon-double-angle-right"></i>
+						Statistique <small> <i class="icon-double-angle-right"></i>
+
 						</small>
 					</h1>
-				</h:panelGroup>
-
-				<h:panelGroup layout="block" class="row-fluid">
-					<h:panelGroup layout="block" class="span12">
-						<!--PAGE CONTENT BEGINS-->
-						<h:panelGroup layout="block" class="row-fluid">
-							<h:panelGroup layout="block" class="span12">
-								<h:panelGroup layout="block" class="widget-box">
-									<h:panelGroup layout="block"
-										class="widget-header widget-header-blue widget-header-flat">
-										<h4 class="lighter">Les definitions</h4>
-
-
-									</h:panelGroup>
-									<h:panelGroup layout="block" class="widget-body widget-main">
-										<h:panelGroup layout="block" class="row-fluid">
-
-											<h:form class="form-horizontal" id="form" prependId="false" enctype="multipart/form-data"
-														acceptcharset="UTF-8">
-												<h:panelGroup layout="block" class="control-group">
-													<p:outputLabel styleClass="control-label" for="def"
-														value="Présentation inma" />
-
-													<h:panelGroup layout="block" class="controls">
-														<span class="span12 input-icon input-icon-right"> 
-														<pe:ckEditor id="def" value="#{configBean.currentConfig.configIntroInma}" language="ar" width="85%" checkDirtyInterval="0" />   
-																
-														</span>
-													</h:panelGroup>
-												</h:panelGroup>
-												
-												<h:panelGroup layout="block" class="control-group">
-													<p:outputLabel styleClass="control-label" for="defmam"
-														value="Présentation Maamoura  " />
-
-													<h:panelGroup layout="block" class="controls">
-														<span class="span12 input-icon input-icon-right">  
-														<pe:ckEditor id="defmam" value="#{configBean.currentConfig.configIntroMaamoura}" language="ar" width="85%" checkDirtyInterval="0" />   
-														
-														</span>
-													</h:panelGroup>
-												</h:panelGroup>
-												
-												<h:panelGroup layout="block" class="control-group">
-													<p:outputLabel styleClass="control-label" for="goal"
-														value="objectif de inma  " />
-
-													<h:panelGroup layout="block" class="controls">
-														<span class="span12 input-icon input-icon-right">  
-														<pe:ckEditor id="goal" value="#{configBean.currentConfig.configInmaGoal}" language="ar" width="85%" checkDirtyInterval="0" />   
-														</span>
-													</h:panelGroup>
-												</h:panelGroup>
-
-												<h:panelGroup layout="block"
-													class="row-fluid wizard-actions">
-													<p:commandButton value="Modifier"
-														styleClass="btn btn-success btn-next"
-														action="#{configBean.edit()}">
-													</p:commandButton>
-
-
-												</h:panelGroup>
-											</h:form>
-										</h:panelGroup>
-									</h:panelGroup>
-								</h:panelGroup>
-							</h:panelGroup>
-						</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="spacer-40"></h:panelGroup>
-						<h:panelGroup layout="block" class="row-fluid">
-							<h:panelGroup layout="block" class="span12">
-								<h:panelGroup layout="block" class="widget-box">
-									<h:panelGroup layout="block"
-										class="widget-header widget-header-blue widget-header-flat">
-										<h4 class="lighter">les parametres (Don't Change !)</h4>
-									</h:panelGroup>
-									
-									<h:panelGroup layout="block" class="widget-body widget-main">
-										<h:panelGroup layout="block" class="row-fluid">
-
-											<h:form  class="form-horizontal" id="form2" prependId="false" enctype="multipart/form-data"
-														acceptcharset="UTF-8">
-														
-												<h:panelGroup layout="block" class="control-group">
-													<p:outputLabel styleClass="control-label"
-														value="Listes des e-mails inscrits  " />
-
-													<h:panelGroup layout="block" class="controls">
-														<span class="span12 input-icon input-icon-right">  
-															<h:inputTextarea value="#{configBean.currentConfig.configEmailList}" class="span10" style="height: 200px;" readonly="true"/>   
-														</span>
-													</h:panelGroup>
-												</h:panelGroup>
-												
-														
-												<h:panelGroup layout="block"
-													styleClass="control-group">
-													<p:outputLabel styleClass="control-label" for="intitule"
-														value="Path des Images " />
-
-													<h:panelGroup layout="block" styleClass="controls">
-														<span class="span8 input-icon input-icon-right"> <h:inputText
-																styleClass="span12" id="intitule"
-																value="#{configBean.currentConfig.configImgpath}" readonly="true" /> <i
-															class="icon-warning-sign"></i>
-														</span>
-														<span class="help-inline"> </span>
-													</h:panelGroup>
-												</h:panelGroup>
-
-												<h:panelGroup layout="block"
-													class="row-fluid wizard-actions">
-<!-- 													<p:commandButton value="Modifier" readonly="true"
-														styleClass="btn btn-success btn-next"
-														action="">
-													</p:commandButton>
- -->												</h:panelGroup>
-												
-											</h:form>
-										</h:panelGroup>
-									</h:panelGroup>
-								</h:panelGroup>
-							</h:panelGroup>
-						</h:panelGroup>
-					</h:panelGroup>
-				</h:panelGroup>
+				</div>
 				<!--/.page-header-->
 
+
+				<!--/.page-header-->
+
+
+				<div class="row-fluid">
+					<div class="span12">
+						<!--PAGE CONTENT BEGINS-->
+						<h:panelGroup layout="block" class="widget-box">
+							<h:panelGroup layout="block"
+								class="widget-header widget-header-blue widget-header-flat">
+								<h4 class="lighter">Nombre des visites </h4>
+
+							</h:panelGroup>
+
+							<h:panelGroup layout="block" class="widget-body widget-main">
+								<h:panelGroup layout="block" class="row-fluid">
+
+									#{projectBean.actualize()}
+									#{eventBean.actualize()}
+									#{projectBean.actualize()}
+									#{configBean.actualize()}
+									<h:form class="form-horizontal" id="form" prependId="false"
+										enctype="multipart/form-data" acceptcharset="UTF-8">
+
+										<div class="page-header position-relative">
+											<h2>
+												   Nombres de visite sur le site  est
+													<big>#{configBean.currentConfig.configNbrVisite}</big>
+												 
+											</h2>
+										</div>
+										<h:button value=""></h:button>
+
+										<p:separator />
+										
+										<p:dataTable var="pro" value="#{projectBean.projectList}"
+											style="margin-bottom:20px" paginator="true" rows="10"
+											paginatorPosition="bottom" sortOrder="descending" sortBy="#{pro.projectNbrVisite}">
+											<f:facet name="header"> Nombre de visite sur les projects </f:facet>
+
+											<p:column headerText="N°" style="width:15px">
+												<h:outputText value="#{pro.seqNo}" />
+											</p:column>
+											<p:column headerText="Article">
+												<p:cellEditor>
+													<f:facet name="output">
+														<h:outputText value="#{pro.projectName}" />
+													</f:facet>
+													<f:facet name="input">
+														<p:inputText id="modelInput" value="#{pro.projectName}"
+															style="width:100%" />
+													</f:facet>
+												</p:cellEditor>
+											</p:column>
+
+											<p:column headerText="Nbr visite" style="width:100px"
+												sortBy="#{pro.projectNbrVisite}">
+												<p:cellEditor>
+													<f:facet name="output">
+														<h:outputText value="#{pro.projectNbrVisite}" />
+													</f:facet>
+													<f:facet name="input">
+														<p:inputText id="modelLocation"
+															value="#{pro.projectNbrVisite}" style="width:100%" />
+													</f:facet>
+												</p:cellEditor>
+											</p:column>
+
+										</p:dataTable>
+
+										
+										
+										<p:separator />
+										<p:growl id="msgs" showDetail="true" />
+
+										<p:dataTable var="art" value="#{articleBean.articleList}"
+											style="margin-bottom:20px" paginator="true" rows="10"
+											paginatorPosition="bottom" sortOrder="descending" sortBy="#{art.articleNbrVisite}">
+											<f:facet name="header"> Nombre de visite sur les articles </f:facet>
+
+											<p:column headerText="N°" style="width:15px">
+												<h:outputText value="#{art.seqNo}" />
+											</p:column>
+											<p:column headerText="project">
+												<p:cellEditor>
+													<f:facet name="output">
+														<h:outputText value="#{art.articleTitle}" />
+													</f:facet>
+													<f:facet name="input">
+														<p:inputText id="modelInput" value="#{art.articleTitle}"
+															style="width:100%" />
+													</f:facet>
+												</p:cellEditor>
+											</p:column>
+
+											<p:column headerText="Nbr visite" style="width:100px"
+												sortBy="#{art.articleNbrVisite}">
+												<p:cellEditor>
+													<f:facet name="output">
+														<h:outputText value="#{art.articleNbrVisite}" />
+													</f:facet>
+													<f:facet name="input">
+														<p:inputText id="modelLocation"
+															value="#{art.articleNbrVisite}" style="width:100%" />
+													</f:facet>
+												</p:cellEditor>
+											</p:column>
+
+										</p:dataTable>
+
+
+										<p:separator />
+
+										<p:dataTable var="ev" resizableColumns="true"
+											value="#{eventBean.events}" style="margin-bottom:20px"
+											paginator="true" rows="10" paginatorPosition="bottom" sortOrder="descending"
+											sortBy="#{ev.eventNbrVisite}">
+											<f:facet name="header"> Nombre de visite sur les événement </f:facet>
+
+											<p:column headerText="N°" style="width:15px">
+												<h:outputText value="#{ev.seqNo}" />
+											</p:column>
+											<p:column headerText="Événement">
+												<p:cellEditor>
+													<f:facet name="output">
+														<h:outputText value="#{ev.eventName}" />
+													</f:facet>
+													<f:facet name="input">
+														<p:inputText id="modelInput" value="#{ev.eventName}"
+															style="width:100%" />
+													</f:facet>
+												</p:cellEditor>
+											</p:column>
+
+											<p:column headerText="Nbr visite" style="width:100px"
+												sortBy="#{ev.eventNbrVisite}">
+												<p:cellEditor>
+													<f:facet name="output">
+														<h:outputText value="#{ev.eventNbrVisite}" />
+													</f:facet>
+													<f:facet name="input">
+														<p:inputText id="modelLocation"
+															value="#{ev.eventNbrVisite}" style="width:100%" />
+													</f:facet>
+												</p:cellEditor>
+											</p:column>
+
+										</p:dataTable>
+
+
+									</h:form>
+
+								</h:panelGroup>
+
+								<!--/widget-main-->
+							</h:panelGroup>
+							<!--/widget-body-->
+						</h:panelGroup>
+
+						<!--PAGE CONTENT ENDS-->
+					</div>
+					<!--/.span-->
+				</div>
+				<!--/.row-fluid-->
 
 
 
 			</h:panelGroup>
 			<!--/.page-content-->
-
-			<!--/#ace-settings-container-->
 		</h:panelGroup>
 		<!--/.main-content-->
 	</h:panelGroup>
@@ -484,49 +515,41 @@
 	<!--basic scripts-->
 
 	<script
-		src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"/>
+		src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" />
 
 	<script type="text/javascript">
-	//<![CDATA[ 
-        window.jQuery || document.write("<h:outputScript library='js' name='jquery-2.0.3.min.js'>" + "<" + "/script>");
-      //]]>
-    </script>
-	<!--<![endif]-->
-
-	<!--[if IE]>
-<script type="text/javascript">
- window.jQuery || document.write("<script src='js/jquery-1.10.2.min.js' />");
-</script>
-<![endif]-->
-	<script type="text/javascript">
-	//<![CDATA[ 
-        if ("ontouchend" in document) document.write("<script src='js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
-	//]]>
+		//<![CDATA[ 
+		window.jQuery
+				|| document
+						.write("<h:outputScript library='js' name='jquery-2.0.3.min.js' />");
+		//]]>
 	</script>
-	<h:outputScript library="js" name="bootstrap.min.js"/>
+
+	<script type="text/javascript">
+		//<![CDATA[ 
+		if ("ontouchend" in document)
+			document
+					.write("<h:outputScript library='js' name='jquery.mobile.custom.min.js' />");
+		//]]>
+	</script>
+
+	<h:outputScript library="js" name="bootstrap.min.js" />
 
 	<!--page specific plugin scripts-->
-	<h:outputScript library="js" name="fuelux/fuelux.wizard.min.js"/>
-	<h:outputScript library="js" name="jquery.validate.min.js"/>
-	<h:outputScript library="js" name="additional-methods.min.js"/>
-	<h:outputScript library="js" name="bootbox.min.js"/>
-	<h:outputScript library="js" name="jquery.maskedinput.min.js"/>
 
-
-	<h:outputScript library="js" name="jquery-ui-1.10.3.custom.min.js"/>
-	<h:outputScript library="js" name="jquery.ui.touch-punch.min.js"/>
-	<h:outputScript library="js" name="jquery.slimscroll.min.js"/>
-	<h:outputScript library="js" name="jquery.easy-pie-chart.min.js"/>
-	<h:outputScript library="js" name="jquery.sparkline.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.pie.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.resize.min.js"/>
+	<h:outputScript library="js" name="jquery-ui-1.10.3.custom.min.js" />
+	<h:outputScript library="js" name="jquery.ui.touch-punch.min.js" />
+	<h:outputScript library="js" name="jquery.slimscroll.min.js" />
+	<h:outputScript library="js" name="jquery.easy-pie-chart.min.js" />
+	<h:outputScript library="js" name="jquery.sparkline.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.pie.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.resize.min.js" />
 
 	<!--ace scripts-->
 
-	<h:outputScript library="js" name="ace-elements.min.js"/>
-	<h:outputScript library="js" name="ace.min.js"/>
+	<h:outputScript library="js" name="ace-elements.min.js" />
+	<h:outputScript library="js" name="ace.min.js" />
+ </h:body>
 
-	<!--inline scripts related to this page-->
-</h:body>
 </html>

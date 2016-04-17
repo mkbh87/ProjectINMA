@@ -1,5 +1,5 @@
 package com.inmaa.admin.persistence;
-// Generated 28 févr. 2016 21:48:16 by Hibernate Tools 4.3.1.Final
+// Generated 16 avr. 2016 20:28:19 by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -36,6 +36,7 @@ public class Article implements java.io.Serializable {
 	private String articleAuthor;
 	private Date articleDate;
 	private String articleUrl;
+	private Integer articleNbrVisite;
 	private Set<Project> projects = new HashSet<Project>(0);
 	private Set<Event> events = new HashSet<Event>(0);
 
@@ -52,8 +53,8 @@ public class Article implements java.io.Serializable {
 	}
 
 	public Article(String articleDesc, String articleDesc1, String articleTitle, String articleSource, Integer seqNo,
-			String articlePicture, String articleAuthor, Date articleDate, String articleUrl, Set<Project> projects,
-			Set<Event> events) {
+			String articlePicture, String articleAuthor, Date articleDate, String articleUrl, Integer articleNbrVisite,
+			Set<Project> projects, Set<Event> events) {
 		this.articleDesc = articleDesc;
 		this.articleDesc1 = articleDesc1;
 		this.articleTitle = articleTitle;
@@ -63,6 +64,7 @@ public class Article implements java.io.Serializable {
 		this.articleAuthor = articleAuthor;
 		this.articleDate = articleDate;
 		this.articleUrl = articleUrl;
+		this.articleNbrVisite = articleNbrVisite;
 		this.projects = projects;
 		this.events = events;
 	}
@@ -161,10 +163,19 @@ public class Article implements java.io.Serializable {
 		this.articleUrl = articleUrl;
 	}
 
+	@Column(name = "Article_NbrVisite")
+	public Integer getArticleNbrVisite() {
+		return this.articleNbrVisite;
+	}
+
+	public void setArticleNbrVisite(Integer articleNbrVisite) {
+		this.articleNbrVisite = articleNbrVisite;
+	}
+
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "Article_Project", catalog = "inmaa", joinColumns = {
 			@JoinColumn(name = "Article_ID", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "Projects_ID", nullable = false, updatable = false) })
+					@JoinColumn(name = "Project_ID", nullable = false, updatable = false) })
 	public Set<Project> getProjects() {
 		return this.projects;
 	}

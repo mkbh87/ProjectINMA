@@ -70,6 +70,7 @@ public class ArticleBean implements Serializable{
 
 	@PostConstruct
 	public void init() {
+		articleList = new ArrayList<Article>();
 		articleList = articleService.lister();
 		es = new ListDataModel<Article>();
 		es.setWrappedData( articleService.lister());
@@ -321,6 +322,14 @@ public class ArticleBean implements Serializable{
 	
 	public void setListeEv(DualListModel<Event> listeEv) {
 		this.listeEv = listeEv;
+	}
+	
+	public void actualize()
+	{
+		articleList = new ArrayList<Article>();
+		articleList = articleService.lister();
+		es = new ListDataModel<Article>();
+		es.setWrappedData( articleService.lister());
 	}
 
 }

@@ -309,4 +309,12 @@ public class ProjectBean implements Serializable{
 		this.listeMembers = listeMembers;
 	}
 
+	
+	public void actualize()
+	{
+		projectList = new ArrayList<Project>();
+		projectList = projectService.lister();
+		es = new ListDataModel<Project>();
+		es.setWrappedData( projectService.lister());
+	}
 }

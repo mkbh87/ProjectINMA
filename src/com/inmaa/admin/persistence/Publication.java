@@ -1,5 +1,5 @@
 package com.inmaa.admin.persistence;
-// Generated 28 févr. 2016 21:48:16 by Hibernate Tools 4.3.1.Final
+// Generated 16 avr. 2016 20:28:19 by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -28,6 +28,7 @@ public class Publication implements java.io.Serializable {
 	private String publicationPicture;
 	private String publicationDesc;
 	private String publicationType;
+	private Integer publicationNbrVisite;
 
 	public Publication() {
 	}
@@ -38,7 +39,8 @@ public class Publication implements java.io.Serializable {
 	}
 
 	public Publication(Integer seqNo, String publicationName, Date publicationDate, String publicationLink,
-			String publicationUrl, String publicationPicture, String publicationDesc, String publicationType) {
+			String publicationUrl, String publicationPicture, String publicationDesc, String publicationType,
+			Integer publicationNbrVisite) {
 		this.seqNo = seqNo;
 		this.publicationName = publicationName;
 		this.publicationDate = publicationDate;
@@ -47,6 +49,7 @@ public class Publication implements java.io.Serializable {
 		this.publicationPicture = publicationPicture;
 		this.publicationDesc = publicationDesc;
 		this.publicationType = publicationType;
+		this.publicationNbrVisite = publicationNbrVisite;
 	}
 
 	@Id
@@ -132,6 +135,15 @@ public class Publication implements java.io.Serializable {
 
 	public void setPublicationType(String publicationType) {
 		this.publicationType = publicationType;
+	}
+
+	@Column(name = "Publication_NbrVisite")
+	public Integer getPublicationNbrVisite() {
+		return this.publicationNbrVisite;
+	}
+
+	public void setPublicationNbrVisite(Integer publicationNbrVisite) {
+		this.publicationNbrVisite = publicationNbrVisite;
 	}
 
 }
