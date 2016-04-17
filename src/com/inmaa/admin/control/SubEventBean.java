@@ -252,7 +252,7 @@ public class SubEventBean  implements Serializable {
 			} catch (Exception e) {
 				// Cleanup.
 				if (file != null) file.delete();
-				msg="Erreur lors de l'envoie d'image, ";
+				msg="Erreur lors de l_envoie d_image, ";
 				// Always log stacktraces (with a real logger).
 				e.printStackTrace();
 			} finally {
@@ -335,13 +335,22 @@ public class SubEventBean  implements Serializable {
 				return;
 			Set<Event> temp = new HashSet<Event>(events);
 			((SubEvent) event.getObject()).setEvents(temp);
+	        FacesMessage msg = new FacesMessage("Sous événement enregister", ((SubEvent) event.getObject()).getSubEventName());
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
+	        currentSubEvent= new SubEvent((SubEvent) event.getObject());
+	        subEventService.enregistrer(currentSubEvent);
+	        subEventList = subEventService.listerbyEvent(eventID);
+
+		}
+		else
+		{
+			FacesMessage msg = new FacesMessage("Sous événement enregister", ((SubEvent) event.getObject()).getSubEventName());
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+			currentSubEvent= new SubEvent((SubEvent) event.getObject());
+			subEventService.mettre_a_jour(currentSubEvent);
+			subEventList = subEventService.listerbyEvent(eventID);			
 		}
 			
-        FacesMessage msg = new FacesMessage("Sous événement enregister", ((SubEvent) event.getObject()).getSubEventName());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-        currentSubEvent= new SubEvent((SubEvent) event.getObject());
-        subEventService.mettre_a_jour(currentSubEvent);
-        subEventList = subEventService.listerbyEvent(eventID);
     }
 	
     private Event EventByID(int evID) {

@@ -247,7 +247,7 @@ public class ProjectBean implements Serializable{
 			} catch (Exception e) {
 				// Cleanup.
 				if (file != null) file.delete();
-				msg="Erreur lors de l'envoie d'image, ";
+				msg="Erreur lors de l_envoie d_image, ";
 				// Always log stacktraces (with a real logger).
 				e.printStackTrace();
 			} finally {
