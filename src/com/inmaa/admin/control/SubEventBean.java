@@ -130,7 +130,7 @@ public class SubEventBean  implements Serializable {
 			bodymsg = bodymsg.replace("'", " ");
 			e.printStackTrace();
 			System.out.print("Error: "+e);
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement du projet",bodymsg );
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement de sous-événement",bodymsg );
 			RequestContext.getCurrentInstance().showMessageInDialog(message);
 			return "";
 		}
@@ -174,7 +174,7 @@ public class SubEventBean  implements Serializable {
 			if(e.getCause() != null)
 				bodymsg  += e.getCause().getMessage().replace("'", "");
 		}
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification de l événement",bodymsg );
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification de sous-événement",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
 	}
 

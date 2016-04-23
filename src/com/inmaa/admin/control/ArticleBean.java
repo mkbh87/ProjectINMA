@@ -130,7 +130,7 @@ public class ArticleBean implements Serializable{
 			bodymsg = bodymsg.replace("'", " ");
 			e.printStackTrace();
 			System.out.print("Error: "+e);
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement de l_article",bodymsg );
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement article",bodymsg );
 			RequestContext.getCurrentInstance().showMessageInDialog(message);
 			return "";
 		}
@@ -176,7 +176,7 @@ public class ArticleBean implements Serializable{
 
 			System.out.print("Error: "+e.getMessage());
 		}
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification de l_article",bodymsg );
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification article",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
 	}
 

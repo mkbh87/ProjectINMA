@@ -201,7 +201,7 @@ public class MemberBean implements Serializable{
 			bodymsg = bodymsg.replace("'", " ");
 			e.printStackTrace();
 			System.out.print("Error: "+e);
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement du projet",bodymsg );
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement du membre",bodymsg );
 			RequestContext.getCurrentInstance().showMessageInDialog(message);
 			return "";
 		}
@@ -252,7 +252,7 @@ public class MemberBean implements Serializable{
 		}
 
 
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification évenement",bodymsg );
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification de membre",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
 		vider();
 

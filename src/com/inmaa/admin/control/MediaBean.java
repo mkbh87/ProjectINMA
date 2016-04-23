@@ -201,7 +201,7 @@ public class MediaBean implements Serializable{
 			bodymsg = bodymsg.replace("'", " ");
 			e.printStackTrace();
 			System.out.print("Error: "+e);
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement du projet",bodymsg );
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement media",bodymsg );
 			RequestContext.getCurrentInstance().showMessageInDialog(message);
 			return "";
 		}

@@ -109,7 +109,7 @@ public class UserBean implements Serializable{
 			bodymsg = bodymsg.replace("'", " ");
 			e.printStackTrace();
 			System.out.print("Error: "+e);
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement du projet",bodymsg );
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement de user",bodymsg );
 			RequestContext.getCurrentInstance().showMessageInDialog(message);
 			return "";
 		}
@@ -143,7 +143,7 @@ public class UserBean implements Serializable{
 
 			System.out.print("Error: "+e.getMessage());
 		}
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification du projet",bodymsg );
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification de user",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
 	}
 

@@ -134,7 +134,7 @@ public class EventBean  implements Serializable {
 			bodymsg = bodymsg.replace("'", " ");
 			e.printStackTrace();
 			System.out.print("Error: "+e);
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement du projet",bodymsg );
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement des parametres",bodymsg );
 			RequestContext.getCurrentInstance().showMessageInDialog(message);
 			return "";
 		}
@@ -178,7 +178,7 @@ public class EventBean  implements Serializable {
 			if(e.getCause() != null)
 				bodymsg  += e.getCause().getMessage().replace("'", "");
 		}
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification de l événement",bodymsg );
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification événement",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
 	}
 
