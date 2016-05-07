@@ -12,17 +12,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.inmaa.admin.control.ConfigBean;
 import com.inmaa.admin.persistence.Article;
 import com.inmaa.admin.persistence.Event;
 import com.inmaa.admin.persistence.Member;
 import com.inmaa.admin.persistence.Partner;
 import com.inmaa.admin.persistence.Project;
-import com.inmaa.admin.service.IMemberService;
-import com.inmaa.admin.service.IPartnerService;
-import com.inmaa.admin.service.IProjectService;
 
 public class Utils {
 

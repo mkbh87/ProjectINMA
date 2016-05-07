@@ -427,14 +427,17 @@
 
 															<h:panelGroup layout="block" class="controls">
 																<span class="span8 input-icon input-icon-right">
-																	<p:fileUpload label="Choisir image"
+																	<p:fileUpload label="Choisir image" value="/home/khalil/workspace/Inmaa_Admin/WebContent/resources/images/logo.jpg"
 																		cancelLabel="Annuler" uploadLabel="Envoyer"
 																		fileUploadListener="#{projectBean.handleFileUpload}"
+																		update=""
 																		mode="advanced" sizeLimit="1000000" fileLimit="1"
 																		allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-
+<br />
+<img style="height: 150px" src="http://inma-maamoura.org/javax.faces.resource/#{projectBean.currentProject.projectLogo}.xhtml?ln=images" />															
 																</span>
 															</h:panelGroup>
+ 															
 														</h:panelGroup>
 
 														<h:panelGroup layout="block" class="control-group">
