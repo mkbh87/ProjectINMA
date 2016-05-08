@@ -269,6 +269,7 @@ public class EventBean  implements Serializable {
 			} finally {
 				IOUtils.closeQuietly(output);
 			}
+			uploadedFile = null;
 		}
 		else
 			msg="il y a pas d image, ";
