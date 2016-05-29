@@ -354,6 +354,19 @@
 
 											<h:form class="form-horizontal" id="form" prependId="false" enctype="multipart/form-data"
 														acceptcharset="UTF-8">
+														
+												<h:panelGroup layout="block" class="control-group">
+													<p:outputLabel styleClass="control-label" for="email"
+														value="Email inma  " />
+
+													<h:panelGroup layout="block" class="controls">
+														<span class="span12 input-icon input-icon-right">  
+														<h:inputText id="email" value="#{configBean.currentConfig.configPrincipalEmail}"  />   
+														</span>
+													</h:panelGroup>
+												</h:panelGroup>
+												
+														
 												<h:panelGroup layout="block" class="control-group">
 													<p:outputLabel styleClass="control-label" for="def"
 														value="Présentation inma" />
@@ -388,7 +401,7 @@
 														</span>
 													</h:panelGroup>
 												</h:panelGroup>
-
+												
 												<h:panelGroup layout="block"
 													class="row-fluid wizard-actions">
 													<p:commandButton value="Modifier"
@@ -460,6 +473,97 @@
 								</h:panelGroup>
 							</h:panelGroup>
 						</h:panelGroup>
+						
+						 <!-- SMTP -->
+						<h:panelGroup layout="block" class="row-fluid">
+							<h:panelGroup layout="block" class="span12">
+								<h:panelGroup layout="block" class="widget-box">
+									<h:panelGroup layout="block"
+										class="widget-header widget-header-blue widget-header-flat">
+										<h4 class="lighter"> Paramètrage SMTP (Don't Change !)</h4>
+									</h:panelGroup>
+									
+									<h:panelGroup layout="block" class="widget-body widget-main">
+										<h:panelGroup layout="block" class="row-fluid">
+
+											<h:form  class="form-horizontal" id="form3" prependId="false" enctype="multipart/form-data"
+														acceptcharset="UTF-8">
+														
+												<h:panelGroup layout="block" class="control-group">
+													<p:outputLabel styleClass="control-label"
+														value="Host  " />
+
+													<h:panelGroup layout="block" class="controls">
+														<span class="span3 input-icon input-icon-right">  
+															<h:inputText value="#{configBean.currentConfig.configSmtpHost}" class="span" /><i
+															class="icon-warning-sign"></i>   
+														</span>
+													</h:panelGroup>
+												</h:panelGroup>
+												
+														
+												<h:panelGroup layout="block"
+													styleClass="control-group">
+													<p:outputLabel styleClass="control-label"  
+														value="Port  " />
+
+													<h:panelGroup layout="block" styleClass="controls">
+														<span class="span3 input-icon input-icon-right"> <h:inputText
+																styleClass="span"  
+																value="#{configBean.currentConfig.configSmtpPort}"  /> <i
+															class="icon-warning-sign"></i>
+														</span>
+														<span class="help-inline"> </span>
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block"
+													styleClass="control-group">
+													<p:outputLabel styleClass="control-label" 
+														value="User Name  " />
+
+													<h:panelGroup layout="block" styleClass="controls">
+														<span class="span3 input-icon input-icon-right"> <h:inputText
+																styleClass="span" id="username"
+																value="#{configBean.currentConfig.configSmtpUser}"  /> <i
+															class="icon-warning-sign"></i>
+														</span>
+														<span class="help-inline"> </span>
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block"
+													styleClass="control-group">
+													<p:outputLabel styleClass="control-label" for="password"
+														value="Password  " />
+
+													<h:panelGroup layout="block" styleClass="controls">
+														<span class="span3 input-icon input-icon-right"> 
+														<h:inputSecret
+																styleClass="span" id="password"
+																value="#{configBean.currentConfig.configSmtpPwd}"  /> <i
+															class="icon-warning-sign"></i>
+														</span>
+														<span class="help-inline"> </span>
+													</h:panelGroup>
+												</h:panelGroup>
+ 												<h:panelGroup layout="block"
+													class="row-fluid wizard-actions">
+ 													<p:commandButton value="Modifier" readonly="true"
+														styleClass="btn btn-success btn-next"
+														action="#{configBean.editSmtp()}">
+													</p:commandButton>
+												</h:panelGroup>
+												
+											</h:form>
+										</h:panelGroup>
+									</h:panelGroup>
+								</h:panelGroup>
+							</h:panelGroup>
+						</h:panelGroup>
+						
+						
+						
 					</h:panelGroup>
 				</h:panelGroup>
 				<!--/.page-header-->

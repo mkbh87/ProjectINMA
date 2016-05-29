@@ -65,14 +65,23 @@ public class ConfigBean  implements Serializable {
 		this.configService = configService;
 	}
 
+
 	public String edit(){
-		String bodymsg="Evenement modifié avec succès";
+		String bodymsg="Configuration modifié avec succès";
 		try {
 			
 			if(currentConfig.getConfigId() == null)
 				configService.enregistrer(currentConfig);
 			else
-				configService.mettre_a_jour(currentConfig);
+			{
+				Config  conf = getTheConfiguration();
+				conf.setConfigIntroInma(currentConfig.getConfigIntroInma());
+				conf.setConfigIntroMaamoura(currentConfig.getConfigIntroMaamoura());
+				conf.setConfigInmaGoal(currentConfig.getConfigInmaGoal());
+				conf.setConfigPrincipalEmail(currentConfig.getConfigPrincipalEmail());
+				
+				configService.mettre_a_jour(conf);
+			}
 
 		} catch(Exception e) {
 			//Error during hibernate query
@@ -87,13 +96,13 @@ public class ConfigBean  implements Serializable {
 		
 		ImgFilePath = currentConfig.getConfigImgpath();
 		
-		return "configs.xhtml?faces-redirect=true&amp;includeViewParams=true";
+		return "config.xhtml?faces-redirect=true&amp;includeViewParams=true";
 
 	}
 
 	public String showEdit(Config p){
 		currentConfig = p;
-		return "edit-configs.xhtml?faces-redirect=true&amp;includeViewParams=true";
+		return "edit-config.xhtml?faces-redirect=true&amp;includeViewParams=true";
 	}
 
 	
@@ -140,4 +149,46 @@ public class ConfigBean  implements Serializable {
 		}
 	}
 
+	public String editSmtp(){
+		String bodymsg="Configuration modifié avec succès";
+		try {
+			
+			
+			if(currentConfig.getConfigId() == null)
+				configService.enregistrer(currentConfig);
+			else{
+				Config  conf = getTheConfiguration();
+				conf.setConfigSmtpHost(currentConfig.getConfigSmtpHost());
+				conf.setConfigSmtpPort(currentConfig.getConfigSmtpPort());
+				conf.setConfigSmtpPwd(currentConfig.getConfigSmtpPwd());
+				conf.setConfigSmtpUser(currentConfig.getConfigSmtpUser());
+				
+				configService.mettre_a_jour(conf);
+			}
+
+		} catch(Exception e) {
+			//Error during hibernate query
+ 			bodymsg= e.getMessage().replace("'", "") + "      ";
+ 			if(e.getCause() != null)
+ 				bodymsg  += e.getCause().getMessage().replace("'", "");
+		}
+
+
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification de parametre",bodymsg );
+		RequestContext.getCurrentInstance().showMessageInDialog(message);
+				
+		return "config.xhtml?faces-redirect=true&amp;includeViewParams=true";
+
+
+	}
+	
+	private Config getTheConfiguration(){
+		Config c = new Config();
+
+		configList = configService.lister();
+		if (configList.size()>0)
+			c = configList.get(0);
+		
+		return c;
+	}
 }

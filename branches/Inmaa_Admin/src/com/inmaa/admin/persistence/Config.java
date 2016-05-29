@@ -1,5 +1,5 @@
 package com.inmaa.admin.persistence;
-// Generated 16 avr. 2016 20:28:19 by Hibernate Tools 4.3.1.Final
+// Generated 29 mai 2016 20:24:44 by Hibernate Tools 4.3.1.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,22 +22,39 @@ public class Config implements java.io.Serializable {
 	private String configIntroMaamoura;
 	private String configInmaGoal;
 	private Integer configNbrVisite;
+	private String configPrincipalEmail;
+	private String configSmtpHost;
+	private String configSmtpPort;
+	private String configSmtpUser;
+	private String configSmtpPwd;
 
 	public Config() {
 	}
 
-	public Config(String configImgpath) {
+	public Config(String configImgpath, String configPrincipalEmail, String configSmtpHost, String configSmtpPort,
+			String configSmtpUser, String configSmtpPwd) {
 		this.configImgpath = configImgpath;
+		this.configPrincipalEmail = configPrincipalEmail;
+		this.configSmtpHost = configSmtpHost;
+		this.configSmtpPort = configSmtpPort;
+		this.configSmtpUser = configSmtpUser;
+		this.configSmtpPwd = configSmtpPwd;
 	}
 
 	public Config(String configImgpath, String configEmailList, String configIntroInma, String configIntroMaamoura,
-			String configInmaGoal, Integer configNbrVisite) {
+			String configInmaGoal, Integer configNbrVisite, String configPrincipalEmail, String configSmtpHost,
+			String configSmtpPort, String configSmtpUser, String configSmtpPwd) {
 		this.configImgpath = configImgpath;
 		this.configEmailList = configEmailList;
 		this.configIntroInma = configIntroInma;
 		this.configIntroMaamoura = configIntroMaamoura;
 		this.configInmaGoal = configInmaGoal;
 		this.configNbrVisite = configNbrVisite;
+		this.configPrincipalEmail = configPrincipalEmail;
+		this.configSmtpHost = configSmtpHost;
+		this.configSmtpPort = configSmtpPort;
+		this.configSmtpUser = configSmtpUser;
+		this.configSmtpPwd = configSmtpPwd;
 	}
 
 	@Id
@@ -104,6 +121,51 @@ public class Config implements java.io.Serializable {
 
 	public void setConfigNbrVisite(Integer configNbrVisite) {
 		this.configNbrVisite = configNbrVisite;
+	}
+
+	@Column(name = "config_PrincipalEmail", nullable = false, length = 100)
+	public String getConfigPrincipalEmail() {
+		return this.configPrincipalEmail;
+	}
+
+	public void setConfigPrincipalEmail(String configPrincipalEmail) {
+		this.configPrincipalEmail = configPrincipalEmail;
+	}
+
+	@Column(name = "config_smtpHost", nullable = false, length = 45)
+	public String getConfigSmtpHost() {
+		return this.configSmtpHost;
+	}
+
+	public void setConfigSmtpHost(String configSmtpHost) {
+		this.configSmtpHost = configSmtpHost;
+	}
+
+	@Column(name = "config_smtpPort", nullable = false, length = 45)
+	public String getConfigSmtpPort() {
+		return this.configSmtpPort;
+	}
+
+	public void setConfigSmtpPort(String configSmtpPort) {
+		this.configSmtpPort = configSmtpPort;
+	}
+
+	@Column(name = "config_smtpUser", nullable = false, length = 100)
+	public String getConfigSmtpUser() {
+		return this.configSmtpUser;
+	}
+
+	public void setConfigSmtpUser(String configSmtpUser) {
+		this.configSmtpUser = configSmtpUser;
+	}
+
+	@Column(name = "config_smtpPwd", nullable = false, length = 60)
+	public String getConfigSmtpPwd() {
+		return this.configSmtpPwd;
+	}
+
+	public void setConfigSmtpPwd(String configSmtpPwd) {
+		this.configSmtpPwd = configSmtpPwd;
 	}
 
 }
