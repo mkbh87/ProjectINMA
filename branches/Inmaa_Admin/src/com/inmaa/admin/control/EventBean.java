@@ -117,7 +117,7 @@ public class EventBean  implements Serializable {
 			bodymsg = submitLogoFile();
 			int seqno = eventService.maxSeqno();
 			currentEvent.setSeqNo(seqno + 10);
-
+			currentEvent.setEventNbrVisite(0);
 			currentEvent.setProjects(new HashSet<Project>(listePro.getTarget()));
 			currentEvent.setPartners(new HashSet<Partner>(listePartners.getTarget()));
 			currentEvent.setMembers( new HashSet<Member>(listeMembers.getTarget()));

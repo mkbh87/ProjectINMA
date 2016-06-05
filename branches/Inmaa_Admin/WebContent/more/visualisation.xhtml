@@ -135,8 +135,7 @@
 								<i class="icon-double-angle-right"></i> Tous les projets
 						</h:outputLink></li>
 
-						<li><h:outputLink
-								value="../projects/form-projects.xhtml">
+						<li><h:outputLink value="../projects/form-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau Projet
 						</h:outputLink></li>
 					</ul></li>
@@ -299,206 +298,288 @@
 			<h:panelGroup layout="block" styleClass="breadcrumbs"
 				id="breadcrumbs">
 				<ul class="breadcrumb">
-					<li><i class="icon-home home-icon"></i> <h:outputLink
-							value="../welcome.xhtml">Home</h:outputLink> <span
-						class="divider"> <i class="icon-angle-right arrow-icon"></i>
+					<li><i class="icon-home home-icon"></i> <a
+						href="../welcome.xhtml">Home</a> <span class="divider"> <i
+							class="icon-angle-right arrow-icon"></i>
 					</span></li>
 					<li class="active">Statistique des nombres des visites</li>
 				</ul>
 				<!--.breadcrumb-->
 
 				<h:panelGroup layout="block" styleClass="nav-search" id="nav-search">
-					<!-- 					<form class="form-search" />
-					<span class="input-icon"> <input type="text"
-						placeholder="Search ..." class="input-small nav-search-input"
-						id="nav-search-input" autocomplete="off" /> <i
-						class="icon-search nav-search-icon"></i> </span>
-					</h:form>
- -->
 				</h:panelGroup>
 				<!--#nav-search-->
 			</h:panelGroup>
 
 			<h:panelGroup layout="block" styleClass="page-content">
-
-
-
-
-				<div class="page-header position-relative">
+				<h:panelGroup layout="block" class="page-header position-relative">
 					<h1>
 						Statistique <small> <i class="icon-double-angle-right"></i>
-
 						</small>
 					</h1>
-				</div>
+				</h:panelGroup>
 				<!--/.page-header-->
-
-
-				<!--/.page-header-->
-
 
 				<div class="row-fluid">
 					<div class="span12">
 						<!--PAGE CONTENT BEGINS-->
-						<h:panelGroup layout="block" class="widget-box">
-							<h:panelGroup layout="block"
-								class="widget-header widget-header-blue widget-header-flat">
-								<h4 class="lighter">Nombre des visites </h4>
+						#{projectBean.actualize()} #{eventBean.actualize()}
+						#{articleBean.actualize()} #{configBean.actualize()}
+						<h4 class="lighter">
+							<i class="icon-hand-right icon-animated-hand-pointer blue"></i> <a
+								href="#modal-wizard" data-toggle="modal" class="pink">
+								Nombres de visite sur le site est <big>#{configBean.currentConfig.configNbrVisite}</big>
+							</a>
+						</h4>
 
-							</h:panelGroup>
+						<div class="hr hr-18 hr-double dotted"></div>
 
-							<h:panelGroup layout="block" class="widget-body widget-main">
-								<h:panelGroup layout="block" class="row-fluid">
+						<div class="row-fluid">
+							<div class="span12">
+								<div class="widget-box">
+									<div
+										class="widget-header widget-header-blue widget-header-flat">
+										<h4 class="lighter">Nombre des visites</h4>
 
-									#{projectBean.actualize()}
-									#{eventBean.actualize()}
-									#{articleBean.actualize()}
-									#{configBean.actualize()}
-									<h:form class="form-horizontal" id="form" prependId="false"
-										enctype="multipart/form-data" acceptcharset="UTF-8">
+									</div>
 
-										<div class="page-header position-relative">
-											<h2>
-												   Nombres de visite sur le site  est
-													<big>#{configBean.currentConfig.configNbrVisite}</big>
-												 
-											</h2>
+									<div class="widget-body">
+										<div class="widget-main">
+											<div class="row-fluid">
+												<div id="fuelux-wizard" class="row-fluid hide"
+													data-target="#step-container">
+													<ul class="wizard-steps">
+														<li data-target="#step1" class="active"><span
+															class="step">1</span> <span class="title">Projets
+																</span></li>
+
+														<li data-target="#step2"><span class="step">2</span>
+															<span class="title">Événements</span></li>
+
+														<li data-target="#step3"><span class="step">3</span>
+															<span class="title">Article</span></li>
+
+														<li data-target="#step4"><span class="step">4</span>
+															<span class="title">Autres</span></li>
+													</ul>
+												</div>
+
+												<hr />
+												<div class="step-content row-fluid position-relative"
+													id="step-container">
+													<div class="step-pane active" id="step1">
+ 
+														<p:dataTable var="pro" value="#{projectBean.projectList}"
+															style="margin-bottom:20px" paginator="true" rows="25"
+															paginatorPosition="bottom" sortOrder="descending"
+															sortBy="#{pro.projectNbrVisite}">
+															<f:facet name="header"> Nombre de visite sur les projects </f:facet>
+
+															<p:column headerText="N°" style="width:15px">
+																<h:outputText value="#{pro.seqNo}" />
+															</p:column>
+															<p:column headerText="Projet">
+																<p:cellEditor>
+																	<f:facet name="output">
+																		<h:outputText value="#{pro.projectName}" />
+																	</f:facet>
+																	<f:facet name="input">
+																		<p:inputText id="modelInput"
+																			value="#{pro.projectName}" style="width:100%" />
+																	</f:facet>
+																</p:cellEditor>
+															</p:column>
+
+															<p:column headerText="Nbr visite" style="width:100px"
+																sortBy="#{pro.projectNbrVisite}">
+																<p:cellEditor>
+																	<f:facet name="output">
+																		<h:outputText value="#{pro.projectNbrVisite}" />
+																	</f:facet>
+																	<f:facet name="input">
+																		<p:inputText id="modelLocation"
+																			value="#{pro.projectNbrVisite}" style="width:100%" />
+																	</f:facet>
+																</p:cellEditor>
+															</p:column>
+
+														</p:dataTable>
+													</div>
+
+													<div class="step-pane" id="step2">
+														<p:dataTable var="ev" resizableColumns="true"
+															value="#{eventBean.events}" style="margin-bottom:20px"
+															paginator="true" rows="25" paginatorPosition="bottom"
+															sortOrder="descending" sortBy="#{ev.eventNbrVisite}">
+															<f:facet name="header"> Nombre de visite sur les événement </f:facet>
+
+															<p:column headerText="N°" style="width:15px">
+																<h:outputText value="#{ev.seqNo}" />
+															</p:column>
+															<p:column headerText="Événement">
+																<p:cellEditor>
+																	<f:facet name="output">
+																		<h:outputText value="#{ev.eventName}" />
+																	</f:facet>
+																	<f:facet name="input">
+																		<p:inputText id="modelInput" value="#{ev.eventName}"
+																			style="width:100%" />
+																	</f:facet>
+																</p:cellEditor>
+															</p:column>
+
+															<p:column headerText="Nbr visite" style="width:100px"
+																sortBy="#{ev.eventNbrVisite}">
+																<p:cellEditor>
+																	<f:facet name="output">
+																		<h:outputText value="#{ev.eventNbrVisite}" />
+																	</f:facet>
+																	<f:facet name="input">
+																		<p:inputText id="modelLocation"
+																			value="#{ev.eventNbrVisite}" style="width:100%" />
+																	</f:facet>
+																</p:cellEditor>
+															</p:column>
+
+														</p:dataTable>
+
+
+
+													</div>
+
+													<div class="step-pane" id="step3">
+														<p:dataTable var="art" value="#{articleBean.articleList}"
+															style="margin-bottom:20px" paginator="true" rows="25"
+															paginatorPosition="bottom" sortOrder="descending"
+															sortBy="#{art.articleNbrVisite}">
+															<f:facet name="header"> Nombre de visite sur les articles </f:facet>
+
+															<p:column headerText="N°" style="width:15px">
+																<h:outputText value="#{art.seqNo}" />
+															</p:column>
+															<p:column headerText="Article">
+																<p:cellEditor>
+																	<f:facet name="output">
+																		<h:outputText value="#{art.articleTitle}" />
+																	</f:facet>
+																	<f:facet name="input">
+																		<p:inputText id="modelInput"
+																			value="#{art.articleTitle}" style="width:100%" />
+																	</f:facet>
+																</p:cellEditor>
+															</p:column>
+
+															<p:column headerText="Nbr visite" style="width:100px"
+																sortBy="#{art.articleNbrVisite}">
+																<p:cellEditor>
+																	<f:facet name="output">
+																		<h:outputText value="#{art.articleNbrVisite}" />
+																	</f:facet>
+																	<f:facet name="input">
+																		<p:inputText id="modelLocation"
+																			value="#{art.articleNbrVisite}" style="width:100%" />
+																	</f:facet>
+																</p:cellEditor>
+															</p:column>
+
+														</p:dataTable>
+
+													</div>
+
+													<div class="step-pane" id="step4">
+														<div class="center">
+															<h3 class="green">Congrats!</h3>
+															Your product is ready to ship! Click finish to continue!
+														</div>
+													</div>
+												</div>
+
+ 												<div class="row-fluid wizard-actions">
+													<button class="btn btn-prev">
+														<i class="icon-arrow-left"></i> Prev
+													</button>
+
+													<button class="btn btn-success btn-next"
+														data-last="Finish ">
+														Next <i class="icon-arrow-right icon-on-right"></i>
+													</button>
+												</div>
+											</div>
 										</div>
+										<!--/widget-main-->
+									</div>
+									<!--/widget-body-->
+								</div>
+							</div>
+						</div>
 
-										<p:separator />
-										
-										<p:dataTable var="pro" value="#{projectBean.projectList}"
-											style="margin-bottom:20px" paginator="true" rows="10"
-											paginatorPosition="bottom" sortOrder="descending" sortBy="#{pro.projectNbrVisite}">
-											<f:facet name="header"> Nombre de visite sur les projects </f:facet>
+						<div id="modal-wizard" class="modal hide">
+							<div class="modal-header" data-target="#modal-step-contents">
+								<ul class="wizard-steps clearfix">
+									<li data-target="#modal-step1" class="active"><span
+										class="step">1</span> <span class="title">Validation
+											states</span></li>
 
-											<p:column headerText="N°" style="width:15px">
-												<h:outputText value="#{pro.seqNo}" />
-											</p:column>
-											<p:column headerText="Article">
-												<p:cellEditor>
-													<f:facet name="output">
-														<h:outputText value="#{pro.projectName}" />
-													</f:facet>
-													<f:facet name="input">
-														<p:inputText id="modelInput" value="#{pro.projectName}"
-															style="width:100%" />
-													</f:facet>
-												</p:cellEditor>
-											</p:column>
+									<li data-target="#modal-step2"><span class="step">2</span>
+										<span class="title">Alerts</span></li>
 
-											<p:column headerText="Nbr visite" style="width:100px"
-												sortBy="#{pro.projectNbrVisite}">
-												<p:cellEditor>
-													<f:facet name="output">
-														<h:outputText value="#{pro.projectNbrVisite}" />
-													</f:facet>
-													<f:facet name="input">
-														<p:inputText id="modelLocation"
-															value="#{pro.projectNbrVisite}" style="width:100%" />
-													</f:facet>
-												</p:cellEditor>
-											</p:column>
+									<li data-target="#modal-step3"><span class="step">3</span>
+										<span class="title">Payment Info</span></li>
 
-										</p:dataTable>
+									<li data-target="#modal-step4"><span class="step">4</span>
+										<span class="title">Other Info</span></li>
+								</ul>
+							</div>
 
-										
-										
-										<p:separator />
-										<p:growl id="msgs" showDetail="true" />
+							<div class="modal-body step-content" id="modal-step-contents">
+								<div class="step-pane active" id="modal-step1">
+									<div class="center">
+										<h4 class="blue">Step 1</h4>
+									</div>
+								</div>
 
-										<p:dataTable var="art" value="#{articleBean.articleList}"
-											style="margin-bottom:20px" paginator="true" rows="10"
-											paginatorPosition="bottom" sortOrder="descending" sortBy="#{art.articleNbrVisite}">
-											<f:facet name="header"> Nombre de visite sur les articles </f:facet>
+								<div class="step-pane" id="modal-step2">
+									<div class="center">
+										<h4 class="blue">Step 2</h4>
+									</div>
+								</div>
 
-											<p:column headerText="N°" style="width:15px">
-												<h:outputText value="#{art.seqNo}" />
-											</p:column>
-											<p:column headerText="article">
-												<p:cellEditor>
-													<f:facet name="output">
-														<h:outputText value="#{art.articleTitle}" />
-													</f:facet>
-													<f:facet name="input">
-														<p:inputText id="modelInput" value="#{art.articleTitle}"
-															style="width:100%" />
-													</f:facet>
-												</p:cellEditor>
-											</p:column>
+								<div class="step-pane" id="modal-step3">
+									<div class="center">
+										<h4 class="blue">Step 3</h4>
+									</div>
+								</div>
 
-											<p:column headerText="Nbr visite" style="width:100px"
-												sortBy="#{art.articleNbrVisite}">
-												<p:cellEditor>
-													<f:facet name="output">
-														<h:outputText value="#{art.articleNbrVisite}" />
-													</f:facet>
-													<f:facet name="input">
-														<p:inputText id="modelLocation"
-															value="#{art.articleNbrVisite}" style="width:100%" />
-													</f:facet>
-												</p:cellEditor>
-											</p:column>
+								<div class="step-pane" id="modal-step4">
+									<div class="center">
+										<h4 class="blue">Step 4</h4>
+									</div>
+								</div>
+							</div>
 
-										</p:dataTable>
+							<div class="modal-footer wizard-actions">
+								<button class="btn btn-small btn-prev">
+									<i class="icon-arrow-left"></i> Prev
+								</button>
 
+								<button class="btn btn-success btn-small btn-next"
+									data-last="Finish ">
+									Next <i class="icon-arrow-right icon-on-right"></i>
+								</button>
 
-										<p:separator />
-
-										<p:dataTable var="ev" resizableColumns="true"
-											value="#{eventBean.events}" style="margin-bottom:20px"
-											paginator="true" rows="10" paginatorPosition="bottom" sortOrder="descending"
-											sortBy="#{ev.eventNbrVisite}">
-											<f:facet name="header"> Nombre de visite sur les événement </f:facet>
-
-											<p:column headerText="N°" style="width:15px">
-												<h:outputText value="#{ev.seqNo}" />
-											</p:column>
-											<p:column headerText="Événement">
-												<p:cellEditor>
-													<f:facet name="output">
-														<h:outputText value="#{ev.eventName}" />
-													</f:facet>
-													<f:facet name="input">
-														<p:inputText id="modelInput" value="#{ev.eventName}"
-															style="width:100%" />
-													</f:facet>
-												</p:cellEditor>
-											</p:column>
-
-											<p:column headerText="Nbr visite" style="width:100px"
-												sortBy="#{ev.eventNbrVisite}">
-												<p:cellEditor>
-													<f:facet name="output">
-														<h:outputText value="#{ev.eventNbrVisite}" />
-													</f:facet>
-													<f:facet name="input">
-														<p:inputText id="modelLocation"
-															value="#{ev.eventNbrVisite}" style="width:100%" />
-													</f:facet>
-												</p:cellEditor>
-											</p:column>
-
-										</p:dataTable>
-
-
-									</h:form>
-
-								</h:panelGroup>
-
-								<!--/widget-main-->
-							</h:panelGroup>
-							<!--/widget-body-->
-						</h:panelGroup>
-
+								<button class="btn btn-danger btn-small pull-left"
+									data-dismiss="modal">
+									<i class="icon-remove"></i> Cancel
+								</button>
+							</div>
+						</div>
 						<!--PAGE CONTENT ENDS-->
 					</div>
 					<!--/.span-->
 				</div>
 				<!--/.row-fluid-->
 
-
-
+				<!--/.row-fluid-->
 			</h:panelGroup>
 			<!--/.page-content-->
 		</h:panelGroup>
@@ -513,42 +594,129 @@
 
 	<!--basic scripts-->
 
-	<script
-		src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" />
-
 	<script type="text/javascript">
 		//<![CDATA[ 
 		window.jQuery
 				|| document
-						.write("<h:outputScript library='js' name='jquery-2.0.3.min.js' />");
+						.write("<h:outputScript library='js' name='jquery-2.0.3.min.js'>"
+								+ "<" + "/script>");
 		//]]>
 	</script>
+	<!--<![endif]-->
 
+	<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='js/jquery-1.10.2.min.js' />");
+</script>
+<![endif]-->
 	<script type="text/javascript">
 		//<![CDATA[ 
 		if ("ontouchend" in document)
-			document
-					.write("<h:outputScript library='js' name='jquery.mobile.custom.min.js' />");
+			document.write("<script src='js/jquery.mobile.custom.min.js'>"
+					+ "<" + "/script>");
 		//]]>
 	</script>
+
 
 	<h:outputScript library="js" name="bootstrap.min.js" />
 
 	<!--page specific plugin scripts-->
 
-	<h:outputScript library="js" name="jquery-ui-1.10.3.custom.min.js" />
-	<h:outputScript library="js" name="jquery.ui.touch-punch.min.js" />
-	<h:outputScript library="js" name="jquery.slimscroll.min.js" />
-	<h:outputScript library="js" name="jquery.easy-pie-chart.min.js" />
-	<h:outputScript library="js" name="jquery.sparkline.min.js" />
-	<h:outputScript library="js" name="flot/jquery.flot.min.js" />
-	<h:outputScript library="js" name="flot/jquery.flot.pie.min.js" />
-	<h:outputScript library="js" name="flot/jquery.flot.resize.min.js" />
+	<h:outputScript library="js" name="fuelux/fuelux.wizard.min.js" />
+	<h:outputScript library="js" name="jquery.validate.min.js" />
+	<h:outputScript library="js" name="additional-methods.min.js" />
+	<h:outputScript library="js" name="bootbox.min.js" />
+	<h:outputScript library="js" name="jquery.maskedinput.min.js" />
+	<h:outputScript library="js" name="select2.min.js" />
 
 	<!--ace scripts-->
 
 	<h:outputScript library="js" name="ace-elements.min.js" />
 	<h:outputScript library="js" name="ace.min.js" />
- </h:body>
 
+	<!--inline scripts related to this page-->
+
+	<script type="text/javascript">
+		//<![CDATA[ 
+		$(function() {
+
+			$('[data-rel=tooltip]').tooltip();
+
+			var $validation = true;
+			$('#fuelux-wizard')
+					.ace_wizard()
+					.on(
+							'finished',
+							function(e) {
+								bootbox
+										.dialog(
+												"Thank you! Your information was successfully saved!",
+												[ {
+													"label" : "OK",
+													"class" : "btn-small btn-primary",
+												} ]);
+							}).on('stepclick', function(e) {
+						//return false;//prevent clicking on steps
+					});
+
+			$('#validation-form').show();
+			$('#skip-validation').removeAttr('checked').on('click', function() {
+				$validation = this.checked;
+				if (this.checked) {
+					$('#sample-form').show();
+					$('#validation-form').hide();
+				} else {
+					$('#validation-form').show();
+					$('#sample-form').hide();
+				}
+			});
+
+			//documentation : http://docs.jquery.com/Plugins/Validation/validate
+
+			$.mask.definitions['~'] = '[+-]';
+			$('#phone').mask('(+216) 99 999 999');
+
+			jQuery.validator.addMethod("phone", function(value, element) {
+				return this.optional(element)
+						|| /^\(\d{3}\) \d{3}\-\d{4}( x\d{1,6})?$/.test(value);
+			}, "Enter a valid phone number.");
+
+			$('#modal-wizard .modal-header').ace_wizard();
+			$('#modal-wizard .wizard-actions .btn[data-dismiss=modal]')
+					.removeAttr('disabled');
+
+			$('#id-input-file-3').ace_file_input({
+				style : 'well',
+				btn_choose : 'Drop files here or click to choose',
+				btn_change : null,
+				no_icon : 'icon-cloud-upload',
+				droppable : true,
+				thumbnail : 'small'
+				//,icon_remove:null//set null, to hide remove/reset button
+				/**,before_change:function(files, dropped) {
+					//Check an example below
+					//or examples/file-upload.html
+					return true;
+				}*/
+				/**,before_remove : function() {
+					return true;
+				}*/
+				,
+				preview_error : function(filename, error_code) {
+					//name of the file that failed
+					//error_code values
+					//1 = 'FILE_LOAD_FAILED',
+					//2 = 'IMAGE_LOAD_FAILED',
+					//3 = 'THUMBNAIL_FAILED'
+					//alert(error_code);
+				}
+
+			}).on('change', function() {
+				//console.log($(this).data('ace_input_files'));
+				//console.log($(this).data('ace_input_method'));
+			});
+		})
+		//]]>
+	</script>
+</h:body>
 </html>
