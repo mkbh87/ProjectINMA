@@ -1,5 +1,5 @@
 package com.inmaa.admin.persistence;
-// Generated 29 mai 2016 20:24:44 by Hibernate Tools 4.3.1.Final
+// Generated 5 juin 2016 20:48:33 by Hibernate Tools 4.3.1.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,14 +24,14 @@ public class Config implements java.io.Serializable {
 	private Integer configNbrVisite;
 	private String configPrincipalEmail;
 	private String configSmtpHost;
-	private String configSmtpPort;
+	private int configSmtpPort;
 	private String configSmtpUser;
 	private String configSmtpPwd;
 
 	public Config() {
 	}
 
-	public Config(String configImgpath, String configPrincipalEmail, String configSmtpHost, String configSmtpPort,
+	public Config(String configImgpath, String configPrincipalEmail, String configSmtpHost, int configSmtpPort,
 			String configSmtpUser, String configSmtpPwd) {
 		this.configImgpath = configImgpath;
 		this.configPrincipalEmail = configPrincipalEmail;
@@ -43,7 +43,7 @@ public class Config implements java.io.Serializable {
 
 	public Config(String configImgpath, String configEmailList, String configIntroInma, String configIntroMaamoura,
 			String configInmaGoal, Integer configNbrVisite, String configPrincipalEmail, String configSmtpHost,
-			String configSmtpPort, String configSmtpUser, String configSmtpPwd) {
+			int configSmtpPort, String configSmtpUser, String configSmtpPwd) {
 		this.configImgpath = configImgpath;
 		this.configEmailList = configEmailList;
 		this.configIntroInma = configIntroInma;
@@ -141,12 +141,12 @@ public class Config implements java.io.Serializable {
 		this.configSmtpHost = configSmtpHost;
 	}
 
-	@Column(name = "config_smtpPort", nullable = false, length = 45)
-	public String getConfigSmtpPort() {
+	@Column(name = "config_smtpPort", nullable = false)
+	public int getConfigSmtpPort() {
 		return this.configSmtpPort;
 	}
 
-	public void setConfigSmtpPort(String configSmtpPort) {
+	public void setConfigSmtpPort(int configSmtpPort) {
 		this.configSmtpPort = configSmtpPort;
 	}
 
