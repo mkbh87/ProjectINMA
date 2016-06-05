@@ -107,6 +107,7 @@ public class ProjectBean implements Serializable{
 			bodymsg = submitLogoFile();
 			int seqno = projectService.maxSeqno();
 			currentProject.setSeqNo(seqno + 10);
+			currentProject.setProjectNbrVisite(0);
 			
 			currentProject.setPartners(new HashSet<Partner>(listePartners.getTarget()));
 			currentProject.setMembers( new HashSet<Member>(listeMembers.getTarget()));

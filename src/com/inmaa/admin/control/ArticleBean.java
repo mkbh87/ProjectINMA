@@ -111,6 +111,7 @@ public class ArticleBean implements Serializable{
 			bodymsg = submitLogoFile();
 			int seqno = articleService.maxSeqno();
 			currentArticle.setSeqNo(seqno + 10);
+			currentArticle.setArticleNbrVisite(0);
 
 			Set<Project> tempP = new HashSet<Project>(listePro.getTarget());
 			currentArticle.setProjects(tempP);
