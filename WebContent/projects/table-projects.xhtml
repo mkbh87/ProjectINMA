@@ -363,7 +363,7 @@
 
 									
 
-									<p:column styleClass="center" sortBy="#{pro.projectStartDate}">
+									<p:column styleClass="center" style="width:90px" sortBy="#{pro.projectStartDate}">
 										<f:facet name="header" styleClass="hidden-phone">
 											
 											<h:outputText value="Date de Debut" />
@@ -372,16 +372,8 @@
 										<span class="lbl"></span>
 										<h:outputText value="#{pro.projectStartDate}" />
 									</p:column>
-
-									<p:column styleClass="center" >
-										<f:facet name="header" styleClass="hidden-phone">
-											
-											<h:outputText value="Courte description" />
-										</f:facet>
-										<h:outputText styleClass="hidden-phone" value="#{pro.projectDef}" />
-									</p:column>
-									
-									<p:column styleClass="center">
+	
+									<p:column styleClass="center" style="width:100px" >
 										<f:facet name="header" styleClass="hidden-phone">
 											
 											<h:outputText value="l'emplacement" />
@@ -390,6 +382,16 @@
 										<span class="lbl"></span>
 										<h:outputText value="#{pro.projectLocation}" />
 									</p:column>
+									
+									<p:column styleClass="center" >
+										<f:facet name="header" styleClass="hidden-phone">
+											
+											<h:outputText value="Courte description" />
+										</f:facet>
+										<h:outputText styleClass="hidden-phone" value="#{pro.projectDef}" />
+									</p:column>
+									
+									
 									
 									<p:column styleClass="center" style="width:150px" >
 										<f:facet name="header">

@@ -376,7 +376,7 @@
 										<h:outputText value="#{part.partnerName}" />
 									</p:column>
 
-									<p:column styleClass="center" sortBy="#{part.partnerStartDate}">
+									<p:column styleClass="center" style="width:110px"  sortBy="#{part.partnerStartDate}">
 										<f:facet name="header" styleClass="hidden-phone">
 											<i class="icon-time bigger-110 hidden-phone"></i>
 											<h:outputText value="Date de Debut" />
@@ -386,17 +386,15 @@
 										<h:outputText value="#{part.partnerStartDate}" />
 									</p:column>
 
-									<p:column styleClass="center" >
+									<p:column styleClass="center"  style="width:130px" >
 										<f:facet name="header" styleClass="hidden-phone">
-											<i class="icon-time bigger-110 hidden-phone"></i>
-											<h:outputText value="Localisé à" />
+ 											<h:outputText value="Localisé à" />
 										</f:facet>
 										<h:outputText styleClass="hidden-phone" value="#{part.partnerPlace}" />
 									</p:column>
 									
-									<p:column styleClass="center" >
+									<p:column styleClass="center" style="width:130px" >
 										<f:facet name="header" styleClass="hidden-phone">
-											<i class="icon-time bigger-110 hidden-phone"></i>
 											<h:outputText value="Type de partenaire" />
 										</f:facet>
 										<h:outputText styleClass="hidden-phone" value="#{part.partnerType}" />

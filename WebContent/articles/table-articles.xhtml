@@ -374,14 +374,14 @@
 										<h:outputText value="#{article.articleTitle}" />
 									</p:column>
 									
-									<p:column styleClass="center" sortBy="#{article.articleAuthor}">
+									<p:column styleClass="center" style="width:100px"  sortBy="#{article.articleAuthor}">
 										<f:facet name="header">
 											<h:outputText value="Auteur" />
 										</f:facet>
 										<h:outputText value="#{article.articleAuthor}" />
 									</p:column>
 
-									<p:column styleClass="center" sortBy="#{article.articleDate}">
+									<p:column styleClass="center" style="width:90px"   sortBy="#{article.articleDate}">
 										<f:facet name="header" styleClass="hidden-phone">
 											<i class="icon-time bigger-110 hidden-phone"></i>
 											<h:outputText value="Date de publication" />
@@ -391,7 +391,7 @@
 										<h:outputText value="#{article.articleDate}" />
 									</p:column>
 									
-									<p:column styleClass="center">
+									<p:column styleClass="center" style="width:80px" >
 										<f:facet name="header" styleClass="hidden-phone">
 											<h:outputText value="Nom de l'image" />
 											<span class="lbl"></span>
