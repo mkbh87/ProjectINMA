@@ -82,7 +82,7 @@ public class ReportConfigUtil {
         exporter.setParameter(JRHtmlExporterParameter.IS_USING_IMAGES_TO_ALIGN, Boolean.FALSE);
         exporter.setParameter(JRExporterParameter.OUTPUT_WRITER, out);
         exporter.setParameter(JRHtmlExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_ROWS, Boolean.TRUE);
-        exporter.setParameter(JRHtmlExporterParameter.CHARACTER_ENCODING, "ISO-8859-9");
+        exporter.setParameter(JRHtmlExporterParameter.CHARACTER_ENCODING, "UTF-8");
         exporter.setParameter(JRHtmlExporterParameter.IMAGES_URI, "/SampleReportJSF/servlets/image?image=");//SampleReportJSF is the name of the project
  
         exportReport(exporter, jasperPrint, out);
