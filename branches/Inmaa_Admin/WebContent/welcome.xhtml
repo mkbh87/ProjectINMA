@@ -346,6 +346,19 @@
 						</h:panelGroup>
 
 						<h:panelGroup layout="block" class="space-6"></h:panelGroup>
+						
+						 <f:view>          
+            <h:form id="form" target="_blank">
+                <h:outputLabel>Export Report</h:outputLabel>
+                <h:selectOneRadio value="#{reportsBean.exportOption}">
+                    <f:selectItem itemValue="PDF" itemLabel="PDF"/>
+                    <f:selectItem itemValue="HTML" itemLabel="HTML"/>
+                    <f:selectItem itemValue="EXCEL" itemLabel="EXCEL"/>
+                    <f:selectItem itemValue="RTF" itemLabel="RTF"/>
+                </h:selectOneRadio>
+                <h:commandButton  action="#{reportsBean.execute}" value="Get Report" />
+            </h:form>
+        </f:view>
 
 						<!--PAGE CONTENT ENDS-->
 					</h:panelGroup>
