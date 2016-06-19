@@ -1,5 +1,5 @@
 package com.inmaa.admin.persistence;
-// Generated 19 juin 2016 15:54:43 by Hibernate Tools 4.3.1.Final
+// Generated 19 juin 2016 18:10:13 by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -38,13 +38,13 @@ public class Member implements java.io.Serializable {
 	private String memberTwitter;
 	private Date memberBirthDay;
 	private Integer memberCin;
-	private String memberNationality = "Tunisien(ne)";
+	private String memberNationality;
 	private String memberPhone;
 	private String memberEmail;
 	private String memberAddress;
 	private String memberCity;
 	private Boolean isActive;
-	private Boolean memberGender = true;
+	private boolean memberGender;
 	private Set<Project> projects = new HashSet<Project>(0);
 	private Set<Event> events = new HashSet<Event>(0);
 	private Set<Abonnement> abonnements = new HashSet<Abonnement>(0);
@@ -53,7 +53,7 @@ public class Member implements java.io.Serializable {
 	}
 
 	public Member(String memberName, String memberName1, int memberAge, boolean memberIsOrg, Date memberBirthDay,
-			String memberPhone, String memberEmail, String memberCity) {
+			String memberPhone, String memberEmail, String memberCity, boolean memberGender) {
 		this.memberName = memberName;
 		this.memberName1 = memberName1;
 		this.memberAge = memberAge;
@@ -62,12 +62,13 @@ public class Member implements java.io.Serializable {
 		this.memberPhone = memberPhone;
 		this.memberEmail = memberEmail;
 		this.memberCity = memberCity;
+		this.memberGender = memberGender;
 	}
 
 	public Member(Integer seqNo, String memberName, String memberName1, String memberStatus, int memberAge,
 			boolean memberIsOrg, String memberTravail, String memberImage, String memberFacebook, String memberTwitter,
 			Date memberBirthDay, Integer memberCin, String memberNationality, String memberPhone, String memberEmail,
-			String memberAddress, String memberCity, Boolean isActive, Boolean memberGender, Set<Project> projects,
+			String memberAddress, String memberCity, Boolean isActive, boolean memberGender, Set<Project> projects,
 			Set<Event> events, Set<Abonnement> abonnements) {
 		this.seqNo = seqNo;
 		this.memberName = memberName;
@@ -268,12 +269,12 @@ public class Member implements java.io.Serializable {
 		this.isActive = isActive;
 	}
 
-	@Column(name = "Member_Gender")
-	public Boolean getMemberGender() {
+	@Column(name = "Member_Gender", nullable = false)
+	public boolean isMemberGender() {
 		return this.memberGender;
 	}
 
-	public void setMemberGender(Boolean memberGender) {
+	public void setMemberGender(boolean memberGender) {
 		this.memberGender = memberGender;
 	}
 
