@@ -384,4 +384,10 @@ public class SubEventBean  implements Serializable {
     public void newLine(ActionEvent actionEvent) {
     	subEventList.add(new SubEvent());
     }
+    
+    
+    public String getFirstEventUrl() {
+    	Event e = currentSubEvent.getEvents().iterator().next();
+    	return e.getEventUrl();
+    }
 }

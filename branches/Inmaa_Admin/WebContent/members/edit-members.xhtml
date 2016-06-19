@@ -340,7 +340,7 @@
 					<li><a href="#">Membres</a> <span class="divider"> <i
 							class="icon-angle-right arrow-icon"></i> </span>
 					</li>
-					<li class="active">Ajouter un membre</li>
+					<li class="active">Modifier membre</li>
 				</ul>
 				<!--.breadcrumb-->
 
@@ -352,7 +352,7 @@
 			<h:panelGroup layout="block" styleClass="page-content">
 				<h:panelGroup layout="block" class="page-header position-relative">
 					<h1>
-						Nouveau membre <small> <i class="icon-double-angle-right"></i>
+						Modification du membre <small> <i class="icon-double-angle-right"></i>
 						</small>
 					</h1>
 				</h:panelGroup>
@@ -367,7 +367,8 @@
 								<h:panelGroup layout="block" class="widget-box">
 									<h:panelGroup layout="block"
 										class="widget-header widget-header-blue widget-header-flat">
-										<h4 class="lighter">Ajouter un nouveau membre</h4>
+										<h4 class="lighter"><a target="_blank" href="http://inma-maamoura.org/members/">
+										Clic ICI pour voir la page sur Inma-maamoura.org</a></h4>
 
 									</h:panelGroup>
 
@@ -393,39 +394,39 @@
 												class="step-content row-fluid position-relative"
 												id="step-container">
 													<h:panelGroup layout="block" class="step-pane active"
-													id="step1">
-													<h3 class="lighter block green">Nouveau Membre</h3>
+														id="step1">
+														<h3 class="lighter block green">Modification du membre</h3>
 
 
- 
-														<h:panelGroup layout="block"
-															styleClass="control-group">
+														<h:panelGroup layout="block" styleClass="control-group">
 															<p:outputLabel styleClass="control-label" for="intitule"
 																value="Prénom " />
 
 															<h:panelGroup layout="block" styleClass="controls">
-																<span class="span8 input-icon input-icon-right">
-																	<h:inputText styleClass="span6" id="intitule"
-																		value="#{memberBean.currentMember.memberName}" />
-																	<i class="icon-warning-sign"></i> </span>
+																<span class="span4 input-icon input-icon-right">
+																	<h:inputText styleClass="span12" id="intitule"
+																		value="#{memberBean.currentMember.memberName}" /> 
+																		<i class="icon-warning-sign"></i>
+																</span>
 																<span class="help-inline"> Champs obligatoire </span>
 															</h:panelGroup>
 														</h:panelGroup>
 
 														<h:panelGroup layout="block" class="control-group">
-															<p:outputLabel styleClass="control-label"
-																for="def" value="Nom " />
+															<p:outputLabel styleClass="control-label" for="def"
+																value="Nom " />
 
 															<h:panelGroup layout="block" class="controls">
-																<span class="span8 input-icon input-icon-right">
-																	<h:inputText styleClass="span6" 
-																		 id="def"
+																<span class="span4 input-icon input-icon-right">
+																	<h:inputText styleClass="span12" id="def"
 																		value="#{memberBean.currentMember.memberName1}" />
+																		<i class="icon-warning-sign"></i>
 																</span>
+																<span class="help-inline"> Champs obligatoire </span>
 															</h:panelGroup>
 														</h:panelGroup>
-														
-														<h:panelGroup layout="block" class="control-group">
+
+														<!--<h:panelGroup layout="block" class="control-group">
 															<p:outputLabel styleClass="control-label"
 																 value="Age " />
 
@@ -436,65 +437,224 @@
 																</span>
 															</h:panelGroup>
 														</h:panelGroup>
-														
+ -->
+
 														<h:panelGroup layout="block" class="control-group">
-															<p:outputLabel styleClass="control-label"
-																 value="Travail " />
+															<p:outputLabel styleClass="control-label" value="" />
 
 															<h:panelGroup layout="block" class="controls">
-																<span class="span6 input-icon input-icon-right">
-																	<h:inputText styleClass="span6" value="#{memberBean.currentMember.memberTravail}"  />   
+																<span class="span3 input-icon input-icon-right">
+
+																	<h:panelGrid columns="2" cellpadding="5">
+																		<p:selectOneRadio id="console"
+																			value="#{memberBean.currentMember.memberGender}">
+																			<f:selectItem itemLabel="Homme" itemValue="true" />
+																			<dr />
+																			<f:selectItem itemLabel="Femme" itemValue="false" />
+																		</p:selectOneRadio>
+																	</h:panelGrid>
 																</span>
 															</h:panelGroup>
 														</h:panelGroup>
-														
+
 														<h:panelGroup layout="block" class="control-group">
-															<p:outputLabel styleClass="control-label" 
-																value="Fonction a inma " />
+															<p:outputLabel styleClass="control-label"
+																value="Date de naissance " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span4 input-icon input-icon-right">
+																	<h:panelGroup layout="block" class="control-group">
+																		<h:panelGroup layout="block" styleClass="span12"
+																			class="row-fluid input-append">
+																			<p:calendar pattern="dd/MM/yyyy" styleClass="span12"
+																				value="#{memberBean.currentMember.memberBirthDay}"
+																				mode="popup" />
+																		</h:panelGroup>
+																	</h:panelGroup>
+																	<i class="icon-warning-sign"></i>
+																</span>
+																<span class="help-inline"> Champs obligatoire </span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label"
+																value="N° carte d'identité (CIN): " />
 
 															<h:panelGroup layout="block" class="controls">
 																<span class="span6 input-icon input-icon-right">
 																	<h:panelGroup layout="block" class="control-group">
 																		<h:panelGroup layout="block"
 																			class="row-fluid input-append">
- 																				<h:inputText styleClass="span6"  
- 																				value="#{memberBean.currentMember.memberStatus}" />
- 
+																			<h:inputText styleClass="span6"
+																				value="#{memberBean.currentMember.memberCin}" />
+
 																		</h:panelGroup>
-																	</h:panelGroup> </span>
-															</h:panelGroup>
-														</h:panelGroup>
-
-														<h:panelGroup layout="block" class="control-group">
-															<p:outputLabel styleClass="control-label"
-																 value="Comité de direction " />
-
-															<h:panelGroup layout="block" class="controls">
-																<span class="span12 input-icon input-icon-right">
-																   <p:selectBooleanCheckbox value="#{memberBean.currentMember.memberIsOrg}" />  
- 																</span>
-															</h:panelGroup>
-														</h:panelGroup>
-
-														<h:panelGroup layout="block" class="control-group">
-															<p:outputLabel styleClass="control-label"
-																 value="Lien facebook " />
-
-															<h:panelGroup layout="block" class="controls">
-																<span class="span12 input-icon input-icon-right">
-																	<h:inputText styleClass="span8" value="#{memberBean.currentMember.memberFacebook}"/>   
+																	</h:panelGroup>
 																</span>
 															</h:panelGroup>
 														</h:panelGroup>
 
 														<h:panelGroup layout="block" class="control-group">
 															<p:outputLabel styleClass="control-label"
-																 value="lien twitter " />
+																value="Travail " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span6 input-icon input-icon-right">
+																	<h:inputText styleClass="span6"
+																		value="#{memberBean.currentMember.memberTravail}" />
+																</span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label" for="phone"
+																value="N° Tel" />
+															<h:panelGroup layout="block" class="controls">
+																<h:panelGroup layout="block" class="span4 input-prepend">
+																	<span class="add-on"> <i class="icon-phone"></i>
+																	</span>
+
+
+																	<h:inputText styleClass="span6" type="tel" id="phone"
+																		name="phone"
+																		value="#{memberBean.currentMember.memberPhone}" />
+																</h:panelGroup>
+															</h:panelGroup>
+														</h:panelGroup>
+
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label" value="Email " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span6 input-icon input-icon-right">
+																	<h:panelGroup layout="block" class="control-group">
+																		<h:panelGroup layout="block"
+																			class="row-fluid input-append">
+																			<span class="add-on"> <i class="icon-envelope"></i>
+																			</span>
+																			<h:inputText styleClass="span6"
+																				value="#{memberBean.currentMember.memberEmail}" />
+
+																		</h:panelGroup>
+																	</h:panelGroup>
+																</span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label"
+																value="Adresse " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span6 input-icon input-icon-right">
+																	<h:panelGroup layout="block" class="control-group">
+																		<h:panelGroup layout="block"
+																			class="row-fluid input-append">
+																			<span class="add-on"> <i class="icon-home"></i>
+																			</span>
+																			<h:inputText styleClass="span6"
+																				value="#{memberBean.currentMember.memberAddress}" />
+
+																		</h:panelGroup>
+																	</h:panelGroup>
+																</span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label" value="Ville " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span6 input-icon input-icon-right">
+																	<h:panelGroup layout="block" class="control-group">
+																		<h:panelGroup layout="block"
+																			class="row-fluid input-append">
+																			<span class="add-on"> <i
+																				class="icon-map-marker"></i>
+																			</span>
+																			<h:inputText styleClass="span6" id="ville"
+																				value="#{memberBean.currentMember.memberCity}" />
+																			<p:watermark for="ville" value="Ville - Code Postal" />
+
+																		</h:panelGroup>
+																	</h:panelGroup>
+																</span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label"
+																value="Comité de direction " />
 
 															<h:panelGroup layout="block" class="controls">
 																<span class="span12 input-icon input-icon-right">
-																	<h:inputText styleClass="span8" 
-																	value="#{memberBean.currentMember.memberTwitter}" />   
+																	<p:selectBooleanCheckbox
+																		value="#{memberBean.currentMember.memberIsOrg}" />
+																</span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label"
+																value="Fonction a inma " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span8 input-icon input-icon-right">
+																	<h:panelGroup layout="block" class="control-group">
+																		<h:panelGroup layout="block"
+																			class="row-fluid input-append">
+																			<h:inputText styleClass="span6"
+																				value="#{memberBean.currentMember.memberStatus}" />
+
+																		</h:panelGroup>
+																	</h:panelGroup>
+																</span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label"
+																value="Nationalité " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span6 input-icon input-icon-right">
+																	<h:panelGroup layout="block" class="control-group">
+																		<h:panelGroup layout="block"
+																			class="row-fluid input-append">
+																			<h:inputText styleClass="span6"
+																				value="#{memberBean.currentMember.memberNationality}" />
+
+																		</h:panelGroup>
+																	</h:panelGroup>
+																</span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label"
+																value="Lien facebook " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span12 input-icon input-icon-right">
+																	<h:inputText styleClass="span8"
+																		value="#{memberBean.currentMember.memberFacebook}" />
+																</span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label"
+																value="lien twitter " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span12 input-icon input-icon-right">
+																	<h:inputText styleClass="span8"
+																		value="#{memberBean.currentMember.memberTwitter}" />
 																</span>
 															</h:panelGroup>
 														</h:panelGroup>
@@ -506,15 +666,121 @@
 															<h:panelGroup layout="block" class="controls">
 																<span class="span6 input-icon input-icon-right">
 
-																	<p:fileUpload label="Choisir image" 
+																	<p:fileUpload label="Choisir image"
 																		cancelLabel="Annuler" uploadLabel="Envoyer"
 																		fileUploadListener="#{memberBean.handleFileUpload}"
 																		mode="advanced" sizeLimit="1000000" fileLimit="1"
-																		allowTypes="/(\.|\/)(gif|jpe?g|png)$/" /> 
-																				<br />
-<img style="height: 150px" src="http://inma-maamoura.org/javax.faces.resource/#{memberBean.currentMember.memberImage}.xhtml?ln=images" />																																																			</span>
+																		allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+																</span>
 															</h:panelGroup>
 														</h:panelGroup>
+
+
+
+													
+														
+ 
+													<p:separator />
+
+	<h:panelGroup layout="block" class="control-group">
+			<p:outputLabel styleClass="control-label" for="intitule"
+																value="Abonnements " />
+				<h:panelGroup layout="block" class="controls">
+																<span class="span6 input-icon input-icon-right">												
+														<p:growl id="msgs" showDetail="true" />
+														#{aboBean.getAbosbyMember(memberBean.id)}
+														
+														<p:dataTable id="abosTable" var="abo"   
+															styleClass="table table-striped table-bordered table-hover"
+															value="#{aboBean.aboList}" editable="true"
+															style="margin-bottom:20px" sortBy="#{abo.abonnementYear}"
+															resizableColumns="true">
+															<f:facet name="header"> Table des Abonnements </f:facet>
+
+															<p:ajax event="rowEdit"
+																listener="#{aboBean.onRowEdit}"
+																update=":form:msgs" />
+															<p:ajax event="rowEditCancel"
+																listener="#{aboBean.onRowCancel}"
+																update=":form:msgs,abosTable" />
+
+															<p:column style="width: 20px">
+																<p:rowEditor />
+															</p:column>
+
+															<p:column headerText="Année" style="width:70px" sortBy="#{abo.abonnementYear}">
+																<p:cellEditor>
+																	<f:facet name="output">
+																		<h:outputText value="#{abo.abonnementYear}" />
+																	</f:facet>
+																	<f:facet name="input">
+																		<p:inputText id="year"
+																			value="#{abo.abonnementYear}" style="width:100%" />
+																	</f:facet>
+																</p:cellEditor>
+															</p:column>
+
+															<p:column headerText="Montant" style="width:70px" sortBy="#{abo.abonnementAmount}">
+																<p:cellEditor>
+																	<f:facet name="output">
+																		<h:outputText value="#{abo.abonnementAmount}" />
+																	</f:facet>
+																	<f:facet name="input">
+																		<p:inputText id="amount"
+																			value="#{abo.abonnementAmount}" style="width:100%" />
+																	</f:facet>
+																</p:cellEditor>
+															</p:column>
+
+															<p:column styleClass="center" style="width: 15px" >
+																<f:facet name="header">
+																	<h:outputText value="" />
+																</f:facet>
+																
+																
+																
+																
+																<p:commandLink styleClass="btn btn-minier "
+																	action="#{aboBean.readyforDelete(abo)}"
+																	ajax="true" update="abosTable:ll"
+																	oncomplete="PF('CDialogWidget').show();">
+																	<i class="icon-trash bigger-120" style="color: red;"></i>
+
+																</p:commandLink>
+
+																<p:confirmDialog 
+																	message="Êtes-vous sûr de vouloir supprimer  #{abo.abonnementYear} "
+																	header="Confirmation de suppression" severity="alert"
+																	id="ll" widgetVar="CDialogWidget">
+																	<p:commandButton value="Oui" update="abosTable" 
+																		action="#{aboBean.delete()}" ajax="true"
+																		oncomplete="PF('CDialogWidget').hide()" />
+																	<p:commandButton value="Non"
+																		onclick="PF('CDialogWidget').hide();" type="button" />
+																		
+ 																</p:confirmDialog>
+															</p:column>
+
+														</p:dataTable>
+
+
+														<p:commandButton actionListener="#{aboBean.newLine}"
+															value="New" update="abosTable"
+															oncomplete="addRowOnComplete()" ajax="true" />
+														
+														
+</span>
+															</h:panelGroup>														
+</h:panelGroup>
+														<p:separator />
+														<p:contextMenu for="abosTable" widgetVar="cMenu">
+															<p:menuitem value="Edit Cell" icon="ui-icon-search"
+																onclick="PF('cellVideos').showCellEditor();return false;" />
+															<p:menuitem value="Hide Menu" icon="ui-icon-close"
+																onclick="PF('cMenu').hide()" />
+														</p:contextMenu>
+
+
 
 
 
@@ -523,8 +789,7 @@
 												</h:panelGroup>
 											</h:panelGroup>
 
-											<p:separator />
-<!-- 											<h:panelGroup layout="block" class="row-fluid wizard-actions">
+ <!-- 											<h:panelGroup layout="block" class="row-fluid wizard-actions">
 												<p:commandLink class="btn btn-prev" >
 													<i class="icon-arrow-left"></i> Retour
 												</p:commandLink>
@@ -538,7 +803,7 @@
 											
 											
  -->										
- 	<p:commandLink styleClass="btn btn-success btn-next" action="#{memberBean.ajouter()}" >
+ 	<p:commandLink style="left : 15%;" styleClass="btn btn-success btn-next" action="#{memberBean.edit()}" >
 	Sauvegarder	<i class="icon-arrow-right icon-on-right"></i>
 	</p:commandLink>
  
@@ -694,100 +959,11 @@
 
 
             $.mask.definitions['~'] = '[+-]';
-            $('#phone').mask('(999) 999-9999');
+            $('#phone').mask('(+216) 99 999 999');
 
             jQuery.validator.addMethod("phone", function(value, element) {
                 return this.optional(element) || /^\(\d{3}\) \d{3}\-\d{4}( x\d{1,6})?$/.test(value);
             }, "Enter a valid phone number.");
-
-            $('#validation-form').validate({
-                errorElement: 'span',
-                errorClass: 'help-inline',
-                focusInvalid: false,
-                rules: {
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    password: {
-                        required: true,
-                        minlength: 5
-                    },
-                    password2: {
-                        required: true,
-                        minlength: 5,
-                        equalTo: "#password"
-                    },
-                    name: {
-                        required: true
-                    },
-                    phone: {
-                        required: true,
-                        phone: 'required'
-                    },
-                    url: {
-                        required: true,
-                        url: true
-                    },
-                    comment: {
-                        required: true
-                    },
-                    state: {
-                        required: true
-                    },
-                    platform: {
-                        required: true
-                    },
-                    subscription: {
-                        required: true
-                    },
-                    gender: 'required',
-                    agree: 'required'
-                },
-
-                messages: {
-                    email: {
-                        required: "Please provide a valid email.",
-                        email: "Please provide a valid email."
-                    },
-                    password: {
-                        required: "Please specify a password.",
-                        minlength: "Please specify a secure password."
-                    },
-                    subscription: "Please choose at least one option",
-                    gender: "Please choose gender",
-                    agree: "Please accept our policy"
-                },
-
-                invalidHandler: function(event, validator) { //display error alert on form submit   
-                    $('.alert-error', $('.login-form')).show();
-                },
-
-                highlight: function(e) {
-                    $(e).closest('.control-group').removeClass('info').addClass('error');
-                },
-
-                success: function(e) {
-                    $(e).closest('.control-group').removeClass('error').addClass('info');
-                    $(e).remove();
-                },
-
-                errorPlacement: function(error, element) {
-                    if (element.is(':checkbox') || element.is(':radio')) {
-                        var controls = element.closest('.controls');
-                        if (controls.find(':checkbox,:radio').length > 1) controls.append(error);
-                        else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
-                    } else if (element.is('.select2')) {
-                        error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
-                    } else if (element.is('.chzn-select')) {
-                        error.insertAfter(element.siblings('[class*="chzn-container"]:eq(0)'));
-                    } else error.insertAfter(element);
-                },
-
-                submitHandler: function(form) {},
-                invalidHandler: function(form) {}
-            });
-
 
             $('#modal-wizard .modal-header').ace_wizard();
             $('#modal-wizard .wizard-actions .btn[data-dismiss=modal]').removeAttr('disabled');
@@ -825,6 +1001,11 @@
         })
         //]]>
     </script>
+
+	<script type="text/javascript">
+		function addRowOnComplete() {	}
+	</script>
+
 </h:body>
 
 </html>

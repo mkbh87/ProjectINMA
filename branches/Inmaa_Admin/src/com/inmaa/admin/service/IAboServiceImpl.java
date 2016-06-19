@@ -1,21 +1,22 @@
 package com.inmaa.admin.service;
 
-import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.List;
 
-import org.hibernate.HibernateException;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.inmaa.admin.persistence.Member;
+import com.inmaa.admin.persistence.Abonnement;
+import com.inmaa.admin.persistence.SubEvent;
 
-@Service("MemberService")
+@Service("AboService")
 @Transactional
-public class IMemberServiceImpl implements IMemberService{
+public class IAboServiceImpl implements IAboService{
 
 	@Autowired
 	SessionFactory sessionFactory;
@@ -30,42 +31,36 @@ public class IMemberServiceImpl implements IMemberService{
 		this.sessionFactory = sessionFactory;
 	}
 	@Override
-	public void supprimer(Member entity) {
+	public void supprimer(Abonnement entity) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().delete(entity);	
 	}
 
 	@Override
-	public void enregistrer(Member entity) {
+	public void enregistrer(Abonnement entity) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().saveOrUpdate(entity);
 
 	}
 
 	@Override
-	public void mettre_a_jour(Member entity) {
+	public void mettre_a_jour(Abonnement entity) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().update(entity);
 	}
 
 	@Override
-	public List<Member> lister() {
+	public List<Abonnement> lister() {
 		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createQuery("from Member where IsActive = '1'").list();
+		return sessionFactory.getCurrentSession().createQuery("from Abonnement").list();
 	}
 
+
+
 	@Override
-	public int maxSeqno() {
-		try {
+	public List<Abonnement> listerbyMember(int id) {
+		List<Integer> ids =  Arrays.asList(id);
 
-			Session session=sessionFactory.getCurrentSession();
-			SQLQuery sqlQuery=session.createSQLQuery("SELECT COALESCE(max(seqno),0) FROM Member");
-			int seqno=  ((BigInteger) sqlQuery.uniqueResult()).intValue();
-			return seqno;
-
-		} catch (HibernateException e) {
-			e.printStackTrace();
-		}
-		return 0;
+		return sessionFactory.getCurrentSession().createQuery("from Abonnement where Abonnement_MemberID = "+id).list();
 	}
 }
