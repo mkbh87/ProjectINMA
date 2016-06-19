@@ -4,7 +4,7 @@
 }
 
 .ui-widget {
-    font-family: 'Open Sans' !importnant;
+	font-family: 'Open Sans' ! importnant;
 }
 
 .ui-confirm-dialog {
@@ -32,7 +32,7 @@
 }
 
 .form-h .control-group {
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	*zoom: 1
 }
 
@@ -82,29 +82,31 @@
 	font-size: 12px;
 	padding: 4px 10px;
 }
-.ui-picklist{
+
+.ui-picklist {
 	font-size: 12px;
 	padding: 4px 10px;
 }
+
 .input-icon {
 	padding-top: 5px;
 }
 
-
 .v-center {
-    display: block;
-    text-align: center;
-    vertical-align: middle;
-    width: 100%;
+	display: block;
+	text-align: center;
+	vertical-align: middle;
+	width: 100%;
 }
 
 .v-center-btn {
-    height: 30px;
-    text-align: center;
-    font-size: 23px;
-    vertical-align: middle;
-    width: 15%
+	height: 30px;
+	text-align: center;
+	font-size: 23px;
+	vertical-align: middle;
+	width: 15%
 }
+
 .spacer-20 {
 	height: 20px;
 	clear: both;
@@ -124,5 +126,30 @@
 }
 
 .big-icon {
-    font-size: 26px;
+	font-size: 26px;
+}
+
+.custom-wizard {
+	width: 80% !important;
+	text-align: center !important;
+ 	margin-right: 50px;
+	margin-left: 80px;
+}
+
+.navigator-Admin {
+	text-align: center;
+	padding: 5px;
+	width: 150px;
+	position: absolute;
+	margin-top: 0;
+    padding-top: 0;
+    height: 80px;
+    overflow: hidden;
+}
+
+.nav-left {
+ }
+
+.nav-right {
+	right: 30px;
 }

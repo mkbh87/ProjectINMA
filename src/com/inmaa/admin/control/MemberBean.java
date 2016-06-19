@@ -188,8 +188,19 @@ public class MemberBean implements Serializable{
 		String bodymsg = "";
 		try {
 			bodymsg = submitLogoFile();
+			
+			if(currentMember.getMemberImage() == null)
+			{
+				if(currentMember.getMemberGender())
+					currentMember.setMemberImage("homme.jpg");
+				else
+					currentMember.setMemberImage("femme.jpg");
+				bodymsg = "";
+			}
+			 
 			int seqno = memberService.maxSeqno();
 			currentMember.setSeqNo(seqno + 10);
+			currentMember.setIsActive(true);
 			memberService.enregistrer(currentMember);
 			members.setWrappedData( memberService.lister());
 		} catch(Exception e) {
@@ -206,14 +217,14 @@ public class MemberBean implements Serializable{
 			RequestContext.getCurrentInstance().showMessageInDialog(message);
 			return "";
 		}
-		vider();
 		return "table-members.xhtml?faces-redirect=true";
 	}
 
 	public void delete(){
 		try {
 
-			memberService.supprimer(currentMember);
+			currentMember.setIsActive(false);
+			memberService.enregistrer(currentMember);
 
 		} catch(Exception e) {
 			//Error during hibernate query
@@ -231,7 +242,14 @@ public class MemberBean implements Serializable{
 		return "edit-members.xhtml?faces-redirect=true&amp;includeViewParams=true";
 	}
 	
-	public String edit(){
+	public String saveAndshowEdit(){
+		ajouter();
+		setId(currentMember.getMemberId());
+		return "edit-members.xhtml?faces-redirect=true&amp;includeViewParams=true";
+	}
+	
+	
+	public void edit(){
 		setId(currentMember.getMemberId());
 		String bodymsg="Evenement modifié avec succès";
 		try {
@@ -242,6 +260,13 @@ public class MemberBean implements Serializable{
 					Utils.deletePicture(currentMember.getMemberImage());
 				submitLogoFile();
 			}
+			
+			if(currentMember.getMemberImage().equals("femme.jpg") && currentMember.getMemberGender())
+				currentMember.setMemberImage("homme.jpg");
+			else if (currentMember.getMemberImage().equals("homme.jpg") && !currentMember.getMemberGender())
+				currentMember.setMemberImage("femme.jpg");
+				
+			
 
 			memberService.mettre_a_jour(currentMember);
 
@@ -251,14 +276,10 @@ public class MemberBean implements Serializable{
  			if(e.getCause() != null)
  				bodymsg  += e.getCause().getMessage().replace("'", "");
 		}
-
-
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification de membre",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
-		vider();
 
-		return "";
-	}
+ 	}
 	
 	
 	public void readyforDelete(Member p){

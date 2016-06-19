@@ -1275,8 +1275,8 @@ li [class*=" icon-"],
 }
 .nav-list>li>a {
     display: block;
-    height: 38px;
-    line-height: 36px;
+    height: 30px;
+    line-height: 28px;
     padding: 0 16px 0 7px;
     background-color: #f9f9f9;
     color: #585858;
@@ -1321,7 +1321,7 @@ li [class*=" icon-"],
     font-size: 16px;
     position: absolute;
     right: 9px;
-    top: 11px;
+    top: 7px;
     padding: 0;
     color: #666
 }
@@ -1464,7 +1464,7 @@ li [class*=" icon-"],
     content: "";
     position: absolute!important;
     right: 0;
-    top: 4px;
+    top: 1px;
     border: 8px solid transparent;
     border-width: 14px 10px;
     border-right-color: #0b6cbc

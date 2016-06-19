@@ -6,7 +6,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions" >
+	xmlns:pe="http://primefaces.org/ui/extensions">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -30,8 +30,8 @@
 	<h:outputStylesheet library="css" name="font-awesome-ie7.min.css" />
 	<h:outputStylesheet name="bootstrap.min.css" library="css" />
 	<h:outputStylesheet name="bootstrap-responsive.min.css" library="css" />
-	               
-	
+
+
 	<!--ace styles-->
 	<h:outputStylesheet library="css" name="ace.min.css" />
 	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
@@ -40,8 +40,8 @@
 		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
 
 
-	               
-	
+
+
 	<!--ace styles-->
 
 	<h:outputStylesheet library="css" name="ace.min.css" />
@@ -63,19 +63,18 @@
 				</h1>
 
 				<h:form>
-				<ul class="nav ace-nav pull-right">
-					<li class="light-blue">
-
-							<p:commandLink id="logout" action="#{loginMgmtBean.logout()}" styleClass="dropdown-toggle">
-								<h:graphicImage styleClass="nav-user-photo profile-img" library="images"
-									name="logo.png" alt="Inma Admin's Photo" />
-									<span class="user-info">  <strong>Logout</strong> <br/> Inma  Admin
-									</span>
-								<i class="icon-signout" style="font-size: 40px; padding-top: 2px;"></i>
-							</p:commandLink>
-
-					</li>
-				</ul>
+					<ul class="nav ace-nav pull-right">
+						<li class="light-blue"><p:commandLink id="logout"
+								action="#{loginMgmtBean.logout()}" styleClass="dropdown-toggle">
+								<h:graphicImage styleClass="nav-user-photo profile-img"
+									library="images" name="logo.png" alt="Inma Admin's Photo" />
+								<span class="user-info"> <strong>Logout</strong> <br />
+									Inma Admin
+								</span>
+								<i class="icon-signout"
+									style="font-size: 40px; padding-top: 2px;"></i>
+							</p:commandLink></li>
+					</ul>
 				</h:form>
 				<!--/.ace-nav-->
 			</h:panelGroup>
@@ -130,12 +129,10 @@
 				<li><h:outputLink value="../welcome.xhtml">
 						<i class="icon-dashboard"></i>
 						<span class="menu-text"> Dashboard </span>
-					</h:outputLink>
-				</li>
+					</h:outputLink></li>
 
 
-				<li><h:outputLink value="#"
-						class="dropdown-toggle">
+				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-pinterest"></i>
 						<span class="menu-text"> Projets </span>
 						<b class="arrow icon-angle-down"></b>
@@ -144,15 +141,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../projects/table-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les projets
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../projects/form-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau Projet
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-th-list"></i>
@@ -163,13 +157,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../events/table-events.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les événements
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../events/form-events.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel événement
 						</h:outputLink></li>
-						
+
 						<li><h:outputLink value="../events/table-subevents.xhtml">
 								<i class="icon-double-angle-right"></i> Tous sous événements
 						</h:outputLink></li>
@@ -177,10 +170,10 @@
 						<li><h:outputLink value="../events/form-subevents.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel sous événement
 						</h:outputLink></li>
-					</ul>
-				</li>
+					</ul></li>
 
-				<li class="active open"><h:outputLink value="#" class="dropdown-toggle">
+				<li class="active open"><h:outputLink value="#"
+						class="dropdown-toggle">
 						<i class="icon-user"></i>
 						<span class="menu-text"> Membres </span>
 						<b class="arrow icon-angle-down"></b>
@@ -189,15 +182,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="table-members.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les membres
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li class="active"><h:outputLink value="form-members.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau membre
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-book"></i>
@@ -208,15 +198,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../articles/table-articles.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les articles
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../articles/form-articles.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel article
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-group"></i>
@@ -227,43 +214,40 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../partners/table-partners.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les Partenaires 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../partners/form-partners.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau Partenaire 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
-				<li ><h:outputLink value="#" class="dropdown-toggle">
+				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-file-text"></i>
 						<span class="menu-text"> Publications </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
 
 					<ul class="submenu">
-						<li><h:outputLink value="../publications/table-publications.xhtml">
+						<li><h:outputLink
+								value="../publications/table-publications.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les Publications 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
-						<li  ><h:outputLink value="../publications/form-publications.xhtml">
+						<li><h:outputLink
+								value="../publications/form-publications.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvelle Publication 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 				<li><h:outputLink value="../events/calendar.xhtml">
 						<i class="icon-calendar"></i>
 
 						<span class="menu-text"> Calendrier <span
 							class="badge badge-transparent tooltip-error"
 							title="2&nbsp;Important&nbsp;Events"> <i
-								class="icon-warning-sign red bigger-130"></i> </span> </span>
-					</h:outputLink>
-				</li>
+								class="icon-warning-sign red bigger-130"></i>
+						</span>
+						</span>
+					</h:outputLink></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-picture"></i>
@@ -274,15 +258,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../media/gallery.xhtml">
 								<i class="icon-double-angle-right"></i> Images 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
-						<li  ><h:outputLink value="../media/videos.xhtml">
+						<li><h:outputLink value="../media/videos.xhtml">
 								<i class="icon-double-angle-right"></i> Videos 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-tag"></i>
@@ -294,26 +275,21 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../more/profile.xhtml">
 								<i class="icon-double-angle-right"></i> User Profile
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../more/visualisation.xhtml">
 								<i class="icon-double-angle-right"></i> Visualisation
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="invoice.html">
 								<i class="icon-double-angle-right"></i> Invoice
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="login.html">
 								<i class="icon-double-angle-right"></i> Login &amp; Register
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
-<li><h:outputLink value="../configurations/config.xhtml">
+						</h:outputLink></li>
+					</ul></li>
+				<li><h:outputLink value="../configurations/config.xhtml">
 						<i class="icon-cogs"></i>
 						<span class="menu-text"> Parametrage </span>
 					</h:outputLink></li>
@@ -329,12 +305,13 @@
 			<h:panelGroup layout="block" styleClass="breadcrumbs"
 				id="breadcrumbs">
 				<ul class="breadcrumb">
-				<li><i class="icon-home home-icon"></i> <a href="../welcome.xhtml">Home</a> <span
-						class="divider"> <i class="icon-angle-right arrow-icon"></i>
+					<li><i class="icon-home home-icon"></i> <a
+						href="../welcome.xhtml">Home</a> <span class="divider"> <i
+							class="icon-angle-right arrow-icon"></i>
 					</span></li>
 					<li><a href="#">Membres</a> <span class="divider"> <i
-							class="icon-angle-right arrow-icon"></i> </span>
-					</li>
+							class="icon-angle-right arrow-icon"></i>
+					</span></li>
 					<li class="active">Ajouter un membre</li>
 				</ul>
 				<!--.breadcrumb-->
@@ -368,60 +345,60 @@
 
 									<h:panelGroup layout="block" class="widget-body widget-main">
 										<h:panelGroup layout="block" class="row-fluid">
-										
-										<h:form class="form-horizontal" id="form" prependId="false" enctype="multipart/form-data"
-														acceptcharset="UTF-8">
-											<h:panelGroup layout="block" id="fuelux-wizard"
-												class="row-fluid hide" data-target="#step-container">
-												<ul class="wizard-steps">
-													<li data-target="#step1" class="active"><span
-														class="step">1</span> <span class="title">Ajout</span></li>
+
+											<h:form class="form-horizontal" id="form" prependId="false"
+												enctype="multipart/form-data" acceptcharset="UTF-8">
+												<h:panelGroup layout="block" id="fuelux-wizard"
+													class="row-fluid hide" data-target="#step-container">
+													<ul class="wizard-steps">
+														<li data-target="#step1" class="active"><span
+															class="step">1</span> <span class="title">Ajout</span></li>
 
 
 
-													<li data-target="#step4"><span class="step">2</span> <span
-														class="title">Sauvegarde</span></li>
-												</ul>
-											</h:panelGroup>
-											<p:separator />
-											<h:panelGroup layout="block"
-												class="step-content row-fluid position-relative"
-												id="step-container">
-													<h:outputLink value="#{memberBean.vider()}"/>
+														<li data-target="#step4"><span class="step">2</span>
+															<span class="title">Sauvegarde</span></li>
+													</ul>
+												</h:panelGroup>
+												<p:separator />
+												<h:panelGroup layout="block"
+													class="step-content row-fluid position-relative"
+													id="step-container">
+													<h:outputLink value="#{memberBean.vider()}" />
 													<h:panelGroup layout="block" class="step-pane active"
-													id="step1">
-													<h3 class="lighter block green">Nouveau Membre</h3>
+														id="step1">
+														<h3 class="lighter block green">Nouveau Membre</h3>
 
 
- 
-														<h:panelGroup layout="block"
-															styleClass="control-group">
+														<h:panelGroup layout="block" styleClass="control-group">
 															<p:outputLabel styleClass="control-label" for="intitule"
 																value="Prénom " />
 
 															<h:panelGroup layout="block" styleClass="controls">
-																<span class="span8 input-icon input-icon-right">
-																	<h:inputText styleClass="span6" id="intitule"
-																		value="#{memberBean.currentMember.memberName}" />
-																	<i class="icon-warning-sign"></i> </span>
+																<span class="span4 input-icon input-icon-right">
+																	<h:inputText styleClass="span12" id="intitule"
+																		value="#{memberBean.currentMember.memberName}" /> 
+																		<i class="icon-warning-sign"></i>
+																</span>
 																<span class="help-inline"> Champs obligatoire </span>
 															</h:panelGroup>
 														</h:panelGroup>
 
 														<h:panelGroup layout="block" class="control-group">
-															<p:outputLabel styleClass="control-label"
-																for="def" value="Nom " />
+															<p:outputLabel styleClass="control-label" for="def"
+																value="Nom " />
 
 															<h:panelGroup layout="block" class="controls">
-																<span class="span8 input-icon input-icon-right">
-																	<h:inputText styleClass="span6" 
-																		 id="def"
+																<span class="span4 input-icon input-icon-right">
+																	<h:inputText styleClass="span12" id="def"
 																		value="#{memberBean.currentMember.memberName1}" />
+																		<i class="icon-warning-sign"></i>
 																</span>
+																<span class="help-inline"> Champs obligatoire </span>
 															</h:panelGroup>
 														</h:panelGroup>
-														
-														<h:panelGroup layout="block" class="control-group">
+
+														<!--<h:panelGroup layout="block" class="control-group">
 															<p:outputLabel styleClass="control-label"
 																 value="Age " />
 
@@ -432,65 +409,224 @@
 																</span>
 															</h:panelGroup>
 														</h:panelGroup>
-														
+ -->
+
 														<h:panelGroup layout="block" class="control-group">
-															<p:outputLabel styleClass="control-label"
-																 value="Travail " />
+															<p:outputLabel styleClass="control-label" value="" />
 
 															<h:panelGroup layout="block" class="controls">
-																<span class="span6 input-icon input-icon-right">
-																	<h:inputText styleClass="span6" value="#{memberBean.currentMember.memberTravail}"  />   
+																<span class="span3 input-icon input-icon-right">
+
+																	<h:panelGrid columns="2" cellpadding="5">
+																		<p:selectOneRadio id="console" 
+																			value="#{memberBean.currentMember.memberGender}">
+																			<f:selectItem itemLabel="Homme" itemValue="true" />
+																			<dr />
+																			<f:selectItem itemLabel="Femme" itemValue="false" />
+																		</p:selectOneRadio>
+																	</h:panelGrid>
 																</span>
 															</h:panelGroup>
 														</h:panelGroup>
-														
+
 														<h:panelGroup layout="block" class="control-group">
-															<p:outputLabel styleClass="control-label" 
-																value="Fonction a inma " />
+															<p:outputLabel styleClass="control-label"
+																value="Date de naissance " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span4 input-icon input-icon-right">
+																	<h:panelGroup layout="block" class="control-group">
+																		<h:panelGroup layout="block" styleClass="span12"
+																			class="row-fluid input-append">
+																			<p:calendar pattern="dd/MM/yyyy" styleClass="span12"
+																				value="#{memberBean.currentMember.memberBirthDay}"
+																				mode="popup" />
+																		</h:panelGroup>
+																	</h:panelGroup>
+																	<i class="icon-warning-sign"></i>
+																</span>
+																<span class="help-inline"> Champs obligatoire </span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label"
+																value="N° carte d'identité (CIN): " />
 
 															<h:panelGroup layout="block" class="controls">
 																<span class="span6 input-icon input-icon-right">
 																	<h:panelGroup layout="block" class="control-group">
 																		<h:panelGroup layout="block"
 																			class="row-fluid input-append">
- 																				<h:inputText styleClass="span6"  
- 																				value="#{memberBean.currentMember.memberStatus}" />
- 
+																			<h:inputText styleClass="span6"
+																				value="#{memberBean.currentMember.memberCin}" />
+
 																		</h:panelGroup>
-																	</h:panelGroup> </span>
-															</h:panelGroup>
-														</h:panelGroup>
-
-														<h:panelGroup layout="block" class="control-group">
-															<p:outputLabel styleClass="control-label"
-																 value="Comité de direction " />
-
-															<h:panelGroup layout="block" class="controls">
-																<span class="span12 input-icon input-icon-right">
-																   <p:selectBooleanCheckbox value="#{memberBean.currentMember.memberIsOrg}" />  
- 																</span>
-															</h:panelGroup>
-														</h:panelGroup>
-
-														<h:panelGroup layout="block" class="control-group">
-															<p:outputLabel styleClass="control-label"
-																 value="Lien facebook " />
-
-															<h:panelGroup layout="block" class="controls">
-																<span class="span12 input-icon input-icon-right">
-																	<h:inputText styleClass="span8" value="#{memberBean.currentMember.memberFacebook}"/>   
+																	</h:panelGroup>
 																</span>
 															</h:panelGroup>
 														</h:panelGroup>
 
 														<h:panelGroup layout="block" class="control-group">
 															<p:outputLabel styleClass="control-label"
-																 value="lien twitter " />
+																value="Travail " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span6 input-icon input-icon-right">
+																	<h:inputText styleClass="span6"
+																		value="#{memberBean.currentMember.memberTravail}" />
+																</span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label" for="phone"
+																value="N° Tel" />
+															<h:panelGroup layout="block" class="controls">
+																<h:panelGroup layout="block" class="span4 input-prepend">
+																	<span class="add-on"> <i class="icon-phone"></i>
+																	</span>
+
+
+																	<h:inputText styleClass="span6" type="tel" id="phone"
+																		name="phone"
+																		value="#{memberBean.currentMember.memberPhone}" />
+																</h:panelGroup>
+															</h:panelGroup>
+														</h:panelGroup>
+
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label" value="Email " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span6 input-icon input-icon-right">
+																	<h:panelGroup layout="block" class="control-group">
+																		<h:panelGroup layout="block"
+																			class="row-fluid input-append">
+																			<span class="add-on"> <i class="icon-envelope"></i>
+																			</span>
+																			<h:inputText styleClass="span6"
+																				value="#{memberBean.currentMember.memberEmail}" />
+
+																		</h:panelGroup>
+																	</h:panelGroup>
+																</span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label"
+																value="Adresse " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span6 input-icon input-icon-right">
+																	<h:panelGroup layout="block" class="control-group">
+																		<h:panelGroup layout="block"
+																			class="row-fluid input-append">
+																			<span class="add-on"> <i class="icon-home"></i>
+																			</span>
+																			<h:inputText styleClass="span6"
+																				value="#{memberBean.currentMember.memberAddress}" />
+
+																		</h:panelGroup>
+																	</h:panelGroup>
+																</span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label" value="Ville " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span6 input-icon input-icon-right">
+																	<h:panelGroup layout="block" class="control-group">
+																		<h:panelGroup layout="block"
+																			class="row-fluid input-append">
+																			<span class="add-on"> <i
+																				class="icon-map-marker"></i>
+																			</span>
+																			<h:inputText styleClass="span6" id="ville"
+																				value="#{memberBean.currentMember.memberCity}" />
+																			<p:watermark for="ville" value="Ville - Code Postal" />
+
+																		</h:panelGroup>
+																	</h:panelGroup>
+																</span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label"
+																value="Comité de direction " />
 
 															<h:panelGroup layout="block" class="controls">
 																<span class="span12 input-icon input-icon-right">
-																	<h:inputText styleClass="span8" 
-																	value="#{memberBean.currentMember.memberTwitter}" />   
+																	<p:selectBooleanCheckbox
+																		value="#{memberBean.currentMember.memberIsOrg}" />
+																</span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label"
+																value="Fonction a inma " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span8 input-icon input-icon-right">
+																	<h:panelGroup layout="block" class="control-group">
+																		<h:panelGroup layout="block"
+																			class="row-fluid input-append">
+																			<h:inputText styleClass="span6"
+																				value="#{memberBean.currentMember.memberStatus}" />
+
+																		</h:panelGroup>
+																	</h:panelGroup>
+																</span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label"
+																value="Nationalité " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span6 input-icon input-icon-right">
+																	<h:panelGroup layout="block" class="control-group">
+																		<h:panelGroup layout="block"
+																			class="row-fluid input-append">
+																			<h:inputText styleClass="span6"
+																				value="#{memberBean.currentMember.memberNationality}" />
+
+																		</h:panelGroup>
+																	</h:panelGroup>
+																</span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label"
+																value="Lien facebook " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span12 input-icon input-icon-right">
+																	<h:inputText styleClass="span8"
+																		value="#{memberBean.currentMember.memberFacebook}" />
+																</span>
+															</h:panelGroup>
+														</h:panelGroup>
+
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label"
+																value="lien twitter " />
+
+															<h:panelGroup layout="block" class="controls">
+																<span class="span12 input-icon input-icon-right">
+																	<h:inputText styleClass="span8"
+																		value="#{memberBean.currentMember.memberTwitter}" />
 																</span>
 															</h:panelGroup>
 														</h:panelGroup>
@@ -502,23 +638,119 @@
 															<h:panelGroup layout="block" class="controls">
 																<span class="span6 input-icon input-icon-right">
 
-																	<p:fileUpload label="Choisir image" 
+																	<p:fileUpload label="Choisir image"
 																		cancelLabel="Annuler" uploadLabel="Envoyer"
 																		fileUploadListener="#{memberBean.handleFileUpload}"
 																		mode="advanced" sizeLimit="1000000" fileLimit="1"
-																		allowTypes="/(\.|\/)(gif|jpe?g|png)$/" /> </span>
+																		allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+																</span>
 															</h:panelGroup>
 														</h:panelGroup>
 
-
-
-
-
+													</h:panelGroup>
 												</h:panelGroup>
-											</h:panelGroup>
 
-											<p:separator />
-<!-- 											<h:panelGroup layout="block" class="row-fluid wizard-actions">
+												<p:separator />
+ 
+	<h:panelGroup layout="block" class="control-group">
+			<p:outputLabel styleClass="control-label" for="intitule"
+																value="Abonnements " />
+				<h:panelGroup layout="block" class="controls">
+																<span class="span6 input-icon input-icon-right">												
+														<p:growl id="msgs" showDetail="true" />
+														#{aboBean.getAbosbyMember(memberBean.id)}
+														
+														<p:dataTable id="abosTable" var="abo"  
+															styleClass="table table-striped table-bordered table-hover"
+															value="#{aboBean.aboList}" editable="true"
+															style="margin-bottom:20px" sortBy="#{abo.abonnementYear}"
+															resizableColumns="true">
+															<f:facet name="header"> Table des Abonnements </f:facet>
+
+															<p:ajax event="rowEdit"
+																listener="#{aboBean.onRowEdit}"
+																update=":form:msgs" />
+															<p:ajax event="rowEditCancel"
+																listener="#{aboBean.onRowCancel}"
+																update=":form:msgs,abosTable" />
+
+															<p:column style="width: 20px">
+																<p:rowEditor />
+															</p:column>
+																														
+															<p:column headerText="Année" style="width:70px" sortBy="#{abo.abonnementYear}">
+																<p:cellEditor>
+																	<f:facet name="output">
+																		<h:outputText value="#{abo.abonnementYear}" />
+																	</f:facet>
+																	<f:facet name="input">
+																		<p:inputText id="year"
+																			value="#{abo.abonnementYear}" style="width:100%" />
+																	</f:facet>
+																</p:cellEditor>
+															</p:column>
+
+															<p:column headerText="Montant" style="width:70px" sortBy="#{abo.abonnementAmount}">
+																<p:cellEditor>
+																	<f:facet name="output">
+																		<h:outputText value="#{abo.abonnementAmount}" />
+																	</f:facet>
+																	<f:facet name="input">
+																		<p:inputText id="amount"
+																			value="#{abo.abonnementAmount}" style="width:100%" />
+																	</f:facet>
+																</p:cellEditor>
+															</p:column>
+
+															<p:column styleClass="center" style="width: 15px" >
+																<f:facet name="header">
+																	<h:outputText value="" />
+																</f:facet>
+																<p:commandLink styleClass="btn btn-minier "
+																	action="#{aboBean.readyforDelete(abo)}"
+																	ajax="true" update="abosTable:ll"
+																	oncomplete="PF('CDialogWidget').show();">
+																	<i class="icon-trash bigger-120" style="color: red;"></i>
+
+																</p:commandLink>
+
+																<p:confirmDialog
+																	message="Êtes-vous sûr de vouloir supprimer  #{abo.abonnementYear} "
+																	header="Confirmation de suppression" severity="alert"
+																	id="ll" widgetVar="CDialogWidget">
+																	<p:commandButton value="Oui" update="abosTable"
+																		action="#{aboBean.delete()}"
+																		oncomplete="PF('CDialogWidget').hide()" />
+																	<p:commandButton value="Non"
+																		onclick="PF('CDialogWidget').hide();" type="button" />
+																</p:confirmDialog>
+															</p:column>
+
+														</p:dataTable>
+
+
+														<p:commandButton actionListener="#{aboBean.newLine}"
+														    action="#{memberBean.saveAndshowEdit()}"
+															value="Enregister et ajouter abonnement" update="abosTable"
+															onsuccess="addRowOnComplete()" ajax="true" >
+																	<f:param name="id" value="#{memberBean.currentMember.memberId}" />  
+ 															</p:commandButton>
+														
+ </span>
+															</h:panelGroup>														
+</h:panelGroup>
+														<p:separator />
+														<p:contextMenu for="abosTable" widgetVar="cMenu">
+															<p:menuitem value="Edit Cell" icon="ui-icon-search"
+																onclick="PF('cellVideos').showCellEditor();return false;" />
+															<p:menuitem value="Hide Menu" icon="ui-icon-close"
+																onclick="PF('cMenu').hide()" />
+														</p:contextMenu>
+
+
+
+												
+												<!-- 											<h:panelGroup layout="block" class="row-fluid wizard-actions">
 												<p:commandLink class="btn btn-prev" >
 													<i class="icon-arrow-left"></i> Retour
 												</p:commandLink>
@@ -537,15 +769,19 @@
 														class="icon-save"></i>
 												</p:commandLink>
 
-												<p:dialog header="Enregistrement du membre" widgetVar="dlg2" modal="true" height="100">
-    <h3 class="blue">error</h3>
-    <h:panelGroup >											
-    	<h:button styleClass="btn btn-success"  action="@{memberBean.vider()}" value="Ok" style="float:right">  </h:button>
-    </h:panelGroup>
-</p:dialog>   
- 
- </h:form>
-										
+												<p:dialog header="Enregistrement du membre" widgetVar="dlg2"
+													modal="true" height="100">
+													<h3 class="blue">error</h3>
+													<h:panelGroup>
+														<h:button styleClass="btn btn-success"
+															action="@{memberBean.vider()}" value="Ok"
+															style="float:right">
+														</h:button>
+													</h:panelGroup>
+												</p:dialog>
+
+											</h:form>
+
 										</h:panelGroup>
 
 										<!--/widget-main-->
@@ -560,15 +796,13 @@
 								data-target="#modal-step-contents">
 								<ul class="wizard-steps clearfix">
 									<li data-target="#modal-step1" class="active"><span
-										class="step">1</span> <span class="title"> Ajout </span>
-									</li>
+										class="step">1</span> <span class="title"> Ajout </span></li>
 
-							  
+
 
 
 									<li data-target="#modal-step4"><span class="step">2</span>
-										<span class="title">Sauvegarde</span>
-									</li>
+										<span class="title">Sauvegarde</span></li>
 								</ul>
 							</h:panelGroup>
 
@@ -612,195 +846,219 @@
 
 	<a href="#" id="btn-scroll-up"
 		class="btn-scroll-up btn btn-small btn-inverse"> <i
-		class="icon-double-angle-up icon-only bigger-110"></i> </a>
+		class="icon-double-angle-up icon-only bigger-110"></i>
+	</a>
 
 	<!--basic scripts-->
 
 	<script type="text/javascript">
-	//<![CDATA[ 
-			window.jQuery || document.write("<h:outputScript library='js' name='jquery-2.0.3.min.js' />");
+		//<![CDATA[ 
+		window.jQuery
+				|| document
+						.write("<h:outputScript library='js' name='jquery-2.0.3.min.js' />");
 		//]]>
-		</script>
+	</script>
 
 	<script type="text/javascript">
-	//<![CDATA[ 
-			if("ontouchend" in document) document.write("<h:outputScript library='js' name='jquery.mobile.custom.min.js' />");
+		//<![CDATA[ 
+		if ("ontouchend" in document)
+			document
+					.write("<h:outputScript library='js' name='jquery.mobile.custom.min.js' />");
 		//]]>
-		</script>
+	</script>
 
-	<h:outputScript library="js" name="bootstrap.min.js"/>
+	<h:outputScript library="js" name="bootstrap.min.js" />
 
 	<!--page specific plugin scripts-->
-	<h:outputScript library="js" name="fuelux/fuelux.wizard.min.js"/>
-	<h:outputScript library="js" name="jquery.validate.min.js"/>
-	<h:outputScript library="js" name="additional-methods.min.js"/>
-	<h:outputScript library="js" name="bootbox.min.js"/>
-	<h:outputScript library="js" name="jquery.maskedinput.min.js"/>
-	
+	<h:outputScript library="js" name="fuelux/fuelux.wizard.min.js" />
+	<h:outputScript library="js" name="jquery.validate.min.js" />
+	<h:outputScript library="js" name="additional-methods.min.js" />
+	<h:outputScript library="js" name="bootbox.min.js" />
+	<h:outputScript library="js" name="jquery.maskedinput.min.js" />
 
-	<h:outputScript library="js" name="jquery-ui-1.10.3.custom.min.js"/>
-	<h:outputScript library="js" name="jquery.ui.touch-punch.min.js"/>
-	<h:outputScript library="js" name="jquery.slimscroll.min.js"/>
-	<h:outputScript library="js" name="jquery.easy-pie-chart.min.js"/>
-	<h:outputScript library="js" name="jquery.sparkline.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.pie.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.resize.min.js"/>
+
+	<h:outputScript library="js" name="jquery-ui-1.10.3.custom.min.js" />
+	<h:outputScript library="js" name="jquery.ui.touch-punch.min.js" />
+	<h:outputScript library="js" name="jquery.slimscroll.min.js" />
+	<h:outputScript library="js" name="jquery.easy-pie-chart.min.js" />
+	<h:outputScript library="js" name="jquery.sparkline.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.pie.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.resize.min.js" />
 
 	<!--ace scripts-->
 
-	<h:outputScript library="js" name="ace-elements.min.js"/>
-	<h:outputScript library="js" name="ace.min.js"/>
+	<h:outputScript library="js" name="ace-elements.min.js" />
+	<h:outputScript library="js" name="ace.min.js" />
 
 	<!--inline scripts related to this page-->
 
 	<script type="text/javascript">
-	//<![CDATA[ 
-        $(function() {
+		//<![CDATA[ 
+		$(function() {
 
-            $('[data-rel=tooltip]').tooltip();
+			$('[data-rel=tooltip]').tooltip();
 
-            
+			var $validation = false;
+			$('#fuelux-wizard')
+					.ace_wizard()
+					.on('change', function(e, info) {
+						if (info.step == 1 && $validation) {
+							if (!$('#validation-form').valid())
+								return false;
+						}
+					})
+					.on(
+							'finished',
+							function(e) {
+								bootbox
+										.dialog(
+												"Thank you! Your information was successfully saved!",
+												[ {
+													"label" : "OK",
+													"class" : "btn-small btn-primary",
+												} ]);
+							}).on('stepclick', function(e) {
+						//return false;//prevent clicking on steps
+					});
 
+			$('#validation-form').hide();
+			$('#skip-validation').removeAttr('checked').on('click', function() {
+				$validation = this.checked;
+				if (this.checked) {
+					$('#sample-form').hide();
+					$('#validation-form').show();
+				} else {
+					$('#validation-form').hide();
+					$('#sample-form').show();
+				}
+			});
 
-            var $validation = false;
-            $('#fuelux-wizard').ace_wizard().on('change', function(e, info) {
-                if (info.step == 1 && $validation) {
-                    if (!$('#validation-form').valid()) return false;
-                }
-            }).on('finished', function(e) {
-                bootbox.dialog("Thank you! Your information was successfully saved!", [{
-                    "label": "OK",
-                    "class": "btn-small btn-primary",
-                }]);
-            }).on('stepclick', function(e) {
-                //return false;//prevent clicking on steps
-            });
+			//documentation : http://docs.jquery.com/Plugins/Validation/validate
 
+			$.mask.definitions['~'] = '[+-]';
+			$('#phone').mask('(+216) 99 999 999');
 
-            $('#validation-form').hide();
-            $('#skip-validation').removeAttr('checked').on('click', function() {
-                $validation = this.checked;
-                if (this.checked) {
-                    $('#sample-form').hide();
-                    $('#validation-form').show();
-                } else {
-                    $('#validation-form').hide();
-                    $('#sample-form').show();
-                }
-            });
+			jQuery.validator.addMethod("phone", function(value, element) {
+				return this.optional(element)
+						|| /^\(\d{3}\) \d{3}\-\d{4}( x\d{1,6})?$/.test(value);
+			}, "Enter a valid phone number.");
 
+			$('#validation-form')
+					.validate(
+							{
+								errorElement : 'span',
+								errorClass : 'help-inline',
+								focusInvalid : false,
+								rules : {
+									email : {
+										required : true,
+										email : true
+									},
+									password : {
+										required : true,
+										minlength : 5
+									},
+									password2 : {
+										required : true,
+										minlength : 5,
+										equalTo : "#password"
+									},
+									name : {
+										required : true
+									},
+									phone : {
+										required : true,
+										phone : 'required'
+									},
+									url : {
+										required : true,
+										url : true
+									},
+									comment : {
+										required : true
+									},
+									state : {
+										required : true
+									},
+									platform : {
+										required : true
+									},
+									subscription : {
+										required : true
+									},
+									gender : 'required',
+									agree : 'required'
+								},
 
+								messages : {
+									email : {
+										required : "Please provide a valid email.",
+										email : "Please provide a valid email."
+									},
+									password : {
+										required : "Please specify a password.",
+										minlength : "Please specify a secure password."
+									},
+									subscription : "Please choose at least one option",
+									gender : "Please choose gender",
+									agree : "Please accept our policy"
+								},
 
-            //documentation : http://docs.jquery.com/Plugins/Validation/validate
+								invalidHandler : function(event, validator) { //display error alert on form submit   
+									$('.alert-error', $('.login-form')).show();
+								},
 
+								highlight : function(e) {
+									$(e).closest('.control-group').removeClass(
+											'info').addClass('error');
+								},
 
-            $.mask.definitions['~'] = '[+-]';
-            $('#phone').mask('(999) 999-9999');
+								success : function(e) {
+									$(e).closest('.control-group').removeClass(
+											'error').addClass('info');
+									$(e).remove();
+								},
 
-            jQuery.validator.addMethod("phone", function(value, element) {
-                return this.optional(element) || /^\(\d{3}\) \d{3}\-\d{4}( x\d{1,6})?$/.test(value);
-            }, "Enter a valid phone number.");
+								errorPlacement : function(error, element) {
+									if (element.is(':checkbox')
+											|| element.is(':radio')) {
+										var controls = element
+												.closest('.controls');
+										if (controls.find(':checkbox,:radio').length > 1)
+											controls.append(error);
+										else
+											error.insertAfter(element.nextAll(
+													'.lbl:eq(0)').eq(0));
+									} else if (element.is('.select2')) {
+										error
+												.insertAfter(element
+														.siblings('[class*="select2-container"]:eq(0)'));
+									} else if (element.is('.chzn-select')) {
+										error
+												.insertAfter(element
+														.siblings('[class*="chzn-container"]:eq(0)'));
+									} else
+										error.insertAfter(element);
+								},
 
-            $('#validation-form').validate({
-                errorElement: 'span',
-                errorClass: 'help-inline',
-                focusInvalid: false,
-                rules: {
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    password: {
-                        required: true,
-                        minlength: 5
-                    },
-                    password2: {
-                        required: true,
-                        minlength: 5,
-                        equalTo: "#password"
-                    },
-                    name: {
-                        required: true
-                    },
-                    phone: {
-                        required: true,
-                        phone: 'required'
-                    },
-                    url: {
-                        required: true,
-                        url: true
-                    },
-                    comment: {
-                        required: true
-                    },
-                    state: {
-                        required: true
-                    },
-                    platform: {
-                        required: true
-                    },
-                    subscription: {
-                        required: true
-                    },
-                    gender: 'required',
-                    agree: 'required'
-                },
+								submitHandler : function(form) {
+								},
+								invalidHandler : function(form) {
+								}
+							});
 
-                messages: {
-                    email: {
-                        required: "Please provide a valid email.",
-                        email: "Please provide a valid email."
-                    },
-                    password: {
-                        required: "Please specify a password.",
-                        minlength: "Please specify a secure password."
-                    },
-                    subscription: "Please choose at least one option",
-                    gender: "Please choose gender",
-                    agree: "Please accept our policy"
-                },
+			$('#modal-wizard .modal-header').ace_wizard();
+			$('#modal-wizard .wizard-actions .btn[data-dismiss=modal]')
+					.removeAttr('disabled');
 
-                invalidHandler: function(event, validator) { //display error alert on form submit   
-                    $('.alert-error', $('.login-form')).show();
-                },
-
-                highlight: function(e) {
-                    $(e).closest('.control-group').removeClass('info').addClass('error');
-                },
-
-                success: function(e) {
-                    $(e).closest('.control-group').removeClass('error').addClass('info');
-                    $(e).remove();
-                },
-
-                errorPlacement: function(error, element) {
-                    if (element.is(':checkbox') || element.is(':radio')) {
-                        var controls = element.closest('.controls');
-                        if (controls.find(':checkbox,:radio').length > 1) controls.append(error);
-                        else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
-                    } else if (element.is('.select2')) {
-                        error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
-                    } else if (element.is('.chzn-select')) {
-                        error.insertAfter(element.siblings('[class*="chzn-container"]:eq(0)'));
-                    } else error.insertAfter(element);
-                },
-
-                submitHandler: function(form) {},
-                invalidHandler: function(form) {}
-            });
-
-
-            $('#modal-wizard .modal-header').ace_wizard();
-            $('#modal-wizard .wizard-actions .btn[data-dismiss=modal]').removeAttr('disabled');
-            
 			$('#id-input-file-3').ace_file_input({
-				style:'well',
-				btn_choose:'Drop files here or click to choose',
-				btn_change:null,
-				no_icon:'icon-cloud-upload',
-				droppable:true,
-				thumbnail:'small'
+				style : 'well',
+				btn_choose : 'Drop files here or click to choose',
+				btn_change : null,
+				no_icon : 'icon-cloud-upload',
+				droppable : true,
+				thumbnail : 'small'
 				//,icon_remove:null//set null, to hide remove/reset button
 				/**,before_change:function(files, dropped) {
 					//Check an example below
@@ -819,14 +1077,18 @@
 					//3 = 'THUMBNAIL_FAILED'
 					//alert(error_code);
 				}
-		
-			}).on('change', function(){
+
+			}).on('change', function() {
 				//console.log($(this).data('ace_input_files'));
 				//console.log($(this).data('ace_input_method'));
 			});
-        })
-        //]]>
-    </script>
+		})
+		//]]>
+	</script>
+	
+	<script type="text/javascript">
+		function addRowOnComplete() {	}
+	</script>
 </h:body>
 
 </html>
