@@ -38,13 +38,13 @@ public class Member implements java.io.Serializable {
 	private String memberTwitter;
 	private Date memberBirthDay;
 	private Integer memberCin;
-	private String memberNationality;
+	private String memberNationality = "Tunisien(ne)";
 	private String memberPhone;
 	private String memberEmail;
 	private String memberAddress;
 	private String memberCity;
 	private Boolean isActive;
-	private Boolean memberGender;
+	private Boolean memberGender = true;
 	private Set<Project> projects = new HashSet<Project>(0);
 	private Set<Event> events = new HashSet<Event>(0);
 	private Set<Abonnement> abonnements = new HashSet<Abonnement>(0);
