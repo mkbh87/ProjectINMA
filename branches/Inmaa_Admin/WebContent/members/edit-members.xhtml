@@ -6,7 +6,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions" >
+	xmlns:pe="http://primefaces.org/ui/extensions">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -30,8 +30,8 @@
 	<h:outputStylesheet library="css" name="font-awesome-ie7.min.css" />
 	<h:outputStylesheet name="bootstrap.min.css" library="css" />
 	<h:outputStylesheet name="bootstrap-responsive.min.css" library="css" />
-	               
-	
+
+
 	<!--ace styles-->
 	<h:outputStylesheet library="css" name="ace.min.css" />
 	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
@@ -40,8 +40,8 @@
 		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
 
 
-	               
-	
+
+
 	<!--ace styles-->
 
 	<h:outputStylesheet library="css" name="ace.min.css" />
@@ -53,10 +53,10 @@
 
 <h:body>
 
-		<f:metadata>
-       		<f:viewParam name="id" value="#{memberBean.id}" />
-   		</f:metadata>
-   		
+	<f:metadata>
+		<f:viewParam name="id" value="#{memberBean.id}" />
+	</f:metadata>
+
 	<h:panelGroup layout="block" styleClass="navbar">
 		<h:panelGroup layout="block" styleClass="navbar-inner">
 			<h:panelGroup layout="block" styleClass="container-fluid">
@@ -68,19 +68,18 @@
 				</h1>
 
 				<h:form>
-				<ul class="nav ace-nav pull-right">
-					<li class="light-blue">
-
-							<p:commandLink id="logout" action="#{loginMgmtBean.logout()}" styleClass="dropdown-toggle">
-								<h:graphicImage styleClass="nav-user-photo profile-img" library="images"
-									name="logo.png" alt="Inma Admin's Photo" />
-									<span class="user-info">  <strong>Logout</strong> <br/> Inma  Admin
-									</span>
-								<i class="icon-signout" style="font-size: 40px; padding-top: 2px;"></i>
-							</p:commandLink>
-
-					</li>
-				</ul>
+					<ul class="nav ace-nav pull-right">
+						<li class="light-blue"><p:commandLink id="logout"
+								action="#{loginMgmtBean.logout()}" styleClass="dropdown-toggle">
+								<h:graphicImage styleClass="nav-user-photo profile-img"
+									library="images" name="logo.png" alt="Inma Admin's Photo" />
+								<span class="user-info"> <strong>Logout</strong> <br />
+									Inma Admin
+								</span>
+								<i class="icon-signout"
+									style="font-size: 40px; padding-top: 2px;"></i>
+							</p:commandLink></li>
+					</ul>
 				</h:form>
 				<!--/.ace-nav-->
 			</h:panelGroup>
@@ -135,12 +134,10 @@
 				<li><h:outputLink value="../welcome.xhtml">
 						<i class="icon-dashboard"></i>
 						<span class="menu-text"> Dashboard </span>
-					</h:outputLink>
-				</li>
+					</h:outputLink></li>
 
 
-				<li><h:outputLink value="#"
-						class="dropdown-toggle">
+				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-pinterest"></i>
 						<span class="menu-text"> Projets </span>
 						<b class="arrow icon-angle-down"></b>
@@ -149,15 +146,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../projects/table-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les projets
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../projects/form-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau Projet
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-th-list"></i>
@@ -168,13 +162,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../events/table-events.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les événements
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../events/form-events.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel événement
 						</h:outputLink></li>
-						
+
 						<li><h:outputLink value="../events/table-subevents.xhtml">
 								<i class="icon-double-angle-right"></i> Tous sous événements
 						</h:outputLink></li>
@@ -182,10 +175,10 @@
 						<li><h:outputLink value="../events/form-subevents.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel sous événement
 						</h:outputLink></li>
-					</ul>
-				</li>
+					</ul></li>
 
-				<li class="active open"><h:outputLink value="#" class="dropdown-toggle">
+				<li class="active open"><h:outputLink value="#"
+						class="dropdown-toggle">
 						<i class="icon-user"></i>
 						<span class="menu-text"> Membres </span>
 						<b class="arrow icon-angle-down"></b>
@@ -194,15 +187,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="table-members.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les membres
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li class="active"><h:outputLink value="form-members.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau membre
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-book"></i>
@@ -213,15 +203,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../articles/table-articles.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les articles
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../articles/form-articles.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel article
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-group"></i>
@@ -232,43 +219,40 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../partners/table-partners.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les Partenaires 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../partners/form-partners.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau Partenaire 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
-				<li ><h:outputLink value="#" class="dropdown-toggle">
+				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-file-text"></i>
 						<span class="menu-text"> Publications </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
 
 					<ul class="submenu">
-						<li><h:outputLink value="../publications/table-publications.xhtml">
+						<li><h:outputLink
+								value="../publications/table-publications.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les Publications 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
-						<li  ><h:outputLink value="../publications/form-publications.xhtml">
+						<li><h:outputLink
+								value="../publications/form-publications.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvelle Publication 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 				<li><h:outputLink value="../events/calendar.xhtml">
 						<i class="icon-calendar"></i>
 
 						<span class="menu-text"> Calendrier <span
 							class="badge badge-transparent tooltip-error"
 							title="2&nbsp;Important&nbsp;Events"> <i
-								class="icon-warning-sign red bigger-130"></i> </span> </span>
-					</h:outputLink>
-				</li>
+								class="icon-warning-sign red bigger-130"></i>
+						</span>
+						</span>
+					</h:outputLink></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-picture"></i>
@@ -279,15 +263,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../media/gallery.xhtml">
 								<i class="icon-double-angle-right"></i> Images 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
-						<li  ><h:outputLink value="../media/videos.xhtml">
+						<li><h:outputLink value="../media/videos.xhtml">
 								<i class="icon-double-angle-right"></i> Videos 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-tag"></i>
@@ -299,26 +280,21 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../more/profile.xhtml">
 								<i class="icon-double-angle-right"></i> User Profile
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../more/visualisation.xhtml">
 								<i class="icon-double-angle-right"></i> Visualisation
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="invoice.html">
 								<i class="icon-double-angle-right"></i> Invoice
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="login.html">
 								<i class="icon-double-angle-right"></i> Login &amp; Register
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
-<li><h:outputLink value="../configurations/config.xhtml">
+						</h:outputLink></li>
+					</ul></li>
+				<li><h:outputLink value="../configurations/config.xhtml">
 						<i class="icon-cogs"></i>
 						<span class="menu-text"> Parametrage </span>
 					</h:outputLink></li>
@@ -334,12 +310,13 @@
 			<h:panelGroup layout="block" styleClass="breadcrumbs"
 				id="breadcrumbs">
 				<ul class="breadcrumb">
-				<li><i class="icon-home home-icon"></i> <a href="../welcome.xhtml">Home</a> <span
-						class="divider"> <i class="icon-angle-right arrow-icon"></i>
+					<li><i class="icon-home home-icon"></i> <a
+						href="../welcome.xhtml">Home</a> <span class="divider"> <i
+							class="icon-angle-right arrow-icon"></i>
 					</span></li>
 					<li><a href="#">Membres</a> <span class="divider"> <i
-							class="icon-angle-right arrow-icon"></i> </span>
-					</li>
+							class="icon-angle-right arrow-icon"></i>
+					</span></li>
 					<li class="active">Modifier membre</li>
 				</ul>
 				<!--.breadcrumb-->
@@ -352,7 +329,8 @@
 			<h:panelGroup layout="block" styleClass="page-content">
 				<h:panelGroup layout="block" class="page-header position-relative">
 					<h1>
-						Modification du membre <small> <i class="icon-double-angle-right"></i>
+						Modification du membre <small> <i
+							class="icon-double-angle-right"></i>
 						</small>
 					</h1>
 				</h:panelGroup>
@@ -367,35 +345,42 @@
 								<h:panelGroup layout="block" class="widget-box">
 									<h:panelGroup layout="block"
 										class="widget-header widget-header-blue widget-header-flat">
-										<h4 class="lighter"><a target="_blank" href="http://inma-maamoura.org/members/">
-										Clic ICI pour voir la page sur Inma-maamoura.org</a></h4>
+										<h4 class="lighter">
+											<a target="_blank" href="http://inma-maamoura.org/members/">
+												Clic ICI pour voir la page sur Inma-maamoura.org</a>
+										</h4>
 
 									</h:panelGroup>
 
 									<h:panelGroup layout="block" class="widget-body widget-main">
 										<h:panelGroup layout="block" class="row-fluid">
-										
-										<h:form class="form-horizontal" id="form" prependId="false" enctype="multipart/form-data"
-														acceptcharset="UTF-8">
-											<h:panelGroup layout="block" id="fuelux-wizard"
-												class="row-fluid hide" data-target="#step-container">
-												<ul class="wizard-steps">
-													<li data-target="#step1" class="active"><span
-														class="step">1</span> <span class="title">Ajout</span></li>
+
+											<h:form class="form-horizontal" id="form" prependId="false"
+												enctype="multipart/form-data" acceptcharset="UTF-8">
+												<h:panelGroup layout="block" id="fuelux-wizard"
+													class="row-fluid hide" data-target="#step-container">
+													<ul class="wizard-steps">
+														<li data-target="#step1" class="active"><span
+															class="step">1</span> <span class="title">Ajout</span></li>
 
 
 
-													<li data-target="#step4"><span class="step">2</span> <span
-														class="title">Sauvegarde</span></li>
-												</ul>
-											</h:panelGroup>
-											<p:separator />
-											<h:panelGroup layout="block"
-												class="step-content row-fluid position-relative"
-												id="step-container">
+														<li data-target="#step4"><span class="step">2</span>
+															<span class="title">Sauvegarde</span></li>
+													</ul>
+												</h:panelGroup>
+												<p:separator />
+												<h:panelGroup layout="block"
+													class="step-content row-fluid position-relative"
+													id="step-container">
 													<h:panelGroup layout="block" class="step-pane active"
 														id="step1">
-														<h3 class="lighter block green">Modification du membre</h3>
+														<h3 class="lighter block green">Modification du
+															membre</h3>
+
+														<h:graphicImage id="pic"
+															style="height: 300px;position: absolute; right: 10px;"
+															value="http://inma-maamoura.org/javax.faces.resource/#{memberBean.currentMember.memberImage}.xhtml?ln=images" />
 
 
 														<h:panelGroup layout="block" styleClass="control-group">
@@ -405,8 +390,8 @@
 															<h:panelGroup layout="block" styleClass="controls">
 																<span class="span4 input-icon input-icon-right">
 																	<h:inputText styleClass="span12" id="intitule"
-																		value="#{memberBean.currentMember.memberName}" /> 
-																		<i class="icon-warning-sign"></i>
+																		value="#{memberBean.currentMember.memberName}" /> <i
+																	class="icon-warning-sign"></i>
 																</span>
 																<span class="help-inline"> Champs obligatoire </span>
 															</h:panelGroup>
@@ -419,8 +404,8 @@
 															<h:panelGroup layout="block" class="controls">
 																<span class="span4 input-icon input-icon-right">
 																	<h:inputText styleClass="span12" id="def"
-																		value="#{memberBean.currentMember.memberName1}" />
-																		<i class="icon-warning-sign"></i>
+																		value="#{memberBean.currentMember.memberName1}" /> <i
+																	class="icon-warning-sign"></i>
 																</span>
 																<span class="help-inline"> Champs obligatoire </span>
 															</h:panelGroup>
@@ -448,9 +433,9 @@
 																	<h:panelGrid columns="2" cellpadding="5">
 																		<p:selectOneRadio id="console"
 																			value="#{memberBean.currentMember.memberGender}">
-																			<f:selectItem itemLabel="Homme" itemValue="true" />
+																			<f:selectItem itemLabel="Homme" itemValue="false" />
 																			<dr />
-																			<f:selectItem itemLabel="Femme" itemValue="false" />
+																			<f:selectItem itemLabel="Femme" itemValue="true" />
 																		</p:selectOneRadio>
 																	</h:panelGrid>
 																</span>
@@ -470,8 +455,7 @@
 																				value="#{memberBean.currentMember.memberBirthDay}"
 																				mode="popup" />
 																		</h:panelGroup>
-																	</h:panelGroup>
-																	<i class="icon-warning-sign"></i>
+																	</h:panelGroup> <i class="icon-warning-sign"></i>
 																</span>
 																<span class="help-inline"> Champs obligatoire </span>
 															</h:panelGroup>
@@ -677,101 +661,98 @@
 
 
 
-													
-														
- 
-													<p:separator />
 
-	<h:panelGroup layout="block" class="control-group">
-			<p:outputLabel styleClass="control-label" for="intitule"
+
+
+														<p:separator />
+
+														<h:panelGroup layout="block" class="control-group">
+															<p:outputLabel styleClass="control-label" for="intitule"
 																value="Abonnements " />
-				<h:panelGroup layout="block" class="controls">
-																<span class="span6 input-icon input-icon-right">												
-														<p:growl id="msgs" showDetail="true" />
-														#{aboBean.getAbosbyMember(memberBean.id)}
-														
-														<p:dataTable id="abosTable" var="abo"   
-															styleClass="table table-striped table-bordered table-hover"
-															value="#{aboBean.aboList}" editable="true"
-															style="margin-bottom:20px" sortBy="#{abo.abonnementYear}"
-															resizableColumns="true">
-															<f:facet name="header"> Table des Abonnements </f:facet>
+															<h:panelGroup layout="block" class="controls">
+																<span class="span6 input-icon input-icon-right">
+																	<p:growl id="msgs" showDetail="true" />
+																	#{aboBean.getAbosbyMember(memberBean.id)} <p:dataTable
+																		id="abosTable" var="abo"
+																		styleClass="table table-striped table-bordered table-hover"
+																		value="#{aboBean.aboList}" editable="true"
+																		style="margin-bottom:20px"
+																		sortBy="#{abo.abonnementYear}" resizableColumns="true">
+																		<f:facet name="header"> Table des Abonnements </f:facet>
 
-															<p:ajax event="rowEdit"
-																listener="#{aboBean.onRowEdit}"
-																update=":form:msgs" />
-															<p:ajax event="rowEditCancel"
-																listener="#{aboBean.onRowCancel}"
-																update=":form:msgs,abosTable" />
+																		<p:ajax event="rowEdit"
+																			listener="#{aboBean.onRowEdit}" update=":form:msgs" />
+																		<p:ajax event="rowEditCancel"
+																			listener="#{aboBean.onRowCancel}"
+																			update=":form:msgs,abosTable" />
 
-															<p:column style="width: 20px">
-																<p:rowEditor />
-															</p:column>
+																		<p:column style="width: 20px">
+																			<p:rowEditor />
+																		</p:column>
 
-															<p:column headerText="Année" style="width:70px" sortBy="#{abo.abonnementYear}">
-																<p:cellEditor>
-																	<f:facet name="output">
-																		<h:outputText value="#{abo.abonnementYear}" />
-																	</f:facet>
-																	<f:facet name="input">
-																		<p:inputText id="year"
-																			value="#{abo.abonnementYear}" style="width:100%" />
-																	</f:facet>
-																</p:cellEditor>
-															</p:column>
+																		<p:column headerText="Année" style="width:70px"
+																			sortBy="#{abo.abonnementYear}">
+																			<p:cellEditor>
+																				<f:facet name="output">
+																					<h:outputText value="#{abo.abonnementYear}" />
+																				</f:facet>
+																				<f:facet name="input">
+																					<p:inputText id="year"
+																						value="#{abo.abonnementYear}" style="width:100%" />
+																				</f:facet>
+																			</p:cellEditor>
+																		</p:column>
 
-															<p:column headerText="Montant" style="width:70px" sortBy="#{abo.abonnementAmount}">
-																<p:cellEditor>
-																	<f:facet name="output">
-																		<h:outputText value="#{abo.abonnementAmount}" />
-																	</f:facet>
-																	<f:facet name="input">
-																		<p:inputText id="amount"
-																			value="#{abo.abonnementAmount}" style="width:100%" />
-																	</f:facet>
-																</p:cellEditor>
-															</p:column>
+																		<p:column headerText="Montant" style="width:70px"
+																			sortBy="#{abo.abonnementAmount}">
+																			<p:cellEditor>
+																				<f:facet name="output">
+																					<h:outputText value="#{abo.abonnementAmount}" />
+																				</f:facet>
+																				<f:facet name="input">
+																					<p:inputText id="amount"
+																						value="#{abo.abonnementAmount}" style="width:100%" />
+																				</f:facet>
+																			</p:cellEditor>
+																		</p:column>
 
-															<p:column styleClass="center" style="width: 15px" >
-																<f:facet name="header">
-																	<h:outputText value="" />
-																</f:facet>
-																
-																
-																
-																
-																<p:commandLink styleClass="btn btn-minier "
-																	action="#{aboBean.readyforDelete(abo)}"
-																	ajax="true" update="abosTable:ll"
-																	oncomplete="PF('CDialogWidget').show();">
-																	<i class="icon-trash bigger-120" style="color: red;"></i>
-
-																</p:commandLink>
-
-																<p:confirmDialog 
-																	message="Êtes-vous sûr de vouloir supprimer  #{abo.abonnementYear} "
-																	header="Confirmation de suppression" severity="alert"
-																	id="ll" widgetVar="CDialogWidget">
-																	<p:commandButton value="Oui" update="abosTable" 
-																		action="#{aboBean.delete()}" ajax="true"
-																		oncomplete="PF('CDialogWidget').hide()" />
-																	<p:commandButton value="Non"
-																		onclick="PF('CDialogWidget').hide();" type="button" />
-																		
- 																</p:confirmDialog>
-															</p:column>
-
-														</p:dataTable>
+																		<p:column styleClass="center" style="width: 15px">
+																			<f:facet name="header">
+																				<h:outputText value="" />
+																			</f:facet>
 
 
-														<p:commandButton actionListener="#{aboBean.newLine}"
-															value="New" update="abosTable"
-															oncomplete="addRowOnComplete()" ajax="true" />
-														
-														
-</span>
-															</h:panelGroup>														
-</h:panelGroup>
+
+
+																			<p:commandLink styleClass="btn btn-minier "
+																				action="#{aboBean.readyforDelete(abo)}" ajax="true"
+																				update="abosTable:ll"
+																				oncomplete="PF('CDialogWidget').show();">
+																				<i class="icon-trash bigger-120" style="color: red;"></i>
+
+																			</p:commandLink>
+
+																			<p:confirmDialog
+																				message="Êtes-vous sûr de vouloir supprimer  #{abo.abonnementYear} "
+																				header="Confirmation de suppression"
+																				severity="alert" id="ll" widgetVar="CDialogWidget">
+																				<p:commandButton value="Oui" update="abosTable"
+																					action="#{aboBean.delete()}" ajax="true"
+																					oncomplete="PF('CDialogWidget').hide()" />
+																				<p:commandButton value="Non"
+																					onclick="PF('CDialogWidget').hide();" type="button" />
+
+																			</p:confirmDialog>
+																		</p:column>
+
+																	</p:dataTable> <p:commandButton actionListener="#{aboBean.newLine}"
+																		value="New" update="abosTable"
+																		oncomplete="addRowOnComplete()" ajax="true" />
+
+
+																</span>
+															</h:panelGroup>
+														</h:panelGroup>
 														<p:separator />
 														<p:contextMenu for="abosTable" widgetVar="cMenu">
 															<p:menuitem value="Edit Cell" icon="ui-icon-search"
@@ -786,10 +767,10 @@
 
 
 
+													</h:panelGroup>
 												</h:panelGroup>
-											</h:panelGroup>
 
- <!-- 											<h:panelGroup layout="block" class="row-fluid wizard-actions">
+												<!-- 											<h:panelGroup layout="block" class="row-fluid wizard-actions">
 												<p:commandLink class="btn btn-prev" >
 													<i class="icon-arrow-left"></i> Retour
 												</p:commandLink>
@@ -802,13 +783,15 @@
 											</h:panelGroup>
 											
 											
- -->										
- 	<p:commandLink style="left : 15%;" styleClass="btn btn-success btn-next" action="#{memberBean.edit()}" >
+ -->
+												<p:commandLink style="left : 15%;" update="pic"
+													styleClass="btn btn-success btn-next"
+													action="#{memberBean.edit()}">
 	Sauvegarder	<i class="icon-arrow-right icon-on-right"></i>
-	</p:commandLink>
- 
- </h:form>
-										
+												</p:commandLink>
+
+											</h:form>
+
 										</h:panelGroup>
 
 										<!--/widget-main-->
@@ -823,15 +806,13 @@
 								data-target="#modal-step-contents">
 								<ul class="wizard-steps clearfix">
 									<li data-target="#modal-step1" class="active"><span
-										class="step">1</span> <span class="title"> Ajout </span>
-									</li>
+										class="step">1</span> <span class="title"> Ajout </span></li>
 
-							  
+
 
 
 									<li data-target="#modal-step4"><span class="step">2</span>
-										<span class="title">Sauvegarde</span>
-									</li>
+										<span class="title">Sauvegarde</span></li>
 								</ul>
 							</h:panelGroup>
 
@@ -875,7 +856,8 @@
 
 	<a href="#" id="btn-scroll-up"
 		class="btn-scroll-up btn btn-small btn-inverse"> <i
-		class="icon-double-angle-up icon-only bigger-110"></i> </a>
+		class="icon-double-angle-up icon-only bigger-110"></i>
+	</a>
 
 	<!--basic scripts-->
 
@@ -891,29 +873,29 @@
 		//]]>
 		</script>
 
-	<h:outputScript library="js" name="bootstrap.min.js"/>
+	<h:outputScript library="js" name="bootstrap.min.js" />
 
 	<!--page specific plugin scripts-->
-	<h:outputScript library="js" name="fuelux/fuelux.wizard.min.js"/>
-	<h:outputScript library="js" name="jquery.validate.min.js"/>
-	<h:outputScript library="js" name="additional-methods.min.js"/>
-	<h:outputScript library="js" name="bootbox.min.js"/>
-	<h:outputScript library="js" name="jquery.maskedinput.min.js"/>
-	
+	<h:outputScript library="js" name="fuelux/fuelux.wizard.min.js" />
+	<h:outputScript library="js" name="jquery.validate.min.js" />
+	<h:outputScript library="js" name="additional-methods.min.js" />
+	<h:outputScript library="js" name="bootbox.min.js" />
+	<h:outputScript library="js" name="jquery.maskedinput.min.js" />
 
-	<h:outputScript library="js" name="jquery-ui-1.10.3.custom.min.js"/>
-	<h:outputScript library="js" name="jquery.ui.touch-punch.min.js"/>
-	<h:outputScript library="js" name="jquery.slimscroll.min.js"/>
-	<h:outputScript library="js" name="jquery.easy-pie-chart.min.js"/>
-	<h:outputScript library="js" name="jquery.sparkline.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.pie.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.resize.min.js"/>
+
+	<h:outputScript library="js" name="jquery-ui-1.10.3.custom.min.js" />
+	<h:outputScript library="js" name="jquery.ui.touch-punch.min.js" />
+	<h:outputScript library="js" name="jquery.slimscroll.min.js" />
+	<h:outputScript library="js" name="jquery.easy-pie-chart.min.js" />
+	<h:outputScript library="js" name="jquery.sparkline.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.pie.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.resize.min.js" />
 
 	<!--ace scripts-->
 
-	<h:outputScript library="js" name="ace-elements.min.js"/>
-	<h:outputScript library="js" name="ace.min.js"/>
+	<h:outputScript library="js" name="ace-elements.min.js" />
+	<h:outputScript library="js" name="ace.min.js" />
 
 	<!--inline scripts related to this page-->
 

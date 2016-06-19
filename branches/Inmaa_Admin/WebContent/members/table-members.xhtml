@@ -32,8 +32,8 @@
 		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
 
 
-	               
-	
+
+
 	<!--ace styles-->
 
 	<h:outputStylesheet library="css" name="ace.min.css" />
@@ -56,19 +56,18 @@
 				</h1>
 
 				<h:form>
-				<ul class="nav ace-nav pull-right">
-					<li class="light-blue">
-
-							<p:commandLink id="logout" action="#{loginMgmtBean.logout()}" styleClass="dropdown-toggle">
-								<h:graphicImage styleClass="nav-user-photo profile-img" library="images"
-									name="logo.png" alt="Inma Admin's Photo" />
-									<span class="user-info">  <strong>Logout</strong> <br/> Inma  Admin
-									</span>
-								<i class="icon-signout" style="font-size: 40px; padding-top: 2px;"></i>
-							</p:commandLink>
-
-					</li>
-				</ul>
+					<ul class="nav ace-nav pull-right">
+						<li class="light-blue"><p:commandLink id="logout"
+								action="#{loginMgmtBean.logout()}" styleClass="dropdown-toggle">
+								<h:graphicImage styleClass="nav-user-photo profile-img"
+									library="images" name="logo.png" alt="Inma Admin's Photo" />
+								<span class="user-info"> <strong>Logout</strong> <br />
+									Inma Admin
+								</span>
+								<i class="icon-signout"
+									style="font-size: 40px; padding-top: 2px;"></i>
+							</p:commandLink></li>
+					</ul>
 				</h:form>
 				<!--/.ace-nav-->
 			</h:panelGroup>
@@ -123,12 +122,10 @@
 				<li><h:outputLink value="../welcome.xhtml">
 						<i class="icon-dashboard"></i>
 						<span class="menu-text"> Dashboard </span>
-					</h:outputLink>
-				</li>
+					</h:outputLink></li>
 
 
-				<li><h:outputLink value="#"
-						class="dropdown-toggle">
+				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-pinterest"></i>
 						<span class="menu-text"> Projets </span>
 						<b class="arrow icon-angle-down"></b>
@@ -137,15 +134,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../projects/table-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les projets
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../projects/form-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau Projet
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-th-list"></i>
@@ -156,13 +150,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../events/table-events.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les événements
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../events/form-events.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel événement
 						</h:outputLink></li>
-						
+
 						<li><h:outputLink value="../events/table-subevents.xhtml">
 								<i class="icon-double-angle-right"></i> Tous sous événements
 						</h:outputLink></li>
@@ -170,10 +163,10 @@
 						<li><h:outputLink value="../events/form-subevents.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel sous événement
 						</h:outputLink></li>
-					</ul>
-				</li>
+					</ul></li>
 
-				<li class="active open"><h:outputLink value="#" class="dropdown-toggle">
+				<li class="active open"><h:outputLink value="#"
+						class="dropdown-toggle">
 						<i class="icon-user"></i>
 						<span class="menu-text"> Membres </span>
 						<b class="arrow icon-angle-down"></b>
@@ -182,15 +175,12 @@
 					<ul class="submenu">
 						<li class="active"><h:outputLink value="table-members.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les membres
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="form-members.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau membre
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-book"></i>
@@ -201,15 +191,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../articles/table-articles.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les articles
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../articles/form-articles.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel article
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-group"></i>
@@ -220,43 +207,40 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../partners/table-partners.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les Partenaires 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../partners/form-partners.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau Partenaire 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
-				<li ><h:outputLink value="#" class="dropdown-toggle">
+				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-file-text"></i>
 						<span class="menu-text"> Publications </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
 
 					<ul class="submenu">
-						<li><h:outputLink value="../publications/table-publications.xhtml">
+						<li><h:outputLink
+								value="../publications/table-publications.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les Publications 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
-						<li  ><h:outputLink value="../publications/form-publications.xhtml">
+						<li><h:outputLink
+								value="../publications/form-publications.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvelle Publication 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 				<li><h:outputLink value="../events/calendar.xhtml">
 						<i class="icon-calendar"></i>
 
 						<span class="menu-text"> Calendrier <span
 							class="badge badge-transparent tooltip-error"
 							title="2&nbsp;Important&nbsp;Events"> <i
-								class="icon-warning-sign red bigger-130"></i> </span> </span>
-					</h:outputLink>
-				</li>
+								class="icon-warning-sign red bigger-130"></i>
+						</span>
+						</span>
+					</h:outputLink></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-picture"></i>
@@ -267,15 +251,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../media/gallery.xhtml">
 								<i class="icon-double-angle-right"></i> Images 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
-						<li  ><h:outputLink value="../media/videos.xhtml">
+						<li><h:outputLink value="../media/videos.xhtml">
 								<i class="icon-double-angle-right"></i> Videos 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-tag"></i>
@@ -287,26 +268,21 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../more/profile.xhtml">
 								<i class="icon-double-angle-right"></i> User Profile
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../more/visualisation.xhtml">
 								<i class="icon-double-angle-right"></i> Visualisation
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="invoice.html">
 								<i class="icon-double-angle-right"></i> Invoice
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="login.html">
 								<i class="icon-double-angle-right"></i> Login &amp; Register
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
-<li><h:outputLink value="../configurations/config.xhtml">
+						</h:outputLink></li>
+					</ul></li>
+				<li><h:outputLink value="../configurations/config.xhtml">
 						<i class="icon-cogs"></i>
 						<span class="menu-text"> Parametrage </span>
 					</h:outputLink></li>
@@ -322,12 +298,13 @@
 			<h:panelGroup layout="block" styleClass="breadcrumbs"
 				id="breadcrumbs">
 				<ul class="breadcrumb">
-					<li><i class="icon-home home-icon"></i> <a href="../welcome.xhtml">Home</a> <span
-						class="divider"> <i class="icon-angle-right arrow-icon"></i>
+					<li><i class="icon-home home-icon"></i> <a
+						href="../welcome.xhtml">Home</a> <span class="divider"> <i
+							class="icon-angle-right arrow-icon"></i>
 					</span></li>
 					<li><a href="#">Membres</a> <span class="divider"> <i
-							class="icon-angle-right arrow-icon"></i> </span>
-					</li>
+							class="icon-angle-right arrow-icon"></i>
+					</span></li>
 					<li class="active">Tables des membres</li>
 				</ul>
 				<!--.breadcrumb-->
@@ -345,15 +322,16 @@
 			</h:panelGroup>
 
 			<h:panelGroup layout="block" styleClass="page-content">
-			<h:panelGroup layout="block"
+				<h:panelGroup layout="block"
 					styleClass="page-header position-relative">
 					<h1>
 						Tous les membres <small> <i
-							class="icon-double-angle-right"></i> Membres </small>
+							class="icon-double-angle-right"></i> Membres
+						</small>
 					</h1>
 				</h:panelGroup>
-			
-			
+
+
 
 				<h:panelGroup layout="block" styleClass="row-fluid">
 					<h:panelGroup layout="block" styleClass="span12">
@@ -364,16 +342,19 @@
 
 							<h:form id="form1">
 								<p:dataTable
-									styleClass="table table-striped table-bordered table-hover" sortOrder="descending" sortBy="#{member.seqNo}"
-									var="member" value="#{memberBean.members}" paginator="true" rows="20"
+									styleClass="table table-striped table-bordered table-hover"
+									sortOrder="descending" sortBy="#{member.seqNo}" var="member"
+									value="#{memberBean.members}" paginator="true" rows="20"
 									editable="true" id="sample-table-2" paginatorPosition="bottom"
 									resizableColumns="true">
-									
-									<p:column styleClass="center" style="width:30px"  sortBy="#{member.seqNo}">
-										<f:facet name="header" >
+
+									<p:column styleClass="center" style="width:30px"
+										sortBy="#{member.seqNo}">
+										<f:facet name="header">
 											<h:outputText value="N°" />
 										</f:facet>
-										<h:outputText styleClass="hidden-phone" value="#{member.seqNo}" />
+										<h:outputText styleClass="hidden-phone"
+											value="#{member.seqNo}" />
 									</p:column>
 
 									<p:column styleClass="center" sortBy="#{member.memberName}">
@@ -382,44 +363,51 @@
 										</f:facet>
 										<h:outputText value="#{member.memberName}" />
 									</p:column>
-									
+
 									<p:column styleClass="center" sortBy="#{member.memberName1}">
 										<f:facet name="header">
 											<h:outputText value="Nom" />
 										</f:facet>
 										<h:outputText value="#{member.memberName1}" />
 									</p:column>
-									
-									<p:column styleClass="center" style="width:140px" sortBy="#{member.memberIsOrg}">
+
+									<p:column styleClass="center" style="width:100px">
+										<f:facet name="header" styleClass="hidden-phone">
+											<h:outputText value="Date de naissance" />
+											<span class="lbl"></span>
+										</f:facet>
+										<span class="lbl"></span>
+										<h:outputText value="#{member.memberBirthDay}" />
+									</p:column>
+
+									<p:column styleClass="center" style="width:140px">
+										<f:facet name="header">
+											<h:outputText value="E-Mail" />
+										</f:facet>
+										<h:outputText value="#{member.memberEmail}" />
+									</p:column>
+
+									<p:column styleClass="center" style="width:140px">
+										<f:facet name="header">
+											<h:outputText value="Tél" />
+										</f:facet>
+										<h:outputText value="#{member.memberPhone}" />
+									</p:column>
+
+									<p:column styleClass="center" style="width:140px"
+										sortBy="#{member.memberIsOrg}">
 										<f:facet name="header" styleClass="hidden-phone">
 											<h:outputText value="Comité de direction " />
 											<span class="lbl"></span>
 										</f:facet>
 										<span class="lbl"></span>
-										   <h:outputText value="Oui " rendered="#{member.memberIsOrg}"/>
-   											<h:outputText value="Non "  rendered="#{not member.memberIsOrg}"/>
-										
- 									</p:column>
+										<h:outputText value="Oui " rendered="#{member.memberIsOrg}" />
+										<h:outputText value="Non "
+											rendered="#{not member.memberIsOrg}" />
 
-									<p:column styleClass="center" style="width:80px">
-										<f:facet name="header" styleClass="hidden-phone">
- 											<h:outputText value="travail" />
-											<span class="lbl"></span>
-										</f:facet>
-										<span class="lbl"></span>
-										<h:outputText value="#{member.memberTravail}" />
 									</p:column>
 
-
- 									
-									<p:column styleClass="center" style="width:140px">
-										<f:facet name="header">
-											<h:outputText value="fonction a inma" />
-										</f:facet>
-										<h:outputText value="#{member.memberStatus}" />
-									</p:column>
-
-									<p:column styleClass="center" style="width:150px" >
+									<p:column styleClass="center" style="width:150px">
 										<f:facet name="header">
 											<h:outputText value="" />
 										</f:facet>
@@ -428,11 +416,11 @@
 											<f:param name="id" value="#{member.memberId}" /> Modifier 
 											<i class="icon-edit bigger-120"></i>
 										</p:commandLink>
-										
+
 										<p:commandLink styleClass="btn btn-minier btn-danger"
 											action="#{memberBean.readyforDelete(member)}" ajax="true"
 											update=":form1:sample-table-2:ll"
-											oncomplete="PF('CDialogWidget').show();" > Supprimer 
+											oncomplete="PF('CDialogWidget').show();"> Supprimer 
 											<i class="icon-trash bigger-120"></i>
 
 										</p:commandLink>
@@ -443,11 +431,12 @@
 											widgetVar="CDialogWidget">
 											<p:commandButton value="Oui" update=":form1:sample-table-2"
 												action="#{memberBean.delete()}"
-												oncomplete="PF('CDialogWidget').hide()" onerror="PF('CDialogWidget').hide()"/>
+												oncomplete="PF('CDialogWidget').hide()"
+												onerror="PF('CDialogWidget').hide()" />
 											<p:commandButton value="Non"
 												onclick="PF('CDialogWidget').hide();" type="button" />
 										</p:confirmDialog>
-										
+
 									</p:column>
 								</p:dataTable>
 							</h:form>
@@ -456,7 +445,7 @@
 					</h:panelGroup>
 					<!--/.span-->
 				</h:panelGroup>
-			
+
 				<!--/.page-header-->
 
 
@@ -472,12 +461,13 @@
 
 	<a href="#" id="btn-scroll-up"
 		class="btn-scroll-up btn btn-small btn-inverse"> <i
-		class="icon-double-angle-up icon-only bigger-110"></i> </a>
+		class="icon-double-angle-up icon-only bigger-110"></i>
+	</a>
 
 	<!--basic scripts-->
 
 	<script
-		src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"/>
+		src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" />
 
 	<script type="text/javascript">
 	//<![CDATA[ 
@@ -491,23 +481,23 @@
 		//]]>
 		</script>
 
-	<h:outputScript library="js" name="bootstrap.min.js"/>
+	<h:outputScript library="js" name="bootstrap.min.js" />
 
 	<!--page specific plugin scripts-->
 
-	<h:outputScript library="js" name="jquery-ui-1.10.3.custom.min.js"/>
-	<h:outputScript library="js" name="jquery.ui.touch-punch.min.js"/>
-	<h:outputScript library="js" name="jquery.slimscroll.min.js"/>
-	<h:outputScript library="js" name="jquery.easy-pie-chart.min.js"/>
-	<h:outputScript library="js" name="jquery.sparkline.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.pie.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.resize.min.js"/>
+	<h:outputScript library="js" name="jquery-ui-1.10.3.custom.min.js" />
+	<h:outputScript library="js" name="jquery.ui.touch-punch.min.js" />
+	<h:outputScript library="js" name="jquery.slimscroll.min.js" />
+	<h:outputScript library="js" name="jquery.easy-pie-chart.min.js" />
+	<h:outputScript library="js" name="jquery.sparkline.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.pie.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.resize.min.js" />
 
 	<!--ace scripts-->
 
-	<h:outputScript library="js" name="ace-elements.min.js"/>
-	<h:outputScript library="js" name="ace.min.js"/>
+	<h:outputScript library="js" name="ace-elements.min.js" />
+	<h:outputScript library="js" name="ace.min.js" />
 
 </h:body>
 

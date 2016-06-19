@@ -191,7 +191,7 @@ public class MemberBean implements Serializable{
 			
 			if(currentMember.getMemberImage() == null)
 			{
-				if(currentMember.getMemberGender())
+				if(!currentMember.isMemberGender())
 					currentMember.setMemberImage("homme.jpg");
 				else
 					currentMember.setMemberImage("femme.jpg");
@@ -261,9 +261,9 @@ public class MemberBean implements Serializable{
 				submitLogoFile();
 			}
 			
-			if(currentMember.getMemberImage().equals("femme.jpg") && currentMember.getMemberGender())
+			if(currentMember.getMemberImage().equals("femme.jpg") && !currentMember.isMemberGender())
 				currentMember.setMemberImage("homme.jpg");
-			else if (currentMember.getMemberImage().equals("homme.jpg") && !currentMember.getMemberGender())
+			else if (currentMember.getMemberImage().equals("homme.jpg") && currentMember.isMemberGender())
 				currentMember.setMemberImage("femme.jpg");
 				
 			
