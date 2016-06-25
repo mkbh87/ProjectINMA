@@ -59,7 +59,7 @@ public class IProjectServiceImpl implements IProjectService{
 	@Override
 	public List<Project> lister() {
 		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createQuery("from Project").list();
+		return sessionFactory.getCurrentSession().createQuery("from Project order by seqNo asc").list();
 	}
 
 	@Override

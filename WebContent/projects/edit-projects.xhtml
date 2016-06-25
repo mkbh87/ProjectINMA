@@ -5,9 +5,9 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui" 
-	xmlns:pe="http://primefaces.org/ui/extensions" >
-	
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<meta name="description" content="" />
@@ -17,14 +17,15 @@
 
 	<!-- Mobile Specific Metas
     ================================================== -->
-	<meta name="viewport" 	content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
 	<!--basic styles-->
 
 	<h:outputStylesheet library="css" name="font-awesome-ie7.min.css" />
 	<h:outputStylesheet name="bootstrap.min.css" library="css" />
 	<h:outputStylesheet name="bootstrap-responsive.min.css" library="css" />
-	               
-	
+
+
 	<!--ace styles-->
 	<h:outputStylesheet library="css" name="ace.min.css" />
 	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
@@ -32,8 +33,8 @@
 	<h:outputStylesheet
 		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
 
-	               
-	
+
+
 	<!--ace styles-->
 
 	<h:outputStylesheet library="css" name="ace.min.css" />
@@ -60,19 +61,18 @@
 				</h1>
 
 				<h:form>
-				<ul class="nav ace-nav pull-right">
-					<li class="light-blue">
-
-							<p:commandLink id="logout" action="#{loginMgmtBean.logout()}" styleClass="dropdown-toggle">
-								<h:graphicImage styleClass="nav-user-photo profile-img" library="images"
-									name="logo.png" alt="Inma Admin's Photo" />
-									<span class="user-info">  <strong>Logout</strong> <br/> Inma  Admin
-									</span>
-								<i class="icon-signout" style="font-size: 40px; padding-top: 2px;"></i>
-							</p:commandLink>
-
-					</li>
-				</ul>
+					<ul class="nav ace-nav pull-right">
+						<li class="light-blue"><p:commandLink id="logout"
+								action="#{loginMgmtBean.logout()}" styleClass="dropdown-toggle">
+								<h:graphicImage styleClass="nav-user-photo profile-img"
+									library="images" name="logo.png" alt="Inma Admin's Photo" />
+								<span class="user-info"> <strong>Logout</strong> <br />
+									Inma Admin
+								</span>
+								<i class="icon-signout"
+									style="font-size: 40px; padding-top: 2px;"></i>
+							</p:commandLink></li>
+					</ul>
 				</h:form>
 				<!--/.ace-nav-->
 			</h:panelGroup>
@@ -124,8 +124,7 @@
 				<li><h:outputLink value="../welcome.xhtml">
 						<i class="icon-dashboard"></i>
 						<span class="menu-text"> Dashboard </span>
-					</h:outputLink>
-				</li>
+					</h:outputLink></li>
 
 
 				<li class="active open"><h:outputLink value="#"
@@ -138,15 +137,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="table-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les projets
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li class="active"><h:outputLink value="form-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau Projet
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-th-list"></i>
@@ -157,13 +153,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../events/table-events.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les événements
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../events/form-events.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel événement
 						</h:outputLink></li>
-						
+
 						<li><h:outputLink value="../events/table-subevents.xhtml">
 								<i class="icon-double-angle-right"></i> Tous sous événements
 						</h:outputLink></li>
@@ -171,8 +166,7 @@
 						<li><h:outputLink value="../events/form-subevents.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel sous événement
 						</h:outputLink></li>
-					</ul>
-				</li>
+					</ul></li>
 
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
@@ -216,43 +210,40 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../partners/table-partners.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les Partenaires 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../partners/form-partners.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau Partenaire 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
-				<li ><h:outputLink value="#" class="dropdown-toggle">
+				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-file-text"></i>
 						<span class="menu-text"> Publications </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
 
 					<ul class="submenu">
-						<li><h:outputLink value="../publications/table-publications.xhtml">
+						<li><h:outputLink
+								value="../publications/table-publications.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les Publications 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
-						<li  ><h:outputLink value="../publications/form-publications.xhtml">
+						<li><h:outputLink
+								value="../publications/form-publications.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvelle Publication 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 				<li><h:outputLink value="../events/calendar.xhtml">
 						<i class="icon-calendar"></i>
 
 						<span class="menu-text"> Calendrier <span
 							class="badge badge-transparent tooltip-error"
 							title="2&nbsp;Important&nbsp;Events"> <i
-								class="icon-warning-sign red bigger-130"></i> </span> </span>
-					</h:outputLink>
-				</li>
+								class="icon-warning-sign red bigger-130"></i>
+						</span>
+						</span>
+					</h:outputLink></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-picture"></i>
@@ -263,15 +254,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../media/gallery.xhtml">
 								<i class="icon-double-angle-right"></i> Images 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
-						<li  ><h:outputLink value="../media/videos.xhtml">
+						<li><h:outputLink value="../media/videos.xhtml">
 								<i class="icon-double-angle-right"></i> Videos 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-tag"></i>
@@ -283,26 +271,21 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../more/profile.xhtml">
 								<i class="icon-double-angle-right"></i> User Profile
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../more/visualisation.xhtml">
 								<i class="icon-double-angle-right"></i> Visualisation
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="invoice.html">
 								<i class="icon-double-angle-right"></i> Invoice
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="login.html">
 								<i class="icon-double-angle-right"></i> Login &amp; Register
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
-<li><h:outputLink value="../configurations/config.xhtml">
+						</h:outputLink></li>
+					</ul></li>
+				<li><h:outputLink value="../configurations/config.xhtml">
 						<i class="icon-cogs"></i>
 						<span class="menu-text"> Parametrage </span>
 					</h:outputLink></li>
@@ -318,12 +301,13 @@
 			<h:panelGroup layout="block" styleClass="breadcrumbs"
 				id="breadcrumbs">
 				<ul class="breadcrumb">
-					<li><i class="icon-home home-icon"></i> <a href="../welcome.xhtml">Home</a> <span
-						class="divider"> <i class="icon-angle-right arrow-icon"></i>
+					<li><i class="icon-home home-icon"></i> <a
+						href="../welcome.xhtml">Home</a> <span class="divider"> <i
+							class="icon-angle-right arrow-icon"></i>
 					</span></li>
 					<li><a href="#">Projets</a> <span class="divider"> <i
-							class="icon-angle-right arrow-icon"></i> </span>
-					</li>
+							class="icon-angle-right arrow-icon"></i>
+					</span></li>
 					<li class="active">Ajouter un projet</li>
 				</ul>
 				<!--.breadcrumb-->
@@ -336,7 +320,8 @@
 			<h:panelGroup layout="block" styleClass="page-content">
 				<h:panelGroup layout="block" class="page-header position-relative">
 					<h1>
-						Modification du projet <small> <i class="icon-double-angle-right"></i>
+						Modification du projet <small> <i
+							class="icon-double-angle-right"></i>
 						</small>
 					</h1>
 				</h:panelGroup>
@@ -351,38 +336,81 @@
 								<h:panelGroup layout="block" class="widget-box">
 									<h:panelGroup layout="block"
 										class="widget-header widget-header-blue widget-header-flat">
-										<h4 class="lighter">Modifier le projet</h4>
+										<h4 class="lighter">
+											<a target="_blank"
+												href="http://inma-maamoura.org/projects/#{projectBean.currentProject.projectUrl}">
+												Clic ICI pour voir la page sur Inma-maamoura.org</a>
+										</h4>
 
 									</h:panelGroup>
 
 									<h:panelGroup layout="block" class="widget-body widget-main">
 										<h:panelGroup layout="block" class="row-fluid">
-										<h:form class="form-h" id="form" prependId="false" enctype="multipart/form-data"
-														acceptcharset="UTF-8">
-											<h:panelGroup layout="block" id="fuelux-wizard"
-												class="row-fluid hide" data-target="#step-container">
-												<ul class="wizard-steps">
-													<li data-target="#step1" class="active"><span
-														class="step">1</span> <span class="title">Ajout</span></li>
+											<h:form class="form-h" id="form" prependId="false"
+												enctype="multipart/form-data" acceptcharset="UTF-8">
+												<h:panelGroup layout="block" id="fuelux-wizard"
+													style="height: auto;" class="row-fluid hide"
+													data-target="#step-container">
 
 
+													<h:panelGroup layout="block"
+														styleClass="navigator-Admin nav-left"
+														rendered="#{projectBean.prevProject != null}">
+														<p:commandLink
+															action="#{projectBean.showEdit(projectBean.prevProject)}">
+															<small>Précédent</small>
+															<br />
+															<f:param name="id"
+																value="#{projectBean.prevProject.projectId}" />
 
+															<i class="icon-backward"
+																style="font-size: 40px; color: #08c;"> <br />
+															</i>
+															<small>#{projectBean.prevProject.seqNo} -
+																#{projectBean.prevProject.projectName}</small>
+														</p:commandLink>
+													</h:panelGroup>
+
+
+													<ul class="wizard-steps custom-wizard">
+														<li data-target="#step1" class="active"><span
+															class="step">1</span> <span class="title">Ajout</span></li>
 														<li data-target="#step2"><span class="step">2</span>
 															<span class="title">Sauvegarde</span></li>
-												</ul>
-											</h:panelGroup>
-											<p:separator />
-											<h:panelGroup layout="block"
-												class="step-content row-fluid position-relative"
-												id="step-container">
-													
+													</ul>
+
+
+													<h:panelGroup layout="block"
+														rendered="#{projectBean.nextProject != null}"
+														styleClass="navigator-Admin nav-right">
+														<p:commandLink
+															action="#{projectBean.showEdit(projectBean.nextProject)}">
+															<small> Suivant </small>
+															<br />
+															<f:param name="id"
+																value="#{projectBean.nextProject.projectId}" />
+															<i class="icon-forward"
+																style="font-size: 40px; color: #08c;"> <br />
+															</i>
+															<small>#{projectBean.nextProject.seqNo}-
+																#{projectBean.nextProject.projectName}</small>
+														</p:commandLink>
+													</h:panelGroup>
+
+
+												</h:panelGroup>
+												<p:separator />
+												<h:panelGroup layout="block"
+													class="step-content row-fluid position-relative"
+													id="step-container">
+
 													<h:panelGroup layout="block" class="step-pane active"
-													id="step1">
-													<h3 class="lighter block green">Modification du Projet</h3>
+														id="step1">
+														<h3 class="lighter block green">Modification du
+															Projet Numéro: #{projectBean.currentProject.seqNo}</h3>
 
 
-														<h:panelGroup layout="block"
-															styleClass="control-group">
+														<h:panelGroup layout="block" styleClass="control-group">
 															<p:outputLabel styleClass="control-label" for="intitule"
 																value="Nom de Projet " />
 
@@ -390,19 +418,20 @@
 																<span class="span8 input-icon input-icon-right">
 																	<h:inputText styleClass="span12" id="intitule"
 																		value="#{projectBean.currentProject.projectName}" />
-																	<i class="icon-warning-sign"></i> </span>
+																	<i class="icon-warning-sign"></i>
+																</span>
 																<span class="help-inline"> Champs obligatoire </span>
 															</h:panelGroup>
 														</h:panelGroup>
 
 														<h:panelGroup layout="block" class="control-group">
-															<p:outputLabel styleClass="control-label"
-																for="def" value="Court Description " />
+															<p:outputLabel styleClass="control-label" for="def"
+																value="Court Description " />
 
 															<h:panelGroup layout="block" class="controls">
 																<span class="span8 input-icon input-icon-right">
 																	<h:inputTextarea styleClass="span12 limited" rows="2"
-																		 id="def"
+																		id="def"
 																		value="#{projectBean.currentProject.projectDef}" />
 																</span>
 															</h:panelGroup>
@@ -414,9 +443,20 @@
 
 															<h:panelGroup layout="block" class="controls">
 																<span class="span12 input-icon input-icon-right">
-																<p:growl id="growl" showDetail="true" />  
-																<pe:ckEditor id="editor" value="#{projectBean.currentProject.projectDesc}" 
-																language="ar" width="85%" checkDirtyInterval="0"  />
+																	<p:growl id="growl" showDetail="true" /> <pe:ckEditor
+																		id="editor"
+																		value="#{projectBean.currentProject.projectDesc}"
+																		language="fr" skin="kama"
+																		toolbar="[[ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ],
+																			[ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],
+																			[ 'Find', 'Replace', '-', 'SelectAll', '-','SpellChecker', 'Scayt' ],
+																			[ 'TextColor', 'BGColor' ] ,[ 'Link', 'Unlink', 'Anchor' ], [ 'Styles', 'Format', 'FontSize' ],
+																			[ 'Maximize', 'ShowBlocks' ] ,[ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', 
+																			'-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language' ],
+																			[ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ],
+																			[ 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ],
+																			[ 'Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates',  ], [ 'About' ] ]"
+																		interfaceColor="#0A163D" width="80%" checkDirtyInterval="0" />
 																</span>
 															</h:panelGroup>
 														</h:panelGroup>
@@ -427,17 +467,17 @@
 
 															<h:panelGroup layout="block" class="controls">
 																<span class="span8 input-icon input-icon-right">
-																	<p:fileUpload label="Choisir image" value="/home/khalil/workspace/Inmaa_Admin/WebContent/resources/images/logo.jpg"
+																	<p:fileUpload label="Choisir image"
+																		value="/home/khalil/workspace/Inmaa_Admin/WebContent/resources/images/logo.jpg"
 																		cancelLabel="Annuler" uploadLabel="Envoyer"
 																		fileUploadListener="#{projectBean.handleFileUpload}"
-																		update=""
-																		mode="advanced" sizeLimit="1000000" fileLimit="1"
-																		allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-<br />
-<h:graphicImage id ="pic" style="height: 150px" value="http://inma-maamoura.org/javax.faces.resource/#{projectBean.currentProject.projectLogo}.xhtml?ln=images" />															
+																		update="" mode="advanced" sizeLimit="1000000"
+																		fileLimit="1" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+																	<br /> <h:graphicImage id="pic" style="height: 150px"
+																		value="http://inma-maamoura.org/javax.faces.resource/#{projectBean.currentProject.projectLogo}.xhtml?ln=images" />
 																</span>
 															</h:panelGroup>
- 															
+
 														</h:panelGroup>
 
 														<h:panelGroup layout="block" class="control-group">
@@ -459,8 +499,7 @@
 															</h:panelGroup>
 														</h:panelGroup>
 
-														<h:panelGroup layout="block"
-															styleClass="control-group">
+														<h:panelGroup layout="block" styleClass="control-group">
 															<p:outputLabel styleClass="control-label" for="Endroit"
 																value="l'emplacement " />
 
@@ -475,7 +514,7 @@
 														</h:panelGroup>
 
 
-<!-- 
+														<!-- 
 														<h:panelGroup layout="block"
 															styleClass="control-group">
 															<p:outputLabel styleClass="control-label"
@@ -493,8 +532,8 @@
  -->
 
 														<h:panelGroup layout="block" class="control-group">
-															<p:outputLabel styleClass="control-label"
-																for="phone" value="Telephone" />
+															<p:outputLabel styleClass="control-label" for="phone"
+																value="Telephone" />
 
 															<h:panelGroup layout="block" class="controls">
 																<h:panelGroup layout="block" class="span4 input-prepend">
@@ -509,21 +548,23 @@
 															</h:panelGroup>
 														</h:panelGroup>
 													</h:panelGroup>
-													
-													
+
+
 													<p:separator />
-													<h:panelGroup layout="block" class="step-pane active" id="step2">
-													 
-														<h3 class="lighter block green">Liaison  </h3>
-															
+													<h:panelGroup layout="block" class="step-pane active"
+														id="step2">
+
+														<h3 class="lighter block green">Liaison</h3>
+
 														<h:panelGroup layout="block" class="control-group">
-															<p:outputLabel styleClass="control-label" 
+															<p:outputLabel styleClass="control-label"
 																value="Jointure avec les partenaires " />
 
-															<h:panelGroup layout="block" class="controls" >
+															<h:panelGroup layout="block" class="controls">
 
-																<p:pickList value="#{projectBean.listePartners}" var="partner" 
-																	itemValue="#{partner}" converter="stdConverter">
+																<p:pickList value="#{projectBean.listePartners}"
+																	var="partner" itemValue="#{partner}"
+																	converter="stdConverter">
 																	<f:facet name="sourceCaption">Tous les partenaires</f:facet>
 																	<f:facet name="targetCaption">Les partenaires liés au project</f:facet>
 
@@ -533,15 +574,16 @@
 																</p:pickList>
 															</h:panelGroup>
 														</h:panelGroup>
-														
+
 														<h:panelGroup layout="block" class="control-group">
-															<p:outputLabel styleClass="control-label" 
+															<p:outputLabel styleClass="control-label"
 																value="Jointure avec les members " />
 
-															<h:panelGroup layout="block" class="controls" >
+															<h:panelGroup layout="block" class="controls">
 
-																<p:pickList value="#{projectBean.listeMembers}" var="member" 
-																	itemValue="#{member}" converter="stdConverter">
+																<p:pickList value="#{projectBean.listeMembers}"
+																	var="member" itemValue="#{member}"
+																	converter="stdConverter">
 																	<f:facet name="sourceCaption">Tous les members</f:facet>
 																	<f:facet name="targetCaption">Les members liés au project</f:facet>
 
@@ -554,7 +596,7 @@
 
 														<p:separator />
 
-												</h:panelGroup>
+													</h:panelGroup>
 
 													<h:panelGroup layout="block"
 														class="row-fluid wizard-actions">
@@ -573,8 +615,8 @@
 													</h:panelGroup>
 
 												</h:panelGroup>
-										</h:form>
-										
+											</h:form>
+
 										</h:panelGroup>
 										<!--/widget-main-->
 									</h:panelGroup>
@@ -588,15 +630,13 @@
 								data-target="#modal-step-contents">
 								<ul class="wizard-steps clearfix">
 									<li data-target="#modal-step1" class="active"><span
-										class="step">1</span> <span class="title"> Ajout </span>
-									</li>
+										class="step">1</span> <span class="title"> Ajout </span></li>
 
-							  
+
 
 
 									<li data-target="#modal-step4"><span class="step">2</span>
-										<span class="title">Sauvegarde</span>
-									</li>
+										<span class="title">Sauvegarde</span></li>
 								</ul>
 							</h:panelGroup>
 
@@ -642,15 +682,19 @@
 
 	<a href="#" id="btn-scroll-up"
 		class="btn-scroll-up btn btn-small btn-inverse"> <i
-		class="icon-double-angle-up icon-only bigger-110"></i> </a>
+		class="icon-double-angle-up icon-only bigger-110"></i>
+	</a>
 
 	<!--basic scripts-->
 
 	<script type="text/javascript">
-	//<![CDATA[ 
-        window.jQuery || document.write("<h:outputScript library='js' name='jquery-2.0.3.min.js'>" + "<" + "/script>");
-      //]]>
-    </script>
+		//<![CDATA[ 
+		window.jQuery
+				|| document
+						.write("<h:outputScript library='js' name='jquery-2.0.3.min.js'>"
+								+ "<" + "/script>");
+		//]]>
+	</script>
 	<!--<![endif]-->
 
 	<!--[if IE]>
@@ -659,183 +703,204 @@
 </script>
 <![endif]-->
 	<script type="text/javascript">
-	//<![CDATA[ 
-        if ("ontouchend" in document) document.write("<script src='js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
-    //]]>
-    </script>
-	<h:outputScript library="js" name="bootstrap.min.js"/>
+		//<![CDATA[ 
+		if ("ontouchend" in document)
+			document.write("<script src='js/jquery.mobile.custom.min.js'>"
+					+ "<" + "/script>");
+		//]]>
+	</script>
+	<h:outputScript library="js" name="bootstrap.min.js" />
 
 	<!--page specific plugin scripts-->
-	<h:outputScript library="js" name="fuelux/fuelux.wizard.min.js"/>
-	<h:outputScript library="js" name="jquery.validate.min.js"/>
-	<h:outputScript library="js" name="additional-methods.min.js"/>
-	<h:outputScript library="js" name="bootbox.min.js"/>
-	<h:outputScript library="js" name="jquery.maskedinput.min.js"/>
-	
+	<h:outputScript library="js" name="fuelux/fuelux.wizard.min.js" />
+	<h:outputScript library="js" name="jquery.validate.min.js" />
+	<h:outputScript library="js" name="additional-methods.min.js" />
+	<h:outputScript library="js" name="bootbox.min.js" />
+	<h:outputScript library="js" name="jquery.maskedinput.min.js" />
 
-	<h:outputScript library="js" name="jquery-ui-1.10.3.custom.min.js"/>
-	<h:outputScript library="js" name="jquery.ui.touch-punch.min.js"/>
-	<h:outputScript library="js" name="jquery.slimscroll.min.js"/>
-	<h:outputScript library="js" name="jquery.easy-pie-chart.min.js"/>
-	<h:outputScript library="js" name="jquery.sparkline.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.pie.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.resize.min.js"/>
+
+	<h:outputScript library="js" name="jquery-ui-1.10.3.custom.min.js" />
+	<h:outputScript library="js" name="jquery.ui.touch-punch.min.js" />
+	<h:outputScript library="js" name="jquery.slimscroll.min.js" />
+	<h:outputScript library="js" name="jquery.easy-pie-chart.min.js" />
+	<h:outputScript library="js" name="jquery.sparkline.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.pie.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.resize.min.js" />
 
 	<!--ace scripts-->
 
-	<h:outputScript library="js" name="ace-elements.min.js"/>
-	<h:outputScript library="js" name="ace.min.js"/>
+	<h:outputScript library="js" name="ace-elements.min.js" />
+	<h:outputScript library="js" name="ace.min.js" />
 
 	<!--inline scripts related to this page-->
 
 	<script type="text/javascript">
-	//<![CDATA[ 
-        $(function() {
+		//<![CDATA[ 
+		$(function() {
 
-            $('[data-rel=tooltip]').tooltip();
+			$('[data-rel=tooltip]').tooltip();
 
-            
+			var $validation = false;
+			$('#fuelux-wizard')
+					.ace_wizard()
+					.on('change', function(e, info) {
+						if (info.step == 1 && $validation) {
+							if (!$('#validation-form').valid())
+								return false;
+						}
+					})
+					.on(
+							'finished',
+							function(e) {
+								bootbox
+										.dialog(
+												"Thank you! Your information was successfully saved!",
+												[ {
+													"label" : "OK",
+													"class" : "btn-small btn-primary",
+												} ]);
+							}).on('stepclick', function(e) {
+						//return false;//prevent clicking on steps
+					});
 
+			$('#validation-form').hide();
+			$('#skip-validation').removeAttr('checked').on('click', function() {
+				$validation = this.checked;
+				if (this.checked) {
+					$('#sample-form').hide();
+					$('#validation-form').show();
+				} else {
+					$('#validation-form').hide();
+					$('#sample-form').show();
+				}
+			});
 
-            var $validation = false;
-            $('#fuelux-wizard').ace_wizard().on('change', function(e, info) {
-                if (info.step == 1 && $validation) {
-                    if (!$('#validation-form').valid()) return false;
-                }
-            }).on('finished', function(e) {
-                bootbox.dialog("Thank you! Your information was successfully saved!", [{
-                    "label": "OK",
-                    "class": "btn-small btn-primary",
-                }]);
-            }).on('stepclick', function(e) {
-                //return false;//prevent clicking on steps
-            });
+			//documentation : http://docs.jquery.com/Plugins/Validation/validate
 
+			$.mask.definitions['~'] = '[+-]';
+			$('#phone').mask('(+216) 99 999 999');
 
-            $('#validation-form').hide();
-            $('#skip-validation').removeAttr('checked').on('click', function() {
-                $validation = this.checked;
-                if (this.checked) {
-                    $('#sample-form').hide();
-                    $('#validation-form').show();
-                } else {
-                    $('#validation-form').hide();
-                    $('#sample-form').show();
-                }
-            });
+			jQuery.validator.addMethod("phone", function(value, element) {
+				return this.optional(element)
+						|| /^\(\d{3}\) \d{3}\-\d{4}( x\d{1,6})?$/.test(value);
+			}, "Enter a valid phone number.");
 
+			$('#validation-form')
+					.validate(
+							{
+								errorElement : 'span',
+								errorClass : 'help-inline',
+								focusInvalid : false,
+								rules : {
+									email : {
+										required : true,
+										email : true
+									},
+									password : {
+										required : true,
+										minlength : 5
+									},
+									password2 : {
+										required : true,
+										minlength : 5,
+										equalTo : "#password"
+									},
+									name : {
+										required : true
+									},
+									phone : {
+										required : true,
+										phone : 'required'
+									},
+									url : {
+										required : true,
+										url : true
+									},
+									comment : {
+										required : true
+									},
+									state : {
+										required : true
+									},
+									platform : {
+										required : true
+									},
+									subscription : {
+										required : true
+									},
+									gender : 'required',
+									agree : 'required'
+								},
 
+								messages : {
+									email : {
+										required : "Please provide a valid email.",
+										email : "Please provide a valid email."
+									},
+									password : {
+										required : "Please specify a password.",
+										minlength : "Please specify a secure password."
+									},
+									subscription : "Please choose at least one option",
+									gender : "Please choose gender",
+									agree : "Please accept our policy"
+								},
 
-            //documentation : http://docs.jquery.com/Plugins/Validation/validate
+								invalidHandler : function(event, validator) { //display error alert on form submit   
+									$('.alert-error', $('.login-form')).show();
+								},
 
+								highlight : function(e) {
+									$(e).closest('.control-group').removeClass(
+											'info').addClass('error');
+								},
 
-            $.mask.definitions['~'] = '[+-]';
-            $('#phone').mask('(+216) 99 999 999');
+								success : function(e) {
+									$(e).closest('.control-group').removeClass(
+											'error').addClass('info');
+									$(e).remove();
+								},
 
-            jQuery.validator.addMethod("phone", function(value, element) {
-                return this.optional(element) || /^\(\d{3}\) \d{3}\-\d{4}( x\d{1,6})?$/.test(value);
-            }, "Enter a valid phone number.");
+								errorPlacement : function(error, element) {
+									if (element.is(':checkbox')
+											|| element.is(':radio')) {
+										var controls = element
+												.closest('.controls');
+										if (controls.find(':checkbox,:radio').length > 1)
+											controls.append(error);
+										else
+											error.insertAfter(element.nextAll(
+													'.lbl:eq(0)').eq(0));
+									} else if (element.is('.select2')) {
+										error
+												.insertAfter(element
+														.siblings('[class*="select2-container"]:eq(0)'));
+									} else if (element.is('.chzn-select')) {
+										error
+												.insertAfter(element
+														.siblings('[class*="chzn-container"]:eq(0)'));
+									} else
+										error.insertAfter(element);
+								},
 
-            $('#validation-form').validate({
-                errorElement: 'span',
-                errorClass: 'help-inline',
-                focusInvalid: false,
-                rules: {
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    password: {
-                        required: true,
-                        minlength: 5
-                    },
-                    password2: {
-                        required: true,
-                        minlength: 5,
-                        equalTo: "#password"
-                    },
-                    name: {
-                        required: true
-                    },
-                    phone: {
-                        required: true,
-                        phone: 'required'
-                    },
-                    url: {
-                        required: true,
-                        url: true
-                    },
-                    comment: {
-                        required: true
-                    },
-                    state: {
-                        required: true
-                    },
-                    platform: {
-                        required: true
-                    },
-                    subscription: {
-                        required: true
-                    },
-                    gender: 'required',
-                    agree: 'required'
-                },
+								submitHandler : function(form) {
+								},
+								invalidHandler : function(form) {
+								}
+							});
 
-                messages: {
-                    email: {
-                        required: "Please provide a valid email.",
-                        email: "Please provide a valid email."
-                    },
-                    password: {
-                        required: "Please specify a password.",
-                        minlength: "Please specify a secure password."
-                    },
-                    subscription: "Please choose at least one option",
-                    gender: "Please choose gender",
-                    agree: "Please accept our policy"
-                },
+			$('#modal-wizard .modal-header').ace_wizard();
+			$('#modal-wizard .wizard-actions .btn[data-dismiss=modal]')
+					.removeAttr('disabled');
 
-                invalidHandler: function(event, validator) { //display error alert on form submit   
-                    $('.alert-error', $('.login-form')).show();
-                },
-
-                highlight: function(e) {
-                    $(e).closest('.control-group').removeClass('info').addClass('error');
-                },
-
-                success: function(e) {
-                    $(e).closest('.control-group').removeClass('error').addClass('info');
-                    $(e).remove();
-                },
-
-                errorPlacement: function(error, element) {
-                    if (element.is(':checkbox') || element.is(':radio')) {
-                        var controls = element.closest('.controls');
-                        if (controls.find(':checkbox,:radio').length > 1) controls.append(error);
-                        else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
-                    } else if (element.is('.select2')) {
-                        error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
-                    } else if (element.is('.chzn-select')) {
-                        error.insertAfter(element.siblings('[class*="chzn-container"]:eq(0)'));
-                    } else error.insertAfter(element);
-                },
-
-                submitHandler: function(form) {},
-                invalidHandler: function(form) {}
-            });
-
-
-            $('#modal-wizard .modal-header').ace_wizard();
-            $('#modal-wizard .wizard-actions .btn[data-dismiss=modal]').removeAttr('disabled');
-            
 			$('#id-input-file-3').ace_file_input({
-				style:'well',
-				btn_choose:'Drop files here or click to choose',
-				btn_change:null,
-				no_icon:'icon-cloud-upload',
-				droppable:true,
-				thumbnail:'small'
+				style : 'well',
+				btn_choose : 'Drop files here or click to choose',
+				btn_change : null,
+				no_icon : 'icon-cloud-upload',
+				droppable : true,
+				thumbnail : 'small'
 				//,icon_remove:null//set null, to hide remove/reset button
 				/**,before_change:function(files, dropped) {
 					//Check an example below
@@ -854,22 +919,24 @@
 					//3 = 'THUMBNAIL_FAILED'
 					//alert(error_code);
 				}
-		
-			}).on('change', function(){
+
+			}).on('change', function() {
 				//console.log($(this).data('ace_input_files'));
 				//console.log($(this).data('ace_input_method'));
 			});
-        })
-        //]]>
-    </script>
- 	
- 	<script type="text/javascript">
-	//<![CDATA[ 
-    jQuery(document).ready(function($) {
-    $("j_idt33:inputtextlist").contents().find('html').attr('dir', 'rtl');                          
-}); 
-//]]>
-</script> 
-    
+		})
+		//]]>
+	</script>
+
+	<script type="text/javascript">
+		//<![CDATA[ 
+		jQuery(document).ready(
+				function($) {
+					$("j_idt33:inputtextlist").contents().find('html').attr(
+							'dir', 'rtl');
+				});
+		//]]>
+	</script>
+
 </h:body>
 </html>

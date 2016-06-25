@@ -359,15 +359,51 @@
 												enctype="multipart/form-data" acceptcharset="UTF-8">
 												<h:panelGroup layout="block" id="fuelux-wizard"
 													class="row-fluid hide" data-target="#step-container">
+													
+													<h:panelGroup layout="block"
+														styleClass="navigator-Admin nav-left"
+														rendered="#{partnerBean.prevPartner != null}">
+														<p:commandLink
+															action="#{partnerBean.showEdit(partnerBean.prevPartner)}">
+															<small>Précédent</small>
+															<br />
+															<f:param name="id"
+																value="#{partnerBean.prevPartner.partnerId}" />
+
+															<i class="icon-backward"
+																style="font-size: 40px; color: #08c;"> <br />
+															</i>
+															<small>#{partnerBean.prevPartner.seqNo} -
+																#{partnerBean.prevPartner.partnerName}</small>
+														</p:commandLink>
+													</h:panelGroup>
+													
+													
 													<ul class="wizard-steps">
 														<li data-target="#step1" class="active"><span
 															class="step">1</span> <span class="title">Ajout</span></li>
-
-
-
 														<li data-target="#step4"><span class="step">2</span>
 															<span class="title">Sauvegarde</span></li>
 													</ul>
+													
+													
+													<h:panelGroup layout="block"
+														rendered="#{partnerBean.nextPartner != null}"
+														styleClass="navigator-Admin nav-right">
+														<p:commandLink
+															action="#{partnerBean.showEdit(partnerBean.nextPartner)}">
+															<small> Suivant </small>
+															<br />
+															<f:param name="id"
+																value="#{partnerBean.nextPartner.partnerId}" />
+															<i class="icon-forward"
+																style="font-size: 40px; color: #08c;"> <br />
+															</i>
+															<small>#{partnerBean.nextPartner.seqNo}-
+																#{partnerBean.nextPartner.partnerName}</small>
+														</p:commandLink>
+													</h:panelGroup>
+													
 												</h:panelGroup>
 												<p:separator />
 												<h:panelGroup layout="block"
@@ -375,7 +411,8 @@
 													id="step-container">
 													<h:panelGroup layout="block" class="step-pane active"
 														id="step1">
-														<h3 class="lighter block green">Nouveau Partenaire</h3>
+														<h3 class="lighter block green">Modification du Partenaire
+														Numéro: #{partnerBean.currentPartner.seqNo}</h3>
 
 														<h:panelGroup layout="block"
 															styleClass="control-group">

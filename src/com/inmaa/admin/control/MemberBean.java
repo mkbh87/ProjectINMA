@@ -24,6 +24,7 @@ import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.inmaa.admin.persistence.Event;
 import com.inmaa.admin.persistence.Member;
 import com.inmaa.admin.service.IMemberService;
 import com.inmaa.admin.tools.Utils;
@@ -52,6 +53,9 @@ public class MemberBean implements Serializable{
 	private int id;
 	private UploadedFile uploadedFile;
 	private String fileName;
+
+	private Member prevMember;
+	private Member nextMember;
 
 
 
@@ -239,6 +243,10 @@ public class MemberBean implements Serializable{
 	public String showEdit(Member p){
 		currentMember = p;
 		setId(currentMember.getMemberId());
+		
+		prevMember = getmemberBySeqNo(currentMember.getSeqNo() ,-1);
+		nextMember = getmemberBySeqNo(currentMember.getSeqNo() , 1);
+
 		return "edit-members.xhtml?faces-redirect=true&amp;includeViewParams=true";
 	}
 	
@@ -287,5 +295,44 @@ public class MemberBean implements Serializable{
 		setId(currentMember.getMemberId());
 		
 	}
+	public Member getmemberBySeqNo(int Seqno, int type)
+	{
+		members.setWrappedData( memberService.lister());
+		Member previous = new Member();
+		previous=null;
+		Iterator<Member> itr = members.iterator();
+		while(itr.hasNext()) {
+			Member pr  = itr.next();
+			if(pr.getSeqNo() == Seqno)
+			{
+				if( type == -1)
+					return previous;
+				else if ( type == 1)
+					if(itr.hasNext())
+						return itr.next();
+					else
+						return null;
+				else
+					return pr;
+			}
+			previous = pr;
+		}
+		return null;
+	}
+	
+	public Member getPrevMember() {
+		return prevMember;
+	}
 
+	public void setPrevMember(Member prevMember) {
+		this.prevMember = prevMember;
+	}
+
+	public Member getNextMember() {
+		return nextMember;
+	}
+
+	public void setNextMember(Member nextMember) {
+		this.nextMember = nextMember;
+	}
 }

@@ -44,6 +44,9 @@ public class PartnerBean implements Serializable{
 	private DualListModel<Member> memberModel;
 	private UploadedFile uploadedFile;
 	private String fileName;
+	
+	private Partner prevPartner;
+	private Partner nextPartner;
 
 	private static final long serialVersionUID = 1L;
 		
@@ -150,6 +153,10 @@ public class PartnerBean implements Serializable{
 	public String showEdit(Partner p){
 		currentPartner = p;
 		setId(currentPartner.getPartnerId());
+
+		prevPartner = getpartnerBySeqNo(currentPartner.getSeqNo() ,-1);
+		nextPartner = getpartnerBySeqNo(currentPartner.getSeqNo() , 1);
+
 		return "edit-partners.xhtml?faces-redirect=true&amp;includeViewParams=true";
 	}
 
@@ -263,6 +270,46 @@ public class PartnerBean implements Serializable{
 		this.members = members;
 	}
 	
+	public Partner getpartnerBySeqNo(int Seqno, int type)
+	{
+		es.setWrappedData( partnerService.lister());
+		Partner previous = new Partner();
+		previous=null;
+		Iterator<Partner> itr = es.iterator();
+		while(itr.hasNext()) {
+			Partner pr  = itr.next();
+			if(pr.getSeqNo() == Seqno)
+			{
+				if( type == -1)
+					return previous;
+				else if ( type == 1)
+					if(itr.hasNext())
+						return itr.next();
+					else
+						return null;
+				else
+					return pr;
+			}
+			previous = pr;
+		}
+		return null;
+	}
+	
+	public Partner getPrevPartner() {
+		return prevPartner;
+	}
+
+	public void setPrevPartner(Partner prevPartner) {
+		this.prevPartner = prevPartner;
+	}
+
+	public Partner getNextPartner() {
+		return nextPartner;
+	}
+
+	public void setNextPartner(Partner nextPartner) {
+		this.nextPartner = nextPartner;
+	}
 }
 
  

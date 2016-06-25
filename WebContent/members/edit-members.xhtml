@@ -359,15 +359,52 @@
 												enctype="multipart/form-data" acceptcharset="UTF-8">
 												<h:panelGroup layout="block" id="fuelux-wizard"
 													class="row-fluid hide" data-target="#step-container">
+													
+													<h:panelGroup layout="block"
+														styleClass="navigator-Admin nav-left"
+														rendered="#{memberBean.prevMember != null}">
+														<p:commandLink
+															action="#{memberBean.showEdit(memberBean.prevMember)}">
+															<small>Précédent</small>
+															<br />
+															<f:param name="id"
+																value="#{memberBean.prevMember.memberId}" />
+
+															<i class="icon-backward"
+																style="font-size: 40px; color: #08c;"> <br />
+															</i>
+															<small>#{memberBean.prevMember.seqNo} -
+																#{memberBean.prevMember.memberName} #{memberBean.prevMember.memberName1}</small>
+														</p:commandLink>
+													</h:panelGroup>
+													
+													
 													<ul class="wizard-steps">
 														<li data-target="#step1" class="active"><span
 															class="step">1</span> <span class="title">Ajout</span></li>
-
-
-
 														<li data-target="#step4"><span class="step">2</span>
 															<span class="title">Sauvegarde</span></li>
 													</ul>
+													
+													<h:panelGroup layout="block"
+														rendered="#{memberBean.nextMember != null}"
+														styleClass="navigator-Admin nav-right">
+														<p:commandLink
+															action="#{memberBean.showEdit(memberBean.nextMember)}">
+															<small> Suivant </small>
+															<br />
+															<f:param name="id"
+																value="#{memberBean.nextMember.memberId}" />
+															<i class="icon-forward"
+																style="font-size: 40px; color: #08c;"> <br />
+															</i>
+															<small>#{memberBean.nextMember.seqNo}-
+																#{memberBean.nextMember.memberName} #{memberBean.nextMember.memberName1}</small>
+														</p:commandLink>
+													</h:panelGroup>
+													
+													
+													
 												</h:panelGroup>
 												<p:separator />
 												<h:panelGroup layout="block"
@@ -376,7 +413,7 @@
 													<h:panelGroup layout="block" class="step-pane active"
 														id="step1">
 														<h3 class="lighter block green">Modification du
-															membre</h3>
+															membre Numéro: #{memberBean.currentMember.seqNo}</h3>
 
 														<h:graphicImage id="pic"
 															style="height: 300px;position: absolute; right: 10px;"
