@@ -353,15 +353,51 @@
 
 											<h:panelGroup layout="block" id="fuelux-wizard"
 												class="row-fluid hide" data-target="#step-container">
+												
+													<h:panelGroup layout="block"
+														styleClass="navigator-Admin nav-left"
+														rendered="#{articleBean.prevArticle != null}">
+														<p:commandLink
+															action="#{articleBean.showEdit(articleBean.prevArticle)}">
+															<small>Précédent</small>
+															<br />
+															<f:param name="id"
+																value="#{articleBean.prevArticle.articleId}" />
+
+															<i class="icon-backward"
+																style="font-size: 40px; color: #08c;"> <br />
+															</i>
+															<small>#{articleBean.prevArticle.seqNo} -
+																#{articleBean.prevArticle.articleTitle}</small>
+														</p:commandLink>
+													</h:panelGroup>
+												
+												
 												<ul class="wizard-steps">
 													<li data-target="#step1" class="active"><span
 														class="step">1</span> <span class="title">Ajout</span></li>
-
-
-
 													<li data-target="#step2"><span class="step">2</span> <span
 														class="title">Jointure</span></li>
 												</ul>
+												
+												<h:panelGroup layout="block"
+														rendered="#{articleBean.nextArticle != null}"
+														styleClass="navigator-Admin nav-right">
+														<p:commandLink
+															action="#{articleBean.showEdit(articleBean.nextArticle)}">
+															<small> Suivant </small>
+															<br />
+															<f:param name="id"
+																value="#{articleBean.nextArticle.articleId}" />
+															<i class="icon-forward"
+																style="font-size: 40px; color: #08c;"> <br />
+															</i>
+															<small>#{articleBean.nextArticle.seqNo}-
+																#{articleBean.nextArticle.articleTitle}</small>
+														</p:commandLink>
+													</h:panelGroup>
+												
+												
 											</h:panelGroup>
 											<p:separator />
 											<h:panelGroup layout="block"
@@ -372,7 +408,8 @@
 
 													<h:panelGroup layout="block" id="step1"
 														class="step-pane active">
-														<h3 class="lighter block green">Modifier un article</h3>
+														<h3 class="lighter block green">Modifier un article
+														Numéro: #{articleBean.currentArticle.seqNo}</h3>
 
 														<h:panelGroup layout="block"
 															styleClass="control-group">
@@ -429,7 +466,17 @@
 																<span class="span12 input-icon input-icon-right">
 																	<pe:ckEditor id="editor"
 																		value="#{articleBean.currentArticle.articleDesc}"
-																		language="ar" width="85%" checkDirtyInterval="0" />
+																		language="fr" skin="kama"
+																		toolbar="[[ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ],
+																			[ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],
+																			[ 'Find', 'Replace', '-', 'SelectAll', '-','SpellChecker', 'Scayt' ],
+																			[ 'TextColor', 'BGColor' ] ,[ 'Link', 'Unlink', 'Anchor' ], [ 'Styles', 'Format', 'FontSize' ],
+																			[ 'Maximize', 'ShowBlocks' ] ,[ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', 
+																			'-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language' ],
+																			[ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ],
+																			[ 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ],
+																			[ 'Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates',  ], [ 'About' ] ]"
+																		interfaceColor="#0A163D" width="80%" checkDirtyInterval="0"  />
 																</span>
 															</h:panelGroup>
 														</h:panelGroup>

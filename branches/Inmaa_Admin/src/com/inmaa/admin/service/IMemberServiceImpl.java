@@ -51,7 +51,7 @@ public class IMemberServiceImpl implements IMemberService{
 	@Override
 	public List<Member> lister() {
 		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createQuery("from Member where IsActive = '1'").list();
+		return sessionFactory.getCurrentSession().createQuery("from Member where IsActive = '1' order by seqNo").list();
 	}
 
 	@Override

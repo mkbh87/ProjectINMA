@@ -67,7 +67,9 @@ public class ArticleBean implements Serializable{
 	List<Event> evesSource = new ArrayList<Event>();
 	List<Event> evesTarget = new ArrayList<Event>();
 
-
+	private Article nextArticle ;
+	private Article prevArticle ;
+	
 	@PostConstruct
 	public void init() {
 		articleList = new ArrayList<Article>();
@@ -185,6 +187,10 @@ public class ArticleBean implements Serializable{
 	public String showEdit(Article p){
 		currentArticle = p;
 		setId(currentArticle.getArticleId());
+
+		prevArticle = getarticleBySeqNo(currentArticle.getSeqNo() ,-1);
+		nextArticle = getarticleBySeqNo(currentArticle.getSeqNo() ,1);
+
 		return "edit-articles.xhtml?faces-redirect=true&amp;includeViewParams=true";
 	}
 
@@ -332,6 +338,47 @@ public class ArticleBean implements Serializable{
 		articleList = articleService.lister();
 		es = new ListDataModel<Article>();
 		es.setWrappedData( articleService.lister());
+	}
+
+	public Article getarticleBySeqNo(int Seqno, int type)
+	{
+		es.setWrappedData( articleService.lister());
+		Article previous = new Article();
+		previous=null;
+		Iterator<Article> itr = es.iterator();
+		while(itr.hasNext()) {
+			Article pr  = itr.next();
+			if(pr.getSeqNo() == Seqno)
+			{
+				if( type == -1)
+					return previous;
+				else if ( type == 1)
+					if(itr.hasNext())
+						return itr.next();
+					else
+						return null;
+				else
+					return pr;
+			}
+			previous = pr;
+		}
+		return null;
+	}
+	
+	public Article getPrevArticle() {
+		return prevArticle;
+	}
+
+	public void setPrevArticle(Article prevArticle) {
+		this.prevArticle = prevArticle;
+	}
+
+	public Article getNextArticle() {
+		return nextArticle;
+	}
+
+	public void setNextArticle(Article nextArticle) {
+		this.nextArticle = nextArticle;
 	}
 
 }

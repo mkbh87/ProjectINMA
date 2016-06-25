@@ -6,7 +6,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions" >
+	xmlns:pe="http://primefaces.org/ui/extensions">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -57,19 +57,18 @@
 				</h1>
 
 				<h:form>
-				<ul class="nav ace-nav pull-right">
-					<li class="light-blue">
-
-							<p:commandLink id="logout" action="#{loginMgmtBean.logout()}" styleClass="dropdown-toggle">
-								<h:graphicImage styleClass="nav-user-photo profile-img" library="images"
-									name="logo.png" alt="Inma Admin's Photo" />
-									<span class="user-info">  <strong>Logout</strong> <br/> Inma  Admin
-									</span>
-								<i class="icon-signout" style="font-size: 40px; padding-top: 2px;"></i>
-							</p:commandLink>
-
-					</li>
-				</ul>
+					<ul class="nav ace-nav pull-right">
+						<li class="light-blue"><p:commandLink id="logout"
+								action="#{loginMgmtBean.logout()}" styleClass="dropdown-toggle">
+								<h:graphicImage styleClass="nav-user-photo profile-img"
+									library="images" name="logo.png" alt="Inma Admin's Photo" />
+								<span class="user-info"> <strong>Logout</strong> <br />
+									Inma Admin
+								</span>
+								<i class="icon-signout"
+									style="font-size: 40px; padding-top: 2px;"></i>
+							</p:commandLink></li>
+					</ul>
 				</h:form>
 				<!--/.ace-nav-->
 			</h:panelGroup>
@@ -208,34 +207,30 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../partners/table-partners.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les Partenaires 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../partners/form-partners.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau Partenaire 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
-				<li ><h:outputLink value="#" class="dropdown-toggle">
+				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-file-text"></i>
 						<span class="menu-text"> Publications </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
 
 					<ul class="submenu">
-						<li><h:outputLink value="../publications/table-publications.xhtml">
+						<li><h:outputLink
+								value="../publications/table-publications.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les Publications 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
-						<li  ><h:outputLink value="../publications/form-publications.xhtml">
+						<li><h:outputLink
+								value="../publications/form-publications.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvelle Publication 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 				<li><h:outputLink value="../events/calendar.xhtml">
 						<i class="icon-calendar"></i>
 
@@ -256,15 +251,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../media/gallery.xhtml">
 								<i class="icon-double-angle-right"></i> Images 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
-						<li  ><h:outputLink value="../media/videos.xhtml">
+						<li><h:outputLink value="../media/videos.xhtml">
 								<i class="icon-double-angle-right"></i> Videos 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-tag"></i>
@@ -309,8 +301,8 @@
 				id="breadcrumbs">
 				<ul class="breadcrumb">
 					<li><i class="icon-home home-icon"></i> <h:outputLink
-							value="../welcome.xhtml">Home</h:outputLink> <span class="divider"> <i
-							class="icon-angle-right arrow-icon"></i>
+							value="../welcome.xhtml">Home</h:outputLink> <span
+						class="divider"> <i class="icon-angle-right arrow-icon"></i>
 					</span></li>
 					<li class="active">Parametrage</li>
 				</ul>
@@ -352,56 +344,96 @@
 									<h:panelGroup layout="block" class="widget-body widget-main">
 										<h:panelGroup layout="block" class="row-fluid">
 
-											<h:form class="form-horizontal" id="form" prependId="false" enctype="multipart/form-data"
-														acceptcharset="UTF-8">
-														
+											<h:form class="form-horizontal" id="form" prependId="false"
+												enctype="multipart/form-data" acceptcharset="UTF-8">
+
 												<h:panelGroup layout="block" class="control-group">
 													<p:outputLabel styleClass="control-label" for="email"
 														value="Email inma  " />
 
 													<h:panelGroup layout="block" class="controls">
-														<span class="span12 input-icon input-icon-right">  
-														<h:inputText id="email" value="#{configBean.currentConfig.configPrincipalEmail}"  />   
+														<span class="span12 input-icon input-icon-right"> <h:inputText
+																id="email"
+																value="#{configBean.currentConfig.configPrincipalEmail}" />
 														</span>
 													</h:panelGroup>
 												</h:panelGroup>
-												
-														
+
+
 												<h:panelGroup layout="block" class="control-group">
 													<p:outputLabel styleClass="control-label" for="def"
 														value="Présentation inma" />
 
 													<h:panelGroup layout="block" class="controls">
-														<span class="span12 input-icon input-icon-right"> 
-														<pe:ckEditor id="def" value="#{configBean.currentConfig.configIntroInma}" language="ar" width="85%" checkDirtyInterval="0" />   
-																
+														<span class="span12 input-icon input-icon-right"> <pe:ckEditor
+																id="def"
+																value="#{configBean.currentConfig.configIntroInma}"
+																language="fr" skin="kama"
+																toolbar="[[ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ],
+																			[ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],
+																			[ 'Find', 'Replace', '-', 'SelectAll', '-','SpellChecker', 'Scayt' ],
+																			[ 'TextColor', 'BGColor' ] ,[ 'Link', 'Unlink', 'Anchor' ], [ 'Styles', 'Format', 'FontSize' ],
+																			[ 'Maximize', 'ShowBlocks' ] ,[ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', 
+																			'-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language' ],
+																			[ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ],
+																			[ 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ],
+																			[ 'Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates',  ], [ 'About' ] ]"
+																interfaceColor="#0A163D" width="80%"
+																checkDirtyInterval="0" />
+
 														</span>
 													</h:panelGroup>
 												</h:panelGroup>
-												
+
 												<h:panelGroup layout="block" class="control-group">
 													<p:outputLabel styleClass="control-label" for="defmam"
 														value="Présentation Maamoura  " />
 
 													<h:panelGroup layout="block" class="controls">
-														<span class="span12 input-icon input-icon-right">  
-														<pe:ckEditor id="defmam" value="#{configBean.currentConfig.configIntroMaamoura}" language="ar" width="85%" checkDirtyInterval="0" />   
-														
+														<span class="span12 input-icon input-icon-right"> <pe:ckEditor
+																id="defmam"
+																value="#{configBean.currentConfig.configIntroMaamoura}"
+																language="fr" skin="kama"
+																toolbar="[[ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ],
+																			[ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],
+																			[ 'Find', 'Replace', '-', 'SelectAll', '-','SpellChecker', 'Scayt' ],
+																			[ 'TextColor', 'BGColor' ] ,[ 'Link', 'Unlink', 'Anchor' ], [ 'Styles', 'Format', 'FontSize' ],
+																			[ 'Maximize', 'ShowBlocks' ] ,[ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', 
+																			'-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language' ],
+																			[ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ],
+																			[ 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ],
+																			[ 'Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates',  ], [ 'About' ] ]"
+																interfaceColor="#0A163D" width="80%"
+																checkDirtyInterval="0" />
+
 														</span>
 													</h:panelGroup>
 												</h:panelGroup>
-												
+
 												<h:panelGroup layout="block" class="control-group">
 													<p:outputLabel styleClass="control-label" for="goal"
 														value="objectif de inma  " />
 
 													<h:panelGroup layout="block" class="controls">
-														<span class="span12 input-icon input-icon-right">  
-														<pe:ckEditor id="goal" value="#{configBean.currentConfig.configInmaGoal}" language="ar" width="85%" checkDirtyInterval="0" />   
+														<span class="span12 input-icon input-icon-right"> <pe:ckEditor
+																id="goal"
+																value="#{configBean.currentConfig.configInmaGoal}"
+																language="fr" skin="kama"
+																toolbar="[[ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ],
+																			[ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],
+																			[ 'Find', 'Replace', '-', 'SelectAll', '-','SpellChecker', 'Scayt' ],
+																			[ 'TextColor', 'BGColor' ] ,[ 'Link', 'Unlink', 'Anchor' ], [ 'Styles', 'Format', 'FontSize' ],
+																			[ 'Maximize', 'ShowBlocks' ] ,[ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', 
+																			'-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language' ],
+																			[ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ],
+																			[ 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ],
+																			[ 'Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates',  ], [ 'About' ] ]"
+																interfaceColor="#0A163D" width="80%"
+																checkDirtyInterval="0" />
 														</span>
 													</h:panelGroup>
 												</h:panelGroup>
-												
+
 												<h:panelGroup layout="block"
 													class="row-fluid wizard-actions">
 													<p:commandButton value="Modifier"
@@ -425,35 +457,35 @@
 										class="widget-header widget-header-blue widget-header-flat">
 										<h4 class="lighter">les parametres (Don't Change !)</h4>
 									</h:panelGroup>
-									
+
 									<h:panelGroup layout="block" class="widget-body widget-main">
 										<h:panelGroup layout="block" class="row-fluid">
 
-											<h:form  class="form-horizontal" id="form2" prependId="false" enctype="multipart/form-data"
-														acceptcharset="UTF-8">
-														
+											<h:form class="form-horizontal" id="form2" prependId="false"
+												enctype="multipart/form-data" acceptcharset="UTF-8">
+
 												<h:panelGroup layout="block" class="control-group">
 													<p:outputLabel styleClass="control-label"
 														value="Listes des e-mails inscrits  " />
 
 													<h:panelGroup layout="block" class="controls">
-														<span class="span12 input-icon input-icon-right">  
-															<h:inputTextarea value="#{configBean.currentConfig.configEmailList}" class="span10" style="height: 200px;" readonly="true"/>   
+														<span class="span12 input-icon input-icon-right"> <h:inputTextarea
+																value="#{configBean.currentConfig.configEmailList}"
+																class="span10" style="height: 200px;" readonly="true" />
 														</span>
 													</h:panelGroup>
 												</h:panelGroup>
-												
-														
-												<h:panelGroup layout="block"
-													styleClass="control-group">
+
+
+												<h:panelGroup layout="block" styleClass="control-group">
 													<p:outputLabel styleClass="control-label" for="intitule"
 														value="Path des Images " />
 
 													<h:panelGroup layout="block" styleClass="controls">
 														<span class="span8 input-icon input-icon-right"> <h:inputText
 																styleClass="span12" id="intitule"
-																value="#{configBean.currentConfig.configImgpath}" readonly="true" /> <i
-															class="icon-warning-sign"></i>
+																value="#{configBean.currentConfig.configImgpath}"
+																readonly="true" /> <i class="icon-warning-sign"></i>
 														</span>
 														<span class="help-inline"> </span>
 													</h:panelGroup>
@@ -461,109 +493,104 @@
 
 												<h:panelGroup layout="block"
 													class="row-fluid wizard-actions">
-<!-- 													<p:commandButton value="Modifier" readonly="true"
+													<!-- 													<p:commandButton value="Modifier" readonly="true"
 														styleClass="btn btn-success btn-next"
 														action="">
 													</p:commandButton>
- -->												</h:panelGroup>
-												
+ -->
+												</h:panelGroup>
+
 											</h:form>
 										</h:panelGroup>
 									</h:panelGroup>
 								</h:panelGroup>
 							</h:panelGroup>
 						</h:panelGroup>
-						
-						 <!-- SMTP -->
+
+						<!-- SMTP -->
 						<h:panelGroup layout="block" class="row-fluid">
 							<h:panelGroup layout="block" class="span12">
 								<h:panelGroup layout="block" class="widget-box">
 									<h:panelGroup layout="block"
 										class="widget-header widget-header-blue widget-header-flat">
-										<h4 class="lighter"> Paramètrage SMTP (Don't Change !)</h4>
+										<h4 class="lighter">Paramètrage SMTP (Don't Change !)</h4>
 									</h:panelGroup>
-									
+
 									<h:panelGroup layout="block" class="widget-body widget-main">
 										<h:panelGroup layout="block" class="row-fluid">
 
-											<h:form  class="form-horizontal" id="form3" prependId="false" enctype="multipart/form-data"
-														acceptcharset="UTF-8">
-														
+											<h:form class="form-horizontal" id="form3" prependId="false"
+												enctype="multipart/form-data" acceptcharset="UTF-8">
+
 												<h:panelGroup layout="block" class="control-group">
-													<p:outputLabel styleClass="control-label"
-														value="Host  " />
+													<p:outputLabel styleClass="control-label" value="Host  " />
 
 													<h:panelGroup layout="block" class="controls">
-														<span class="span3 input-icon input-icon-right">  
-															<h:inputText value="#{configBean.currentConfig.configSmtpHost}" class="span" /><i
-															class="icon-warning-sign"></i>   
+														<span class="span3 input-icon input-icon-right"> <h:inputText
+																value="#{configBean.currentConfig.configSmtpHost}"
+																class="span" /><i class="icon-warning-sign"></i>
 														</span>
 													</h:panelGroup>
 												</h:panelGroup>
-												
-														
-												<h:panelGroup layout="block"
-													styleClass="control-group">
-													<p:outputLabel styleClass="control-label"  
-														value="Port  " />
+
+
+												<h:panelGroup layout="block" styleClass="control-group">
+													<p:outputLabel styleClass="control-label" value="Port  " />
 
 													<h:panelGroup layout="block" styleClass="controls">
 														<span class="span3 input-icon input-icon-right"> <h:inputText
-																styleClass="span"  
-																value="#{configBean.currentConfig.configSmtpPort}"  /> <i
-															class="icon-warning-sign"></i>
+																styleClass="span"
+																value="#{configBean.currentConfig.configSmtpPort}" />
+															<i class="icon-warning-sign"></i>
 														</span>
 														<span class="help-inline"> </span>
 													</h:panelGroup>
 												</h:panelGroup>
 
-												<h:panelGroup layout="block"
-													styleClass="control-group">
-													<p:outputLabel styleClass="control-label" 
+												<h:panelGroup layout="block" styleClass="control-group">
+													<p:outputLabel styleClass="control-label"
 														value="User Name  " />
 
 													<h:panelGroup layout="block" styleClass="controls">
 														<span class="span3 input-icon input-icon-right"> <h:inputText
 																styleClass="span" id="username"
-																value="#{configBean.currentConfig.configSmtpUser}"  /> <i
-															class="icon-warning-sign"></i>
+																value="#{configBean.currentConfig.configSmtpUser}" />
+															<i class="icon-warning-sign"></i>
 														</span>
 														<span class="help-inline"> </span>
 													</h:panelGroup>
 												</h:panelGroup>
 
-												<h:panelGroup layout="block"
-													styleClass="control-group">
+												<h:panelGroup layout="block" styleClass="control-group">
 													<p:outputLabel styleClass="control-label" for="password"
 														value="Password  " />
 
 													<h:panelGroup layout="block" styleClass="controls">
-														<span class="span3 input-icon input-icon-right"> 
-														<h:inputSecret
+														<span class="span3 input-icon input-icon-right"> <h:inputSecret
 																styleClass="span" id="password"
-																value="#{configBean.currentConfig.configSmtpPwd}"  /> <i
+																value="#{configBean.currentConfig.configSmtpPwd}" /> <i
 															class="icon-warning-sign"></i>
 														</span>
 														<span class="help-inline"> </span>
 													</h:panelGroup>
 												</h:panelGroup>
- 												<h:panelGroup layout="block"
+												<h:panelGroup layout="block"
 													class="row-fluid wizard-actions">
- 													<p:commandButton value="Modifier" readonly="true"
+													<p:commandButton value="Modifier" readonly="true"
 														styleClass="btn btn-success btn-next"
 														action="#{configBean.editSmtp()}">
 													</p:commandButton>
 												</h:panelGroup>
-												
+
 											</h:form>
 										</h:panelGroup>
 									</h:panelGroup>
 								</h:panelGroup>
 							</h:panelGroup>
 						</h:panelGroup>
-						
-						
-						
+
+
+
 					</h:panelGroup>
 				</h:panelGroup>
 				<!--/.page-header-->
@@ -588,7 +615,7 @@
 	<!--basic scripts-->
 
 	<script
-		src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"/>
+		src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" />
 
 	<script type="text/javascript">
 	//<![CDATA[ 
@@ -607,29 +634,29 @@
         if ("ontouchend" in document) document.write("<script src='js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
 	//]]>
 	</script>
-	<h:outputScript library="js" name="bootstrap.min.js"/>
+	<h:outputScript library="js" name="bootstrap.min.js" />
 
 	<!--page specific plugin scripts-->
-	<h:outputScript library="js" name="fuelux/fuelux.wizard.min.js"/>
-	<h:outputScript library="js" name="jquery.validate.min.js"/>
-	<h:outputScript library="js" name="additional-methods.min.js"/>
-	<h:outputScript library="js" name="bootbox.min.js"/>
-	<h:outputScript library="js" name="jquery.maskedinput.min.js"/>
+	<h:outputScript library="js" name="fuelux/fuelux.wizard.min.js" />
+	<h:outputScript library="js" name="jquery.validate.min.js" />
+	<h:outputScript library="js" name="additional-methods.min.js" />
+	<h:outputScript library="js" name="bootbox.min.js" />
+	<h:outputScript library="js" name="jquery.maskedinput.min.js" />
 
 
-	<h:outputScript library="js" name="jquery-ui-1.10.3.custom.min.js"/>
-	<h:outputScript library="js" name="jquery.ui.touch-punch.min.js"/>
-	<h:outputScript library="js" name="jquery.slimscroll.min.js"/>
-	<h:outputScript library="js" name="jquery.easy-pie-chart.min.js"/>
-	<h:outputScript library="js" name="jquery.sparkline.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.pie.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.resize.min.js"/>
+	<h:outputScript library="js" name="jquery-ui-1.10.3.custom.min.js" />
+	<h:outputScript library="js" name="jquery.ui.touch-punch.min.js" />
+	<h:outputScript library="js" name="jquery.slimscroll.min.js" />
+	<h:outputScript library="js" name="jquery.easy-pie-chart.min.js" />
+	<h:outputScript library="js" name="jquery.sparkline.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.pie.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.resize.min.js" />
 
 	<!--ace scripts-->
 
-	<h:outputScript library="js" name="ace-elements.min.js"/>
-	<h:outputScript library="js" name="ace.min.js"/>
+	<h:outputScript library="js" name="ace-elements.min.js" />
+	<h:outputScript library="js" name="ace.min.js" />
 
 	<!--inline scripts related to this page-->
 </h:body>

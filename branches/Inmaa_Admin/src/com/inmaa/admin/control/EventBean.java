@@ -75,6 +75,9 @@ public class EventBean  implements Serializable {
 
 	private String calendarEvents;
 
+	private Event prevEvent;
+	private Event nextEvent;
+
 	@PostConstruct
 	public void init() {
 		events = new ListDataModel<Event>();
@@ -185,6 +188,10 @@ public class EventBean  implements Serializable {
 	public String showEdit(Event p){
 		currentEvent = p;
 		setId(currentEvent.getEventId());
+		
+		prevEvent = geteventBySeqNo(currentEvent.getSeqNo() ,-1);
+		nextEvent = geteventBySeqNo(currentEvent.getSeqNo() , 1);
+		
 		return "edit-events.xhtml?faces-redirect=true&amp;includeViewParams=true";
 	}
 
@@ -384,5 +391,46 @@ public class EventBean  implements Serializable {
 		 
 		events = new ListDataModel<Event>();
 		events.setWrappedData( eventService.lister());
+	}
+	
+	public Event geteventBySeqNo(int Seqno, int type)
+	{
+		events.setWrappedData( eventService.lister());
+		Event previous = new Event();
+		previous=null;
+		Iterator<Event> itr = events.iterator();
+		while(itr.hasNext()) {
+			Event pr  = itr.next();
+			if(pr.getSeqNo() == Seqno)
+			{
+				if( type == -1)
+					return previous;
+				else if ( type == 1)
+					if(itr.hasNext())
+						return itr.next();
+					else
+						return null;
+				else
+					return pr;
+			}
+			previous = pr;
+		}
+		return null;
+	}
+	
+	public Event getPrevEvent() {
+		return prevEvent;
+	}
+
+	public void setPrevEvent(Event prevEvent) {
+		this.prevEvent = prevEvent;
+	}
+
+	public Event getNextEvent() {
+		return nextEvent;
+	}
+
+	public void setNextEvent(Event nextEvent) {
+		this.nextEvent = nextEvent;
 	}
 }

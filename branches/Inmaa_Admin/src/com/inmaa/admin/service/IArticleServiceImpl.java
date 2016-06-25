@@ -53,7 +53,7 @@ public class IArticleServiceImpl implements IArticleService{
 	@Override
 	public List<Article> lister() {
 		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createQuery("from Article").list();
+		return sessionFactory.getCurrentSession().createQuery("from Article order by seqNo asc").list();
 	}
 	@Override
 	public int maxSeqno() {

@@ -343,15 +343,49 @@
 
 											<h:panelGroup layout="block" id="fuelux-wizard"
 												class="row-fluid hide" data-target="#step-container">
+												
+												<h:panelGroup layout="block"
+														styleClass="navigator-Admin nav-left"
+														rendered="#{eventBean.prevEvent != null}">
+														<p:commandLink
+															action="#{eventBean.showEdit(eventBean.prevEvent)}">
+															<small>Précédent</small>
+															<br />
+															<f:param name="id"
+																value="#{eventBean.prevEvent.eventId}" />
+
+															<i class="icon-backward"
+																style="font-size: 40px; color: #08c;"> <br />
+															</i>
+															<small>#{eventBean.prevEvent.seqNo} -
+																#{eventBean.prevEvent.eventName}</small>
+														</p:commandLink>
+													</h:panelGroup>
+												
 												<ul class="wizard-steps">
 													<li data-target="#step1" class="active"><span
 														class="step">1</span> <span class="title">événement</span></li>
-
-
-
 													<li data-target="#step2"><span class="step">2</span> <span
 														class="title">Sous événement</span></li>
 												</ul>
+												
+												<h:panelGroup layout="block"
+														rendered="#{eventBean.nextEvent != null}"
+														styleClass="navigator-Admin nav-right">
+														<p:commandLink
+															action="#{eventBean.showEdit(eventBean.nextEvent)}">
+															<small> Suivant </small>
+															<br />
+															<f:param name="id"
+																value="#{eventBean.nextEvent.eventId}" />
+															<i class="icon-forward"
+																style="font-size: 40px; color: #08c;"> <br />
+															</i>
+															<small>#{eventBean.nextEvent.seqNo}-
+																#{eventBean.nextEvent.eventName}</small>
+														</p:commandLink>
+													</h:panelGroup>
+												
 											</h:panelGroup>
 											<p:separator />
 											<h:panelGroup layout="block"
@@ -359,6 +393,10 @@
 												id="step-container">
 												<h:panelGroup layout="block" id="step1"
 													class="step-pane active">
+													
+													<h3 class="lighter block green">Modifier de l'événement
+														Numéro: #{eventBean.currentEvent.seqNo}</h3>
+														
 													<h:form class="form-h" id="sample-form"
 														enctype="multipart/form-data" acceptcharset="UTF-8">
 
@@ -446,7 +484,17 @@
 																<span class="span12 input-icon input-icon-right">
 																	<pe:ckEditor id="editor"
 																		value="#{eventBean.currentEvent.eventDesc}"
-																		language="ar" width="85%" checkDirtyInterval="0" />
+																		language="fr" skin="kama"
+																		toolbar="[[ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ],
+																			[ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],
+																			[ 'Find', 'Replace', '-', 'SelectAll', '-','SpellChecker', 'Scayt' ],
+																			[ 'TextColor', 'BGColor' ] ,[ 'Link', 'Unlink', 'Anchor' ], [ 'Styles', 'Format', 'FontSize' ],
+																			[ 'Maximize', 'ShowBlocks' ] ,[ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', 
+																			'-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language' ],
+																			[ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ],
+																			[ 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ],
+																			[ 'Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates',  ], [ 'About' ] ]"
+																		interfaceColor="#0A163D" width="80%" checkDirtyInterval="0" />
 																</span>
 															</h:panelGroup>
 														</h:panelGroup>

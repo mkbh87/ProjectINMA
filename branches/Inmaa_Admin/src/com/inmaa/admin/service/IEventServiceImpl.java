@@ -54,7 +54,7 @@ public class IEventServiceImpl implements IEventService {
 	@Override
 	public List<Event> lister() {
 		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createQuery("from Event").list();
+		return sessionFactory.getCurrentSession().createQuery("from Event order by seqNo asc").list();
 	}
 
 

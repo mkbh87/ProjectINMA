@@ -14,10 +14,6 @@ public interface IPartnerService {
 
 	public List<Partner> lister();
 
-	public List<Member> listerMember();
-
-	public Member getMember(Integer memberId);
-
 	public int maxSeqno();
 
 }

@@ -42,7 +42,7 @@ public class ProjectBean implements Serializable{
 
 	@Autowired
 	IProjectService projectService;
-	
+
 	@Autowired
 	IPartnerService partnerService;
 
@@ -50,16 +50,20 @@ public class ProjectBean implements Serializable{
 	IMemberService memberService;
 
 	private Project currentProject ;
+
+	private Project nextProject ;
+	private Project prevProject ;
+
 	private transient DataModel<Project> es;
 	private int id;
 	private List<Project> projectList;
 	private UploadedFile uploadedFile;
 	private String fileName;
-	
+
 	private DualListModel<Member> listeMembers;
 	List<Member> MemberSource = new ArrayList<Member>();
 	List<Member> MemberTarget = new ArrayList<Member>();
-	
+
 	private DualListModel<Partner> listePartners;
 	List<Partner> PartnerSource = new ArrayList<Partner>();
 	List<Partner> PartnerTarget = new ArrayList<Partner>();
@@ -81,7 +85,7 @@ public class ProjectBean implements Serializable{
 	}
 
 	public ProjectBean(){
-		this.currentProject = new Project();	
+		currentProject =new Project();	
 
 	}
 
@@ -108,10 +112,10 @@ public class ProjectBean implements Serializable{
 			int seqno = projectService.maxSeqno();
 			currentProject.setSeqNo(seqno + 10);
 			currentProject.setProjectNbrVisite(0);
-			
+
 			currentProject.setPartners(new HashSet<Partner>(listePartners.getTarget()));
 			currentProject.setMembers( new HashSet<Member>(listeMembers.getTarget()));
-			
+
 			projectService.enregistrer(currentProject);
 			es.setWrappedData( projectService.lister());
 		} catch(Exception e) {
@@ -156,7 +160,7 @@ public class ProjectBean implements Serializable{
 			}
 			currentProject.setPartners(new HashSet<Partner>(listePartners.getTarget()));
 			currentProject.setMembers( new HashSet<Member>(listeMembers.getTarget()));
-			
+
 			projectService.mettre_a_jour(currentProject);
 			es.setWrappedData( projectService.lister());
 		} catch(Exception e) {
@@ -173,21 +177,25 @@ public class ProjectBean implements Serializable{
 
 
 	public String showEdit(Project p){
-		currentProject = p;
+		setcurrentProject(p);
 		setId(currentProject.getProjectId());
+		
+		prevProject = getprojectBySeqNo(currentProject.getSeqNo() ,-1);
+		nextProject = getprojectBySeqNo(currentProject.getSeqNo() ,1);
+		
 		return "edit-projects.xhtml?faces-redirect=true&amp;includeViewParams=true";
 	}
 
 	public void readyforDelete(Project p){
-		currentProject = p;
+		setcurrentProject(p);
 		setId(currentProject.getProjectId());
 	}
 
 	public void vider(){
-		currentProject = new Project();
+		setcurrentProject(new Project());
 		uploadedFile = null;
- 		fileName= null;
-		
+		fileName= null;
+
 		PartnerTarget = new ArrayList<Partner>();
 		PartnerSource = partnerService.lister();
 		setListePartners(new DualListModel<Partner>(PartnerSource, PartnerTarget));
@@ -201,9 +209,10 @@ public class ProjectBean implements Serializable{
 	{
 		Iterator<Project> itr = es.iterator();
 		while(itr.hasNext()) {
-			currentProject = itr.next();
-			if(currentProject.getProjectId() == p_id)
+			Project pr = itr.next();
+			if(pr.getProjectId() == p_id)
 			{
+				setcurrentProject(pr);
 				return currentProject;
 			}
 		}
@@ -212,7 +221,7 @@ public class ProjectBean implements Serializable{
 
 	public void setId(int id) {
 		this.id = id;
-		currentProject = getprojectById(id);
+		setcurrentProject(getprojectById(id));
 	}
 
 	public int getId() {
@@ -287,13 +296,13 @@ public class ProjectBean implements Serializable{
 		PartnerTarget = new ArrayList<Partner>(currentProject.getPartners());	
 		PartnerSource = Utils.setListSource(PartnerTarget, partnerService.lister());
 		setListePartners(new DualListModel<Partner>(PartnerSource, PartnerTarget));
-		
+
 		MemberTarget = new ArrayList<Member>();
 		MemberTarget = new ArrayList<Member>(currentProject.getMembers());	
 		MemberSource = Utils.setListSource(MemberTarget, memberService.lister());
 		setListeMembers(new DualListModel<Member>(MemberSource, MemberTarget));
 	}
-	
+
 
 	public DualListModel<Partner> getListePartners() {
 		return listePartners;
@@ -311,12 +320,52 @@ public class ProjectBean implements Serializable{
 		this.listeMembers = listeMembers;
 	}
 
-	
+	public Project getprojectBySeqNo(int Seqno, int type)
+	{
+		es.setWrappedData( projectService.lister());
+		Project previous = new Project();
+		previous=null;
+		Iterator<Project> itr = es.iterator();
+		while(itr.hasNext()) {
+			Project pr  = itr.next();
+			if(pr.getSeqNo() == Seqno)
+			{
+				if( type == -1)
+					return previous;
+				else if ( type == 1)
+					if(itr.hasNext())
+						return itr.next();
+					else
+						return null;
+				else
+					return pr;
+			}
+			previous = pr;
+		}
+		return null;
+	}
+
 	public void actualize()
 	{
 		projectList = new ArrayList<Project>();
 		projectList = projectService.lister();
 		es = new ListDataModel<Project>();
 		es.setWrappedData( projectService.lister());
+	}
+
+	public Project getPrevProject() {
+		return prevProject;
+	}
+
+	public void setPrevProject(Project pProject) {
+		prevProject = pProject;
+	}
+
+	public Project getNextProject() {
+		return nextProject;
+	}
+
+	public void setNextProject(Project nProject) {
+		nextProject = nProject;
 	}
 }

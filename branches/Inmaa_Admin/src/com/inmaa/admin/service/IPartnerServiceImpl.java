@@ -25,12 +25,6 @@ public class IPartnerServiceImpl implements IPartnerService{
 		return sessionFactory;
 	}
 
-	@Override
-	public Member getMember(Integer memberId){
-		// TODO Auto-generated method stub
-		return (Member) sessionFactory.getCurrentSession().get(Member.class, memberId);
-	}
-
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
@@ -57,13 +51,7 @@ public class IPartnerServiceImpl implements IPartnerService{
 	@Override
 	public List<Partner> lister() {
 		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createQuery("from Partner").list();
-	}
-
-	@Override
-	public List<Member> listerMember() {
-		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createQuery("from Member").list();
+		return sessionFactory.getCurrentSession().createQuery("from Partner  order by seqNo").list();
 	}
 
 	@Override
