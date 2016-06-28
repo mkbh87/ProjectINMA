@@ -24,15 +24,14 @@
 	<h:outputStylesheet library="css" name="font-awesome-ie7.min.css" />
 	<h:outputStylesheet name="bootstrap.min.css" library="css" />
 	<h:outputStylesheet name="bootstrap-responsive.min.css" library="css" />
+	<h:outputStylesheet
+		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
 
 
 	<!--ace styles-->
 	<h:outputStylesheet library="css" name="ace.min.css" />
 	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
 	<h:outputStylesheet library="css" name="ace-skins.min.css" />
-	<h:outputStylesheet
-		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
-
 
 
 	<!--ace styles-->
@@ -88,21 +87,24 @@
 				id="sidebar-shortcuts">
 				<h:panelGroup layout="block" styleClass="sidebar-shortcuts-large"
 					id="sidebar-shortcuts-large">
-					<button class="btn btn-small btn-success">
-						<i class="icon-signal"></i>
-					</button>
+										
+						<h:outputLink class="icon-colored btn btn-warning" value="../tiers/table-contact.xhtml">
+								<i class="icon-group"></i> 
+						</h:outputLink>
 
-					<button class="btn btn-small btn-info">
-						<i class="icon-pencil"></i>
-					</button>
+						<h:outputLink class="icon-colored btn btn-success" value="../more/visualisation.xhtml">
+							<i class="icon-eye-open"></i>
+						</h:outputLink>
 
-					<button class="btn btn-small btn-warning">
-						<i class="icon-group"></i>
-					</button>
 
-					<button class="btn btn-small btn-danger">
-						<i class="icon-cogs"></i>
-					</button>
+						<h:outputLink class="icon-colored btn btn-info" value="../more/profile.xhtml">
+							<i class="icon-pencil"></i>
+						</h:outputLink>
+
+						<h:outputLink class="icon-colored btn btn-danger" value="../configurations/config.xhtml">
+							<i class="icon-cogs"></i>
+						</h:outputLink>
+
 				</h:panelGroup>
 
 				<h:panelGroup layout="block" styleClass="sidebar-shortcuts-mini"
@@ -359,7 +361,7 @@
 						<!--PAGE CONTENT BEGINS-->
 
 						<h:panelGroup layout="block" class="row-fluid">
-							<h:panelGroup layout="block" class="span12">
+							<h:panelGroup layout="block" class="span6">
 								<h:panelGroup layout="block" class="widget-box">
 									<h:panelGroup layout="block"
 										class="widget-header widget-header-blue widget-header-flat">
@@ -377,8 +379,6 @@
 													<ul class="wizard-steps">
 														<li data-target="#step1" class="active"><span
 															class="step">1</span> <span class="title">Arabe</span></li>
-
-
 
 														<li data-target="#step2"><span class="step">2</span>
 															<span class="title">Francais</span></li>
@@ -474,21 +474,8 @@
 									<!--/widget-body-->
 								</h:panelGroup>
 							</h:panelGroup>
-						</h:panelGroup>
-
-
-
-
-
-
-
-
-
-
-
-
-						<h:panelGroup layout="block" class="row-fluid">
-							<h:panelGroup layout="block" class="span12">
+ 
+							<h:panelGroup layout="block" class="span6">
 								<h:panelGroup layout="block" class="widget-box">
 									<h:panelGroup layout="block"
 										class="widget-header widget-header-blue widget-header-flat">
@@ -502,14 +489,14 @@
 											<h:form class="form-h" prependId="false" target="_blank"
 												enctype="multipart/form-data" acceptcharset="UTF-8">
 												<h:panelGroup layout="block" id="fuelux-wizard1"
-													class="row-fluid hide" data-target="#step-container">
+													class="row-fluid hide" data-target="#step-container1">
 													<ul class="wizard-steps">
-														<li data-target="#step1" class="active"><span
+														<li data-target="#step11" class="active"><span
 															class="step">1</span> <span class="title">Arabe</span></li>
 
 
 
-														<li data-target="#step2"><span class="step">2</span>
+														<li data-target="#step12"><span class="step">2</span>
 															<span class="title">Francais</span></li>
 													</ul>
 												</h:panelGroup>
@@ -718,6 +705,18 @@
                 //return false;//prevent clicking on steps
             });
 
+            $('#fuelux-wizard1').ace_wizard().on('change', function(e, info) {
+                if (info.step == 1 && $validation) {
+                    if (!$('#validation-form').valid()) return false;
+                }
+            }).on('finished', function(e) {
+                bootbox.dialog("Thank you! Your information was successfully saved!", [{
+                    "label": "OK",
+                    "class": "btn-small btn-primary",
+                }]);
+            }).on('stepclick', function(e) {
+                //return false;//prevent clicking on steps
+            });
 
             $('#validation-form').show();
             $('#skip-validation').removeAttr('checked').on('click', function() {

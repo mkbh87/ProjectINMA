@@ -26,14 +26,15 @@
 	<h:outputStylesheet library="css" name="font-awesome-ie7.min.css" />
 	<h:outputStylesheet name="bootstrap.min.css" library="css" />
 	<h:outputStylesheet name="bootstrap-responsive.min.css" library="css" />
+	<h:outputStylesheet
+		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
 	               
 	
 	<!--ace styles-->
 	<h:outputStylesheet library="css" name="ace.min.css" />
 	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
 	<h:outputStylesheet library="css" name="ace-skins.min.css" />
-	<h:outputStylesheet
-		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
+
 
 	               
 	
@@ -87,21 +88,24 @@
 				id="sidebar-shortcuts">
 				<h:panelGroup layout="block" styleClass="sidebar-shortcuts-large"
 					id="sidebar-shortcuts-large">
-					<button class="btn btn-small btn-success">
-						<i class="icon-signal"></i>
-					</button>
+										
+						<h:outputLink class="icon-colored btn btn-warning" value="../tiers/table-contact.xhtml">
+								<i class="icon-group"></i> 
+						</h:outputLink>
 
-					<button class="btn btn-small btn-info">
-						<i class="icon-pencil"></i>
-					</button>
+						<h:outputLink class="icon-colored btn btn-success" value="../more/visualisation.xhtml">
+							<i class="icon-eye-open"></i>
+						</h:outputLink>
 
-					<button class="btn btn-small btn-warning">
-						<i class="icon-group"></i>
-					</button>
 
-					<button class="btn btn-small btn-danger">
-						<i class="icon-cogs"></i>
-					</button>
+						<h:outputLink class="icon-colored btn btn-info" value="../more/profile.xhtml">
+							<i class="icon-pencil"></i>
+						</h:outputLink>
+
+						<h:outputLink class="icon-colored btn btn-danger" value="../configurations/config.xhtml">
+							<i class="icon-cogs"></i>
+						</h:outputLink>
+
 				</h:panelGroup>
 
 				<h:panelGroup layout="block" styleClass="sidebar-shortcuts-mini"
@@ -238,6 +242,48 @@
 						</li>
 					</ul>
 				</li>
+								
+				<li ><h:outputLink value="#" class="dropdown-toggle">
+						<i class="icon-print"></i>
+						<span class="menu-text"> Rapports </span>
+						<b class="arrow icon-angle-down"></b>
+					</h:outputLink>
+
+					<ul class="submenu">
+					    <li><h:outputLink value="../reports/report-general.xhtml">
+								<i class="icon-double-angle-right"></i> Rapport Général 
+						</h:outputLink>
+						</li>
+						
+						<li><h:outputLink value="../reports/report-projets.xhtml">
+								<i class="icon-double-angle-right"></i> Rapport projets 
+						</h:outputLink>
+						</li>
+
+						<li  ><h:outputLink value="../reports/report-événements.xhtml">
+								<i class="icon-double-angle-right"></i> Rapport événements
+						</h:outputLink>
+						</li>
+						<li > <h:outputLink value="../reports/report-members.xhtml">
+								<i class="icon-double-angle-right"></i> Rapport membres
+						</h:outputLink>
+						</li>
+						<li > <h:outputLink value="../reports/report-articles.xhtml">
+								<i class="icon-double-angle-right"></i> Rapport articles
+						</h:outputLink>
+						</li>
+						<li > <h:outputLink value="../reports/report-partenaires.xhtml">
+								<i class="icon-double-angle-right"></i> Rapport partenaires
+						</h:outputLink>
+						</li>
+						<li > <h:outputLink value="../reports/report-publications.xhtml">
+								<i class="icon-double-angle-right"></i> Rapport publications
+						</h:outputLink>
+						</li>
+					</ul>
+				</li>
+				
+				
 				<li><h:outputLink value="../events/calendar.xhtml">
 						<i class="icon-calendar"></i>
 

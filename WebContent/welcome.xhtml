@@ -35,8 +35,7 @@
 	               
 	
 	<!--ace styles-->
-	
-	<h:outputStylesheet library="css" name="ace.min.css" />
+ 	<h:outputStylesheet library="css" name="ace.min.css" />
 	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
 	<h:outputStylesheet library="css" name="ace-skins.min.css" />
 
@@ -86,21 +85,26 @@
 		<h:panelGroup layout="block" styleClass="sidebar" id="sidebar">
 							<h:panelGroup layout="block" class="sidebar-shortcuts" id="sidebar-shortcuts">
 					<h:panelGroup layout="block" class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-						<button class="btn btn-small btn-success">
-							<i class="icon-signal"></i>
-						</button>
+						
+						<h:outputLink class="icon-colored btn   btn-warning" value="tiers/table-contact.xhtml">
+								<i class="icon-group"></i> 
+						</h:outputLink>
 
-						<button class="btn btn-small btn-info">
+						<h:outputLink class="icon-colored btn   btn-success" value="more/visualisation.xhtml">
+							<i class="icon-eye-open"></i>
+						</h:outputLink>
+
+
+						<h:outputLink class="icon-colored btn   btn-info" value="more/profile.xhtml">
 							<i class="icon-pencil"></i>
-						</button>
+						</h:outputLink>
 
-						<button class="btn btn-small btn-warning">
-							<i class="icon-group"></i>
-						</button>
-
-						<button class="btn btn-small btn-danger">
+						<h:outputLink class="icon-colored btn   btn-danger" value="configurations/config.xhtml">
 							<i class="icon-cogs"></i>
-						</button>
+						</h:outputLink>
+						
+					 
+						
 					</h:panelGroup>
 
 					<h:panelGroup layout="block" class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
@@ -249,7 +253,6 @@
 					</h:outputLink>
 
 					<ul class="submenu">
-					
 					    <li><h:outputLink value="reports/report-general.xhtml">
 								<i class="icon-double-angle-right"></i> Rapport Général 
 						</h:outputLink>
@@ -385,7 +388,7 @@
 
 						<h:panelGroup layout="block" class="alert alert-block alert-success">
 							<i class="icon-ok green"></i> L'administration de site web <strong class="green">
-								 Inma Maâmoura <strong>(v2.5.0)</strong> </strong>.
+								 Inma Maâmoura <strong>(v3.0.0)</strong> </strong>.
 						</h:panelGroup>
 
 						<h:panelGroup layout="block" class="space-6"></h:panelGroup>
