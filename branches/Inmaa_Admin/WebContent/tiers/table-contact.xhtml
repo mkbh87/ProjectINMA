@@ -5,14 +5,15 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions" >
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
-	<title>Publication - inma Admin</title>
+	<title> - inma Admin</title>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="" />
@@ -39,7 +40,6 @@
 	<h:outputStylesheet library="css" name="ace.min.css" />
 	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
 	<h:outputStylesheet library="css" name="ace-skins.min.css" />
-	<h:outputStylesheet library="css" name="CostumStyle.css" />
 
 </h:head>
 
@@ -50,7 +50,7 @@
 			<h:panelGroup layout="block" styleClass="container-fluid">
 
 				<h1 class="logo">
-					<h:outputLink value="../welcome.xhtml">
+					<h:outputLink value="welcome.xhtml">
 						<h:graphicImage library="images" name="logo.png" styleClass="logo" />
 					</h:outputLink>
 				</h1>
@@ -123,7 +123,7 @@
 
 			<!--#sidebar-shortcuts-->
 			<ul class="nav nav-list">
-				<li><h:outputLink value="../welcome.xhtml">
+				<li><h:outputLink value="welcome.xhtml">
 						<i class="icon-dashboard"></i>
 						<span class="menu-text"> Dashboard </span>
 					</h:outputLink>
@@ -143,7 +143,7 @@
 						</h:outputLink>
 						</li>
 
-						<li ><h:outputLink value="../projects/form-projects.xhtml">
+						<li><h:outputLink value="../projects/form-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau Projet
 						</h:outputLink>
 						</li>
@@ -221,7 +221,7 @@
 					</h:outputLink>
 
 					<ul class="submenu">
-						<li  class="active"><h:outputLink value="../partners/table-partners.xhtml">
+						<li><h:outputLink value="../partners/table-partners.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les Partenaires 
 						</h:outputLink>
 						</li>
@@ -232,26 +232,25 @@
 						</li>
 					</ul>
 				</li>
-				
-				<li  class="active open"><h:outputLink value="#" class="dropdown-toggle">
+
+				<li ><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-file-text"></i>
 						<span class="menu-text"> Publications </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
 
 					<ul class="submenu">
-						<li class="active" ><h:outputLink value="table-publications.xhtml">
+						<li><h:outputLink value="../publications/table-publications.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les Publications 
 						</h:outputLink>
 						</li>
 
-						<li><h:outputLink value="form-publications.xhtml">
+						<li  ><h:outputLink value="../publications/form-publications.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvelle Publication 
 						</h:outputLink>
 						</li>
 					</ul>
 				</li>
-
 								
 				<li ><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-print"></i>
@@ -371,155 +370,194 @@
 					<li><i class="icon-home home-icon"></i> <a href="../welcome.xhtml">Home</a> <span
 						class="divider"> <i class="icon-angle-right arrow-icon"></i>
 					</span></li>
-					<li><a href="#">Publications</a> <span class="divider"> <i
-							class="icon-angle-right arrow-icon"></i> </span>
-					</li>
-					<li class="active">Tables des Publications</li>
+ 					<li class="active">Gection des Contacts</li>
 				</ul>
 				<!--.breadcrumb-->
 
 				<h:panelGroup layout="block" styleClass="nav-search" id="nav-search">
+					<!-- 					<form class="form-search" />
+					<span class="input-icon"> <input type="text"
+						placeholder="Search ..." class="input-small nav-search-input"
+						id="nav-search-input" autocomplete="off" /> <i
+						class="icon-search nav-search-icon"></i> </span>
+					</h:form>
+ -->
 				</h:panelGroup>
 				<!--#nav-search-->
 			</h:panelGroup>
 
 			<h:panelGroup layout="block" styleClass="page-content">
-							<h:panelGroup layout="block"
-					styleClass="page-header position-relative">
+			
+			
+ 				<h:panelGroup layout="block" class="page-header position-relative">
 					<h1>
-						Tous les Publications <small> <i
-							class="icon-double-angle-right"></i> Publications </small>
+						Acceuil <small> <i class="icon-double-angle-right"></i>
+							Liste des Contacts </small>
 					</h1>
 				</h:panelGroup>
+				<!--/.page-header-->
 
-				<h:panelGroup layout="block" styleClass="row-fluid">
-					<h:panelGroup layout="block" styleClass="span12">
+				<h:panelGroup layout="block" class="row-fluid">
+					<h:panelGroup layout="block" class="span12">
 						<!--PAGE CONTENT BEGINS-->
 
-						<h:panelGroup layout="block" styleClass="row-fluid">
-							<h:panelGroup layout="block" styleClass="table-header">table des publications</h:panelGroup>
-
-							<h:form id="form1">
- 							
-								<p:dataTable 
-									styleClass="table table-striped table-bordered table-hover" sortOrder="descending" sortBy="#{publ.seqNo}"
-									var="publ" value="#{publicationBean.es}" paginator="true" rows="20"
-									editable="true" id="sample-table-2" paginatorPosition="bottom"
-									resizableColumns="true">
-									
-									<p:column styleClass="center" style="width:30px"  sortBy="#{publ.seqNo}">
-										<f:facet name="header" >
-											<h:outputText value="N°" />
-										</f:facet>
-										<h:outputText styleClass="hidden-phone" value="#{publ.seqNo}" />
-									</p:column>
-									
-									
-									<p:column styleClass="center" sortBy="#{publ.publicationName}">
-										<f:facet name="header">
-											<h:outputText value="Nom" />
-										</f:facet>
-										<h:outputText value="#{publ.publicationName}" />
-									</p:column>
-
-									<p:column styleClass="center" sortBy="#{publ.publicationDate}">
-										<f:facet name="header" styleClass="hidden-phone">
-											<i class="icon-time bigger-110 hidden-phone"></i>
-											<h:outputText value="Date de Debut" />
-											<span class="lbl"></span>
-										</f:facet>
-										<span class="lbl"></span>
-										<h:outputText value="#{publ.publicationDate}" />
-									</p:column>
-
-									<p:column styleClass="center" sortBy="#{publ.publicationType}">
-										<f:facet name="header" styleClass="hidden-phone">
-											<i class="icon-time bigger-110 hidden-phone"></i>
-											<h:outputText value="Type" />
-											<span class="lbl"></span>
-										</f:facet>
-										<span class="lbl"></span>
-										<h:outputText value="#{publ.publicationType}" />
-									</p:column>
-
-
-									<p:column styleClass="center" style="width:150px" >
-										<f:facet name="header">
-											<h:outputText value="" />
-										</f:facet>
-										<p:commandLink styleClass="btn btn-minier btn-info"
-											action="#{publicationBean.showEdit(publ)}">
-											<f:param name="id" value="#{publ.publicationId}" /> Modifier 
-											<i class="icon-edit bigger-120"></i>
-										</p:commandLink>
-										
-										<p:commandLink styleClass="btn btn-minier btn-danger"
-											action="#{publicationBean.readyforDelete(publ)}" ajax="true"
-											update=":form1:sample-table-2:ll"
-											oncomplete="PF('CDialogWidget').show();" > Supprimer 
-											<i class="icon-trash bigger-120"></i>
-
-										</p:commandLink>
-
-										<p:confirmDialog
-											message="Êtes-vous sûr de vouloir supprimer  #{publ.publicationName} ?"
-											header="Confirmation de suppression" severity="alert" id="ll"
-											widgetVar="CDialogWidget">
-											<p:commandButton value="Oui" update=":form1:sample-table-2"
-												action="#{publicationBean.delete()}"
-												oncomplete="PF('CDialogWidget').hide()" />
-											<p:commandButton value="Non"
-												onclick="PF('CDialogWidget').hide();" type="button" />
-										</p:confirmDialog>
-
-										</p:column>
-									</p:dataTable>
-							</h:form>
+						<h:panelGroup layout="block" class="alert alert-block alert-success">
+							<i class="icon-ok green"></i>
 						</h:panelGroup>
 
-						<h:panelGroup id="modal-table" class="modal hide fade"
-							tabindex="-1">
-							<h:panelGroup layout="block" styleClass="modal-header no-padding">
-								<h:panelGroup layout="block" styleClass="table-header">
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									Results for "Latest Registered Domains"
-								</h:panelGroup>
-							</h:panelGroup>
+						<h:panelGroup layout="block" class="space-6"></h:panelGroup>				
+<h:form id="form">
+    <p:dataTable id="id12" var="contact" value="#{contactBean.contactList}" paginator="true" rows="20"
+                 paginatorTemplate=" afficher {RowsPerPageDropdown} contacts par page 			
+                 {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                 rowKey="#{contact.contactId}" rowsPerPageTemplate="30,40,60" selectionMode="single"
+				 paginatorPosition="bottom"	selection="#{contactBean.currentContact}"   widgetVar="contactsTable"   
+				 filteredValue="#{contactBean.filteredContacts}"
+			  	 resizableColumns="true">
+ 
+                 
+             
+        <p:ajax event="rowSelect" listener="#{contactBean.onRowSelect}" update=":form:contactDetail" oncomplete="PF('contactDialog').show()" />
+ 
+           <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Chercher dans tous les champs:" />
+                <p:inputText id="globalFilter" onkeyup="PF('contactsTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+            
+         <p:commandButton id="toggler" type="button" value="Choisir Colonnes" style="float:right" icon="ui-icon-calculator" />
+        <p:columnToggler datasource="id12" trigger="toggler" />
+            </p:outputPanel>
+            
+        </f:facet>
+ 
+        <p:column width="20" headerText="N°">
+            <h:outputText value="#{contact.seqNo}" />
+        </p:column>
+        
+         
+        <p:column filterBy="#{contact.contactName}" width="70" headerText="Prénom"  filterMatchMode="contains">
+             <h:outputText value="#{contact.contactName}" />
+        </p:column>
+ 
+        <p:column filterBy="#{contact.contactName1}"  width="70" headerText="Nom" filterMatchMode="contains">
+            <h:outputText value="#{contact.contactName1}" />
+        </p:column>
+  
+        <p:column filterBy="#{contact.contactGender}" width="70" headerText="Genre" filterMatchMode="equals">
+            <f:facet name="filter">
+                <p:selectOneButton onchange="PF('contactsTable').filter()">
+                    <f:converter converterId="javax.faces.Boolean" />
+                    <f:selectItem itemLabel="All" itemValue="" />
+                    <f:selectItem itemLabel="Femme" itemValue="true" />
+                    <f:selectItem itemLabel="Homme" itemValue="false" />
+                </p:selectOneButton>
+            </f:facet>
+            <h:outputText value="#{contactGender ? 'Femme': 'Homme'}" />
+        </p:column>
+ 
+        <p:column filterBy="#{contact.contactGsm1}" width="80"  headerText="GSM1"  >
+            <h:outputText value="#{contact.contactGsm1}">
+             </h:outputText>
+        </p:column>
+        
+        <p:column filterBy="#{contact.contactGsm2}" width="80" headerText="GSM2"  >
+            <h:outputText value="#{contact.contactGsm2}">
+             </h:outputText>
+        </p:column>
+        
+         <p:column filterBy="#{contact.contactFax}"  width="80" headerText="Fax"  >
+            <h:outputText value="#{contact.contactFax}">
+             </h:outputText>
+        </p:column>
+        
+        <p:column filterBy="#{contact.contactEmail}" width="80" headerText="E-Mail"  >
+            <h:outputText value="#{contact.contactEmail}">
+             </h:outputText>
+        </p:column>
+ 
+        <p:column filterBy="#{contact.contactAddress}" width="80" headerText="Adresse"  >
+            <h:outputText value="#{contact.contactAddress}">
+             </h:outputText>
+        </p:column>
+        
+        <p:column filterBy="#{contact.contactWebSite}" width="80" headerText="Site Web"  >
+            <h:outputText value="#{contact.contactWebSite}">
+             </h:outputText>
+        </p:column>
+        
+         <p:column filterBy="#{contact.contactAutre}" width="80" headerText="Autre"  >
+            <h:outputText value="#{contact.contactAutre}">
+             </h:outputText>
+        </p:column>
+        
+        <p:column filterBy="#{contact.contactType}" width="60" headerText="Type" filterMatchMode="in">
+            <f:facet name="filter">
+                 <p:selectCheckboxMenu label="Colors" onchange="PF('contactsTable').filter()" panelStyle="width:125px" scrollHeight="150">
+                    <f:selectItems value="#{contact.contactType}" />
+                </p:selectCheckboxMenu>
+            </f:facet>
+            <h:outputText value="#{contact.contactType}" />
+        </p:column>
+        
+        <f:facet name="footer">
+        En total il y a  #{fn:length(contactBean.contactList)} contacts.
+   		</f:facet>
+    </p:dataTable>
+ 
+    <p:dialog header="contact Detail" widgetVar="contactDialog" modal="true">
+        <p:outputPanel id="contactDetail" style="text-align:center;width: 500px">
+           
+            <p:graphicImage style="height: 150px; float: left;" value="http://inma-maamoura.org/javax.faces.resource/#{contactBean.currentContact.contactPicture}.xhtml?ln=images"/> 
+           
 
 
-							<h:panelGroup layout="block" styleClass="modal-footer">
-								<button class="btn btn-small btn-danger pull-left"
-									data-dismiss="modal">
-									<i class="icon-remove"></i> Close
-								</button>
+			<p:panelGrid  columns="2" rendered="#{not empty contactBean.currentContact}" columnClasses="label,value">
+                <h:outputText value="N°:" />
+                <h:outputText value="#{contactBean.currentContact.seqNo}" />
+ 
+                <h:outputText value="Nom:" />
+                <h:outputText value="#{contactBean.currentContact.contactName}" />
+ 
+                <h:outputText value="Prenom:" />
+                <h:outputText value="#{contactBean.currentContact.contactName1}"/>
+ 
+                <h:outputText value="GSM1:" />
+                <h:outputText value="#{contactBean.currentContact.contactGsm1}"/>
+                
+                <h:outputText value="GSM2:" />
+                <h:outputText value="#{contactBean.currentContact.contactGsm2}"/>
+                
+             </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
+</h:form>
 
-								<h:panelGroup layout="block"
-									styleClass="pagination pull-right no-margin">
-									<ul>
-										<li class="prev disabled"><a href="#"> <i
-												class="icon-double-angle-left"></i> </a></li>
-
-										<li class="active"><a href="#">1</a></li>
-
-										<li><a href="#">2</a></li>
-
-										<li><a href="#">3</a></li>
-
-										<li class="next"><a href="#"> <i
-												class="icon-double-angle-right"></i> </a></li>
-									</ul>
-								</h:panelGroup>
-							</h:panelGroup>
- 						</h:panelGroup>
+	
+		<style>
+  			.ui-dialog {
+     		left: 25% !important;
+    		top: 25% !important;
+   			}
+   			
+   			.ui-columntoggler{
+   			right: 2%;
+   			top: 27%;
+   			}
+   			
+   			.ui-column-filter{
+   			 width: 90% !important;
+   			}
+   			
+   			.ui-paginator-rpp-options{
+   			 width: 50px
+   			}
+  		</style>
 						<!--PAGE CONTENT ENDS-->
 					</h:panelGroup>
 					<!--/.span-->
 				</h:panelGroup>
 				<!--/.row-fluid-->
-
-
-
-			</h:panelGroup>
+ 			</h:panelGroup>
 			<!--/.page-content-->
 		</h:panelGroup>
 		<!--/.main-content-->
@@ -566,7 +604,8 @@
 	<h:outputScript library="js" name="ace.min.js"/>
 
 	<!--inline scripts related to this page-->
-
+	 
+		
 </h:body>
 
 </html>
