@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MemberList" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2019fb02-30bc-40b8-a8f1-e9359f5ab1b7">
+	<property name="ireport.zoom" value="0.9743585500000007"/>
+	<property name="ireport.x" value="155"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#9F8989"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#9F8989"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#9F8989"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#9F8989"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#CDC6C6"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CDC6C6"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CDC6C6"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CDC6C6"/>
+		</box>
+	</style>
+	<subDataset name="New Dataset 1" uuid="36466f7c-bc69-4e5a-aea7-263c1379904d">
+		<queryString>
+			<![CDATA[SELECT
+     Abonnement.`Abonnement_ID` AS Abonnement_Abonnement_ID,
+     Abonnement.`Abonnement_Amount` AS Abonnement_Abonnement_Amount,
+     Abonnement.`Abonnement_Year` AS Abonnement_Abonnement_Year,
+     Abonnement.`Abonnement_MemberID` AS Abonnement_Abonnement_MemberID,
+     Member.`Member_ID` AS Member_Member_ID,
+     Member.`SeqNo` AS Member_SeqNo,
+     Member.`Member_Name` AS Member_Member_Name,
+     Member.`Member_Name1` AS Member_Member_Name1,
+     Member.`Member_Status` AS Member_Member_Status,
+     Member.`Member_Age` AS Member_Member_Age,
+     Member.`Member_IsOrg` AS Member_Member_IsOrg,
+     Member.`Member_Travail` AS Member_Member_Travail,
+     Member.`Member_Image` AS Member_Member_Image,
+     Member.`Member_facebook` AS Member_Member_facebook,
+     Member.`Member_twitter` AS Member_Member_twitter,
+     Member.`Member_BirthDay` AS Member_Member_BirthDay,
+     Member.`Member_CIN` AS Member_Member_CIN,
+     Member.`Member_Nationality` AS Member_Member_Nationality,
+     Member.`Member_Phone` AS Member_Member_Phone,
+     Member.`Member_Email` AS Member_Member_Email,
+     Member.`Member_Address` AS Member_Member_Address,
+     Member.`Member_City` AS Member_Member_City,
+     Member.`IsActive` AS Member_IsActive,
+     Member.`Member_Gender` AS Member_Member_Gender
+FROM
+     `Member` Member Left outer JOIN `Abonnement` Abonnement ON Member.`Member_ID` = Abonnement.`Abonnement_MemberID`]]>
+		</queryString>
+		<field name="Abonnement_Abonnement_ID" class="java.lang.Integer"/>
+		<field name="Abonnement_Abonnement_Amount" class="java.lang.Float"/>
+		<field name="Abonnement_Abonnement_Year" class="java.lang.Integer"/>
+		<field name="Abonnement_Abonnement_MemberID" class="java.lang.Integer"/>
+		<field name="Member_Member_ID" class="java.lang.Integer"/>
+		<field name="Member_SeqNo" class="java.lang.Integer"/>
+		<field name="Member_Member_Name" class="java.lang.String"/>
+		<field name="Member_Member_Name1" class="java.lang.String"/>
+		<field name="Member_Member_Status" class="java.lang.String"/>
+		<field name="Member_Member_Age" class="java.lang.Integer"/>
+		<field name="Member_Member_IsOrg" class="java.lang.Boolean"/>
+		<field name="Member_Member_Travail" class="java.lang.String"/>
+		<field name="Member_Member_Image" class="java.lang.String"/>
+		<field name="Member_Member_facebook" class="java.lang.String"/>
+		<field name="Member_Member_twitter" class="java.lang.String"/>
+		<field name="Member_Member_BirthDay" class="java.sql.Date"/>
+		<field name="Member_Member_CIN" class="java.lang.Integer"/>
+		<field name="Member_Member_Nationality" class="java.lang.String"/>
+		<field name="Member_Member_Phone" class="java.lang.String"/>
+		<field name="Member_Member_Email" class="java.lang.String"/>
+		<field name="Member_Member_Address" class="java.lang.String"/>
+		<field name="Member_Member_City" class="java.lang.String"/>
+		<field name="Member_IsActive" class="java.lang.Boolean"/>
+		<field name="Member_Member_Gender" class="java.lang.Boolean"/>
+	</subDataset>
+	<parameter name="ImgPath" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT 1 FROM DUAL ;]]>
+	</queryString>
+	<field name="1" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="92" splitType="Stretch">
+			<staticText>
+				<reportElement x="283" y="24" width="214" height="55" uuid="afff68c1-17fc-415e-b3a0-5bad586d1d44"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arab" size="28" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[أعضاء جمعية إنماء]]></text>
+			</staticText>
+			<image>
+				<reportElement x="733" y="0" width="69" height="79" uuid="8ae2d021-c33e-4659-ba2b-abd4b966336d"/>
+				<imageExpression><![CDATA[$P{ImgPath}+"/logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="328" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table 1" style="table 1" stretchType="RelativeToTallestObject" mode="Opaque" x="0" y="0" width="802" height="328" isPrintInFirstWholeBand="true" uuid="7b441ad7-6f8a-4005-b6be-7adc9d0d644c"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 1" uuid="95b74698-88cb-4a25-9113-5e84ce26b3ed">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="0" uuid="1be8a89f-e181-4e13-a189-04017a514a91">
+						<jr:tableHeader height="0" rowSpan="1"/>
+						<jr:columnHeader height="30" rowSpan="1"/>
+						<jr:detailCell height="24" rowSpan="1"/>
+					</jr:column>
+					<jr:column width="43" uuid="6f4dbe5e-2739-4b8f-846d-5066168e5f4b">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="43" height="30" uuid="f9eb1e4c-9411-4429-bec0-54dcfa3656c3"/>
+								<text><![CDATA[ مبلغ الاشتراك]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="24" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="43" height="20" uuid="810fd9cc-4463-4667-89ac-74e41b7fad99"/>
+								<textFieldExpression><![CDATA[$F{Abonnement_Abonnement_Amount}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="45" uuid="9d958ad3-2ac4-4d08-944d-b9394b629d89">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="45" height="30" uuid="62a65bd5-f2fc-43ce-ba6e-6bb51f116ecf"/>
+								<text><![CDATA[سنة الإشتراك ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="24" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="45" height="20" uuid="dbd9a35e-e3f5-4a3b-8b4d-87293f21582f"/>
+								<textFieldExpression><![CDATA[$F{Abonnement_Abonnement_Year}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="81aa8d1f-db2a-475d-9aaf-98450fa267aa">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="4b49deff-3017-40b5-9fe7-94fad7265699"/>
+								<text><![CDATA[العنوان]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="24" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="f276710e-a819-4c27-bbb3-1b255c8f6b00"/>
+								<textFieldExpression><![CDATA[$F{Member_Member_Address}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="c778e546-98ab-4b68-8d15-84c510d07d47">
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="f2edb763-ef0c-4ff7-b3cd-71d480abf4da"/>
+								<text><![CDATA[البريد الإلكتروني]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="24" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="c673b305-a456-457e-8f96-da644a2f2c68"/>
+								<textFieldExpression><![CDATA[$F{Member_Member_Email}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="42" uuid="609582a8-86d0-4753-bdb9-dbddaae2f37a">
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="40" height="30" uuid="64b251fe-a0e1-45b3-896a-e2c4cc1e4dbe"/>
+								<text><![CDATA[الجنسية ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="24" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="40" height="20" uuid="9e2f233d-3fa7-4848-aced-ff616073640b"/>
+								<textFieldExpression><![CDATA[$F{Member_Member_Nationality}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="fcf40751-481f-4d54-bb2d-3d1c7f2d1aae">
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="70" height="30" uuid="5509e5e0-68d1-4864-8137-6c5051a811ec"/>
+								<text><![CDATA[رقم هاتف ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="24" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="70" height="20" uuid="040a43f2-2ce5-4ee8-a6e1-21b61ce1b736"/>
+								<textFieldExpression><![CDATA[$F{Member_Member_Phone}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="073e45ca-e886-4613-b247-fb3e83baf943">
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="a0949393-428d-4fa6-9648-19ac398fa084"/>
+								<text><![CDATA[تاريخ ولادة ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="24" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="c1d73bd7-b444-484f-9efe-fe26d989c453"/>
+								<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{Member_Member_BirthDay})]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="48" uuid="3f5a033a-d71c-416e-8f5a-a68fe8613d37">
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="48" height="30" uuid="1d51238c-a1c2-4874-873a-b425f6af1deb"/>
+								<text><![CDATA[المهنة ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="24" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="48" height="20" uuid="7e5bf500-96a1-48ab-88af-71b682d1766a"/>
+								<textFieldExpression><![CDATA[$F{Member_Member_Travail}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="50" uuid="7a26854c-e36d-40ae-8435-86146aa3b215">
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="50" height="30" uuid="87871e72-b7d1-4ba8-8eda-7030f28cb1fc"/>
+								<text><![CDATA[الجنس ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="24" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="50" height="20" uuid="ce5224cc-7987-4687-9f37-59b1a2c06ab0"/>
+								<textFieldExpression><![CDATA[($F{Member_Member_Gender}== true)? ("أنثى"):("ذكر" )]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="53" uuid="9c95808e-41b6-4105-8f4d-9169625e00a0">
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="52" height="30" uuid="96585a9d-6e09-4038-9254-9b39feaee836"/>
+								<text><![CDATA[الصفة ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="24" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="52" height="20" uuid="88f6c510-a546-4cb9-bbe4-cbd0232beff2"/>
+								<textFieldExpression><![CDATA[$F{Member_Member_Status}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="a8dca085-2bfe-4294-8dae-c5cadb031560">
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="c765958c-ddba-45f9-8bd7-7be59c6e0333"/>
+								<text><![CDATA[رقم بطاقة تعريف ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="24" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="8adbf7b6-9146-47ba-bc05-9983035adeb8"/>
+								<textFieldExpression><![CDATA[$F{Member_Member_CIN}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="71" uuid="4897c65d-f6bc-4771-bdb4-bdf86ae7db18">
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="71" height="30" uuid="4e131766-51f4-449b-9850-22af1b1536fa"/>
+								<text><![CDATA[اللقب ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="24" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="71" height="20" uuid="797dce3b-c92a-4cca-b052-3cc7045da2ae"/>
+								<textFieldExpression><![CDATA[$F{Member_Member_Name1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="71" uuid="ca802e29-8bb6-4cea-a52f-64eb7fdba05a">
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="71" height="30" uuid="f14515bc-3a67-44dd-87e1-af2ac8e5f90d"/>
+								<text><![CDATA[الإسم ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="24" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="71" height="20" uuid="82573db7-fdfb-4816-9fe4-d3003fdd9a42"/>
+								<textFieldExpression><![CDATA[$F{Member_Member_Name}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="0" uuid="9f668e8f-9111-47ad-8e00-ddc1fe6e0a41">
+						<jr:tableHeader height="0" rowSpan="1"/>
+						<jr:tableFooter height="0" rowSpan="1"/>
+						<jr:columnHeader height="30" rowSpan="1"/>
+						<jr:detailCell height="24" rowSpan="1"/>
+					</jr:column>
+					<jr:column width="0" uuid="c19475fa-a9f3-40f6-9d4f-303269c2ce7c">
+						<jr:tableHeader height="0" rowSpan="1"/>
+						<jr:tableFooter height="0" rowSpan="1"/>
+						<jr:columnHeader height="30" rowSpan="1"/>
+						<jr:detailCell height="24" rowSpan="1"/>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<summary>
+		<band height="68" splitType="Stretch">
+			<staticText>
+				<reportElement x="139" y="0" width="483" height="68" uuid="604fe71e-695d-406b-82ed-f2256e177643"/>
+				<textElement textAlignment="Center">
+					<font fontName="AlArabiya" pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[جمعية إنماء المعمورة، نهج عمر بن الخطاب المعمورة 8013، نابل، تونس
+البريد الإلكتروني: contact@inma-maamoura.org.tn الموقع الالكتروني: www.inma-maamoura.org
+صفحة الفيسبوك: إنماء بالمعمورة_inma Maamoura الهاتف / الفاكس  (+216) 72 368 815
+الحساب البنكي: 18 3 87846 0017 125 040 04
+1214157/Q/N/P/000المعرف الجبائي : ]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

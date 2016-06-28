@@ -25,7 +25,7 @@ public abstract class AbstractReportBean {
         PDF, HTML, EXCEL, RTF
     }
     private ExportOption exportOption;
-    private final String COMPILE_DIR = "/resources/reports/";
+    private final String COMPILE_DIR = "/resources/jasper_reports/";
     //private String compileFileName = "productlist";//name of your compiled report file
     private String message;
  
