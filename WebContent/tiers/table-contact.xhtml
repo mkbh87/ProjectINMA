@@ -6,14 +6,14 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:fn="http://java.sun.com/jsp/jstl/functions" >
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
-	<title> - inma Admin</title>
+	<title>- inma Admin</title>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="" />
@@ -33,8 +33,8 @@
 		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
 
 
-	               
-	
+
+
 	<!--ace styles-->
 
 	<h:outputStylesheet library="css" name="ace.min.css" />
@@ -56,19 +56,18 @@
 				</h1>
 
 				<h:form>
-				<ul class="nav ace-nav pull-right">
-					<li class="light-blue">
-
-							<p:commandLink id="logout" action="#{loginMgmtBean.logout()}" styleClass="dropdown-toggle">
-								<h:graphicImage styleClass="nav-user-photo profile-img" library="images"
-									name="logo.png" alt="Inma Admin's Photo" />
-									<span class="user-info">  <strong>Logout</strong> <br/> Inma  Admin
-									</span>
-								<i class="icon-signout" style="font-size: 40px; padding-top: 2px;"></i>
-							</p:commandLink>
-
-					</li>
-				</ul>
+					<ul class="nav ace-nav pull-right">
+						<li class="light-blue"><p:commandLink id="logout"
+								action="#{loginMgmtBean.logout()}" styleClass="dropdown-toggle">
+								<h:graphicImage styleClass="nav-user-photo profile-img"
+									library="images" name="logo.png" alt="Inma Admin's Photo" />
+								<span class="user-info"> <strong>Logout</strong> <br />
+									Inma Admin
+								</span>
+								<i class="icon-signout"
+									style="font-size: 40px; padding-top: 2px;"></i>
+							</p:commandLink></li>
+					</ul>
 				</h:form>
 				<!--/.ace-nav-->
 			</h:panelGroup>
@@ -89,23 +88,27 @@
 				id="sidebar-shortcuts">
 				<h:panelGroup layout="block" styleClass="sidebar-shortcuts-large"
 					id="sidebar-shortcuts-large">
-										
-						<h:outputLink class="icon-colored btn btn-warning" value="../tiers/table-contact.xhtml">
-								<i class="icon-group"></i> 
-						</h:outputLink>
 
-						<h:outputLink class="icon-colored btn btn-success" value="../more/visualisation.xhtml">
-							<i class="icon-eye-open"></i>
-						</h:outputLink>
+					<h:outputLink class="icon-colored btn btn-warning"
+						value="../tiers/table-contact.xhtml">
+						<i class="icon-group"></i>
+					</h:outputLink>
+
+					<h:outputLink class="icon-colored btn btn-success"
+						value="../more/visualisation.xhtml">
+						<i class="icon-eye-open"></i>
+					</h:outputLink>
 
 
-						<h:outputLink class="icon-colored btn btn-info" value="../more/profile.xhtml">
-							<i class="icon-pencil"></i>
-						</h:outputLink>
+					<h:outputLink class="icon-colored btn btn-info"
+						value="../more/profile.xhtml">
+						<i class="icon-pencil"></i>
+					</h:outputLink>
 
-						<h:outputLink class="icon-colored btn btn-danger" value="../configurations/config.xhtml">
-							<i class="icon-cogs"></i>
-						</h:outputLink>
+					<h:outputLink class="icon-colored btn btn-danger"
+						value="../configurations/config.xhtml">
+						<i class="icon-cogs"></i>
+					</h:outputLink>
 
 				</h:panelGroup>
 
@@ -123,15 +126,13 @@
 
 			<!--#sidebar-shortcuts-->
 			<ul class="nav nav-list">
-				<li><h:outputLink value="welcome.xhtml">
+				<li><h:outputLink value="../welcome.xhtml">
 						<i class="icon-dashboard"></i>
 						<span class="menu-text"> Dashboard </span>
-					</h:outputLink>
-				</li>
+					</h:outputLink></li>
 
 
-				<li><h:outputLink value="#"
-						class="dropdown-toggle">
+				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-pinterest"></i>
 						<span class="menu-text"> Projets </span>
 						<b class="arrow icon-angle-down"></b>
@@ -140,15 +141,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../projects/table-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les projets
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../projects/form-projects.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau Projet
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-th-list"></i>
@@ -159,13 +157,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../events/table-events.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les événements
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../events/form-events.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel événement
 						</h:outputLink></li>
-						
+
 						<li><h:outputLink value="../events/table-subevents.xhtml">
 								<i class="icon-double-angle-right"></i> Tous sous événements
 						</h:outputLink></li>
@@ -173,8 +170,7 @@
 						<li><h:outputLink value="../events/form-subevents.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel sous événement
 						</h:outputLink></li>
-					</ul>
-				</li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-user"></i>
@@ -185,15 +181,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../members/table-members.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les membres
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../members/form-members.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau membre
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-book"></i>
@@ -204,15 +197,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../articles/table-articles.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les articles
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../articles/form-articles.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel article
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-group"></i>
@@ -223,85 +213,75 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../partners/table-partners.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les Partenaires 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../partners/form-partners.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau Partenaire 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
-				<li ><h:outputLink value="#" class="dropdown-toggle">
+				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-file-text"></i>
 						<span class="menu-text"> Publications </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
 
 					<ul class="submenu">
-						<li><h:outputLink value="../publications/table-publications.xhtml">
+						<li><h:outputLink
+								value="../publications/table-publications.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les Publications 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
-						<li  ><h:outputLink value="../publications/form-publications.xhtml">
+						<li><h:outputLink
+								value="../publications/form-publications.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvelle Publication 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
-								
-				<li ><h:outputLink value="#" class="dropdown-toggle">
+						</h:outputLink></li>
+					</ul></li>
+
+				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-print"></i>
 						<span class="menu-text"> Rapports </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
 
 					<ul class="submenu">
-					    <li><h:outputLink value="../reports/report-general.xhtml">
+						<li><h:outputLink value="../reports/report-general.xhtml">
 								<i class="icon-double-angle-right"></i> Rapport Général 
-						</h:outputLink>
-						</li>
-						
+						</h:outputLink></li>
+
 						<li><h:outputLink value="../reports/report-projets.xhtml">
 								<i class="icon-double-angle-right"></i> Rapport projets 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
-						<li  ><h:outputLink value="../reports/report-événements.xhtml">
+						<li><h:outputLink value="../reports/report-événements.xhtml">
 								<i class="icon-double-angle-right"></i> Rapport événements
-						</h:outputLink>
-						</li>
-						<li > <h:outputLink value="../reports/report-members.xhtml">
+						</h:outputLink></li>
+						<li><h:outputLink value="../reports/report-members.xhtml">
 								<i class="icon-double-angle-right"></i> Rapport membres
-						</h:outputLink>
-						</li>
-						<li > <h:outputLink value="../reports/report-articles.xhtml">
+						</h:outputLink></li>
+						<li><h:outputLink value="../reports/report-articles.xhtml">
 								<i class="icon-double-angle-right"></i> Rapport articles
-						</h:outputLink>
-						</li>
-						<li > <h:outputLink value="../reports/report-partenaires.xhtml">
+						</h:outputLink></li>
+						<li><h:outputLink value="../reports/report-partenaires.xhtml">
 								<i class="icon-double-angle-right"></i> Rapport partenaires
-						</h:outputLink>
-						</li>
-						<li > <h:outputLink value="../reports/report-publications.xhtml">
+						</h:outputLink></li>
+						<li><h:outputLink
+								value="../reports/report-publications.xhtml">
 								<i class="icon-double-angle-right"></i> Rapport publications
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
-				
-				
+						</h:outputLink></li>
+					</ul></li>
+
+
 				<li><h:outputLink value="../events/calendar.xhtml">
 						<i class="icon-calendar"></i>
 
 						<span class="menu-text"> Calendrier <span
 							class="badge badge-transparent tooltip-error"
 							title="2&nbsp;Important&nbsp;Events"> <i
-								class="icon-warning-sign red bigger-130"></i> </span> </span>
-					</h:outputLink>
-				</li>
+								class="icon-warning-sign red bigger-130"></i>
+						</span>
+						</span>
+					</h:outputLink></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-picture"></i>
@@ -312,15 +292,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../media/gallery.xhtml">
 								<i class="icon-double-angle-right"></i> Images 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
-						<li  ><h:outputLink value="../media/videos.xhtml">
+						<li><h:outputLink value="../media/videos.xhtml">
 								<i class="icon-double-angle-right"></i> Videos 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-tag"></i>
@@ -332,26 +309,21 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../more/profile.xhtml">
 								<i class="icon-double-angle-right"></i> User Profile
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../more/visualisation.xhtml">
 								<i class="icon-double-angle-right"></i> Visualisation
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="invoice.html">
 								<i class="icon-double-angle-right"></i> Invoice
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="login.html">
 								<i class="icon-double-angle-right"></i> Login &amp; Register
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
-<li><h:outputLink value="../configurations/config.xhtml">
+						</h:outputLink></li>
+					</ul></li>
+				<li><h:outputLink value="../configurations/config.xhtml">
 						<i class="icon-cogs"></i>
 						<span class="menu-text"> Parametrage </span>
 					</h:outputLink></li>
@@ -367,10 +339,11 @@
 			<h:panelGroup layout="block" styleClass="breadcrumbs"
 				id="breadcrumbs">
 				<ul class="breadcrumb">
-					<li><i class="icon-home home-icon"></i> <a href="../welcome.xhtml">Home</a> <span
-						class="divider"> <i class="icon-angle-right arrow-icon"></i>
+					<li><i class="icon-home home-icon"></i> <a
+						href="../welcome.xhtml">Home</a> <span class="divider"> <i
+							class="icon-angle-right arrow-icon"></i>
 					</span></li>
- 					<li class="active">Gection des Contacts</li>
+					<li class="active">Gection des Contacts</li>
 				</ul>
 				<!--.breadcrumb-->
 
@@ -387,12 +360,13 @@
 			</h:panelGroup>
 
 			<h:panelGroup layout="block" styleClass="page-content">
-			
-			
- 				<h:panelGroup layout="block" class="page-header position-relative">
+
+
+				<h:panelGroup layout="block" class="page-header position-relative">
 					<h1>
 						Acceuil <small> <i class="icon-double-angle-right"></i>
-							Liste des Contacts </small>
+							Liste des Contacts
+						</small>
 					</h1>
 				</h:panelGroup>
 				<!--/.page-header-->
@@ -401,163 +375,220 @@
 					<h:panelGroup layout="block" class="span12">
 						<!--PAGE CONTENT BEGINS-->
 
-						<h:panelGroup layout="block" class="alert alert-block alert-success">
+						<h:panelGroup layout="block"
+							class="alert alert-block alert-success">
 							<i class="icon-ok green"></i>
 						</h:panelGroup>
 
-						<h:panelGroup layout="block" class="space-6"></h:panelGroup>				
-<h:form id="form">
-    <p:dataTable id="id12" var="contact" value="#{contactBean.contactList}" paginator="true" rows="20"
-                 paginatorTemplate=" afficher {RowsPerPageDropdown} contacts par page 			
+						<h:panelGroup layout="block" class="space-6"></h:panelGroup>
+						<h:form id="form">
+							<p:dataTable id="id12" var="contact"
+								value="#{contactBean.contactList}" paginator="true" rows="20"
+								paginatorTemplate=" afficher {RowsPerPageDropdown} contacts par page 			
                  {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                 rowKey="#{contact.contactId}" rowsPerPageTemplate="30,40,60" selectionMode="single"
-				 paginatorPosition="bottom"	selection="#{contactBean.currentContact}"   widgetVar="contactsTable"   
-				 filteredValue="#{contactBean.filteredContacts}"
-			  	 resizableColumns="true">
- 
-                 
-             
-        <p:ajax event="rowSelect" listener="#{contactBean.onRowSelect}" update=":form:contactDetail" oncomplete="PF('contactDialog').show()" />
- 
-           <f:facet name="header">
-            <p:outputPanel>
-                <h:outputText value="Chercher dans tous les champs:" />
-                <p:inputText id="globalFilter" onkeyup="PF('contactsTable').filter()" style="width:150px" placeholder="Enter keyword"/>
-            
-         <p:commandButton id="toggler" type="button" value="Choisir Colonnes" style="float:right" icon="ui-icon-calculator" />
-        <p:columnToggler datasource="id12" trigger="toggler" />
-            </p:outputPanel>
-            
-        </f:facet>
- 
-        <p:column width="20" headerText="N°">
-            <h:outputText value="#{contact.seqNo}" />
-        </p:column>
-        
-         
-        <p:column filterBy="#{contact.contactName}" width="70" headerText="Prénom"  filterMatchMode="contains">
-             <h:outputText value="#{contact.contactName}" />
-        </p:column>
- 
-        <p:column filterBy="#{contact.contactName1}"  width="70" headerText="Nom" filterMatchMode="contains">
-            <h:outputText value="#{contact.contactName1}" />
-        </p:column>
-  
-        <p:column filterBy="#{contact.contactGender}" width="70" headerText="Genre" filterMatchMode="equals">
-            <f:facet name="filter">
-                <p:selectOneButton onchange="PF('contactsTable').filter()">
-                    <f:converter converterId="javax.faces.Boolean" />
-                    <f:selectItem itemLabel="All" itemValue="" />
-                    <f:selectItem itemLabel="Femme" itemValue="true" />
-                    <f:selectItem itemLabel="Homme" itemValue="false" />
-                </p:selectOneButton>
-            </f:facet>
-            <h:outputText value="#{contactGender ? 'Femme': 'Homme'}" />
-        </p:column>
- 
-        <p:column filterBy="#{contact.contactGsm1}" width="80"  headerText="GSM1"  >
-            <h:outputText value="#{contact.contactGsm1}">
-             </h:outputText>
-        </p:column>
-        
-        <p:column filterBy="#{contact.contactGsm2}" width="80" headerText="GSM2"  >
-            <h:outputText value="#{contact.contactGsm2}">
-             </h:outputText>
-        </p:column>
-        
-         <p:column filterBy="#{contact.contactFax}"  width="80" headerText="Fax"  >
-            <h:outputText value="#{contact.contactFax}">
-             </h:outputText>
-        </p:column>
-        
-        <p:column filterBy="#{contact.contactEmail}" width="80" headerText="E-Mail"  >
-            <h:outputText value="#{contact.contactEmail}">
-             </h:outputText>
-        </p:column>
- 
-        <p:column filterBy="#{contact.contactAddress}" width="80" headerText="Adresse"  >
-            <h:outputText value="#{contact.contactAddress}">
-             </h:outputText>
-        </p:column>
-        
-        <p:column filterBy="#{contact.contactWebSite}" width="80" headerText="Site Web"  >
-            <h:outputText value="#{contact.contactWebSite}">
-             </h:outputText>
-        </p:column>
-        
-         <p:column filterBy="#{contact.contactAutre}" width="80" headerText="Autre"  >
-            <h:outputText value="#{contact.contactAutre}">
-             </h:outputText>
-        </p:column>
-        
-        <p:column filterBy="#{contact.contactType}" width="60" headerText="Type" filterMatchMode="in">
-            <f:facet name="filter">
-                 <p:selectCheckboxMenu label="Colors" onchange="PF('contactsTable').filter()" panelStyle="width:125px" scrollHeight="150">
-                    <f:selectItems value="#{contact.contactType}" />
-                </p:selectCheckboxMenu>
-            </f:facet>
-            <h:outputText value="#{contact.contactType}" />
-        </p:column>
-        
-        <f:facet name="footer">
+								rowKey="#{contact.contactId}" rowsPerPageTemplate="30,40,60"
+								selectionMode="single" paginatorPosition="bottom"
+								selection="#{contactBean.currentContact}"
+								widgetVar="contactsTable"
+								filteredValue="#{contactBean.filteredContacts}"
+								resizableColumns="true">
+
+
+
+								<p:ajax event="rowSelect" listener="#{contactBean.onRowSelect}"
+									update=":form:contactDetail"
+									oncomplete="PF('contactDialog').show()" />
+
+								<f:facet name="header">
+									<p:outputPanel>
+										<h:outputText value="Chercher dans tous les champs:" />
+										<p:inputText id="globalFilter"
+											onkeyup="PF('contactsTable').filter()" style="width:150px"
+											placeholder="Enter keyword" />
+
+										<p:commandButton id="toggler" type="button"
+											value="Choisir Colonnes" style="float:right"
+											icon="ui-icon-calculator" />
+										<p:columnToggler datasource="id12" trigger="toggler" />
+									</p:outputPanel>
+
+								</f:facet>
+
+								<p:column width="20" headerText="N°">
+									<h:outputText value="#{contact.seqNo}" />
+								</p:column>
+
+
+								<p:column filterBy="#{contact.contactName}" width="60"
+									headerText="Prénom" filterMatchMode="contains">
+									<h:outputText value="#{contact.contactName}" />
+								</p:column>
+
+								<p:column filterBy="#{contact.contactName1}" width="60"
+									headerText="Nom" filterMatchMode="contains">
+									<h:outputText value="#{contact.contactName1}" />
+								</p:column>
+
+								<p:column filterBy="#{contact.contactGender}" width="27"
+									headerText="Genre" filterMatchMode="equals">
+									<f:facet name="filter">
+										<p:selectOneButton onchange="PF('contactsTable').filter()">
+											<f:converter converterId="javax.faces.Boolean" />
+											<f:selectItem itemLabel="All" itemValue="" />
+											<f:selectItem itemLabel="F" itemValue="true" />
+											<f:selectItem itemLabel="H" itemValue="false" />
+										</p:selectOneButton>
+									</f:facet>
+									<h:outputText value="#{contactGender ? 'Femme': 'Homme'}" />
+								</p:column>
+
+								<p:column filterBy="#{contact.contactGsm1}" width="80"
+									filterMatchMode="contains" headerText="GSM1">
+									<h:outputText value="#{contact.contactGsm1}">
+									</h:outputText>
+								</p:column>
+
+								<p:column filterBy="#{contact.contactGsm2}" width="80"
+									filterMatchMode="contains" headerText="GSM2">
+									<h:outputText value="#{contact.contactGsm2}">
+									</h:outputText>
+								</p:column>
+
+								<p:column filterBy="#{contact.contactFax}" width="60"
+									filterMatchMode="contains" headerText="Fax">
+									<h:outputText value="#{contact.contactFax}">
+									</h:outputText>
+								</p:column>
+
+								<p:column filterBy="#{contact.contactEmail}" width="80"
+									filterMatchMode="contains" headerText="E-Mail">
+									<h:outputText value="#{contact.contactEmail}">
+									</h:outputText>
+								</p:column>
+
+								<p:column filterBy="#{contact.contactAddress}" width="80"
+									filterMatchMode="contains" headerText="Adresse">
+									<h:outputText value="#{contact.contactAddress}">
+									</h:outputText>
+								</p:column>
+
+								<p:column filterBy="#{contact.contactWebSite}" width="80"
+									filterMatchMode="contains" headerText="Site Web">
+									<h:outputText value="#{contact.contactWebSite}">
+									</h:outputText>
+								</p:column>
+
+								<p:column filterBy="#{contact.contactAutre}" width="80"
+									filterMatchMode="contains" headerText="Autre">
+									<h:outputText value="#{contact.contactAutre}">
+									</h:outputText>
+								</p:column>
+
+								<p:column filterBy="#{contact.contactType}" width="60"
+									headerText="Type" filterMatchMode="in">
+									<f:facet name="filter">
+										<p:selectCheckboxMenu label="Colors"
+											onchange="PF('contactsTable').filter()"
+											panelStyle="width:125px" scrollHeight="150">
+											<f:selectItems value="#{contactBean.listTypes}" />
+										</p:selectCheckboxMenu>
+									</f:facet>
+									<h:outputText value="#{contact.contactType}" />
+								</p:column>
+
+								<f:facet name="footer">
         En total il y a  #{fn:length(contactBean.contactList)} contacts.
    		</f:facet>
-    </p:dataTable>
- 
-    <p:dialog header="contact Detail" widgetVar="contactDialog" modal="true">
-        <p:outputPanel id="contactDetail" style="text-align:center;width: 500px">
-           
-            <p:graphicImage style="height: 150px; float: left;" value="http://inma-maamoura.org/javax.faces.resource/#{contactBean.currentContact.contactPicture}.xhtml?ln=images"/> 
-           
+							</p:dataTable>
+
+							<p:dialog header="contact Detail" widgetVar="contactDialog"
+								modal="true">
+								<p:outputPanel id="contactDetail"
+									style="text-align:center;width: 500px">
+
+									<p:graphicImage style="height: 150px; float: left;"
+										value="http://inma-maamoura.org/javax.faces.resource/#{contactBean.currentContact.contactPicture}.xhtml?ln=images" />
 
 
-			<p:panelGrid  columns="2" rendered="#{not empty contactBean.currentContact}" columnClasses="label,value">
-                <h:outputText value="N°:" />
-                <h:outputText value="#{contactBean.currentContact.seqNo}" />
- 
-                <h:outputText value="Nom:" />
-                <h:outputText value="#{contactBean.currentContact.contactName}" />
- 
-                <h:outputText value="Prenom:" />
-                <h:outputText value="#{contactBean.currentContact.contactName1}"/>
- 
-                <h:outputText value="GSM1:" />
-                <h:outputText value="#{contactBean.currentContact.contactGsm1}"/>
-                
-                <h:outputText value="GSM2:" />
-                <h:outputText value="#{contactBean.currentContact.contactGsm2}"/>
-                
-             </p:panelGrid>
-        </p:outputPanel>
-    </p:dialog>
-</h:form>
 
-	
-		<style>
-  			.ui-dialog {
-     		left: 25% !important;
-    		top: 25% !important;
-   			}
-   			
-   			.ui-columntoggler{
-   			right: 2%;
-   			top: 27%;
-   			}
-   			
-   			.ui-column-filter{
-   			 width: 90% !important;
-   			}
-   			
-   			.ui-paginator-rpp-options{
-   			 width: 50px
-   			}
-  		</style>
+									<p:panelGrid columns="2"
+										rendered="#{not empty contactBean.currentContact}"
+										columnClasses="label,value">
+										<h:outputText value="N°:" />
+										<h:outputText value="#{contactBean.currentContact.seqNo}" />
+
+										<h:outputText value="Nom:" />
+										<h:outputText
+											value="#{contactBean.currentContact.contactName}" />
+
+										<h:outputText value="Prenom:" />
+										<h:outputText
+											value="#{contactBean.currentContact.contactName1}" />
+
+										<h:outputText value="GSM1:" />
+										<h:outputText
+											value="#{contactBean.currentContact.contactGsm1}" />
+
+										<h:outputText value="GSM2:" />
+										<h:outputText
+											value="#{contactBean.currentContact.contactGsm2}" />
+
+									</p:panelGrid>
+								</p:outputPanel>
+							</p:dialog>
+						</h:form>
+
+
+						<style>
+.ui-dialog {
+	left: 25% !important;
+	top: 25% !important;
+}
+
+.ui-columntoggler {
+	right: 2%;
+	top: 27%;
+}
+
+.ui-column-filter {
+	width: 90% !important;
+}
+
+.ui-paginator-rpp-options {
+	width: 50px
+}
+
+.ui-selectcheckboxmenu-panel {
+	right: 2%;
+	top: 31%;
+}
+
+.ui-selectonebutton  .ui-button-text {
+	padding-left: 1px !important;
+	padding-right: 1px !important;
+}
+
+.ui-selectonebutton {
+	margin-left: -7px;
+}
+
+tr>td {
+	padding-left: 5px !important;
+	padding-right: 5px !important;
+	font-size: 11px !important;
+}
+
+tr>th {
+	padding-left: 5px !important;
+	padding-right: 5px !important;
+}
+</style>
 						<!--PAGE CONTENT ENDS-->
 					</h:panelGroup>
 					<!--/.span-->
 				</h:panelGroup>
 				<!--/.row-fluid-->
- 			</h:panelGroup>
+			</h:panelGroup>
 			<!--/.page-content-->
 		</h:panelGroup>
 		<!--/.main-content-->
@@ -566,12 +597,13 @@
 
 	<a href="#" id="btn-scroll-up"
 		class="btn-scroll-up btn btn-small btn-inverse"> <i
-		class="icon-double-angle-up icon-only bigger-110"></i> </a>
+		class="icon-double-angle-up icon-only bigger-110"></i>
+	</a>
 
 	<!--basic scripts-->
 
 	<script
-		src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"/>
+		src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" />
 
 	<script type="text/javascript">
 	//<![CDATA[ 
@@ -585,27 +617,27 @@
 		//]]>
 		</script>
 
-	<h:outputScript library="js" name="bootstrap.min.js"/>
+	<h:outputScript library="js" name="bootstrap.min.js" />
 
 	<!--page specific plugin scripts-->
 
-	<h:outputScript library="js" name="jquery-ui-1.10.3.custom.min.js"/>
-	<h:outputScript library="js" name="jquery.ui.touch-punch.min.js"/>
-	<h:outputScript library="js" name="jquery.slimscroll.min.js"/>
-	<h:outputScript library="js" name="jquery.easy-pie-chart.min.js"/>
-	<h:outputScript library="js" name="jquery.sparkline.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.pie.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.resize.min.js"/>
+	<h:outputScript library="js" name="jquery-ui-1.10.3.custom.min.js" />
+	<h:outputScript library="js" name="jquery.ui.touch-punch.min.js" />
+	<h:outputScript library="js" name="jquery.slimscroll.min.js" />
+	<h:outputScript library="js" name="jquery.easy-pie-chart.min.js" />
+	<h:outputScript library="js" name="jquery.sparkline.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.pie.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.resize.min.js" />
 
 	<!--ace scripts-->
 
-	<h:outputScript library="js" name="ace-elements.min.js"/>
-	<h:outputScript library="js" name="ace.min.js"/>
+	<h:outputScript library="js" name="ace-elements.min.js" />
+	<h:outputScript library="js" name="ace.min.js" />
 
 	<!--inline scripts related to this page-->
-	 
-		
+
+
 </h:body>
 
 </html>
