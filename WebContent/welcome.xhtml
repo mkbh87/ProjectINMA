@@ -241,6 +241,49 @@
 						</li>
 					</ul>
 				</li>
+				
+				<li ><h:outputLink value="#" class="dropdown-toggle">
+						<i class="icon-print"></i>
+						<span class="menu-text"> Rapports </span>
+						<b class="arrow icon-angle-down"></b>
+					</h:outputLink>
+
+					<ul class="submenu">
+					
+					    <li><h:outputLink value="reports/report-general.xhtml">
+								<i class="icon-double-angle-right"></i> Rapport Général 
+						</h:outputLink>
+						</li>
+						
+						<li><h:outputLink value="reports/report-projets.xhtml">
+								<i class="icon-double-angle-right"></i> Rapport projets 
+						</h:outputLink>
+						</li>
+
+						<li  ><h:outputLink value="reports/report-événements.xhtml">
+								<i class="icon-double-angle-right"></i> Rapport événements
+						</h:outputLink>
+						</li>
+						<li > <h:outputLink value="reports/report-members.xhtml">
+								<i class="icon-double-angle-right"></i> Rapport membres
+						</h:outputLink>
+						</li>
+						<li > <h:outputLink value="reports/report-articles.xhtml">
+								<i class="icon-double-angle-right"></i> Rapport articles
+						</h:outputLink>
+						</li>
+						<li > <h:outputLink value="reports/report-partenaires.xhtml">
+								<i class="icon-double-angle-right"></i> Rapport partenaires
+						</h:outputLink>
+						</li>
+						<li > <h:outputLink value="reports/report-publications.xhtml">
+								<i class="icon-double-angle-right"></i> Rapport publications
+						</h:outputLink>
+						</li>
+					</ul>
+				</li>
+				
+				
 				<li><h:outputLink value="events/calendar.xhtml">
 						<i class="icon-calendar"></i>
 
@@ -347,18 +390,6 @@
 
 						<h:panelGroup layout="block" class="space-6"></h:panelGroup>
 						
-						 <f:view>          
-            <h:form id="form" target="_blank">
-                <h:outputLabel>Export Report</h:outputLabel>
-                <h:selectOneRadio value="#{reportsBean.exportOption}">
-                    <f:selectItem itemValue="PDF" itemLabel="PDF"/>
-                    <f:selectItem itemValue="HTML" itemLabel="HTML"/>
-                    <f:selectItem itemValue="EXCEL" itemLabel="EXCEL"/>
-                    <f:selectItem itemValue="RTF" itemLabel="RTF"/>
-                </h:selectOneRadio>
-                <h:commandButton  action="#{reportsBean.execute}" value="Get Report" />
-            </h:form>
-        </f:view>
 
 						<!--PAGE CONTENT ENDS-->
 					</h:panelGroup>

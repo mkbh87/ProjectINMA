@@ -10,7 +10,7 @@ public class Database {
     public static Connection getConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/inmaa",
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/inmaa?useUnicode=true&amp;characterEncoding=UTF-8",
                     "root", "mkhalil");
             return con;
         } catch (Exception ex) {

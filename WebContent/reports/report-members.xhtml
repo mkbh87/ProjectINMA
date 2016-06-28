@@ -33,8 +33,6 @@
 	<h:outputStylesheet
 		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
 
-
-
 	<!--ace styles-->
 
 	<h:outputStylesheet library="css" name="ace.min.css" />
@@ -242,7 +240,7 @@
 								<i class="icon-double-angle-right"></i> Rapport Général 
 						</h:outputLink></li>
 
-						<li class="active open"><h:outputLink
+						<li><h:outputLink
 								value="../reports/report-projets.xhtml">
 								<i class="icon-double-angle-right"></i> Rapport projets 
 						</h:outputLink></li>
@@ -250,7 +248,7 @@
 						<li><h:outputLink value="../reports/report-events.xhtml">
 								<i class="icon-double-angle-right"></i> Rapport événements
 						</h:outputLink></li>
-						<li><h:outputLink value="../reports/report-members.xhtml">
+						<li  class="active open"><h:outputLink value="../reports/report-members.xhtml">
 								<i class="icon-double-angle-right"></i> Rapport membres
 						</h:outputLink></li>
 						<li><h:outputLink value="../reports/report-articles.xhtml">
@@ -372,57 +370,19 @@
 
 											<h:form class="form-h" id="form" prependId="false" target="_blank"
 												enctype="multipart/form-data" acceptcharset="UTF-8">
-												<h:panelGroup layout="block" id="fuelux-wizard"
-													class="row-fluid hide" data-target="#step-container">
-													<ul class="wizard-steps">
-														<li data-target="#step1" class="active"><span
-															class="step">1</span> <span class="title">Arabe</span></li>
-
-
-
-														<li data-target="#step2"><span class="step">2</span>
-															<span class="title">Francais</span></li>
-													</ul>
-												</h:panelGroup>
+									
 												<p:separator />
+												
 												<h:panelGroup layout="block"
 													class="step-content row-fluid position-relative"
 													id="step-container">
 
 													<h:panelGroup layout="block" class="step-pane active"
 														id="step1">
-														<h3 class="lighter block green">Rapport des projets</h3>
+														<h3 class="lighter block green">Rapport des membres</h3>
 														
-														<h:panelGroup layout="block" class="control-group">
-															<p:outputLabel styleClass="control-label" for="proid"
-																value="Projet " />
-
-															<h:panelGroup layout="block" class="controls">
-																<span class="span2 input-icon input-icon-right">
-																	<h:selectOneMenu id="proid"
-																		value="#{projecByIDBean.project_ID}" effect="fold"
-																		editable="true">
-																		<f:selectItems styleClass="span12"
-																			value="#{projectBean.projectList}" var="pro"
-																			itemLabel="#{pro.seqNo} - #{pro.projectName}"
-																			itemValue="#{pro.projectId}" />
-																	</h:selectOneMenu>
-																</span>
-															</h:panelGroup>
-														</h:panelGroup>
+											
 														
-														<h:panelGroup layout="block" class="control-group">
-															<p:outputLabel styleClass="control-label" for="proid"
-																value="Avec événement et articles " />
-
-															<h:panelGroup layout="block" class="controls">
-																<span class="span2 input-icon input-icon-right">
-																	<p:selectBooleanCheckbox
-																		value="#{projecByIDBean.with_Detail}" />
-																	
-																</span>
-															</h:panelGroup>
-														</h:panelGroup>
 
 														<h:panelGroup layout="block" class="control-group">
 															<p:outputLabel styleClass="control-label" 
@@ -431,10 +391,10 @@
 															<h:panelGroup layout="block" class="controls">
 																<span class="span2 input-icon input-icon-right">
 																	<h:selectOneMenu styleClass="span12" 
-																		value="#{projecByIDBean.exportOption}">
+																		value="#{memberListBean.exportOption}">
+																		<f:selectItem itemValue="EXCEL" itemLabel="EXCEL" />
 																		<f:selectItem itemValue="PDF" itemLabel="PDF" />
 																		<f:selectItem itemValue="HTML" itemLabel="HTML" />
-																		<f:selectItem itemValue="EXCEL" itemLabel="EXCEL" />
 																		<f:selectItem itemValue="RTF" itemLabel="RTF" />
 																	</h:selectOneMenu>
 																</span>
@@ -442,7 +402,7 @@
 														</h:panelGroup>
 														
 														
-														<h:commandButton action="#{projecByIDBean.execute}"
+														<h:commandButton action="#{memberListBean.execute}"
 															styleClass="btn btn-success btn-next" value="Get Report">
 														</h:commandButton>
 
@@ -479,130 +439,7 @@
 
 
 
-
-
-
-
-
-
-
-
-						<h:panelGroup layout="block" class="row-fluid">
-							<h:panelGroup layout="block" class="span12">
-								<h:panelGroup layout="block" class="widget-box">
-									<h:panelGroup layout="block"
-										class="widget-header widget-header-blue widget-header-flat">
-										<h4 class="lighter">Rapport des projets par intervalle de date</h4>
-
-									</h:panelGroup>
-
-									<h:panelGroup layout="block" class="widget-body widget-main">
-										<h:panelGroup layout="block" class="row-fluid">
-
-											<h:form class="form-h" prependId="false" target="_blank"
-												enctype="multipart/form-data" acceptcharset="UTF-8">
-												<h:panelGroup layout="block" id="fuelux-wizard1"
-													class="row-fluid hide" data-target="#step-container">
-													<ul class="wizard-steps">
-														<li data-target="#step1" class="active"><span
-															class="step">1</span> <span class="title">Arabe</span></li>
-
-
-
-														<li data-target="#step2"><span class="step">2</span>
-															<span class="title">Francais</span></li>
-													</ul>
-												</h:panelGroup>
-												<p:separator />
-										
-												<h:panelGroup layout="block"
-													class="step-content row-fluid position-relative"
-													id="step-container1">
-
-													<h:panelGroup layout="block" class="step-pane active"
-														id="step11">
-														<h3 class="lighter block green">Rapport des projets</h3>
-														
-														<h:panelGroup layout="block" class="control-group">
-															<p:outputLabel styleClass="control-label" for="BeginDate"
-																value="Date début " />
-
-															<h:panelGroup layout="block" class="controls">
-																<span class="span1 input-icon input-icon-right">
-																	<p:calendar id="BeginDate" pattern="dd/MM/yyyy"
-																				value="#{projecByDateBean.dateFrom}"
-																				styleClass="span12 date-picker" effect="fold" />
-																</span>
-															</h:panelGroup>
-														</h:panelGroup>
-														
-														<h:panelGroup layout="block" class="control-group">
-															<p:outputLabel styleClass="control-label" for="EndDate"
-																value="Date fin " />
-
-															<h:panelGroup layout="block" class="controls">
-																<span class="span1 input-icon input-icon-right">
-																	<p:calendar id="EndDate" pattern="dd/MM/yyyy"
-																				value="#{projecByDateBean.dateTo}"
-																				styleClass="span12 date-picker" effect="fold" />
-																</span>
-															</h:panelGroup>
-														</h:panelGroup>
-
-														<h:panelGroup layout="block" class="control-group">
-															<p:outputLabel styleClass="control-label" 
-																value="type document " />
-
-															<h:panelGroup layout="block" class="controls">
-																<span class="span2 input-icon input-icon-right">
-																	<h:selectOneMenu styleClass="span12" 
-																		value="#{projecByDateBean.exportOption}">
-																		<f:selectItem itemValue="PDF" itemLabel="PDF" />
-																		<f:selectItem itemValue="HTML" itemLabel="HTML" />
-																		<f:selectItem itemValue="EXCEL" itemLabel="EXCEL" />
-																		<f:selectItem itemValue="RTF" itemLabel="RTF" />
-																	</h:selectOneMenu>
-																</span>
-															</h:panelGroup>
-														</h:panelGroup>
-														<h:commandButton action="#{projecByDateBean.execute}"
-															styleClass="btn btn-success btn-next" value="Get Report">
- 														</h:commandButton>
-
-
-
-
-														<p:separator />
-
-													</h:panelGroup>
-												</h:panelGroup>
-
-
-
-
-											</h:form>
-											<!-- <div class="row-fluid wizard-actions">
-												<button class="btn btn-prev">
-													<i class="icon-arrow-left"></i> Prev
-												</button>
-
-												<button class="btn btn-success btn-next" data-last="Finish ">
-													Next <i class="icon-arrow-right icon-on-right"></i>
-												</button>
-											</div> -->
-										</h:panelGroup>
-
-										<!--/widget-main-->
-									</h:panelGroup>
-									<!--/widget-body-->
-								</h:panelGroup>
-							</h:panelGroup>
-						</h:panelGroup>
-
-
-
-
-						<h:panelGroup layout="block" id="modal-wizard" class="modal hide">
+	<h:panelGroup layout="block" id="modal-wizard" class="modal hide">
 							<h:panelGroup layout="block" class="modal-header"
 								data-target="#modal-step-contents">
 								<ul class="wizard-steps clearfix">

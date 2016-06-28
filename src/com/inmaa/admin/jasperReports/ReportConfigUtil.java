@@ -90,7 +90,7 @@ public class ReportConfigUtil {
  
     public static void exportReportAsExcel(JasperPrint jasperPrint, PrintWriter out) throws JRException, FileNotFoundException, IOException {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
-        OutputStream outputfile = new FileOutputStream(new File("d:/output/JasperReport1.xls"));//make sure to have the directory. excel file will export here
+        OutputStream outputfile = new FileOutputStream(new File("/tmp/JasperReport1.xls"));//make sure to have the directory. excel file will export here
          
         // coding For Excel:
         JRXlsExporter exporterXLS = new JRXlsExporter();

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="projectByDate" columnDirection="RTL" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="10" uuid="624a34cf-8145-4865-9ae4-b32cc0f41484">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="454"/>
+	<parameter name="DateFrom" class="java.util.Date"/>
+	<parameter name="DateTo" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[SELECT 	 `Project_ID` AS Project_Project_ID,
+     `SeqNo` AS Project_SeqNo,
+     `Project_Logo` AS Project_Project_Logo,
+     `Project_Desc` AS Project_Project_Desc,
+     `Project_Name` AS Project_Project_Name,
+     `Project_StartDate` AS Project_Project_StartDate,
+     `Project_Location` AS Project_Project_Location,
+     `Project_Phone` AS Project_Project_Phone,
+     `Project_partner` AS Project_Project_partner,
+     `Project_Def` AS Project_Project_Def,
+     `Project_Url` AS Project_Project_Url,
+     `Project_NbrVisite` AS Project_Project_NbrVisite
+FROM `Project` Project
+where (Project_StartDate > $P{DateFrom} or  $P{DateFrom} is null)
+and (Project_StartDate < $P{DateTo} or $P{DateTo} is null)
+order by Project_StartDate]]>
+	</queryString>
+	<field name="Project_Project_ID" class="java.lang.Integer"/>
+	<field name="Project_SeqNo" class="java.lang.Integer"/>
+	<field name="Project_Project_Logo" class="java.lang.String"/>
+	<field name="Project_Project_Desc" class="java.lang.String"/>
+	<field name="Project_Project_Name" class="java.lang.String"/>
+	<field name="Project_Project_StartDate" class="java.sql.Date"/>
+	<field name="Project_Project_Location" class="java.lang.String"/>
+	<field name="Project_Project_Phone" class="java.lang.String"/>
+	<field name="Project_Project_partner" class="java.lang.String"/>
+	<field name="Project_Project_Def" class="java.lang.String"/>
+	<field name="Project_Project_Url" class="java.lang.String"/>
+	<field name="Project_Project_NbrVisite" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="176" splitType="Prevent">
+			<staticText>
+				<reportElement x="315" y="76" width="67" height="20" uuid="fa924e2a-749e-4604-bc64-953a2eb4eabd"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[الإطار المكاني]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="86" y="136" width="227" height="20" uuid="285a3a5f-886f-4151-aeb6-390504205493"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Project_Project_StartDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="315" y="116" width="67" height="20" uuid="a1baf151-32d2-4614-8950-0310bc1308ac"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[للإتصال]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="86" y="116" width="227" height="20" uuid="468c6efc-606f-4526-a921-84c62ae189d0"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Project_Project_Phone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="86" y="96" width="227" height="20" uuid="a8486122-ddaa-44cf-9920-00c0b6abce94"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Project_Project_partner}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="86" y="76" width="227" height="20" uuid="795d5557-7bb2-4c1e-977d-28051a86916c"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Project_Project_Location}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="315" y="136" width="67" height="20" uuid="8dff6c00-daca-4108-980f-2386339a5756"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[إنطلاق المشروع]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="315" y="96" width="67" height="20" uuid="f3e4ccd3-d387-432a-8278-e9b1f008ff6c"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[الشركاء ]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="386" y="48" width="169" height="123" uuid="5f170a06-3ae0-4a65-b35d-e9cf55484abb"/>
+				<imageExpression><![CDATA["/home/anas/workspace/Inmaa_Client/WebContent/resources/images/"+$F{Project_Project_Logo}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="51" y="1" width="460" height="37" uuid="c9535d01-e2cb-47e1-a084-4d6ba7bfbe7a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true" isItalic="true" isUnderline="false" pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Project_Project_Name}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="467" splitType="Prevent">
+			<textField pattern="">
+				<reportElement mode="Transparent" x="37" y="0" width="474" height="467" uuid="bfa6c8bf-35d6-4745-bf0f-e0e0c0fdccdf"/>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="Arab" size="11" isBold="false" pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Proportional"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Project_Project_Desc}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="155" splitType="Stretch">
+			<staticText>
+				<reportElement x="51" y="80" width="483" height="68" uuid="1ba7bd68-f093-42db-927c-99d3c5426405"/>
+				<textElement textAlignment="Center">
+					<font fontName="AlArabiya" pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[جمعية إنماء المعمورة، نهج عمر بن الخطاب المعمورة 8013، نابل، تونس
+البريد الإلكتروني: contact@inma-maamoura.org.tn الموقع الالكتروني: www.inma-maamoura.org
+صفحة الفيسبوك: إنماء بالمعمورة_inma Maamoura الهاتف / الفاكس  (+216) 72 368 815
+الحساب البنكي: 18 3 87846 0017 125 040 04
+1214157/Q/N/P/000المعرف الجبائي : ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="246" y="7" width="69" height="79" uuid="20560e58-5323-47dc-902c-06a674e46bf2"/>
+				<imageExpression><![CDATA["/home/anas/Bureau/a.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</summary>
+</jasperReport>
