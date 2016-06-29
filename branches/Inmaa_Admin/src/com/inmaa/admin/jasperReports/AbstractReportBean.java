@@ -60,7 +60,7 @@ public abstract class AbstractReportBean {
         if (getExportOption().equals(ExportOption.HTML)) {
             ReportConfigUtil.exportReportAsHtml(jasperPrint, response.getWriter());
         } else if (getExportOption().equals(ExportOption.EXCEL)) {
-            ReportConfigUtil.exportReportAsExcel(jasperPrint, response.getWriter());
+            ReportConfigUtil.exportReportAsExcel(jasperPrint);
         } else {
             request.getSession().setAttribute(BaseHttpServlet.DEFAULT_JASPER_PRINT_SESSION_ATTRIBUTE, jasperPrint);
             response.sendRedirect(request.getContextPath() + "/servlets/report/" + getExportOption());
