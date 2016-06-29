@@ -4,16 +4,20 @@ package com.inmaa.admin.jasperReports;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.io.Writer;
+import java.sql.Connection;
 import java.util.Map;
-import java.sql.*;
- 
+
+import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
- 
+import javax.servlet.http.HttpServletResponse;
+
 import net.sf.jasperreports.engine.JRAbstractExporter;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporterParameter;
@@ -88,19 +92,39 @@ public class ReportConfigUtil {
         exportReport(exporter, jasperPrint, out);
     }
  
-    public static void exportReportAsExcel(JasperPrint jasperPrint, PrintWriter out) throws JRException, FileNotFoundException, IOException {
-        ByteArrayOutputStream output = new ByteArrayOutputStream();
-        OutputStream outputfile = new FileOutputStream(new File("/tmp/JasperReport1.xls"));//make sure to have the directory. excel file will export here
-         
-        // coding For Excel:
-        JRXlsExporter exporterXLS = new JRXlsExporter();
-        exporterXLS.setParameter(JRXlsExporterParameter.JASPER_PRINT, jasperPrint);
-        exporterXLS.setParameter(JRXlsExporterParameter.OUTPUT_STREAM, output);
-        exporterXLS.setParameter(JRXlsExporterParameter.IS_ONE_PAGE_PER_SHEET, Boolean.FALSE);
-        exporterXLS.setParameter(JRXlsExporterParameter.IS_DETECT_CELL_TYPE, Boolean.TRUE);
-        exporterXLS.setParameter(JRXlsExporterParameter.IS_WHITE_PAGE_BACKGROUND, Boolean.FALSE);
-        exporterXLS.setParameter(JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_ROWS, Boolean.TRUE);
-        exporterXLS.exportReport();
-        outputfile.write(output.toByteArray());
-    }
+    public static void exportReportAsExcel(JasperPrint jasperPrint) throws JRException, FileNotFoundException, IOException {
+        
+ 		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletResponse response = (HttpServletResponse) context
+				.getExternalContext().getResponse();
+		if (jasperPrint != null) {
+			ByteArrayOutputStream xlsReport = new ByteArrayOutputStream();
+			JRXlsExporter exporter = new JRXlsExporter();
+			exporter.setParameter(JRXlsExporterParameter.JASPER_PRINT, jasperPrint);
+			exporter.setParameter(JRXlsExporterParameter.OUTPUT_STREAM, xlsReport);
+			exporter.setParameter(JRXlsExporterParameter.IS_ONE_PAGE_PER_SHEET, Boolean.FALSE);
+			exporter.setParameter(JRXlsExporterParameter.IS_DETECT_CELL_TYPE, Boolean.TRUE);
+			exporter.setParameter(JRXlsExporterParameter.IS_WHITE_PAGE_BACKGROUND, Boolean.FALSE);
+			exporter.setParameter(JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_ROWS, Boolean.TRUE);
+			exporter.exportReport();
+			// Send response
+			byte[] bytes = xlsReport.toByteArray();
+			/*******************************************************************
+			 * Pour afficher une boîte de dialogue pour enregistrer le fichier
+			 * sous le nom rapport.xls
+			 ******************************************************************/
+			response.addHeader("Content-disposition",
+					"attachment;filename=rapport.xls");
+			response.setContentType("application/vnd.ms-excel");
+			response.setContentLength(bytes.length);
+			response.getOutputStream().write(bytes, 0, bytes.length);
+			response.getOutputStream().flush();
+			response.getOutputStream().close();
+		} else {
+			Writer writer = response.getWriter();
+			writer.write("Aucun rapport à afficher");
+			response.setContentType("text/HTML");
+		}
+    	
+     }
 }
