@@ -28,16 +28,16 @@
 	<h:outputStylesheet name="bootstrap-responsive.min.css" library="css" />
 	<h:outputStylesheet
 		name="webjars/font-awesome/3.2.1/css/font-awesome.min.css" />
-	               
-	
+
+
 	<!--ace styles-->
 	<h:outputStylesheet library="css" name="ace.min.css" />
 	<h:outputStylesheet library="css" name="ace-responsive.min.css" />
 	<h:outputStylesheet library="css" name="ace-skins.min.css" />
 
 
-	               
-	
+
+
 	<!--ace styles-->
 
 	<h:outputStylesheet library="css" name="ace.min.css" />
@@ -47,9 +47,9 @@
 </h:head>
 
 <h:body>
-		<f:metadata>
-       		<f:viewParam name="id" value="#{partnerBean.id}" />
-   		</f:metadata>
+	<f:metadata>
+		<f:viewParam name="id" value="#{partnerBean.id}" />
+	</f:metadata>
 	<h:panelGroup layout="block" styleClass="navbar">
 		<h:panelGroup layout="block" styleClass="navbar-inner">
 			<h:panelGroup layout="block" styleClass="container-fluid">
@@ -61,18 +61,18 @@
 				</h1>
 
 				<ul class="nav ace-nav pull-right">
-					<li class="light-blue">
-
-							<p:commandLink id="logout" action="#{loginMgmtBean.logout()}" styleClass="dropdown-toggle">
-								<h:graphicImage styleClass="nav-user-photo profile-img" library="images"
-									name="logo.png" alt="Inma Admin's Photo" />
-									<span class="user-info">  <strong>Logout</strong> <br/> Inma  Admin
-									</span>
-								<i class="icon-signout" style="font-size: 40px; padding-top: 2px;"></i>
-							</p:commandLink>
-
-					</li>
-				</ul>				<!--/.ace-nav-->
+					<li class="light-blue"><p:commandLink id="logout"
+							action="#{loginMgmtBean.logout()}" styleClass="dropdown-toggle">
+							<h:graphicImage styleClass="nav-user-photo profile-img"
+								library="images" name="logo.png" alt="Inma Admin's Photo" />
+							<span class="user-info"> <strong>Logout</strong> <br />
+								Inma Admin
+							</span>
+							<i class="icon-signout"
+								style="font-size: 40px; padding-top: 2px;"></i>
+						</p:commandLink></li>
+				</ul>
+				<!--/.ace-nav-->
 			</h:panelGroup>
 			<!--/.container-fluid-->
 		</h:panelGroup>
@@ -91,23 +91,27 @@
 				id="sidebar-shortcuts">
 				<h:panelGroup layout="block" styleClass="sidebar-shortcuts-large"
 					id="sidebar-shortcuts-large">
-										
-						<h:outputLink class="icon-colored btn btn-warning" value="../tiers/table-contact.xhtml">
-								<i class="icon-group"></i> 
-						</h:outputLink>
 
-						<h:outputLink class="icon-colored btn btn-success" value="../more/visualisation.xhtml">
-							<i class="icon-eye-open"></i>
-						</h:outputLink>
+					<h:outputLink class="icon-colored btn btn-warning"
+						value="../tiers/table-contact.xhtml">
+						<i class="icon-group"></i>
+					</h:outputLink>
+
+					<h:outputLink class="icon-colored btn btn-success"
+						value="../more/visualisation.xhtml">
+						<i class="icon-eye-open"></i>
+					</h:outputLink>
 
 
-						<h:outputLink class="icon-colored btn btn-info" value="../more/profile.xhtml">
-							<i class="icon-pencil"></i>
-						</h:outputLink>
+					<h:outputLink class="icon-colored btn btn-info"
+						value="../more/profile.xhtml">
+						<i class="icon-pencil"></i>
+					</h:outputLink>
 
-						<h:outputLink class="icon-colored btn btn-danger" value="../configurations/config.xhtml">
-							<i class="icon-cogs"></i>
-						</h:outputLink>
+					<h:outputLink class="icon-colored btn btn-danger"
+						value="../configurations/config.xhtml">
+						<i class="icon-cogs"></i>
+					</h:outputLink>
 
 				</h:panelGroup>
 
@@ -128,8 +132,7 @@
 					</h:outputLink></li>
 
 
-				<li><h:outputLink value="#"
-						class="dropdown-toggle">
+				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-pinterest"></i>
 						<span class="menu-text"> Projets </span>
 						<b class="arrow icon-angle-down"></b>
@@ -159,7 +162,7 @@
 						<li><h:outputLink value="../events/form-events.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel événement
 						</h:outputLink></li>
-						
+
 						<li><h:outputLink value="../events/table-subevents.xhtml">
 								<i class="icon-double-angle-right"></i> Tous sous événements
 						</h:outputLink></li>
@@ -167,8 +170,7 @@
 						<li><h:outputLink value="../events/form-subevents.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel sous événement
 						</h:outputLink></li>
-					</ul>
-				</li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-user"></i>
@@ -179,15 +181,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../members/table-members.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les membres
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../members/form-members.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau membre
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-book"></i>
@@ -198,17 +197,15 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../articles/table-articles.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les articles
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../articles/form-articles.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvel article
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
-				<li class="active open"><h:outputLink value="#" class="dropdown-toggle">
+				<li class="active open"><h:outputLink value="#"
+						class="dropdown-toggle">
 						<i class="icon-group"></i>
 						<span class="menu-text"> Partenaires </span>
 						<b class="arrow icon-angle-down"></b>
@@ -217,86 +214,78 @@
 					<ul class="submenu">
 						<li><h:outputLink value="table-partners.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les Partenaires 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
-						<li class="active" ><h:outputLink value="form-partners.xhtml">
+						<li class="active"><h:outputLink value="form-partners.xhtml">
 								<i class="icon-double-angle-right"></i> Nouveau Partenaire 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
-				<li ><h:outputLink value="#" class="dropdown-toggle">
+				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-file-text"></i>
 						<span class="menu-text"> Publications </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
 
 					<ul class="submenu">
-						<li><h:outputLink value="../publications/table-publications.xhtml">
+						<li><h:outputLink
+								value="../publications/table-publications.xhtml">
 								<i class="icon-double-angle-right"></i> Tous les Publications 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
-						<li  ><h:outputLink value="../publications/form-publications.xhtml">
+						<li><h:outputLink
+								value="../publications/form-publications.xhtml">
 								<i class="icon-double-angle-right"></i> Nouvelle Publication 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
-				
-								
-				<li ><h:outputLink value="#" class="dropdown-toggle">
+						</h:outputLink></li>
+					</ul></li>
+
+
+				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-print"></i>
 						<span class="menu-text"> Rapports </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
 
 					<ul class="submenu">
-					    <li><h:outputLink value="../reports/report-general.xhtml">
+						<li><h:outputLink value="../reports/report-general.xhtml">
 								<i class="icon-double-angle-right"></i> Rapport Général 
-						</h:outputLink>
-						</li>
-						
+						</h:outputLink></li>
+
 						<li><h:outputLink value="../reports/report-projets.xhtml">
 								<i class="icon-double-angle-right"></i> Rapport projets 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
-						<li  ><h:outputLink value="../reports/report-événements.xhtml">
+						<li><h:outputLink
+								value="../reports/report-événements.xhtml">
 								<i class="icon-double-angle-right"></i> Rapport événements
-						</h:outputLink>
-						</li>
-						<li > <h:outputLink value="../reports/report-members.xhtml">
+						</h:outputLink></li>
+						<li><h:outputLink value="../reports/report-members.xhtml">
 								<i class="icon-double-angle-right"></i> Rapport membres
-						</h:outputLink>
-						</li>
-						<li > <h:outputLink value="../reports/report-articles.xhtml">
+						</h:outputLink></li>
+						<li><h:outputLink value="../reports/report-articles.xhtml">
 								<i class="icon-double-angle-right"></i> Rapport articles
-						</h:outputLink>
-						</li>
-						<li > <h:outputLink value="../reports/report-partenaires.xhtml">
+						</h:outputLink></li>
+						<li><h:outputLink
+								value="../reports/report-partenaires.xhtml">
 								<i class="icon-double-angle-right"></i> Rapport partenaires
-						</h:outputLink>
-						</li>
-						<li > <h:outputLink value="../reports/report-publications.xhtml">
+						</h:outputLink></li>
+						<li><h:outputLink
+								value="../reports/report-publications.xhtml">
 								<i class="icon-double-angle-right"></i> Rapport publications
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
-				
-				
+						</h:outputLink></li>
+					</ul></li>
+
+
 				<li><h:outputLink value="../events/calendar.xhtml">
 						<i class="icon-calendar"></i>
 
 						<span class="menu-text"> Calendrier <span
 							class="badge badge-transparent tooltip-error"
 							title="2&nbsp;Important&nbsp;Events"> <i
-								class="icon-warning-sign red bigger-130"></i> </span> </span>
-					</h:outputLink>
-				</li>
+								class="icon-warning-sign red bigger-130"></i>
+						</span>
+						</span>
+					</h:outputLink></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-picture"></i>
@@ -307,15 +296,12 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../media/gallery.xhtml">
 								<i class="icon-double-angle-right"></i> Images 
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
-						<li  ><h:outputLink value="../media/videos.xhtml">
+						<li><h:outputLink value="../media/videos.xhtml">
 								<i class="icon-double-angle-right"></i> Videos 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+						</h:outputLink></li>
+					</ul></li>
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-tag"></i>
@@ -327,13 +313,11 @@
 					<ul class="submenu">
 						<li><h:outputLink value="../more/profile.xhtml">
 								<i class="icon-double-angle-right"></i> User Profile
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="../more/visualisation.xhtml">
 								<i class="icon-double-angle-right"></i> Visualisation
-						</h:outputLink>
-						</li>
+						</h:outputLink></li>
 
 						<li><h:outputLink value="invoice.html">
 								<i class="icon-double-angle-right"></i> Invoice
@@ -346,8 +330,7 @@
 				<li><h:outputLink value="../configurations/config.xhtml">
 						<i class="icon-cogs"></i>
 						<span class="menu-text"> Parametrage </span>
-					</h:outputLink>
-				</li>
+					</h:outputLink></li>
 			</ul>
 
 			<h:panelGroup layout="block" styleClass="sidebar-collapse"
@@ -360,12 +343,13 @@
 			<h:panelGroup layout="block" styleClass="breadcrumbs"
 				id="breadcrumbs">
 				<ul class="breadcrumb">
-					<li><i class="icon-home home-icon"></i> <a href="../welcome.xhtml">Home</a> <span
-						class="divider"> <i class="icon-angle-right arrow-icon"></i>
-					</span>
-					</li>
+					<li><i class="icon-home home-icon"></i> <a
+						href="../welcome.xhtml">Home</a> <span class="divider"> <i
+							class="icon-angle-right arrow-icon"></i>
+					</span></li>
 					<li><a href="#">Partenaires</a> <span class="divider">
-							<i class="icon-angle-right arrow-icon"></i> </span></li>
+							<i class="icon-angle-right arrow-icon"></i>
+					</span></li>
 					<li class="active">Ajouter un partenaire</li>
 				</ul>
 				<!--.breadcrumb-->
@@ -379,7 +363,8 @@
 				<h:panelGroup layout="block" class="page-header position-relative">
 					<h1>
 						Nouveau partenaire <small> <i
-							class="icon-double-angle-right"></i> </small>
+							class="icon-double-angle-right"></i>
+						</small>
 					</h1>
 				</h:panelGroup>
 				<!--/.page-header-->
@@ -393,8 +378,10 @@
 								<h:panelGroup layout="block" class="widget-box">
 									<h:panelGroup layout="block"
 										class="widget-header widget-header-blue widget-header-flat">
-										<h4 class="lighter"><a target="_blank" href="http://inma-maamoura.org/partners/">
-										Clic ICI pour voir la page sur Inma-maamoura.org</a></h4>
+										<h4 class="lighter">
+											<a target="_blank" href="http://inma-maamoura.org/partners/">
+												Clic ICI pour voir la page sur Inma-maamoura.org</a>
+										</h4>
 
 									</h:panelGroup>
 
@@ -405,7 +392,7 @@
 												enctype="multipart/form-data" acceptcharset="UTF-8">
 												<h:panelGroup layout="block" id="fuelux-wizard"
 													class="row-fluid hide" data-target="#step-container">
-													
+
 													<h:panelGroup layout="block"
 														styleClass="navigator-Admin nav-left"
 														rendered="#{partnerBean.prevPartner != null}">
@@ -423,16 +410,16 @@
 																#{partnerBean.prevPartner.partnerName}</small>
 														</p:commandLink>
 													</h:panelGroup>
-													
-													
+
+
 													<ul class="wizard-steps">
 														<li data-target="#step1" class="active"><span
 															class="step">1</span> <span class="title">Ajout</span></li>
 														<li data-target="#step4"><span class="step">2</span>
 															<span class="title">Sauvegarde</span></li>
 													</ul>
-													
-													
+
+
 													<h:panelGroup layout="block"
 														rendered="#{partnerBean.nextPartner != null}"
 														styleClass="navigator-Admin nav-right">
@@ -449,7 +436,7 @@
 																#{partnerBean.nextPartner.partnerName}</small>
 														</p:commandLink>
 													</h:panelGroup>
-													
+
 												</h:panelGroup>
 												<p:separator />
 												<h:panelGroup layout="block"
@@ -457,11 +444,10 @@
 													id="step-container">
 													<h:panelGroup layout="block" class="step-pane active"
 														id="step1">
-														<h3 class="lighter block green">Modification du Partenaire
-														Numéro: #{partnerBean.currentPartner.seqNo}</h3>
+														<h3 class="lighter block green">Modification du
+															Partenaire Numéro: #{partnerBean.currentPartner.seqNo}</h3>
 
-														<h:panelGroup layout="block"
-															styleClass="control-group">
+														<h:panelGroup layout="block" styleClass="control-group">
 															<p:outputLabel styleClass="control-label" for="intitule"
 																value="Nom de partenaire " />
 
@@ -533,6 +519,7 @@
 																		<f:selectItem itemLabel="Association" itemValue="ORG" />
 																		<f:selectItem itemLabel="Organisation international"
 																			itemValue="INT" />
+																		<f:selectItem itemLabel="Sponsor" itemValue="SPN" />
 																		<f:selectItem itemLabel="Autre" itemValue="OTH" />
 																	</h:selectOneMenu>
 																</span>
@@ -550,10 +537,10 @@
 																		cancelLabel="Annuler" uploadLabel="Envoyer"
 																		fileUploadListener="#{partnerBean.handleFileUpload}"
 																		mode="advanced" sizeLimit="1000000" fileLimit="1"
-																		allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-																																						<br />
-<img style="height: 150px" src="http://inma-maamoura.org/javax.faces.resource/#{partnerBean.currentPartner.partnerLogo}.xhtml?ln=images" />															
-																		
+																		allowTypes="/(\.|\/)(gif|jpe?g|png)$/" /> <br /> <img
+																	style="height: 150px"
+																	src="http://inma-maamoura.org/javax.faces.resource/#{partnerBean.currentPartner.partnerLogo}.xhtml?ln=images" />
+
 																</span>
 															</h:panelGroup>
 														</h:panelGroup>
@@ -581,7 +568,8 @@
 											
  -->
 												<p:commandLink styleClass="btn btn-success btn-next"
-													action="#{partnerBean.edit()}">	Sauvegarder	<i class="icon-arrow-right icon-on-right"></i>
+													action="#{partnerBean.edit()}">	Sauvegarder	<i
+														class="icon-arrow-right icon-on-right"></i>
 												</p:commandLink>
 											</h:form>
 
@@ -648,7 +636,8 @@
 
 	<a href="#" id="btn-scroll-up"
 		class="btn-scroll-up btn btn-small btn-inverse"> <i
-		class="icon-double-angle-up icon-only bigger-110"></i> </a>
+		class="icon-double-angle-up icon-only bigger-110"></i>
+	</a>
 
 	<!--basic scripts-->
 
@@ -663,29 +652,29 @@
 			if("ontouchend" in document) document.write("<h:outputScript library='js' name='jquery.mobile.custom.min.js' />");
 		//]]>
 		</script>
-	<h:outputScript library="js" name="bootstrap.min.js"/>
+	<h:outputScript library="js" name="bootstrap.min.js" />
 
 	<!--page specific plugin scripts-->
-	<h:outputScript library="js" name="fuelux/fuelux.wizard.min.js"/>
-	<h:outputScript library="js" name="jquery.validate.min.js"/>
-	<h:outputScript library="js" name="additional-methods.min.js"/>
-	<h:outputScript library="js" name="bootbox.min.js"/>
-	<h:outputScript library="js" name="jquery.maskedinput.min.js"/>
-	
+	<h:outputScript library="js" name="fuelux/fuelux.wizard.min.js" />
+	<h:outputScript library="js" name="jquery.validate.min.js" />
+	<h:outputScript library="js" name="additional-methods.min.js" />
+	<h:outputScript library="js" name="bootbox.min.js" />
+	<h:outputScript library="js" name="jquery.maskedinput.min.js" />
 
-	<h:outputScript library="js" name="jquery-ui-1.10.3.custom.min.js"/>
-	<h:outputScript library="js" name="jquery.ui.touch-punch.min.js"/>
-	<h:outputScript library="js" name="jquery.slimscroll.min.js"/>
-	<h:outputScript library="js" name="jquery.easy-pie-chart.min.js"/>
-	<h:outputScript library="js" name="jquery.sparkline.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.pie.min.js"/>
-	<h:outputScript library="js" name="flot/jquery.flot.resize.min.js"/>
+
+	<h:outputScript library="js" name="jquery-ui-1.10.3.custom.min.js" />
+	<h:outputScript library="js" name="jquery.ui.touch-punch.min.js" />
+	<h:outputScript library="js" name="jquery.slimscroll.min.js" />
+	<h:outputScript library="js" name="jquery.easy-pie-chart.min.js" />
+	<h:outputScript library="js" name="jquery.sparkline.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.pie.min.js" />
+	<h:outputScript library="js" name="flot/jquery.flot.resize.min.js" />
 
 	<!--ace scripts-->
 
-	<h:outputScript library="js" name="ace-elements.min.js"/>
-	<h:outputScript library="js" name="ace.min.js"/>
+	<h:outputScript library="js" name="ace-elements.min.js" />
+	<h:outputScript library="js" name="ace.min.js" />
 
 	<!--inline scripts related to this page-->
 
