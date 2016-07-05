@@ -640,7 +640,7 @@
 
 						<h:panelGroup layout="block" class="space-6"></h:panelGroup>
 						<h:form id="form">
-							<p:dataTable id="conTab" var="contact"
+							<p:dataTable id="conTab" var="contact" sortBy="#{contact.seqNo}"
 								value="#{contactBean.contacts}" paginator="true" rows="20"
 								paginatorTemplate=" afficher {RowsPerPageDropdown} contacts par page 			
                  				{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
@@ -676,18 +676,18 @@
 
 								</f:facet>
 
-								<p:column filterBy="#{contact.seqNo}" filterMatchMode="contains"
+								<p:column sortBy="#{contact.seqNo}" filterBy="#{contact.seqNo}" filterMatchMode="contains"
 									width="20" headerText="N°">
 									<h:outputText value="#{contact.seqNo}" />
 								</p:column>
 
 
-								<p:column filterBy="#{contact.contactName}" width="60"
+								<p:column sortBy="#{contact.contactName}" filterBy="#{contact.contactName}" width="60"
 									headerText="Prénom" filterMatchMode="contains">
 									<h:outputText value="#{contact.contactName}" />
 								</p:column>
 
-								<p:column filterBy="#{contact.contactName1}" width="60"
+								<p:column sortBy="#{contact.contactName1}" filterBy="#{contact.contactName1}" width="60"
 									headerText="Nom" filterMatchMode="contains">
 									<h:outputText value="#{contact.contactName1}" />
 								</p:column>
@@ -707,13 +707,13 @@
 										value="#{(contact.contactGender==false ? 'Homme': (contact.contactGender==true ? 'Femme': 'ORG'))}" />
 								</p:column>
 
-								<p:column filterBy="#{contact.contactGsm1}" width="80"
+								<p:column sortBy="#{contact.contactGsm1}" filterBy="#{contact.contactGsm1}" width="80"
 									filterMatchMode="contains" headerText="GSM1">
 									<h:outputText value="#{contact.contactGsm1}">
 									</h:outputText>
 								</p:column>
 
-								<p:column filterBy="#{contact.contactGsm2}" width="80"
+								<p:column sortBy="#{contact.contactGsm2}" filterBy="#{contact.contactGsm2}" width="80"
 									filterMatchMode="contains" headerText="GSM2">
 									<h:outputText value="#{contact.contactGsm2}">
 									</h:outputText>
