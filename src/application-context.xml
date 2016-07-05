@@ -58,6 +58,7 @@
 				<value>com.inmaa.admin.persistence.Users</value>
 				<value>com.inmaa.admin.persistence.Authorities</value>
 				<value>com.inmaa.admin.persistence.Abonnement</value>
+				<value>com.inmaa.admin.persistence.Contact</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
