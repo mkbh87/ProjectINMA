@@ -1,5 +1,5 @@
 package com.inmaa.admin.persistence;
-// Generated 16 avr. 2016 20:28:19 by Hibernate Tools 4.3.1.Final
+// Generated 5 juil. 2016 15:38:11 by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -63,7 +63,7 @@ public class Media implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "Media_Date", nullable = false, length = 10)
+	@Column(name = "Media_Date", length = 10)
 	public Date getMediaDate() {
 		return this.mediaDate;
 	}
@@ -90,7 +90,7 @@ public class Media implements java.io.Serializable {
 		this.mediaCollection = mediaCollection;
 	}
 
-	@Column(name = "Media_Link", nullable = false)
+	@Column(name = "Media_Link")
 	public String getMediaLink() {
 		return this.mediaLink;
 	}
@@ -99,7 +99,7 @@ public class Media implements java.io.Serializable {
 		this.mediaLink = mediaLink;
 	}
 
-	@Column(name = "Media_Type",  nullable = false)
+	@Column(name = "Media_Type")
 	public Boolean getMediaType() {
 		return this.mediaType;
 	}

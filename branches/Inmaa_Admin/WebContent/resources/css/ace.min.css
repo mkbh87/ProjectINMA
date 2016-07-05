@@ -1774,7 +1774,7 @@ li [class*=" icon-"],
     background-color: transparent
 }
 .nav-list>li>.submenu li>.submenu>li a {
-    font-size: 13px;
+    font-size: 10px;
     color: #777
 }
 .nav-list>li>.submenu li>.submenu>li a:hover {

@@ -13,7 +13,7 @@
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
-	<title>- inma Admin</title>
+	<title>Contact - inma Admin</title>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="" />
@@ -374,29 +374,284 @@
 				<h:panelGroup layout="block" class="row-fluid">
 					<h:panelGroup layout="block" class="span12">
 						<!--PAGE CONTENT BEGINS-->
+						 #{contactBean.vider()}
 
-						<h:panelGroup layout="block"
+						<h:panelGroup layout="block" id="headerID"
 							class="alert alert-block alert-success">
-							<i class="icon-ok green"></i>
+
+							<p:ajaxStatus onstart="PF('statusDialog').show()"
+								onsuccess="PF('statusDialog').hide()" />
+							<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+								closable="false" resizable="false" showHeader="false">
+								<p:graphicImage library="images" name="ajax-loader.gif" />
+							</p:dialog>
+
+							<div class="form-actions">
+								<p:commandLink styleClass="btn btn-info blue"
+									action="#{contactBean.adding()}" update="headerID" ajax="true">
+									<i class="icon-ok bigger-110"></i>Ajouter Contact
+								</p:commandLink>
+								&nbsp; &nbsp; &nbsp;
+
+								<p:commandLink action="#{contactBean.refresh}" ajax="true"
+									styleClass="btn" update=":form:conTab">
+									<i class="icon-undo bigger-110"></i>
+											Actualiser tableau
+									</p:commandLink>
+							</div>
+							<h:panelGroup layout="block" id="addcontactDiv"
+								class="alert alert-block alert-info" style="width: 650px"
+								rendered="#{contactBean.addmode}">
+								<button class="close" data-dismiss="alert" type="button">
+									<i class="icon-remove"></i>
+								</button>
+								<h:form>
+									<p:outputPanel id="addcontactDetail" style="width: 600px">
+										<div class="modal-body overflow-visible">
+											<div class="row-fluid position-relative">
+												<div class="span5">
+
+													<h:panelGroup layout="block" class="control-group">
+														<p:outputLabel styleClass="control-label" value="" />
+
+														<h:panelGroup layout="block" class="controls">
+															<span class="span12 input-icon input-icon-right"
+																style="height: 205px; width: 204px; border-style: outset; border-width: 3px 3px 3px 2px; margin: 5px 10px;">
+																<p:graphicImage style="height: 200px;"
+																	value="http://inma-maamoura.org/javax.faces.resource/homme.jpg.xhtml?ln=images" />
+															</span>
+														</h:panelGroup>
+														<br />
+													</h:panelGroup>
+													<h:panelGroup layout="block" class="span12 control-group">
+														<p:outputLabel styleClass="span3 control-label" value="N°" />
+
+														<h:panelGroup layout="block" class="controls">
+															<span class="span9 input-icon input-icon-right"> <h:outputText
+																	value="#{contactBean.currentContact.seqNo}"
+																	class="span12" />
+															</span>
+														</h:panelGroup>
+
+													</h:panelGroup>
+
+													<h:panelGroup layout="block" class="span12 control-group">
+														<p:outputLabel styleClass="span3 control-label"
+															value="Nom " />
+
+														<h:panelGroup layout="block" class="controls">
+															<span class="span9 input-icon input-icon-right"> <h:inputText
+																	disabled="#{not contactBean.editmode}"
+																	styleClass="span12"
+																	value="#{contactBean.currentContact.contactName}" />
+															</span>
+														</h:panelGroup>
+													</h:panelGroup>
+
+													<h:panelGroup layout="block" class="span12 control-group">
+														<p:outputLabel styleClass="span3 control-label"
+															value="Prenom " />
+
+														<h:panelGroup layout="block" class="controls">
+															<span class="span9 input-icon input-icon-right"> <h:inputText
+																	styleClass="span12"
+																	disabled="#{not contactBean.editmode}"
+																	value="#{contactBean.currentContact.contactName1}" />
+															</span>
+														</h:panelGroup>
+													</h:panelGroup>
+
+													<h:panelGroup layout="block" class="span12 control-group">
+														<p:outputLabel styleClass="span3 control-label"
+															value="Fonction " />
+
+														<h:panelGroup layout="block" class="controls">
+															<span class="span9 input-icon input-icon-right"> <h:inputText
+																	styleClass="span12"
+																	disabled="#{not contactBean.editmode}"
+																	value="#{contactBean.currentContact.contactFunction}" />
+															</span>
+														</h:panelGroup>
+													</h:panelGroup>
+
+													<h:panelGroup layout="block" class="span12 control-group">
+														<p:outputLabel styleClass="control-label" value="" />
+
+														<h:panelGroup layout="block" class="controls">
+															<span class="span8 input-icon input-icon-right"> <h:panelGrid
+																	columns="1" cellpadding="5">
+																	<h:selectOneMenu disabled="#{not contactBean.editmode}">
+																		<f:selectItem itemLabel="Organisation" itemValue="" />
+																		<f:selectItem itemLabel="Homme" itemValue="false" />
+																		<f:selectItem itemLabel="Femme" itemValue="true" />
+																	</h:selectOneMenu>
+																</h:panelGrid>
+															</span>
+														</h:panelGroup>
+													</h:panelGroup>
+
+												</div>
+
+												<div class="vspace"></div>
+
+												<div class="span7">
+
+													<h:panelGroup style="margin-left: 7px;" layout="block"
+														class="span12 control-group">
+														<p:outputLabel styleClass="span3 control-label"
+															value="GSM1 " />
+
+														<h:panelGroup layout="block" class="controls">
+															<span class="span9 input-icon input-icon-right"> <h:inputText
+																	styleClass="span12"
+																	disabled="#{not contactBean.editmode}"
+																	value="#{contactBean.currentContact.contactGsm1}" />
+															</span>
+														</h:panelGroup>
+													</h:panelGroup>
+
+													<h:panelGroup layout="block" class="span12 control-group">
+														<p:outputLabel styleClass="span3 control-label"
+															value="GSM2 " />
+
+														<h:panelGroup layout="block" class="controls">
+															<span class="span9 input-icon input-icon-right"> <h:inputText
+																	styleClass="span12"
+																	disabled="#{not contactBean.editmode}"
+																	value="#{contactBean.currentContact.contactGsm2}" />
+															</span>
+														</h:panelGroup>
+													</h:panelGroup>
+
+													<h:panelGroup layout="block" class="span12 control-group">
+														<p:outputLabel styleClass="span3 control-label"
+															value="Fax " />
+
+														<h:panelGroup layout="block" class="controls">
+															<span class="span9 input-icon input-icon-right"> <h:inputText
+																	styleClass="span12"
+																	disabled="#{not contactBean.editmode}"
+																	value="#{contactBean.currentContact.contactFax}" />
+															</span>
+														</h:panelGroup>
+													</h:panelGroup>
+
+													<h:panelGroup layout="block" class="span12 control-group">
+														<p:outputLabel styleClass="span3 control-label"
+															value="Email " />
+
+														<h:panelGroup layout="block" class="controls">
+															<span class="span9 input-icon input-icon-right"> <h:inputText
+																	styleClass="span12"
+																	disabled="#{not contactBean.editmode}"
+																	value="#{contactBean.currentContact.contactEmail}" />
+															</span>
+														</h:panelGroup>
+													</h:panelGroup>
+
+													<h:panelGroup layout="block" class="span12 control-group">
+														<p:outputLabel styleClass="span3 control-label"
+															value="Date nais. " />
+
+														<h:panelGroup layout="block" class="controls">
+															<span class="span9 input-icon input-icon-right"> <p:calendar
+																	disabled="#{not contactBean.editmode}"
+																	styleClass="span12" pattern="dd/MM/yyyy" mode="popup"
+																	value="#{contactBean.currentContact.contactBirthDay}" />
+															</span>
+														</h:panelGroup>
+													</h:panelGroup>
+
+
+													<h:panelGroup layout="block" class="span12 control-group">
+														<p:outputLabel styleClass="span3 control-label"
+															value="Site web" />
+
+														<h:panelGroup layout="block" class="controls">
+															<span class="span9 input-icon input-icon-right"> <h:inputText
+																	styleClass="span12"
+																	disabled="#{not contactBean.editmode}"
+																	value="#{contactBean.currentContact.contactWebSite}" />
+															</span>
+														</h:panelGroup>
+													</h:panelGroup>
+
+													<h:panelGroup layout="block" class="span12 control-group">
+														<p:outputLabel styleClass="span3 control-label"
+															value="Adresse " />
+
+														<h:panelGroup layout="block" class="controls">
+															<span class="span9 input-icon input-icon-right"> <h:inputText
+																	styleClass="span12"
+																	disabled="#{not contactBean.editmode}"
+																	value="#{contactBean.currentContact.contactAddress}" />
+															</span>
+														</h:panelGroup>
+													</h:panelGroup>
+
+													<h:panelGroup layout="block" class="span12 control-group">
+														<p:outputLabel styleClass="span3 control-label"
+															value="Type " />
+
+														<h:panelGroup layout="block" class="controls">
+															<span class="span9 input-icon input-icon-right"> <h:selectOneMenu
+																	disabled="#{not contactBean.editmode}"
+																	value="#{contactBean.currentContact.contactType}">
+																	<f:selectItem itemLabel="Select One" itemValue="" />
+																	<f:selectItems value="#{contactBean.listTypes}" />
+																</h:selectOneMenu>
+															</span>
+														</h:panelGroup>
+													</h:panelGroup>
+
+													<h:panelGroup layout="block" class="span12 control-group">
+														<p:outputLabel styleClass="span12 control-label"
+															value="Autre" />
+
+														<h:panelGroup layout="block" class="controls">
+															<span class="span12 input-icon input-icon-right">
+																<h:inputTextarea styleClass="span12"
+																	disabled="#{not contactBean.editmode}"
+																	value="#{contactBean.currentContact.contactAutre}" />
+															</span>
+														</h:panelGroup>
+													</h:panelGroup>
+
+												</div>
+
+											</div>
+										</div>
+
+										<div class="modal-footer">
+											<p:commandButton icon="fa fa-fw fa-edit"
+												styleClass="btn btn-small btn-primary" ajax="true"
+												style="height: 30px;" value="Save"
+												action="#{contactBean.ajouter()}">
+											</p:commandButton>
+										</div>
+									</p:outputPanel>
+								</h:form>
+
+
+
+							</h:panelGroup>
+
 						</h:panelGroup>
 
 						<h:panelGroup layout="block" class="space-6"></h:panelGroup>
 						<h:form id="form">
-							<p:dataTable id="id12" var="contact"
-								value="#{contactBean.contactList}" paginator="true" rows="20"
+							<p:dataTable id="conTab" var="contact"
+								value="#{contactBean.contacts}" paginator="true" rows="20"
 								paginatorTemplate=" afficher {RowsPerPageDropdown} contacts par page 			
-                 {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-								rowKey="#{contact.contactId}" rowsPerPageTemplate="30,40,60"
+                 				{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+								rowKey="#{contact.contactId}" rowsPerPageTemplate="20,35,60"
 								selectionMode="single" paginatorPosition="bottom"
 								selection="#{contactBean.currentContact}"
 								widgetVar="contactsTable"
 								filteredValue="#{contactBean.filteredContacts}"
 								resizableColumns="true">
 
-
-
-								<p:ajax event="rowSelect" listener="#{contactBean.onRowSelect}"
-									update=":form:contactDetail"
+								<p:ajax event="rowSelect" update=":form:contactDetail"
 									oncomplete="PF('contactDialog').show()" />
 
 								<f:facet name="header">
@@ -406,15 +661,23 @@
 											onkeyup="PF('contactsTable').filter()" style="width:150px"
 											placeholder="Enter keyword" />
 
+										<p:commandButton id="refreshbtn" type="button"
+											value="Afficher tous" style="float:left"
+											onclick="PF('contactsTable').clearFilters()"
+											icon="ui-icon-calculator" />
+
 										<p:commandButton id="toggler" type="button"
 											value="Choisir Colonnes" style="float:right"
 											icon="ui-icon-calculator" />
-										<p:columnToggler datasource="id12" trigger="toggler" />
+										<p:columnToggler datasource="conTab" trigger="toggler" />
+
+
 									</p:outputPanel>
 
 								</f:facet>
 
-								<p:column width="20" headerText="N°">
+								<p:column filterBy="#{contact.seqNo}" filterMatchMode="contains"
+									width="20" headerText="N°">
 									<h:outputText value="#{contact.seqNo}" />
 								</p:column>
 
@@ -435,11 +698,13 @@
 										<p:selectOneButton onchange="PF('contactsTable').filter()">
 											<f:converter converterId="javax.faces.Boolean" />
 											<f:selectItem itemLabel="All" itemValue="" />
+											<f:selectItem itemLabel="O" itemValue="NULL" />
 											<f:selectItem itemLabel="F" itemValue="true" />
 											<f:selectItem itemLabel="H" itemValue="false" />
 										</p:selectOneButton>
 									</f:facet>
-									<h:outputText value="#{contactGender ? 'Femme': 'Homme'}" />
+									<h:outputText
+										value="#{(contact.contactGender==false ? 'Homme': (contact.contactGender==true ? 'Femme': 'ORG'))}" />
 								</p:column>
 
 								<p:column filterBy="#{contact.contactGsm1}" width="80"
@@ -487,7 +752,7 @@
 								<p:column filterBy="#{contact.contactType}" width="60"
 									headerText="Type" filterMatchMode="in">
 									<f:facet name="filter">
-										<p:selectCheckboxMenu label="Colors"
+										<p:selectCheckboxMenu label="All types"
 											onchange="PF('contactsTable').filter()"
 											panelStyle="width:125px" scrollHeight="150">
 											<f:selectItems value="#{contactBean.listTypes}" />
@@ -497,52 +762,289 @@
 								</p:column>
 
 								<f:facet name="footer">
-        En total il y a  #{fn:length(contactBean.contactList)} contacts.
-   		</f:facet>
+        								En total il y a  #{fn:length(contactBean.contactList)} contacts.
+   								</f:facet>
 							</p:dataTable>
 
-							<p:dialog header="contact Detail" widgetVar="contactDialog"
-								modal="true">
-								<p:outputPanel id="contactDetail"
-									style="text-align:center;width: 500px">
+							<!-- EDIT CONTACT MODAL -->
+							<p:dialog id="contactDialog" header="Détail contact "
+								position="center" responsive="true"
+								onHide="#{contactBean.setEditmode(false)}"
+								positionType="absolute" widgetVar="contactDialog" modal="true">
+								<p:outputPanel id="contactDetail" style="width: 600px">
+									<div class="modal-body overflow-visible">
+										<div class="row-fluid position-relative">
+											<div class="span5">
 
-									<p:graphicImage style="height: 150px; float: left;"
-										value="http://inma-maamoura.org/javax.faces.resource/#{contactBean.currentContact.contactPicture}.xhtml?ln=images" />
+												<h:panelGroup layout="block" class="control-group">
+													<p:outputLabel styleClass="control-label" value="" />
+
+													<h:panelGroup layout="block" class="controls">
+														<span class="span12 input-icon input-icon-right"
+															style="height: 205px; width: 204px; border-style: outset; border-width: 3px 3px 3px 2px; margin: 5px 10px;">
+															<p:graphicImage style="height: 200px;"
+																value="http://inma-maamoura.org/javax.faces.resource/#{contactBean.currentContact.contactPicture}.xhtml?ln=images" />
+														</span>
+													</h:panelGroup>
+
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="span12 control-group">
+													<p:outputLabel styleClass="span3 control-label" value="N°" />
+
+													<h:panelGroup layout="block" class="controls">
+														<span class="span9 input-icon input-icon-right"> <h:outputText
+																value="#{contactBean.currentContact.seqNo}"
+																class="span12" />
+														</span>
+													</h:panelGroup>
+
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="span12 control-group">
+													<p:outputLabel styleClass="span3 control-label"
+														value="Nom " />
+
+													<h:panelGroup layout="block" class="controls">
+														<span class="span9 input-icon input-icon-right"> <h:inputText
+																disabled="#{not contactBean.editmode}"
+																styleClass="span12"
+																value="#{contactBean.currentContact.contactName}" />
+														</span>
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="span12 control-group">
+													<p:outputLabel styleClass="span3 control-label"
+														value="Prenom " />
+
+													<h:panelGroup layout="block" class="controls">
+														<span class="span9 input-icon input-icon-right"> <h:inputText
+																styleClass="span12"
+																disabled="#{not contactBean.editmode}"
+																value="#{contactBean.currentContact.contactName1}" />
+														</span>
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="span12 control-group">
+													<p:outputLabel styleClass="span3 control-label"
+														value="Fonction " />
+
+													<h:panelGroup layout="block" class="controls">
+														<span class="span9 input-icon input-icon-right"> <h:inputText
+																styleClass="span12"
+																disabled="#{not contactBean.editmode}"
+																value="#{contactBean.currentContact.contactFunction}" />
+														</span>
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="span12 control-group">
+													<p:outputLabel styleClass="control-label" value="" />
+
+													<h:panelGroup layout="block" class="controls">
+														<span class="span8 input-icon input-icon-right"> <h:panelGrid
+																columns="1" cellpadding="5">
+																<h:selectOneMenu disabled="#{not contactBean.editmode}">
+																	<f:selectItem itemLabel="Organisation" itemValue="" />
+																	<f:selectItem itemLabel="Homme" itemValue="false" />
+																	<f:selectItem itemLabel="Femme" itemValue="true" />
+																</h:selectOneMenu>
+															</h:panelGrid>
+														</span>
+													</h:panelGroup>
+												</h:panelGroup>
+
+											</div>
+
+											<div class="vspace"></div>
+
+											<div class="span7">
+
+												<h:panelGroup style="margin-left: 7px;" layout="block"
+													class="span12 control-group">
+													<p:outputLabel styleClass="span3 control-label"
+														value="GSM1 " />
+
+													<h:panelGroup layout="block" class="controls">
+														<span class="span9 input-icon input-icon-right"> <h:inputText
+																styleClass="span12"
+																disabled="#{not contactBean.editmode}"
+																value="#{contactBean.currentContact.contactGsm1}" />
+														</span>
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="span12 control-group">
+													<p:outputLabel styleClass="span3 control-label"
+														value="GSM2 " />
+
+													<h:panelGroup layout="block" class="controls">
+														<span class="span9 input-icon input-icon-right"> <h:inputText
+																styleClass="span12"
+																disabled="#{not contactBean.editmode}"
+																value="#{contactBean.currentContact.contactGsm2}" />
+														</span>
+													</h:panelGroup>
+												</h:panelGroup>
+
+
+												<h:panelGroup layout="block" class="span12 control-group">
+													<p:outputLabel styleClass="span3 control-label"
+														value="Fax " />
+
+													<h:panelGroup layout="block" class="controls">
+														<span class="span9 input-icon input-icon-right"> <h:inputText
+																styleClass="span12"
+																disabled="#{not contactBean.editmode}"
+																value="#{contactBean.currentContact.contactFax}" />
+														</span>
+													</h:panelGroup>
+												</h:panelGroup>
 
 
 
-									<p:panelGrid columns="2"
-										rendered="#{not empty contactBean.currentContact}"
-										columnClasses="label,value">
-										<h:outputText value="N°:" />
-										<h:outputText value="#{contactBean.currentContact.seqNo}" />
+												<h:panelGroup layout="block" class="span12 control-group">
+													<p:outputLabel styleClass="span3 control-label"
+														value="Email " />
 
-										<h:outputText value="Nom:" />
-										<h:outputText
-											value="#{contactBean.currentContact.contactName}" />
+													<h:panelGroup layout="block" class="controls">
+														<span class="span9 input-icon input-icon-right"> <h:inputText
+																styleClass="span12"
+																disabled="#{not contactBean.editmode}"
+																value="#{contactBean.currentContact.contactEmail}" />
+														</span>
+													</h:panelGroup>
+												</h:panelGroup>
 
-										<h:outputText value="Prenom:" />
-										<h:outputText
-											value="#{contactBean.currentContact.contactName1}" />
+												<h:panelGroup layout="block" class="span12 control-group">
+													<p:outputLabel styleClass="span3 control-label"
+														value="Date nais. " />
 
-										<h:outputText value="GSM1:" />
-										<h:outputText
-											value="#{contactBean.currentContact.contactGsm1}" />
+													<h:panelGroup layout="block" class="controls">
+														<span class="span9 input-icon input-icon-right"> <p:calendar
+																disabled="#{not contactBean.editmode}"
+																styleClass="span12" pattern="dd/MM/yyyy" mode="popup"
+																value="#{contactBean.currentContact.contactBirthDay}" />
+														</span>
+													</h:panelGroup>
+												</h:panelGroup>
 
-										<h:outputText value="GSM2:" />
-										<h:outputText
-											value="#{contactBean.currentContact.contactGsm2}" />
+												<h:panelGroup layout="block" class="span12 control-group">
+													<p:outputLabel styleClass="span3 control-label"
+														value="Site web" />
 
-									</p:panelGrid>
+													<h:panelGroup layout="block" class="controls">
+														<span class="span9 input-icon input-icon-right"> <h:inputText
+																styleClass="span12"
+																disabled="#{not contactBean.editmode}"
+																value="#{contactBean.currentContact.contactWebSite}" />
+														</span>
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="span12 control-group">
+													<p:outputLabel styleClass="span3 control-label"
+														value="Adresse " />
+
+													<h:panelGroup layout="block" class="controls">
+														<span class="span9 input-icon input-icon-right"> <h:inputText
+																styleClass="span12"
+																disabled="#{not contactBean.editmode}"
+																value="#{contactBean.currentContact.contactAddress}" />
+														</span>
+													</h:panelGroup>
+												</h:panelGroup>
+
+												<h:panelGroup layout="block" class="span12 control-group">
+													<p:outputLabel styleClass="span3 control-label"
+														value="Type " />
+
+													<h:panelGroup layout="block" class="controls">
+														<span class="span9 input-icon input-icon-right"> <h:selectOneMenu
+																disabled="#{not contactBean.editmode}"
+																value="#{contactBean.currentContact.contactType}">
+																<f:selectItem itemLabel="Select One" itemValue="" />
+																<f:selectItems value="#{contactBean.listTypes}" />
+															</h:selectOneMenu>
+														</span>
+													</h:panelGroup>
+												</h:panelGroup>
+
+
+												<h:panelGroup layout="block" class="span12 control-group">
+													<p:outputLabel styleClass="span12 control-label"
+														value="Autre" />
+
+													<h:panelGroup layout="block" class="controls">
+														<span class="span12 input-icon input-icon-right"> <h:inputTextarea
+																styleClass="span12"
+																disabled="#{not contactBean.editmode}"
+																value="#{contactBean.currentContact.contactAutre}" />
+														</span>
+													</h:panelGroup>
+												</h:panelGroup>
+
+
+
+											</div>
+										</div>
+									</div>
+
+									<div class="modal-footer">
+
+										<p:commandButton icon="fa fa-remove" styleClass="btn"
+											 update=":form:conTab" ajax="true"
+											oncomplete="PF('contactDialog').hide();" value="Fermer"
+											action="#{contactBean.setEditmode(false)}">
+										</p:commandButton>
+
+										<p:commandButton icon="fa fa-fw fa-edit" ajax="true"
+											update="contactDetail"
+											styleClass="btn btn-small btn-primary btn-success"
+											value="Edit" action="#{contactBean.editable}"
+											rendered="#{not contactBean.editmode}">
+										</p:commandButton>
+
+										<p:commandButton icon="fa fa-save"
+											styleClass="btn btn-small btn-primary btn-info" value="Save"
+											action="#{contactBean.edit}" ajax="true"
+											update="contactDetail" rendered="#{contactBean.editmode}" />
+
+										<p:commandButton icon="fa fa-trash"
+											styleClass="btn btn-small btn-primary btn-danger"
+											value="Supprimer" oncomplete="PF('CDialogWidget').show();"
+											action="#{contactBean.readyforDelete(contactBean.currentContact)}"
+											ajax="true" update="contactDetail" />
+
+
+
+
+									</div>
 								</p:outputPanel>
+
 							</p:dialog>
+
+							<p:confirmDialog
+								message="Êtes-vous sûr de vouloir supprimer  #{contactBean.currentContact.contactName}  #{contactBean.currentContact.contactName1} ?"
+								header="Confirmation de suppression" severity="alert" id="ll"
+								widgetVar="CDialogWidget">
+								<p:commandButton value="Oui" update=":form:conTab" ajax="true"
+									action="#{contactBean.delete()}"
+									oncomplete="PF('CDialogWidget').hide();PF('contactDialog').hide();" />
+								<p:commandButton value="Non"
+									onclick="PF('CDialogWidget').hide();" type="button" />
+							</p:confirmDialog>
+
+							<!-- END EDIT CONTACT MODAL -->
+
 						</h:form>
 
 
 						<style>
 .ui-dialog {
-	left: 25% !important;
-	top: 25% !important;
+	
 }
 
 .ui-columntoggler {
@@ -558,6 +1060,15 @@
 	width: 50px
 }
 
+input[disabled] {
+	border: 0;
+}
+
+.control-group input[disabled], .control-group input:disabled {
+	background-color: #d9cbac !important;
+	color: black !important;
+}
+
 .ui-selectcheckboxmenu-panel {
 	right: 2%;
 	top: 31%;
@@ -566,6 +1077,10 @@
 .ui-selectonebutton  .ui-button-text {
 	padding-left: 1px !important;
 	padding-right: 1px !important;
+}
+
+.ui-selectonemenu {
+	display: flex !important;
 }
 
 .ui-selectonebutton {
@@ -602,24 +1117,22 @@ tr>th {
 
 	<!--basic scripts-->
 
-	<script
-		src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" />
 
 	<script type="text/javascript">
-	//<![CDATA[ 
-			window.jQuery || document.write("<h:outputScript library='js' name='jquery-2.0.3.min.js' />");
+		//<![CDATA[ 
+		if ("ontouchend" in document)
+			document
+					.write("<h:outputScript library='js' name='jquery.mobile.custom.min.js' />");
 		//]]>
-		</script>
-
-	<script type="text/javascript">
-	//<![CDATA[ 
-			if("ontouchend" in document) document.write("<h:outputScript library='js' name='jquery.mobile.custom.min.js' />");
-		//]]>
-		</script>
-
+	</script>
 	<h:outputScript library="js" name="bootstrap.min.js" />
 
 	<!--page specific plugin scripts-->
+	<h:outputScript library="js" name="fuelux/fuelux.wizard.min.js" />
+	<h:outputScript library="js" name="jquery.validate.min.js" />
+	<h:outputScript library="js" name="additional-methods.min.js" />
+	<h:outputScript library="js" name="bootbox.min.js" />
+	<h:outputScript library="js" name="jquery.maskedinput.min.js" />
 
 	<h:outputScript library="js" name="jquery-ui-1.10.3.custom.min.js" />
 	<h:outputScript library="js" name="jquery.ui.touch-punch.min.js" />
@@ -636,7 +1149,6 @@ tr>th {
 	<h:outputScript library="js" name="ace.min.js" />
 
 	<!--inline scripts related to this page-->
-
 
 </h:body>
 

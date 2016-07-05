@@ -27,7 +27,7 @@ public class ConfigBean  implements Serializable {
 
 	private Config currentConfig ;
 	private List<Config> configList;
-	private static String ImgFilePath;
+	private static String imgFilePath;
 	public static int nbrVisite;
 	
 
@@ -39,7 +39,7 @@ public class ConfigBean  implements Serializable {
 		if (configList.size()>0)
 		{
 			currentConfig = configList.get(0);
-			ImgFilePath = configList.get(0).getConfigImgpath();
+			imgFilePath = configList.get(0).getConfigImgpath();
 			nbrVisite = configList.get(0).getConfigNbrVisite();
 		}
 	}
@@ -94,7 +94,7 @@ public class ConfigBean  implements Serializable {
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification de parametre",bodymsg );
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
 		
-		ImgFilePath = currentConfig.getConfigImgpath();
+		imgFilePath = currentConfig.getConfigImgpath();
 		
 		return "config.xhtml?faces-redirect=true&amp;includeViewParams=true";
 
@@ -123,11 +123,11 @@ public class ConfigBean  implements Serializable {
 	}
 
 	public static String getImgFilePath() {
-		return ImgFilePath;
+		return imgFilePath;
 	}
 
 	public static void setImgFilePath(String imgFilePath) {
-		ImgFilePath = imgFilePath;
+		imgFilePath = imgFilePath;
 	}
 
 	public static int getNbrVisite() {
@@ -144,7 +144,7 @@ public class ConfigBean  implements Serializable {
 		if (configList.size()>0)
 		{
 			currentConfig = configList.get(0);
-			ImgFilePath = configList.get(0).getConfigImgpath();
+			imgFilePath = configList.get(0).getConfigImgpath();
 			nbrVisite = configList.get(0).getConfigNbrVisite();
 		}
 	}
