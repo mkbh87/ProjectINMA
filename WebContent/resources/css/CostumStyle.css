@@ -8,11 +8,6 @@
 }
 
 .ui-confirm-dialog {
-	text-align: center !important;
-	position: absolute !important;
-	left: 25% !important;
-	top: 15% !important;
-	z-index: 50 !important;
 	width: 400px !important;
 }
 

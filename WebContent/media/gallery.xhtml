@@ -507,7 +507,7 @@
 							<p:rowEditor />
 						</p:column>
 						
-						<p:column headerText="N°"  style="width:15px">
+						<p:column headerText="N°"  style="width:15px" sortBy="#{img.seqNo}">
 							<h:outputText value="#{img.seqNo}" />
 						</p:column>
 						<p:column headerText="Titre" style="width:200px">
@@ -538,7 +538,7 @@
 							<img style="height: 50px" src="#{img.mediaLink}" />	
 						</p:column>
 						
-						<p:column headerText="date" style="width:60px">
+						<p:column headerText="date" style="width:60px" sortBy="#{img.mediaDate}">
 							<p:cellEditor>
 								<f:facet name="output">
 									<h:outputText value="#{img.mediaDate}"  pattern="yyyy-MM-dd"/>
@@ -562,7 +562,7 @@
 							</p:cellEditor>
 						</p:column>
 
-						<p:column headerText="Album" style="width:80px">
+						<p:column headerText="Album" style="width:80px" sortBy="#{img.mediaCollection}">
 							<p:cellEditor>
 								<f:facet name="output">
 									<h:outputText value="#{img.mediaCollection}" />
