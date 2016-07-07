@@ -57,11 +57,9 @@ public class MediaBean implements Serializable{
 	public void init() {
 		pictures = new ListDataModel<Media>();
 		pictures.setWrappedData( mediaService.listerPic());
-		pictures = new ListDataModel<Media>();
-		pictures.setWrappedData( mediaService.listerVideos());
-	
+		videos = new ListDataModel<Media>();
+		videos.setWrappedData( mediaService.listerVideos());
 		pictureList = mediaService.listerPic();
- 		
 		videoList = mediaService.listerVideos();
  		
 	}
@@ -122,7 +120,7 @@ public class MediaBean implements Serializable{
 
 	public Media getmediaById(int id)
 	{
-		Iterator<Media> itr = pictures.iterator();
+		Iterator<Media> itr = pictureList.iterator();
 		while(itr.hasNext()) {
 			currentMedia = itr.next();
 			if(currentMedia.getMediaId() == id)
@@ -131,7 +129,7 @@ public class MediaBean implements Serializable{
 			}
 		}
 		
-		Iterator<Media> itr2 = videos.iterator();
+		Iterator<Media> itr2 = videoList.iterator();
 		while(itr2.hasNext()) {
 			currentMedia = itr2.next();
 			if(currentMedia.getMediaId() == id)
@@ -191,7 +189,9 @@ public class MediaBean implements Serializable{
 			int seqno = mediaService.maxSeqno();
 			currentMedia.setSeqNo(seqno + 10);
 			mediaService.enregistrer(currentMedia);
-			pictures.setWrappedData( mediaService.listerPic());
+ 			pictureList = mediaService.listerPic();
+			videoList = mediaService.listerVideos();
+			
 		} catch(Exception e) {
 			//Error during hibernate query
 			if(e.getCause() != null)
@@ -221,10 +221,7 @@ public class MediaBean implements Serializable{
  			
 		}
 		currentMedia = new Media();
-		pictures.setWrappedData( mediaService.listerPic());
-		
-		pictureList = mediaService.listerPic();
-	
+ 		pictureList = mediaService.listerPic();
 		videoList = mediaService.listerVideos();
 	}
 

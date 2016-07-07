@@ -175,24 +175,63 @@
 					</ul>
 				</li>
 
-				<li><h:outputLink value="#" class="dropdown-toggle">
-						<i class="icon-user"></i>
-						<span class="menu-text"> Membres </span>
+				<li class="active open"><h:outputLink value="#"
+						class="dropdown-toggle">
+						<i class="icon-group"></i>
+						<span class="menu-text"> Tiers </span>
 						<b class="arrow icon-angle-down"></b>
 					</h:outputLink>
-
 					<ul class="submenu">
-						<li><h:outputLink value="../members/table-members.xhtml">
-								<i class="icon-double-angle-right"></i> Tous les membres
-						</h:outputLink>
-						</li>
+						<li><h:outputLink value="#" class="dropdown-toggle">
+								<i class="icon-user"></i>
+								<span class="menu-text"> Contact </span>
+								<b class="arrow icon-angle-down"></b>
+							</h:outputLink>
 
-						<li><h:outputLink value="../members/form-members.xhtml">
-								<i class="icon-double-angle-right"></i> Nouveau membre
-						</h:outputLink>
-						</li>
+							<ul class="submenu">
+								<li><h:outputLink value="tiers/table-contact.xhtml">
+										<i class=""></i> Tous les contacts 
+						</h:outputLink></li>
+
+								<li><h:outputLink value="tiers/form-contact.xhtml">
+										<i class=""></i> Nouveau contact 
+						</h:outputLink></li>
+							</ul></li>
 					</ul>
-				</li>
+					<ul class="submenu">
+						<li><h:outputLink href="#" class="dropdown-toggle">
+								<i class="icon-user"></i>Members
+									<b class="arrow icon-angle-down"></b>
+							</h:outputLink>
+
+							<ul class="submenu">
+								<li><h:outputLink value="members/table-members.xhtml">
+										<i class=""></i> Tous les membres
+								</h:outputLink></li>
+
+								<li><h:outputLink value="members/form-members.xhtml">
+										<i class=""></i> Nouveau membre
+								</h:outputLink></li>
+							</ul></li>
+					</ul>
+					<ul class="submenu">
+						<li><h:outputLink value="#" class="dropdown-toggle">
+								<i class="icon-group"></i>
+								<span class="menu-text"> Partenaires </span>
+								<b class="arrow icon-angle-down"></b>
+							</h:outputLink>
+
+							<ul class="submenu">
+								<li><h:outputLink value="partners/table-partners.xhtml">
+										<i class=""></i> Tous les Partenaires 
+						</h:outputLink></li>
+
+								<li><h:outputLink value="partners/form-partners.xhtml">
+										<i class=""></i> Nouveau Partenaire 
+						</h:outputLink></li>
+							</ul></li>
+					</ul></li>
+
 
 				<li><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-book"></i>
@@ -213,24 +252,7 @@
 					</ul>
 				</li>
 
-				<li><h:outputLink value="#" class="dropdown-toggle">
-						<i class="icon-group"></i>
-						<span class="menu-text"> Partenaires </span>
-						<b class="arrow icon-angle-down"></b>
-					</h:outputLink>
-
-					<ul class="submenu">
-						<li><h:outputLink value="../partners/table-partners.xhtml">
-								<i class="icon-double-angle-right"></i> Tous les Partenaires 
-						</h:outputLink>
-						</li>
-
-						<li><h:outputLink value="../partners/form-partners.xhtml">
-								<i class="icon-double-angle-right"></i> Nouveau Partenaire 
-						</h:outputLink>
-						</li>
-					</ul>
-				</li>
+				
 
 				<li ><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-file-text"></i>
@@ -454,8 +476,6 @@
 
 	<!--basic scripts-->
 
-	<script
-		src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"/>
 
 	<script type="text/javascript">
 	//<![CDATA[ 
