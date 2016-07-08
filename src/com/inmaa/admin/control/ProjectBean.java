@@ -140,6 +140,7 @@ public class ProjectBean implements Serializable{
 	public void delete(){
 		try {
 			projectService.supprimer(currentProject);
+			Utils.deletePicture(currentProject.getProjectLogo());
 			es.setWrappedData( projectService.lister());
 		} catch(Exception e) {
 			//Error during hibernate query

@@ -149,6 +149,7 @@ public class EventBean  implements Serializable {
 		try {
 
 			eventService.supprimer(currentEvent);
+			Utils.deletePicture(currentEvent.getEventLogo());
 			events.setWrappedData( eventService.lister());
 
 		} catch(Exception e) {

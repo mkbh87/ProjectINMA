@@ -240,6 +240,7 @@ public class ContactBean implements Serializable{
 		try {
 
 			contactService.supprimer(currentContact);
+			Utils.deletePicture(currentContact.getContactPicture());
 			currentContact = new Contact();
 			contacts.setWrappedData( contactService.lister());
 
