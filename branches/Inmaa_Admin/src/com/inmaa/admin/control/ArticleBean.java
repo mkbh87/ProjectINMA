@@ -144,6 +144,7 @@ public class ArticleBean implements Serializable{
 	public void delete(){
 		try {
 			articleService.supprimer(currentArticle);
+			Utils.deletePicture(currentArticle.getArticlePicture());
 			es.setWrappedData( articleService.lister());
 		} catch(Exception e) {
 			//Error during hibernate query

@@ -142,6 +142,8 @@ public class SubEventBean  implements Serializable {
 		try {
 
 			subEventService.supprimer(currentSubEvent);
+			Utils.deletePicture(currentSubEvent.getSubEventLogo());
+
 			subEvents.setWrappedData( subEventService.lister());
 			if (eventID > 0)
 				subEventList = subEventService.listerbyEvent(eventID);

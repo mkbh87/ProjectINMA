@@ -115,6 +115,8 @@ public class PartnerBean implements Serializable{
 	public void delete(){
 		try {
 			partnerService.supprimer(currentPartner);
+			Utils.deletePicture(currentPartner.getPartnerLogo());
+
 			es.setWrappedData( partnerService.lister());
 		} catch(Exception e) {
 			//Error during hibernate query
