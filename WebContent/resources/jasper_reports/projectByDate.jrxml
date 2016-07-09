@@ -2,9 +2,10 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="projectByDate" columnDirection="RTL" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="10" uuid="624a34cf-8145-4865-9ae4-b32cc0f41484">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="454"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="DateFrom" class="java.util.Date"/>
 	<parameter name="DateTo" class="java.util.Date"/>
+	<parameter name="ImgPath" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT 	 `Project_ID` AS Project_Project_ID,
      `SeqNo` AS Project_SeqNo,
@@ -52,7 +53,7 @@ order by Project_StartDate]]>
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement>
-					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<font pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[الإطار المكاني]]></text>
 			</staticText>
@@ -65,7 +66,7 @@ order by Project_StartDate]]>
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Right">
-					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<font pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Project_Project_StartDate}]]></textFieldExpression>
 			</textField>
@@ -78,7 +79,7 @@ order by Project_StartDate]]>
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement>
-					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H"/>
+					<font pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H"/>
 				</textElement>
 				<text><![CDATA[للإتصال]]></text>
 			</staticText>
@@ -91,7 +92,7 @@ order by Project_StartDate]]>
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Right">
-					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<font pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Project_Project_Phone}]]></textFieldExpression>
 			</textField>
@@ -104,7 +105,7 @@ order by Project_StartDate]]>
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Right">
-					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<font pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Project_Project_partner}]]></textFieldExpression>
 			</textField>
@@ -117,7 +118,7 @@ order by Project_StartDate]]>
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Right">
-					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<font pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Project_Project_Location}]]></textFieldExpression>
 			</textField>
@@ -130,7 +131,7 @@ order by Project_StartDate]]>
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement>
-					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<font pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[إنطلاق المشروع]]></text>
 			</staticText>
@@ -143,18 +144,18 @@ order by Project_StartDate]]>
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement>
-					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<font pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[الشركاء ]]></text>
 			</staticText>
 			<image hAlign="Center" vAlign="Middle">
 				<reportElement x="386" y="48" width="169" height="123" uuid="5f170a06-3ae0-4a65-b35d-e9cf55484abb"/>
-				<imageExpression><![CDATA["/home/anas/workspace/Inmaa_Client/WebContent/resources/images/"+$F{Project_Project_Logo}]]></imageExpression>
+				<imageExpression><![CDATA[$P{ImgPath}+"/"+$F{Project_Project_Logo}]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="51" y="1" width="460" height="37" uuid="c9535d01-e2cb-47e1-a084-4d6ba7bfbe7a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="15" isBold="true" isItalic="true" isUnderline="false" pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<font size="15" isBold="true" isItalic="true" isUnderline="false" pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Project_Project_Name}]]></textFieldExpression>
 			</textField>
@@ -163,7 +164,7 @@ order by Project_StartDate]]>
 			<textField pattern="">
 				<reportElement mode="Transparent" x="37" y="0" width="474" height="467" uuid="bfa6c8bf-35d6-4745-bf0f-e0e0c0fdccdf"/>
 				<textElement textAlignment="Right" markup="html">
-					<font fontName="Arab" size="11" isBold="false" pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<font fontName="Arab" size="11" isBold="false" pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Project_Project_Desc}]]></textFieldExpression>
@@ -178,7 +179,7 @@ order by Project_StartDate]]>
 			<staticText>
 				<reportElement x="51" y="80" width="483" height="68" uuid="1ba7bd68-f093-42db-927c-99d3c5426405"/>
 				<textElement textAlignment="Center">
-					<font fontName="AlArabiya" pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<font fontName="AlArabiya" pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[جمعية إنماء المعمورة، نهج عمر بن الخطاب المعمورة 8013، نابل، تونس
 البريد الإلكتروني: contact@inma-maamoura.org.tn الموقع الالكتروني: www.inma-maamoura.org
@@ -188,7 +189,7 @@ order by Project_StartDate]]>
 			</staticText>
 			<image>
 				<reportElement x="246" y="7" width="69" height="79" uuid="20560e58-5323-47dc-902c-06a674e46bf2"/>
-				<imageExpression><![CDATA["/home/anas/Bureau/a.jpg"]]></imageExpression>
+				<imageExpression><![CDATA[$P{ImgPath}+"/"+"logo.png"]]></imageExpression>
 			</image>
 		</band>
 	</summary>

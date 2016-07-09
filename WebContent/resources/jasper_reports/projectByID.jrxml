@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="projectByID" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8a3edc54-745d-4a2f-8f07-2e4d2d154d35">
-	<property name="ireport.zoom" value="1.0"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="projectByID" columnDirection="RTL" pageWidth="595" pageHeight="842" columnWidth="523" leftMargin="36" rightMargin="36" topMargin="36" bottomMargin="36" uuid="8a3edc54-745d-4a2f-8f07-2e4d2d154d35">
+	<property name="ireport.zoom" value="0.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="425"/>
+	<property name="ireport.y" value="345"/>
 	<parameter name="projectId" class="java.lang.Integer"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["/home/anas/workspace/Inmaa_Admin/WebContent/resources/jasper_reports/"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["./"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="withDetail" class="java.lang.Boolean"/>
 	<parameter name="ImgPath" class="java.lang.String"/>
@@ -18,20 +18,9 @@
      Project.`Project_StartDate` AS Project_Project_StartDate,
      Project.`Project_Location` AS Project_Project_Location,
      Project.`Project_Phone` AS Project_Project_Phone,
-     Project.`Project_Def` AS Project_Project_Def,
-     Partner.`Partner_ID` AS Partner_Partner_ID,
-     Partner.`SeqNo` AS Partner_SeqNo,
-     Partner.`Partner_Name` AS Partner_Partner_Name,
-     Partner.`Partner_Place` AS Partner_Partner_Place,
-     Partner.`Partner_StartDate` AS Partner_Partner_StartDate,
-     Partner.`Partner_Desc` AS Partner_Partner_Desc,
-     Partner.`Partner_Logo` AS Partner_Partner_Logo,
-     Partner.`Partner_Type` AS Partner_Partner_Type,
-     Project_Partner.`Project_Id` AS Project_Partner_Project_Id,
-     Project_Partner.`Partner_Id` AS Project_Partner_Partner_Id
+     Project.`Project_Def` AS Project_Project_Def
 FROM
-     `Project` Project Left outer JOIN `Project_Partner` Project_Partner ON Project.`Project_ID` = Project_Partner.`Project_Id`
-      Left outer JOIN  `Partner` Partner ON Project_Partner.`Partner_Id` = Partner.`Partner_ID`
+     `Project` Project
 WHERE
      Project.Project_ID = $P{projectId}]]>
 	</queryString>
@@ -43,161 +32,154 @@ WHERE
 	<field name="Project_Project_Location" class="java.lang.String"/>
 	<field name="Project_Project_Phone" class="java.lang.String"/>
 	<field name="Project_Project_Def" class="java.lang.String"/>
-	<field name="Partner_Partner_ID" class="java.lang.Integer"/>
-	<field name="Partner_SeqNo" class="java.lang.Integer"/>
-	<field name="Partner_Partner_Name" class="java.lang.String"/>
-	<field name="Partner_Partner_Place" class="java.lang.String"/>
-	<field name="Partner_Partner_StartDate" class="java.sql.Date"/>
-	<field name="Partner_Partner_Desc" class="java.lang.String"/>
-	<field name="Partner_Partner_Logo" class="java.lang.String"/>
-	<field name="Partner_Partner_Type" class="java.lang.String"/>
-	<field name="Project_Partner_Project_Id" class="java.lang.Integer"/>
-	<field name="Project_Partner_Partner_Id" class="java.lang.Integer"/>
+	<variable name="total_pages" class="java.lang.Integer" incrementType="Report" calculation="Highest">
+		<variableExpression><![CDATA[$V{PAGE_NUMBER}]]></variableExpression>
+	</variable>
 	<background>
-		<band splitType="Stretch"/>
+		<band height="770" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="523" height="770" uuid="bc054715-cf22-42e3-b952-7a9deaf57522"/>
+			</rectangle>
+		</band>
 	</background>
 	<title>
-		<band height="508" splitType="Stretch">
+		<band height="605" splitType="Prevent">
+			<subreport>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" mode="Transparent" x="154" y="528" width="200" height="22" isRemoveLineWhenBlank="true" uuid="d56962c9-bdfc-412c-a0a7-11cc83c1b6e2"/>
+				<subreportParameter name="ImgPath">
+					<subreportParameterExpression><![CDATA[$P{ImgPath}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="projectId">
+					<subreportParameterExpression><![CDATA[$P{projectId}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "projectByID_partners.jasper"]]></subreportExpression>
+			</subreport>
 			<staticText>
-				<reportElement x="457" y="364" width="63" height="20" uuid="65629dcf-a717-442f-912c-6aa962d9a780"/>
-				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+				<reportElement positionType="FixRelativeToBottom" mode="Opaque" x="357" y="487" width="85" height="20" backcolor="#D7D7D7" uuid="65629dcf-a717-442f-912c-6aa962d9a780"/>
+				<box topPadding="0" leftPadding="2" bottomPadding="0" rightPadding="2">
 					<pen lineStyle="Double"/>
-					<topPen lineWidth="0.5" lineStyle="Double"/>
+					<topPen lineWidth="0.0" lineStyle="Double" lineColor="#633232"/>
 					<leftPen lineWidth="0.0" lineStyle="Double"/>
-					<bottomPen lineWidth="0.5" lineStyle="Double"/>
+					<bottomPen lineWidth="2.0" lineStyle="Double" lineColor="#633232"/>
 					<rightPen lineWidth="0.0" lineStyle="Double"/>
 				</box>
-				<textElement>
-					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[إنطلاق المشروع]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="218" y="364" width="237" height="20" uuid="4d85ee68-ffac-4eb5-be54-3af9814a648a"/>
-				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+			<textField pattern="yyyy/MM/dd">
+				<reportElement positionType="FixRelativeToBottom" x="154" y="487" width="200" height="20" uuid="4d85ee68-ffac-4eb5-be54-3af9814a648a"/>
+				<box topPadding="0" leftPadding="2" bottomPadding="0" rightPadding="2">
 					<pen lineStyle="Double"/>
-					<topPen lineWidth="0.5" lineStyle="Double"/>
+					<topPen lineWidth="0.0" lineStyle="Double" lineColor="#633232"/>
 					<leftPen lineWidth="0.0" lineStyle="Double"/>
-					<bottomPen lineWidth="0.5" lineStyle="Double"/>
+					<bottomPen lineWidth="2.0" lineStyle="Double" lineColor="#633232"/>
 					<rightPen lineWidth="0.0" lineStyle="Double"/>
 				</box>
-				<textElement textAlignment="Right">
-					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Project_Project_StartDate}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="457" y="344" width="63" height="20" uuid="54f3a1bf-7f44-49b8-b370-b51bd97214ee"/>
-				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+				<reportElement positionType="FixRelativeToBottom" mode="Opaque" x="357" y="507" width="85" height="20" backcolor="#D7D7D7" uuid="54f3a1bf-7f44-49b8-b370-b51bd97214ee"/>
+				<box topPadding="0" leftPadding="2" bottomPadding="0" rightPadding="2">
 					<pen lineStyle="Double"/>
-					<topPen lineWidth="0.5" lineStyle="Double"/>
+					<topPen lineWidth="0.0" lineStyle="Double" lineColor="#633232"/>
 					<leftPen lineWidth="0.0" lineStyle="Double"/>
-					<bottomPen lineWidth="0.5" lineStyle="Double"/>
+					<bottomPen lineWidth="2.0" lineStyle="Double" lineColor="#633232"/>
 					<rightPen lineWidth="0.0" lineStyle="Double"/>
 				</box>
-				<textElement>
-					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[للإتصال]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="218" y="344" width="237" height="20" uuid="5566155e-3fa7-4405-af43-172cd01835c9"/>
-				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+				<reportElement positionType="FixRelativeToBottom" x="154" y="507" width="200" height="20" uuid="5566155e-3fa7-4405-af43-172cd01835c9"/>
+				<box topPadding="0" leftPadding="2" bottomPadding="0" rightPadding="2">
 					<pen lineStyle="Double"/>
-					<topPen lineWidth="0.5" lineStyle="Double"/>
+					<topPen lineWidth="0.0" lineStyle="Double" lineColor="#633232"/>
 					<leftPen lineWidth="0.0" lineStyle="Double"/>
-					<bottomPen lineWidth="0.5" lineStyle="Double"/>
+					<bottomPen lineWidth="2.0" lineStyle="Double" lineColor="#633232"/>
 					<rightPen lineWidth="0.0" lineStyle="Double"/>
 				</box>
-				<textElement textAlignment="Right">
-					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Project_Project_Phone}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="457" y="385" width="63" height="20" uuid="704565cd-ef0f-4cd3-b80f-5a2d521c5235">
-					<printWhenExpression><![CDATA[$F{Project_Partner_Partner_Id} != null]]></printWhenExpression>
-				</reportElement>
-				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+				<reportElement positionType="FixRelativeToBottom" mode="Opaque" x="357" y="528" width="85" height="21" backcolor="#D7D7D7" uuid="704565cd-ef0f-4cd3-b80f-5a2d521c5235"/>
+				<box topPadding="0" leftPadding="2" bottomPadding="0" rightPadding="2">
 					<pen lineStyle="Double"/>
-					<topPen lineWidth="0.5" lineStyle="Double"/>
+					<topPen lineWidth="0.0" lineStyle="Double" lineColor="#633232"/>
 					<leftPen lineWidth="0.0" lineStyle="Double"/>
-					<bottomPen lineWidth="0.5" lineStyle="Double"/>
+					<bottomPen lineWidth="2.0" lineStyle="Double" lineColor="#633232"/>
 					<rightPen lineWidth="0.0" lineStyle="Double"/>
 				</box>
-				<textElement>
-					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[الشركاء ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="457" y="325" width="63" height="20" uuid="2a86d5d7-59a3-4d9f-8051-1d5ad89ff965"/>
-				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+				<reportElement positionType="FixRelativeToBottom" mode="Opaque" x="357" y="467" width="85" height="20" backcolor="#D7D7D7" uuid="2a86d5d7-59a3-4d9f-8051-1d5ad89ff965"/>
+				<box topPadding="0" leftPadding="2" bottomPadding="0" rightPadding="2">
 					<pen lineStyle="Double"/>
-					<topPen lineWidth="0.5" lineStyle="Double"/>
+					<topPen lineWidth="2.0" lineStyle="Double" lineColor="#633232"/>
 					<leftPen lineWidth="0.0" lineStyle="Double"/>
-					<bottomPen lineWidth="0.5" lineStyle="Double"/>
+					<bottomPen lineWidth="2.0" lineStyle="Double" lineColor="#633232"/>
 					<rightPen lineWidth="0.0" lineStyle="Double"/>
 				</box>
-				<textElement>
-					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[الإطار المكاني]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="218" y="325" width="237" height="20" uuid="79c5e795-31b6-445c-8e6b-2d6d7a90c79d"/>
-				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+				<reportElement positionType="FixRelativeToBottom" x="154" y="467" width="200" height="20" uuid="79c5e795-31b6-445c-8e6b-2d6d7a90c79d"/>
+				<box topPadding="0" leftPadding="2" bottomPadding="0" rightPadding="2">
 					<pen lineStyle="Double"/>
-					<topPen lineWidth="0.5" lineStyle="Double"/>
+					<topPen lineWidth="2.0" lineStyle="Double" lineColor="#633232"/>
 					<leftPen lineWidth="0.0" lineStyle="Double"/>
-					<bottomPen lineWidth="0.5" lineStyle="Double"/>
+					<bottomPen lineWidth="2.0" lineStyle="Double" lineColor="#633232"/>
 					<rightPen lineWidth="0.0" lineStyle="Double"/>
 				</box>
-				<textElement textAlignment="Right">
-					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Project_Project_Location}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="53" y="24" width="468" height="66" uuid="c5733140-7f44-49cb-b38b-063bafb7e1ee"/>
+				<reportElement positionType="Float" x="32" y="174" width="455" height="66" uuid="c5733140-7f44-49cb-b38b-063bafb7e1ee"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="26" isBold="true" isItalic="true" isUnderline="false" pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<font fontName="AlArabiya" size="26" isBold="true" isItalic="false" isUnderline="false" pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Project_Project_Name}]]></textFieldExpression>
 			</textField>
-			<image hAlign="Center" vAlign="Middle">
-				<reportElement x="54" y="117" width="464" height="148" uuid="936b5e17-6448-436b-bfcf-2114b724601c"/>
-				<imageExpression><![CDATA[$P{ImgPath}+$F{Project_Project_Logo}]]></imageExpression>
+			<image scaleImage="RealHeight" hAlign="Center" vAlign="Middle">
+				<reportElement positionType="Float" x="32" y="262" width="455" height="148" uuid="936b5e17-6448-436b-bfcf-2114b724601c"/>
+				<imageExpression><![CDATA[$P{ImgPath}+"/"+$F{Project_Project_Logo}]]></imageExpression>
 			</image>
-			<textField isBlankWhenNull="true">
-				<reportElement x="218" y="385" width="237" height="20" uuid="e4074db3-dca2-4326-bee7-7b0ec3dd21e6">
-					<printWhenExpression><![CDATA[$F{Project_Partner_Partner_Id} != null]]></printWhenExpression>
-				</reportElement>
-				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
-					<pen lineStyle="Double"/>
-					<topPen lineWidth="0.5" lineStyle="Double"/>
-					<leftPen lineWidth="0.0" lineStyle="Double"/>
-					<bottomPen lineWidth="0.5" lineStyle="Double"/>
-					<rightPen lineWidth="0.0" lineStyle="Double"/>
-				</box>
-				<textElement textAlignment="Right">
-					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
-				</textElement>
-			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="89" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="26" y="441" width="495" height="30" isPrintWhenDetailOverflows="true" uuid="b5e76fe4-4379-4e4e-92b8-2cf6f12dff98"/>
+				<reportElement isPrintRepeatedValues="false" x="36" y="39" width="455" height="30" uuid="288b7d3d-670f-47b0-a6ae-ead7cbc644df"/>
 				<textElement textAlignment="Right" markup="html">
-					<font fontName="Monospaced" pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<font fontName="Tahoma" pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Project_Project_Desc}]]></textFieldExpression>
 			</textField>
 		</band>
-	</title>
-	<detail>
-		<band height="91" splitType="Stretch">
+		<band height="221" splitType="Prevent">
 			<printWhenExpression><![CDATA[$P{withDetail}== true]]></printWhenExpression>
 			<subreport>
-				<reportElement x="28" y="36" width="492" height="38" isPrintWhenDetailOverflows="true" uuid="d58f053b-d734-425d-a6b9-0c5599edbb2b"/>
+				<reportElement stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="1" y="7" width="522" height="205" isPrintWhenDetailOverflows="true" uuid="d58f053b-d734-425d-a6b9-0c5599edbb2b"/>
 				<subreportParameter name="ImgPath">
 					<subreportParameterExpression><![CDATA[$P{ImgPath}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -205,22 +187,13 @@ WHERE
 					<subreportParameterExpression><![CDATA[$P{projectId}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "projectByID2_event.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "projectByID_event.jasper"]]></subreportExpression>
 			</subreport>
-			<staticText>
-				<reportElement x="26" y="0" width="497" height="20" uuid="31742286-b86c-4ea5-bf9c-f76b74a7b071"/>
-				<box>
-					<topPen lineWidth="0.5" lineStyle="Double"/>
-					<bottomPen lineWidth="0.5" lineStyle="Double"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<text><![CDATA[أنشطة المشروع ]]></text>
-			</staticText>
 		</band>
-		<band height="99" splitType="Prevent">
+		<band height="215" splitType="Prevent">
 			<printWhenExpression><![CDATA[$P{withDetail}== true]]></printWhenExpression>
 			<subreport>
-				<reportElement x="28" y="48" width="492" height="40" isPrintWhenDetailOverflows="true" uuid="2a5b942d-a80d-47d7-9de5-ee0ea1d23da7"/>
+				<reportElement isPrintRepeatedValues="false" x="0" y="11" width="522" height="195" isPrintWhenDetailOverflows="true" uuid="2a5b942d-a80d-47d7-9de5-ee0ea1d23da7"/>
 				<subreportParameter name="ImgPath">
 					<subreportParameterExpression><![CDATA[$P{ImgPath}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -228,29 +201,19 @@ WHERE
 					<subreportParameterExpression><![CDATA[$P{projectId}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "projectByID2_article.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "projectByID_article.jasper"]]></subreportExpression>
 			</subreport>
-			<staticText>
-				<reportElement x="26" y="13" width="494" height="20" uuid="5b067d29-3e14-43cf-8b1f-4e849f125e4d"/>
-				<box>
-					<topPen lineWidth="0.5" lineStyle="Double"/>
-					<bottomPen lineWidth="0.5" lineStyle="Double"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<text><![CDATA[أخبار المشروع ]]></text>
-			</staticText>
 		</band>
 	</detail>
-	<lastPageFooter>
-		<band height="163">
-			<image>
-				<reportElement x="248" y="11" width="69" height="79" uuid="cec0bb98-e248-4e31-9fae-675d864cab0b"/>
-				<imageExpression><![CDATA["/home/anas/Bureau/a.jpg"]]></imageExpression>
-			</image>
+	<pageFooter>
+		<band height="94" splitType="Immediate">
+			<ellipse>
+				<reportElement x="-22" y="56" width="57" height="25" backcolor="#96B47D" uuid="24febb13-dce0-4e1f-8add-7edff29fce13"/>
+			</ellipse>
 			<staticText>
-				<reportElement x="41" y="90" width="483" height="68" uuid="0531b4a3-dc46-4de0-a2b7-f44e6fab6bfa"/>
+				<reportElement x="1" y="41" width="522" height="53" uuid="0531b4a3-dc46-4de0-a2b7-f44e6fab6bfa"/>
 				<textElement textAlignment="Center">
-					<font fontName="AlArabiya" pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<font fontName="AlArabiya" size="9" pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[جمعية إنماء المعمورة، نهج عمر بن الخطاب المعمورة 8013، نابل، تونس
 البريد الإلكتروني: contact@inma-maamoura.org.tn الموقع الالكتروني: www.inma-maamoura.org
@@ -258,8 +221,33 @@ WHERE
 الحساب البنكي: 18 3 87846 0017 125 040 04
 1214157/Q/N/P/000المعرف الجبائي : ]]></text>
 			</staticText>
+			<image hAlign="Center" vAlign="Bottom">
+				<reportElement positionType="FixRelativeToBottom" x="230" y="0" width="55" height="45" uuid="cec0bb98-e248-4e31-9fae-675d864cab0b"/>
+				<imageExpression><![CDATA[$P{ImgPath}+"/"+"logo.png"]]></imageExpression>
+			</image>
+			<textField evaluationTime="Page">
+				<reportElement x="0" y="62" width="16" height="15" forecolor="#FEFEFE" backcolor="#FEFEFE" uuid="b2c676f8-cacb-4f7d-b4a3-d68ef79f65a3"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}+"/"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="17" y="62" width="19" height="15" forecolor="#FEFEFE" backcolor="#FEFEFE" uuid="d890e895-cd3b-4894-94da-24ef82b308d8"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="-24" y="55" width="24" height="28" uuid="d70ef23d-a479-462e-92d8-7e7a130580fe"/>
+				<box>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
 		</band>
-	</lastPageFooter>
+	</pageFooter>
 	<summary>
 		<band splitType="Stretch"/>
 	</summary>
