@@ -59,7 +59,7 @@ where Project_Partner.`Project_ID`=$P{projectId}]]>
 				<textField>
 					<reportElement x="0" y="0" width="170" height="21" uuid="b0f8cc6f-f74d-42d1-aa3e-082e21e5e86b"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
-						<font isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+						<font fontName="Tahoma" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Partner_Partner_Name}]]></textFieldExpression>
 				</textField>
