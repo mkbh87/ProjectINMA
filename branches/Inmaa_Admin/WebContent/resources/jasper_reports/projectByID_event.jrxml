@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="projectByID2_event" pageWidth="522" pageHeight="150" columnWidth="522" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="00a31b7c-e0e9-4d72-839d-9da19db636af">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="projectByID2_event" pageWidth="522" pageHeight="160" columnWidth="522" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="00a31b7c-e0e9-4d72-839d-9da19db636af">
 	<property name="ireport.zoom" value="0.9982500000000003"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -41,12 +41,12 @@ ORDER BY
 	<field name="Event_Event_Url" class="java.lang.String"/>
 	<field name="Event_Event_NbrVisite" class="java.lang.Integer"/>
 	<title>
-		<band height="54">
+		<band height="38">
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="11" width="522" height="20" isRemoveLineWhenBlank="true" forecolor="#330B0B" backcolor="#D2F49A" uuid="c5fdc401-0a93-4ae3-8fb5-9d6753ec72cf"/>
+				<reportElement mode="Opaque" x="0" y="0" width="522" height="20" isRemoveLineWhenBlank="true" forecolor="#330B0B" backcolor="#D2F49A" uuid="c5fdc401-0a93-4ae3-8fb5-9d6753ec72cf"/>
 				<box rightPadding="35"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true" isItalic="false" isUnderline="true" isStrikeThrough="false" pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<font fontName="Tahoma" isBold="true" isItalic="false" isUnderline="true" isStrikeThrough="false" pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[أنشطة المشروع ]]></text>
@@ -54,34 +54,34 @@ ORDER BY
 		</band>
 	</title>
 	<detail>
-		<band height="150" splitType="Stretch">
+		<band height="160" splitType="Stretch">
 			<image hAlign="Center" vAlign="Middle">
-				<reportElement isPrintRepeatedValues="false" x="114" y="36" width="297" height="88" uuid="0e26a085-3e5f-456e-b261-e227a2786616"/>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="27" y="42" width="451" height="79" uuid="0e26a085-3e5f-456e-b261-e227a2786616"/>
 				<imageExpression><![CDATA[$P{ImgPath}+"/"+$F{Event_Event_Logo}]]></imageExpression>
 			</image>
 			<textField pattern="">
-				<reportElement isPrintRepeatedValues="false" x="27" y="18" width="465" height="18" uuid="404cf1c6-b4e2-4cf9-8932-cc7bd3f23eb7"/>
+				<reportElement isPrintRepeatedValues="false" x="27" y="21" width="451" height="18" uuid="404cf1c6-b4e2-4cf9-8932-cc7bd3f23eb7"/>
 				<textElement textAlignment="Right" verticalAlignment="Top" markup="none">
-					<font fontName="Arab" size="9" isItalic="false" pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H"/>
+					<font fontName="Tahoma" size="9" isItalic="false" pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[" من " + new java.text.SimpleDateFormat("EEEEE yyyy/MM/dd hh:mm",new Locale("ar","AR")).format($F{Event_Event_StartDate}) + " إلى " + ( (new java.text.SimpleDateFormat("yyyy/MM/dd").format($F{Event_Event_StartDate})==new java.text.SimpleDateFormat("yyyy/MM/dd").format($F{Event_Event_EndDate}))? (new java.text.SimpleDateFormat("hh:mm").format($F{Event_Event_EndDate})):(new java.text.SimpleDateFormat("EEEEE yyyy/MM/dd hh:mm",new Locale("ar","AR")).format($F{Event_Event_EndDate})) ) + " في " + $F{Event_Event_Location} + " : "]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement isPrintRepeatedValues="false" x="27" y="3" width="470" height="15" uuid="e0b66185-0181-4d1c-9147-39c0a11690cd"/>
-				<textElement textAlignment="Right" verticalAlignment="Bottom">
-					<font size="10" isBold="true" pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H"/>
+			<textField pattern="">
+				<reportElement isPrintRepeatedValues="false" x="27" y="2" width="463" height="15" uuid="e0b66185-0181-4d1c-9147-39c0a11690cd"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom" markup="styled">
+					<font fontName="Tahoma" size="10" isBold="true" pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{Event_Event_Name}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["<li>" + $F{Event_Event_Name} + "</li>"]]></textFieldExpression>
 			</textField>
 			<elementGroup>
 				<line direction="BottomUp">
-					<reportElement positionType="FixRelativeToBottom" x="114" y="148" width="297" height="1" isPrintWhenDetailOverflows="true" uuid="8f6da7fd-2e01-47af-9340-772be49c256f"/>
+					<reportElement positionType="FixRelativeToBottom" x="114" y="152" width="297" height="1" isPrintWhenDetailOverflows="true" uuid="8f6da7fd-2e01-47af-9340-772be49c256f"/>
 				</line>
 				<textField isStretchWithOverflow="true">
-					<reportElement stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" mode="Transparent" x="27" y="124" width="465" height="18" isPrintWhenDetailOverflows="true" uuid="4d10a017-9a24-4d05-9159-b4f6090b9c02"/>
+					<reportElement stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" mode="Transparent" x="27" y="129" width="451" height="18" isPrintWhenDetailOverflows="true" uuid="4d10a017-9a24-4d05-9159-b4f6090b9c02"/>
 					<box topPadding="0" leftPadding="10" rightPadding="10"/>
 					<textElement textAlignment="Right" verticalAlignment="Top" markup="html">
-						<font fontName="Arab" size="9" pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+						<font fontName="Tahoma" size="9" pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Event_Event_Desc}]]></textFieldExpression>
 				</textField>
