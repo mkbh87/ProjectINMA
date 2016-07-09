@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="projectByID_partners" pageWidth="200" pageHeight="22" columnWidth="200" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="390680f7-495a-436b-b920-1ccd42b7ac90">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="projectId" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ImgPath" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     Partner.`Partner_ID` AS Partner_Partner_ID,
+     Partner.`SeqNo` AS Partner_SeqNo,
+     Partner.`Partner_Name` AS Partner_Partner_Name,
+     Partner.`Partner_Place` AS Partner_Partner_Place,
+     Partner.`Partner_StartDate` AS Partner_Partner_StartDate,
+     Partner.`Partner_Desc` AS Partner_Partner_Desc,
+     Partner.`Partner_Logo` AS Partner_Partner_Logo,
+     Partner.`Partner_Type` AS Partner_Partner_Type,
+     Project_Partner.`Project_Id` AS Project_Partner_Project_Id,
+     Project_Partner.`Partner_Id` AS Project_Partner_Partner_Id
+FROM
+     `Partner` Partner INNER JOIN `Project_Partner` Project_Partner ON Partner.`Partner_ID` = Project_Partner.`Partner_Id`
+where Project_Partner.`Project_ID`=$P{projectId}]]>
+	</queryString>
+	<field name="Partner_Partner_ID" class="java.lang.Integer"/>
+	<field name="Partner_SeqNo" class="java.lang.Integer"/>
+	<field name="Partner_Partner_Name" class="java.lang.String"/>
+	<field name="Partner_Partner_Place" class="java.lang.String"/>
+	<field name="Partner_Partner_StartDate" class="java.sql.Date"/>
+	<field name="Partner_Partner_Desc" class="java.lang.String"/>
+	<field name="Partner_Partner_Logo" class="java.lang.String"/>
+	<field name="Partner_Partner_Type" class="java.lang.String"/>
+	<field name="Project_Partner_Project_Id" class="java.lang.Integer"/>
+	<field name="Project_Partner_Partner_Id" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<frame>
+				<reportElement isPrintRepeatedValues="false" x="0" y="0" width="200" height="21" uuid="f36e581e-79eb-469e-887b-a6b18c8484b8"/>
+				<box leftPadding="2" rightPadding="2">
+					<pen lineStyle="Double"/>
+					<topPen lineStyle="Double"/>
+					<leftPen lineStyle="Double"/>
+					<bottomPen lineWidth="2.0" lineStyle="Double" lineColor="#633232"/>
+					<rightPen lineStyle="Double"/>
+				</box>
+				<textField>
+					<reportElement x="0" y="0" width="170" height="21" uuid="b0f8cc6f-f74d-42d1-aa3e-082e21e5e86b"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Partner_Partner_Name}]]></textFieldExpression>
+				</textField>
+				<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
+					<reportElement x="176" y="1" width="17" height="17" uuid="4f8d2f35-0e45-48e3-9ebc-f09ef2718b4f"/>
+					<imageExpression><![CDATA[$P{ImgPath}+"/"+$F{Partner_Partner_Logo}]]></imageExpression>
+				</image>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

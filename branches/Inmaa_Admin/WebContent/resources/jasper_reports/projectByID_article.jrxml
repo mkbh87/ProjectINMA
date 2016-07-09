@@ -55,7 +55,7 @@ order by      Article.`Article_Date` ASC]]>
 			<textField>
 				<reportElement x="193" y="16" width="153" height="20" isPrintWhenDetailOverflows="true" uuid="3249080e-f9a3-4324-b7df-51a4d6407c8e"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H"/>
+					<font pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Article_Article_Date}]]></textFieldExpression>
 			</textField>
@@ -66,21 +66,21 @@ order by      Article.`Article_Date` ASC]]>
 			<textField>
 				<reportElement x="25" y="76" width="321" height="22" isPrintWhenDetailOverflows="true" uuid="f725a94d-1585-48aa-a3da-051e9d10ca21"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" markup="html">
-					<font fontName="Arab" size="10" pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<font fontName="Arab" size="10" pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Article_Article_Desc}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="105" y="56" width="241" height="20" isPrintWhenDetailOverflows="true" uuid="043718f7-8bea-4eb2-a519-b01874b55968"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H"/>
+					<font pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Article_Article_Title}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="193" y="36" width="153" height="20" isPrintWhenDetailOverflows="true" uuid="661f9e9c-36e6-45c6-8afc-390a15f6edf6"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font pdfFontName="/home/anas/arial.ttf" pdfEncoding="Identity-H"/>
+					<font pdfFontName="/usr/share/fonts/truetype/msttcorefonts/tahoma.ttf" pdfEncoding="Identity-H"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Article_Article_Author}]]></textFieldExpression>
 			</textField>
