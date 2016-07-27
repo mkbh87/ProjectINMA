@@ -11,8 +11,6 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
@@ -24,6 +22,7 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DualListModel;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.inmaa.admin.persistence.Contact;
@@ -32,7 +31,7 @@ import com.inmaa.admin.tools.Utils;
 
 
 @Component("contactBean")
-@ViewScoped
+@Scope("request")
 
 public class ContactBean implements Serializable{
 	/**
@@ -267,6 +266,9 @@ public class ContactBean implements Serializable{
 	{
 		contacts = new ListDataModel<Contact>();
 		contacts.setWrappedData(contactService.lister());
+		
+		contactList = new ArrayList<Contact>();
+		contactList = contactService.lister();
 	}
 
 	public void edit(){
