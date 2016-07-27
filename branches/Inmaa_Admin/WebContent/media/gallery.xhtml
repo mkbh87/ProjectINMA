@@ -510,7 +510,7 @@
 						<p:column headerText="N°"  style="width:15px" sortBy="#{img.seqNo}">
 							<h:outputText value="#{img.seqNo}" />
 						</p:column>
-						<p:column headerText="Titre" style="width:200px">
+						<p:column headerText="Titre" style="width:200px"  sortBy="#{img.mediaName}">
 							<p:cellEditor>
 								<f:facet name="output">
 									<h:outputText value="#{img.mediaName}" />

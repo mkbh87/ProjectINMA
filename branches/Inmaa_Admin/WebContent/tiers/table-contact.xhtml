@@ -343,7 +343,7 @@
 						href="../welcome.xhtml">Home</a> <span class="divider"> <i
 							class="icon-angle-right arrow-icon"></i>
 					</span></li>
-					<li class="active">Gection des Contacts</li>
+					<li class="active">Gestion des Contacts</li>
 				</ul>
 				<!--.breadcrumb-->
 
@@ -378,13 +378,6 @@
 
 						<h:panelGroup layout="block" id="headerID"
 							class="alert alert-block alert-success">
-
-							<p:ajaxStatus onstart="PF('statusDialog').show()"
-								onsuccess="PF('statusDialog').hide()" />
-							<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
-								closable="false" resizable="false" showHeader="false">
-								<p:graphicImage library="images" name="ajax-loader.gif" />
-							</p:dialog>
 
 							<div class="form-actions">
 								<p:commandLink styleClass="btn btn-info blue"
@@ -647,7 +640,7 @@
 								rowKey="#{contact.contactId}" rowsPerPageTemplate="20,35,60"
 								selectionMode="single" paginatorPosition="bottom"
 								selection="#{contactBean.currentContact}"
-								widgetVar="contactsTable"
+								widgetVar="contactsTable" 
 								filteredValue="#{contactBean.filteredContacts}"
 								resizableColumns="true">
 
@@ -675,6 +668,7 @@
 									</p:outputPanel>
 
 								</f:facet>
+
 
 								<p:column sortBy="#{contact.seqNo}" filterBy="#{contact.seqNo}" filterMatchMode="contains"
 									width="20" headerText="N°">
@@ -762,7 +756,7 @@
 								</p:column>
 
 								<f:facet name="footer">
-        								En total il y a  #{fn:length(contactBean.contactList)} contacts.
+        								Au total il y a  #{fn:length(contactBean.filteredContacts)} contacts.
    								</f:facet>
 							</p:dataTable>
 

@@ -5,8 +5,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -26,7 +29,9 @@ import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.inmaa.admin.persistence.Event;
 import com.inmaa.admin.persistence.Media;
+import com.inmaa.admin.persistence.SubEvent;
 import com.inmaa.admin.service.IMediaService;
 
 @Component("mediaBean")
@@ -51,7 +56,7 @@ public class MediaBean implements Serializable{
 	private int id;
 	private UploadedFile uploadedFile;
 	private String fileName;
- 
+
 
 	@PostConstruct
 	public void init() {
@@ -61,7 +66,7 @@ public class MediaBean implements Serializable{
 		videos.setWrappedData( mediaService.listerVideos());
 		pictureList = mediaService.listerPic();
 		videoList = mediaService.listerVideos();
- 		
+
 	}
 	public Media getcurrentMedia() {
 		return currentMedia;
@@ -109,7 +114,7 @@ public class MediaBean implements Serializable{
 		currentMedia = getPictures().getRowData();
 		return "detailMedia";
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 		currentMedia = getmediaById(id);
@@ -128,7 +133,7 @@ public class MediaBean implements Serializable{
 				return currentMedia;
 			}
 		}
-		
+
 		Iterator<Media> itr2 = videoList.iterator();
 		while(itr2.hasNext()) {
 			currentMedia = itr2.next();
@@ -172,16 +177,16 @@ public class MediaBean implements Serializable{
 		}
 		else
 			msg="il y a pas d image, ";
-		
+
 		return msg;
 	}	
-	
+
 	public void handleFileUpload(FileUploadEvent event) {
 
 		uploadedFile = event.getFile();
 	}
 
-	
+
 	public String ajouter(){
 		String bodymsg = "";
 		try {
@@ -189,9 +194,9 @@ public class MediaBean implements Serializable{
 			int seqno = mediaService.maxSeqno();
 			currentMedia.setSeqNo(seqno + 10);
 			mediaService.enregistrer(currentMedia);
- 			pictureList = mediaService.listerPic();
+			pictureList = mediaService.listerPic();
 			videoList = mediaService.listerVideos();
-			
+
 		} catch(Exception e) {
 			//Error during hibernate query
 			if(e.getCause() != null)
@@ -218,10 +223,10 @@ public class MediaBean implements Serializable{
 		} catch(Exception e) {
 			//Error during hibernate query
 			System.out.print("Error: "+e.getMessage());
- 			
+
 		}
 		currentMedia = new Media();
- 		pictureList = mediaService.listerPic();
+		pictureList = mediaService.listerPic();
 		videoList = mediaService.listerVideos();
 	}
 
@@ -230,11 +235,11 @@ public class MediaBean implements Serializable{
 		setId(currentMedia.getMediaId());
 		return "edit-medias.xhtml?faces-redirect=true&amp;includeViewParams=true";
 	}
-	
+
 	public void readyforDelete(Media p){
 		currentMedia = p;
 		setId(currentMedia.getMediaId());
-		
+
 	}
 	public DataModel<Media> getVideos() {
 		return videos;
@@ -250,16 +255,26 @@ public class MediaBean implements Serializable{
 			int seqno = mediaService.maxSeqno();
 			((Media) event.getObject()).setSeqNo(seqno + 10);
 			((Media) event.getObject()).setMediaType(true);
-		}
-			
-        FacesMessage msg = new FacesMessage("Picture Edited", ((Media) event.getObject()).getMediaName());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-        
-        mediaService.enregistrer((Media) event.getObject());
-		pictureList = mediaService.listerPic();
 
-    }
-     
+
+			FacesMessage msg = new FacesMessage("Picture Saved", ((Media) event.getObject()).getMediaName());
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+
+			mediaService.enregistrer((Media) event.getObject());
+			pictureList = mediaService.listerPic();
+		}
+
+		else
+		{
+			FacesMessage msg = new FacesMessage("Picture updated", ((Media) event.getObject()).getMediaName());
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+			mediaService.mettre_a_jour((Media) event.getObject());
+			pictureList = mediaService.listerPic();
+
+		}
+
+	}
+
 	public void onVidRowEdit(RowEditEvent event) {
 		//currentMedia = new Media((Media) event.getObject());
 		if(  ((Media) event.getObject()).getMediaId() == null )
@@ -267,38 +282,47 @@ public class MediaBean implements Serializable{
 			int seqno = mediaService.maxSeqno();
 			((Media) event.getObject()).setSeqNo(seqno + 10);
 			((Media) event.getObject()).setMediaType(false);
-		}
-			
-        FacesMessage msg = new FacesMessage("Video Edited", ((Media) event.getObject()).getMediaName());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-        
-        mediaService.enregistrer((Media) event.getObject());
-		videoList = mediaService.listerVideos();
-    }
-	
-    public void onRowCancel(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Edit Cancelled", ((Media) event.getObject()).getMediaName());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-     
-    public void onCellEdit(CellEditEvent event) {
-        Object oldValue = event.getOldValue();
-        Object newValue = event.getNewValue();
-         
-        if(newValue != null && !newValue.equals(oldValue)) {
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-        }
-    }
-        
-    public void newPicLine(ActionEvent actionEvent) {
-    	pictureList.add(new Media());
-    }
 
-    public void newVidLine(ActionEvent actionEvent) {
-    	videoList.add(new Media());
-    }
-    
+
+			FacesMessage msg = new FacesMessage("Video Saved", ((Media) event.getObject()).getMediaName());
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+
+			mediaService.enregistrer((Media) event.getObject());
+			videoList = mediaService.listerVideos();
+		}
+		else
+		{
+			FacesMessage msg = new FacesMessage("Video Edited", ((Media) event.getObject()).getMediaName());
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+			mediaService.mettre_a_jour((Media) event.getObject());
+			videoList = mediaService.listerVideos();
+
+		}
+	}
+
+	public void onRowCancel(RowEditEvent event) {
+		FacesMessage msg = new FacesMessage("Edit Cancelled", ((Media) event.getObject()).getMediaName());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void onCellEdit(CellEditEvent event) {
+		Object oldValue = event.getOldValue();
+		Object newValue = event.getNewValue();
+
+		if(newValue != null && !newValue.equals(oldValue)) {
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
+	}
+
+	public void newPicLine(ActionEvent actionEvent) {
+		pictureList.add(new Media());
+	}
+
+	public void newVidLine(ActionEvent actionEvent) {
+		videoList.add(new Media());
+	}
+
 	public List<Media> getVideoList() {
 		return videoList;
 	}
