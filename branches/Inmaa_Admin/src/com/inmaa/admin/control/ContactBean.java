@@ -22,7 +22,6 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DualListModel;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.inmaa.admin.persistence.Contact;
@@ -31,7 +30,6 @@ import com.inmaa.admin.tools.Utils;
 
 
 @Component("contactBean")
-@Scope("request")
 
 public class ContactBean implements Serializable{
 	/**
