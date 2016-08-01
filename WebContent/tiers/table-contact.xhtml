@@ -473,7 +473,7 @@
 														<h:panelGroup layout="block" class="controls">
 															<span class="span8 input-icon input-icon-right"> <h:panelGrid
 																	columns="1" cellpadding="5">
-																	<h:selectOneMenu disabled="#{not contactBean.editmode}">
+																	<h:selectOneMenu value="#{contactBean.currentContact.contactGender}" disabled="#{not contactBean.editmode}">
 																		<f:selectItem itemLabel="Organisation" itemValue="" />
 																		<f:selectItem itemLabel="Homme" itemValue="false" />
 																		<f:selectItem itemLabel="Femme" itemValue="true" />
@@ -843,10 +843,10 @@
 													<h:panelGroup layout="block" class="controls">
 														<span class="span8 input-icon input-icon-right"> <h:panelGrid
 																columns="1" cellpadding="5">
-																<h:selectOneMenu disabled="#{not contactBean.editmode}">
+																<h:selectOneMenu value="#{contactBean.currentContact.contactGender}" disabled="#{not contactBean.editmode}">
 																	<f:selectItem itemLabel="Organisation" itemValue="" />
-																	<f:selectItem itemLabel="Homme" itemValue="0" />
-																	<f:selectItem itemLabel="Femme" itemValue="1" />
+																	<f:selectItem itemLabel="Homme" itemValue="false" />
+																	<f:selectItem itemLabel="Femme" itemValue="true" />
 																</h:selectOneMenu>
 															</h:panelGrid>
 														</span>
