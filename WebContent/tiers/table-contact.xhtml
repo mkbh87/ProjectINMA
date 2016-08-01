@@ -299,7 +299,7 @@
 						</h:outputLink></li>
 					</ul></li>
 
-				<li><h:outputLink value="#" class="dropdown-toggle">
+				<li class="active open"><h:outputLink value="#" class="dropdown-toggle">
 						<i class="icon-tag"></i>
 						<span class="menu-text"> More Pages </span>
 
@@ -312,11 +312,11 @@
 						</h:outputLink></li>
 
 						<li><h:outputLink value="../more/visualisation.xhtml">
-								<i class="icon-double-angle-right"></i> Visualisation
+								<i class="icon-double-angle-right"></i>Statistique des vues
 						</h:outputLink></li>
 
-						<li><h:outputLink value="invoice.html">
-								<i class="icon-double-angle-right"></i> Invoice
+						<li  class="active"><h:outputLink value="../tiers/table-contact.xhtml">
+								<i class="icon-double-angle-right"></i> Carnet d'adresses
 						</h:outputLink></li>
 
 						<li><h:outputLink value="login.html">
@@ -365,7 +365,7 @@
 				<h:panelGroup layout="block" class="page-header position-relative">
 					<h1>
 						Acceuil <small> <i class="icon-double-angle-right"></i>
-							Liste des Contacts
+							Carnet d'adresses
 						</small>
 					</h1>
 				</h:panelGroup>
@@ -375,7 +375,7 @@
 					<h:panelGroup layout="block" class="span12">
 						<!--PAGE CONTENT BEGINS-->
 						 #{contactBean.vider()}
-
+						 #{contactBean.refresh()}
 						<h:panelGroup layout="block" id="headerID"
 							class="alert alert-block alert-success">
 
@@ -386,7 +386,7 @@
 								</p:commandLink>
 								&nbsp; &nbsp; &nbsp;
 
-								<p:commandLink action="#{contactBean.refresh}" ajax="true"
+								<p:commandLink action="#{contactBean.refresh()}" ajax="true"
 									styleClass="btn" update=":form:conTab">
 									<i class="icon-undo bigger-110"></i>
 											Actualiser tableau
@@ -640,7 +640,7 @@
 								rowKey="#{contact.contactId}" rowsPerPageTemplate="20,35,60"
 								selectionMode="single" paginatorPosition="bottom"
 								selection="#{contactBean.currentContact}"
-								widgetVar="contactsTable" 
+								widgetVar="contactsTable"  rowIndexVar="rowIndex" 
 								filteredValue="#{contactBean.filteredContacts}"
 								resizableColumns="true">
 
@@ -669,9 +669,12 @@
 
 								</f:facet>
 
+				  		 		 <p:column  width="20"   headerText="N°">
+				  		    		  #{rowIndex+1}
+				  			 	 </p:column>
 
-								<p:column sortBy="#{contact.seqNo}" filterBy="#{contact.seqNo}" filterMatchMode="contains"
-									width="20" headerText="N°">
+								<p:column sortBy="#{contact.seqNo}" filterBy="#{contact.seqNo}" filterMatchMode="contains" visible="false"
+									width="20" headerText="ID">
 									<h:outputText value="#{contact.seqNo}" />
 								</p:column>
 
@@ -731,7 +734,7 @@
 									</h:outputText>
 								</p:column>
 
-								<p:column filterBy="#{contact.contactWebSite}" width="80"
+								<p:column filterBy="#{contact.contactWebSite}" width="60"
 									filterMatchMode="contains" headerText="Site Web">
 									<h:outputText value="#{contact.contactWebSite}">
 									</h:outputText>
@@ -743,7 +746,7 @@
 									</h:outputText>
 								</p:column>
 
-								<p:column filterBy="#{contact.contactType}" width="60"
+								<p:column filterBy="#{contact.contactType}" width="80"
 									headerText="Type" filterMatchMode="in">
 									<f:facet name="filter">
 										<p:selectCheckboxMenu label="All types"
@@ -842,8 +845,8 @@
 																columns="1" cellpadding="5">
 																<h:selectOneMenu disabled="#{not contactBean.editmode}">
 																	<f:selectItem itemLabel="Organisation" itemValue="" />
-																	<f:selectItem itemLabel="Homme" itemValue="false" />
-																	<f:selectItem itemLabel="Femme" itemValue="true" />
+																	<f:selectItem itemLabel="Homme" itemValue="0" />
+																	<f:selectItem itemLabel="Femme" itemValue="1" />
 																</h:selectOneMenu>
 															</h:panelGrid>
 														</span>
