@@ -65,7 +65,8 @@ public class ContactBean implements Serializable{
 		setListTypes(contactService.getListOfTypes().toArray(new String[0]));
 		editmode = false;
 		addmode = false;
-
+		
+		contactList = new ArrayList<Contact>();
  		contactList = contactService.lister();
 		contacts = new ListDataModel<Contact>();
 		contacts.setWrappedData( contactService.lister());
