@@ -669,7 +669,7 @@
 
 								</f:facet>
 
-				  		 		 <p:column  width="20"   headerText="N°">
+				  		 		 <p:column  width="10" headerText="N°">
 				  		    		  #{rowIndex+1}
 				  			 	 </p:column>
 
@@ -727,6 +727,13 @@
 									<h:outputText value="#{contact.contactEmail}">
 									</h:outputText>
 								</p:column>
+								
+								<p:column sortBy="#{contact.contactBirthDay}" filterBy="#{contact.contactBirthDay}" width="50"
+									filterMatchMode="contains" headerText="Date nais.">
+									<h:outputText value="#{contact.contactBirthDay}">
+									</h:outputText>
+								</p:column>
+								
 
 								<p:column filterBy="#{contact.contactAddress}" width="80"
 									filterMatchMode="contains" headerText="Adresse">
@@ -734,7 +741,7 @@
 									</h:outputText>
 								</p:column>
 
-								<p:column filterBy="#{contact.contactWebSite}" width="60"
+								<p:column filterBy="#{contact.contactWebSite}" width="60" visible="false"
 									filterMatchMode="contains" headerText="Site Web">
 									<h:outputText value="#{contact.contactWebSite}">
 									</h:outputText>
